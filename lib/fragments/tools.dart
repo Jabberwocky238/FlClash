@@ -4,7 +4,7 @@ import 'package:fl_clash/fragments/about.dart';
 import 'package:fl_clash/fragments/access.dart';
 import 'package:fl_clash/fragments/application_setting.dart';
 import 'package:fl_clash/fragments/config/config.dart';
-import 'package:fl_clash/fragments/hotkey.dart';
+// import 'package:fl_clash/fragments/hotkey.dart';
 import 'package:fl_clash/l10n/l10n.dart';
 import 'package:fl_clash/models/models.dart';
 import 'package:fl_clash/providers/providers.dart';
@@ -13,10 +13,10 @@ import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'backup_and_recovery.dart';
+// import 'backup_and_recovery.dart';
 import 'developer.dart';
 import 'theme.dart';
-import 'package:path/path.dart' show dirname, join;
+// import 'package:path/path.dart' show dirname, join;
 
 class ToolsFragment extends ConsumerStatefulWidget {
   const ToolsFragment({super.key});
@@ -72,9 +72,9 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
       items: [
         _LocaleItem(),
         _ThemeItem(),
-        _BackupItem(),
-        if (system.isDesktop) _HotkeyItem(),
-        if (Platform.isWindows) _LoopbackItem(),
+        // _BackupItem(), // WEBDAV
+        // if (system.isDesktop) _HotkeyItem(),
+        // if (Platform.isWindows) _LoopbackItem(),
         if (Platform.isAndroid) _AccessItem(),
         _ConfigItem(),
         _SettingItem(),
@@ -165,58 +165,55 @@ class _ThemeItem extends StatelessWidget {
   }
 }
 
-class _BackupItem extends StatelessWidget {
-  const _BackupItem();
+// class _BackupItem extends StatelessWidget {
+//   const _BackupItem();
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListItem.open(
+//       leading: const Icon(Icons.cloud_sync),
+//       title: Text(appLocalizations.backupAndRecovery),
+//       subtitle: Text(appLocalizations.backupAndRecoveryDesc),
+//       delegate: OpenDelegate(
+//         title: appLocalizations.backupAndRecovery,
+//         widget: const BackupAndRecovery(),
+//       ),
+//     );
+//   }
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return ListItem.open(
-      leading: const Icon(Icons.cloud_sync),
-      title: Text(appLocalizations.backupAndRecovery),
-      subtitle: Text(appLocalizations.backupAndRecoveryDesc),
-      delegate: OpenDelegate(
-        title: appLocalizations.backupAndRecovery,
-        widget: const BackupAndRecovery(),
-      ),
-    );
-  }
-}
+// class _HotkeyItem extends StatelessWidget {
+//   const _HotkeyItem();
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListItem.open(
+//       leading: const Icon(Icons.keyboard),
+//       title: Text(appLocalizations.hotkeyManagement),
+//       subtitle: Text(appLocalizations.hotkeyManagementDesc),
+//       delegate: OpenDelegate(
+//         title: appLocalizations.hotkeyManagement,
+//         widget: const HotKeyFragment(),
+//       ),
+//     );
+//   }
+// }
 
-class _HotkeyItem extends StatelessWidget {
-  const _HotkeyItem();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListItem.open(
-      leading: const Icon(Icons.keyboard),
-      title: Text(appLocalizations.hotkeyManagement),
-      subtitle: Text(appLocalizations.hotkeyManagementDesc),
-      delegate: OpenDelegate(
-        title: appLocalizations.hotkeyManagement,
-        widget: const HotKeyFragment(),
-      ),
-    );
-  }
-}
-
-class _LoopbackItem extends StatelessWidget {
-  const _LoopbackItem();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListItem(
-      leading: const Icon(Icons.lock),
-      title: Text(appLocalizations.loopback),
-      subtitle: Text(appLocalizations.loopbackDesc),
-      onTap: () {
-        windows?.runas(
-          '"${join(dirname(Platform.resolvedExecutable), "EnableLoopback.exe")}"',
-          "",
-        );
-      },
-    );
-  }
-}
+// class _LoopbackItem extends StatelessWidget {
+//   const _LoopbackItem();
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListItem(
+//       leading: const Icon(Icons.lock),
+//       title: Text(appLocalizations.loopback),
+//       subtitle: Text(appLocalizations.loopbackDesc),
+//       onTap: () {
+//         windows?.runas(
+//           '"${join(dirname(Platform.resolvedExecutable), "EnableLoopback.exe")}"',
+//           "",
+//         );
+//       },
+//     );
+//   }
+// }
 
 class _AccessItem extends StatelessWidget {
   const _AccessItem();
