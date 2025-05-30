@@ -26,7 +26,7 @@ _$AppSettingPropsImpl _$$AppSettingPropsImplFromJson(
       disclaimerAccepted: json['disclaimerAccepted'] as bool? ?? false,
       minimizeOnExit: json['minimizeOnExit'] as bool? ?? true,
       hidden: json['hidden'] as bool? ?? false,
-      developerMode: json['developerMode'] as bool? ?? false,
+      developerMode: json['developerMode'] as bool? ?? true,
       recoveryStrategy: $enumDecodeNullable(
               _$RecoveryStrategyEnumMap, json['recoveryStrategy']) ??
           RecoveryStrategy.compatible,
@@ -310,6 +310,9 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       dav: json['dav'] == null
           ? null
           : DAV.fromJson(json['dav'] as Map<String, dynamic>),
+      authProps: json['authProps'] == null
+          ? defaultAuthProps
+          : AuthProps.fromJson(json['authProps'] as Map<String, dynamic>),
       networkProps: json['networkProps'] == null
           ? defaultNetworkProps
           : NetworkProps.fromJson(
@@ -340,6 +343,7 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'currentProfileId': instance.currentProfileId,
       'overrideDns': instance.overrideDns,
       'dav': instance.dav,
+      'authProps': instance.authProps,
       'networkProps': instance.networkProps,
       'vpnProps': instance.vpnProps,
       'themeProps': instance.themeProps,

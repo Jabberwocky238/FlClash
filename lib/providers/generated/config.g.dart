@@ -83,6 +83,21 @@ final themeSettingProvider =
 );
 
 typedef _$ThemeSetting = AutoDisposeNotifier<ThemeProps>;
+String _$authSettingHash() => r'c57ad8ad6e0374f8fd1689069b1c7fc35552ee6c';
+
+/// See also [AuthSetting].
+@ProviderFor(AuthSetting)
+final authSettingProvider =
+    AutoDisposeNotifierProvider<AuthSetting, AuthProps>.internal(
+  AuthSetting.new,
+  name: r'authSettingProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authSettingHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AuthSetting = AutoDisposeNotifier<AuthProps>;
 String _$profilesHash() => r'a6514c89064e4f42fc31fe7d525088fd26c51016';
 
 /// See also [Profiles].

@@ -336,7 +336,7 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       this.disclaimerAccepted = false,
       this.minimizeOnExit = true,
       this.hidden = false,
-      this.developerMode = false,
+      this.developerMode = true,
       this.recoveryStrategy = RecoveryStrategy.compatible})
       : _dashboardWidgets = dashboardWidgets;
 
@@ -2256,6 +2256,7 @@ mixin _$Config {
   String? get currentProfileId => throw _privateConstructorUsedError;
   bool get overrideDns => throw _privateConstructorUsedError;
   DAV? get dav => throw _privateConstructorUsedError;
+  AuthProps get authProps => throw _privateConstructorUsedError;
   NetworkProps get networkProps => throw _privateConstructorUsedError;
   VpnProps get vpnProps => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ThemeProps.safeFromJson)
@@ -2286,6 +2287,7 @@ abstract class $ConfigCopyWith<$Res> {
       String? currentProfileId,
       bool overrideDns,
       DAV? dav,
+      AuthProps authProps,
       NetworkProps networkProps,
       VpnProps vpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
@@ -2295,6 +2297,7 @@ abstract class $ConfigCopyWith<$Res> {
 
   $AppSettingPropsCopyWith<$Res> get appSetting;
   $DAVCopyWith<$Res>? get dav;
+  $AuthPropsCopyWith<$Res> get authProps;
   $NetworkPropsCopyWith<$Res> get networkProps;
   $VpnPropsCopyWith<$Res> get vpnProps;
   $ThemePropsCopyWith<$Res> get themeProps;
@@ -2324,6 +2327,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? currentProfileId = freezed,
     Object? overrideDns = null,
     Object? dav = freezed,
+    Object? authProps = null,
     Object? networkProps = null,
     Object? vpnProps = null,
     Object? themeProps = null,
@@ -2356,6 +2360,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.dav
           : dav // ignore: cast_nullable_to_non_nullable
               as DAV?,
+      authProps: null == authProps
+          ? _value.authProps
+          : authProps // ignore: cast_nullable_to_non_nullable
+              as AuthProps,
       networkProps: null == networkProps
           ? _value.networkProps
           : networkProps // ignore: cast_nullable_to_non_nullable
@@ -2404,6 +2412,16 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
 
     return $DAVCopyWith<$Res>(_value.dav!, (value) {
       return _then(_value.copyWith(dav: value) as $Val);
+    });
+  }
+
+  /// Create a copy of Config
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthPropsCopyWith<$Res> get authProps {
+    return $AuthPropsCopyWith<$Res>(_value.authProps, (value) {
+      return _then(_value.copyWith(authProps: value) as $Val);
     });
   }
 
@@ -2483,6 +2501,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       String? currentProfileId,
       bool overrideDns,
       DAV? dav,
+      AuthProps authProps,
       NetworkProps networkProps,
       VpnProps vpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
@@ -2494,6 +2513,8 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   $AppSettingPropsCopyWith<$Res> get appSetting;
   @override
   $DAVCopyWith<$Res>? get dav;
+  @override
+  $AuthPropsCopyWith<$Res> get authProps;
   @override
   $NetworkPropsCopyWith<$Res> get networkProps;
   @override
@@ -2527,6 +2548,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? currentProfileId = freezed,
     Object? overrideDns = null,
     Object? dav = freezed,
+    Object? authProps = null,
     Object? networkProps = null,
     Object? vpnProps = null,
     Object? themeProps = null,
@@ -2559,6 +2581,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.dav
           : dav // ignore: cast_nullable_to_non_nullable
               as DAV?,
+      authProps: null == authProps
+          ? _value.authProps
+          : authProps // ignore: cast_nullable_to_non_nullable
+              as AuthProps,
       networkProps: null == networkProps
           ? _value.networkProps
           : networkProps // ignore: cast_nullable_to_non_nullable
@@ -2598,6 +2624,7 @@ class _$ConfigImpl implements _Config {
       this.currentProfileId,
       this.overrideDns = false,
       this.dav,
+      this.authProps = defaultAuthProps,
       this.networkProps = defaultNetworkProps,
       this.vpnProps = defaultVpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson) required this.themeProps,
@@ -2640,6 +2667,9 @@ class _$ConfigImpl implements _Config {
   final DAV? dav;
   @override
   @JsonKey()
+  final AuthProps authProps;
+  @override
+  @JsonKey()
   final NetworkProps networkProps;
   @override
   @JsonKey()
@@ -2659,7 +2689,7 @@ class _$ConfigImpl implements _Config {
 
   @override
   String toString() {
-    return 'Config(appSetting: $appSetting, profiles: $profiles, hotKeyActions: $hotKeyActions, currentProfileId: $currentProfileId, overrideDns: $overrideDns, dav: $dav, networkProps: $networkProps, vpnProps: $vpnProps, themeProps: $themeProps, proxiesStyle: $proxiesStyle, windowProps: $windowProps, patchClashConfig: $patchClashConfig)';
+    return 'Config(appSetting: $appSetting, profiles: $profiles, hotKeyActions: $hotKeyActions, currentProfileId: $currentProfileId, overrideDns: $overrideDns, dav: $dav, authProps: $authProps, networkProps: $networkProps, vpnProps: $vpnProps, themeProps: $themeProps, proxiesStyle: $proxiesStyle, windowProps: $windowProps, patchClashConfig: $patchClashConfig)';
   }
 
   @override
@@ -2677,6 +2707,8 @@ class _$ConfigImpl implements _Config {
             (identical(other.overrideDns, overrideDns) ||
                 other.overrideDns == overrideDns) &&
             (identical(other.dav, dav) || other.dav == dav) &&
+            (identical(other.authProps, authProps) ||
+                other.authProps == authProps) &&
             (identical(other.networkProps, networkProps) ||
                 other.networkProps == networkProps) &&
             (identical(other.vpnProps, vpnProps) ||
@@ -2701,6 +2733,7 @@ class _$ConfigImpl implements _Config {
       currentProfileId,
       overrideDns,
       dav,
+      authProps,
       networkProps,
       vpnProps,
       themeProps,
@@ -2733,6 +2766,7 @@ abstract class _Config implements Config {
       final String? currentProfileId,
       final bool overrideDns,
       final DAV? dav,
+      final AuthProps authProps,
       final NetworkProps networkProps,
       final VpnProps vpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson)
@@ -2756,6 +2790,8 @@ abstract class _Config implements Config {
   bool get overrideDns;
   @override
   DAV? get dav;
+  @override
+  AuthProps get authProps;
   @override
   NetworkProps get networkProps;
   @override

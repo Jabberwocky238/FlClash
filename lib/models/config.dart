@@ -34,6 +34,7 @@ const defaultBypassDomain = [
 const defaultAppSettingProps = AppSettingProps();
 const defaultVpnProps = VpnProps();
 const defaultNetworkProps = NetworkProps();
+const defaultAuthProps = AuthProps();
 const defaultProxiesStyle = ProxiesStyle();
 const defaultWindowProps = WindowProps();
 const defaultAccessControl = AccessControl();
@@ -223,6 +224,7 @@ class Config with _$Config {
     String? currentProfileId,
     @Default(false) bool overrideDns,
     DAV? dav,
+    @Default(defaultAuthProps) AuthProps authProps,
     @Default(defaultNetworkProps) NetworkProps networkProps,
     @Default(defaultVpnProps) VpnProps vpnProps,
     @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,

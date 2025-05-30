@@ -101,6 +101,25 @@ class ThemeSetting extends _$ThemeSetting with AutoDisposeNotifierMixin {
 }
 
 @riverpod
+class AuthSetting extends _$AuthSetting with AutoDisposeNotifierMixin {
+  @override
+  AuthProps build() {
+    return globalState.config.authProps;
+  }
+
+  @override
+  onUpdate(value) {
+    globalState.config = globalState.config.copyWith(
+      authProps: value,
+    );
+  }
+
+  updateState(AuthProps Function(AuthProps state) builder) {
+    state = builder(state);
+  }
+}
+
+@riverpod
 class Profiles extends _$Profiles with AutoDisposeNotifierMixin {
   @override
   List<Profile> build() {

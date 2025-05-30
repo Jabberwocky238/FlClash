@@ -2,7 +2,7 @@
 
 [**简体中文**](README_zh_CN.md)
 
-</div>
+</div>dart run build_runner watch -d
 
 ## FlClash
 
