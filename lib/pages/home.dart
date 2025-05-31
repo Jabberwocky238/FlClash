@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/enum/enum.dart';
@@ -205,8 +206,8 @@ class CommonNavigationBarNew extends ConsumerWidget {
                         )
                         .toList(),
                     onDestinationSelected: (index) {
-                      globalState.appController
-                          .toPage(navigationItems[index].label);
+                      globalState.appController.toPage(navigationItems[index].label);
+                      Navigator.pop(context); // 添加这一行来关闭抽屉
                     },
                     extended: false,
                     selectedIndex: currentIndex,
@@ -237,9 +238,21 @@ class CommonNavigationBarNew extends ConsumerWidget {
         ],
       ),
     );
+    final panel2 = ListView(
+      children: navigationItems.map((e) => ListTile(
+        leading: e.icon,
+        title: Text(Intl.message(e.label.name)),
+        selected: navigationItems.indexOf(e) == currentIndex,
+        onTap: () {
+          globalState.appController.toPage(e.label);
+          Navigator.pop(context);
+        },
+      )).toList(),
+    );
+    final drawerWidth = min(MediaQuery.of(context).size.width * 0.5, 200);
     return Drawer(
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: panel,
+      width: drawerWidth.toDouble(),
+      child: panel2,
     );
   }
 }
