@@ -9,11 +9,10 @@ import 'package:flutter/services.dart';
 
 import 'chip.dart';
 
-class CommonScaffold extends StatefulWidget {
+class CommonScaffoldNew extends StatefulWidget {
   final AppBar? appBar;
   final Widget body;
-  final Widget? bottomNavigationBar;
-  final Widget? sideNavigationBar;
+  final Widget? navigationBar;
   final Color? backgroundColor;
   final String? title;
   final Widget? leading;
@@ -22,13 +21,12 @@ class CommonScaffold extends StatefulWidget {
   final bool? centerTitle;
   final AppBarEditState? appBarEditState;
 
-  const CommonScaffold({
+  const CommonScaffoldNew({
     super.key,
     this.appBar,
     required this.body,
-    this.sideNavigationBar,
+    this.navigationBar,
     this.backgroundColor,
-    this.bottomNavigationBar,
     this.leading,
     this.title,
     this.actions,
@@ -37,7 +35,7 @@ class CommonScaffold extends StatefulWidget {
     this.appBarEditState,
   });
 
-  CommonScaffold.open({
+  CommonScaffoldNew.open({
     Key? key,
     required Widget body,
     required String title,
@@ -58,10 +56,10 @@ class CommonScaffold extends StatefulWidget {
         );
 
   @override
-  State<CommonScaffold> createState() => CommonScaffoldState();
+  State<CommonScaffoldNew> createState() => CommonScaffoldNewState();
 }
 
-class CommonScaffoldState extends State<CommonScaffold> {
+class CommonScaffoldNewState extends State<CommonScaffoldNew> {
   late final ValueNotifier<AppBarState> _appBarState;
   final ValueNotifier<Widget?> _floatingActionButton = ValueNotifier(null);
   final ValueNotifier<List<String>> _keywordsNotifier = ValueNotifier([]);
@@ -70,8 +68,6 @@ class CommonScaffoldState extends State<CommonScaffold> {
   final _textController = TextEditingController();
 
   Function(List<String>)? _onKeywordsUpdate;
-
-  Widget? get _sideNavigationBar => widget.sideNavigationBar;
 
   set actions(List<Widget> actions) {
     _appBarState.value = _appBarState.value.copyWith(actions: actions);
@@ -206,7 +202,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
   }
 
   @override
-  void didUpdateWidget(CommonScaffold oldWidget) {
+  void didUpdateWidget(CommonScaffoldNew oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.title != widget.title) {
       _appBarState.value = AppBarState();
@@ -337,7 +333,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
                   Theme.of(context).brightness == Brightness.dark
                       ? Brightness.light
                       : Brightness.dark,
-              systemNavigationBarColor: widget.bottomNavigationBar != null
+              systemNavigationBarColor: widget.navigationBar != null
                   ? context.colorScheme.surfaceContainer
                   : context.colorScheme.surface,
               systemNavigationBarDividerColor: Colors.transparent,
@@ -430,7 +426,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
     );
     final scaffold = Scaffold(
       appBar: _buildAppBar(),
-      drawer: _sideNavigationBar,
+      drawer: widget.navigationBar,
       body: body,
       backgroundColor: widget.backgroundColor,
       floatingActionButton: ValueListenableBuilder<Widget?>(
@@ -445,20 +441,8 @@ class CommonScaffoldState extends State<CommonScaffold> {
           );
         },
       ),
-      bottomNavigationBar: widget.bottomNavigationBar,
     );
-    return _sideNavigationBar != null
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _sideNavigationBar!,
-              Expanded(
-                flex: 1,
-                child: scaffold,
-              ),
-            ],
-          )
-        : scaffold;
+    return scaffold;
   }
 }
 

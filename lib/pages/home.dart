@@ -5,6 +5,7 @@ import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/models/models.dart';
 import 'package:fl_clash/providers/providers.dart';
 import 'package:fl_clash/state.dart';
+import 'package:fl_clash/widgets/scaffold_new.dart';
 import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,8 +29,12 @@ class HomePage extends StatelessWidget {
             (element) => element.label == pageLabel,
           );
           final currentIndex = index == -1 ? 0 : index;
-          final navigationBar = CommonNavigationBar(
-            viewMode: viewMode,
+          // final navigationBar = CommonNavigationBar(
+          //   viewMode: viewMode,
+          //   navigationItems: navigationItems,
+          //   currentIndex: currentIndex,
+          // );
+          final navigationBar = CommonNavigationBarNew(
             navigationItems: navigationItems,
             currentIndex: currentIndex,
           );
@@ -37,14 +42,14 @@ class HomePage extends StatelessWidget {
               viewMode == ViewMode.mobile ? navigationBar : null;
           final sideNavigationBar =
               viewMode != ViewMode.mobile ? navigationBar : null;
-          return CommonScaffold(
+          return CommonScaffoldNew(
             key: globalState.homeScaffoldKey,
             title: Intl.message(
               pageLabel.name,
             ),
-            sideNavigationBar: sideNavigationBar,
+            navigationBar: navigationBar,
             body: child!,
-            bottomNavigationBar: bottomNavigationBar,
+            // bottomNavigationBar: bottomNavigationBar,
           );
         },
         child: _HomePageView(),
@@ -129,16 +134,16 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
       controller: _pageController,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: navigationItems.length,
-      // onPageChanged: (index) {
-      //   debouncer.call(DebounceTag.pageChange, () {
-      //     WidgetsBinding.instance.addPostFrameCallback((_) {
-      //       if (_pageIndex != index) {
-      //         final pageLabel = navigationItems[index].label;
-      //         _toPage(pageLabel, true);
-      //       }
-      //     });
-      //   });
-      // },
+      onPageChanged: (index) {
+        debouncer.call(DebounceTag.pageChange, () {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (_pageIndex != index) {
+              final pageLabel = navigationItems[index].label;
+              _toPage(pageLabel, true);
+            }
+          });
+        });
+      },
       itemBuilder: (_, index) {
         final navigationItem = navigationItems[index];
         return KeepScope(
@@ -147,6 +152,94 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
           child: navigationItem.fragment,
         );
       },
+    );
+  }
+}
+
+class CommonNavigationBarNew extends ConsumerWidget {
+  final List<NavigationItem> navigationItems;
+  final int currentIndex;
+
+  const CommonNavigationBarNew({
+    super.key,
+    required this.navigationItems,
+    required this.currentIndex,
+  });
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final showLabel = ref.watch(appSettingProvider).showLabel;
+    final panel = Material(
+      color: context.colorScheme.surfaceContainer,
+      child: Column(
+        children: [
+          Expanded(
+            child: ScrollConfiguration(
+              behavior: HiddenBarScrollBehavior(),
+              child: SingleChildScrollView(
+                child: IntrinsicHeight(
+                  child: NavigationRail(
+                    backgroundColor: context.colorScheme.surfaceContainer,
+                    selectedIconTheme: IconThemeData(
+                      color: context.colorScheme.onSurfaceVariant,
+                    ),
+                    unselectedIconTheme: IconThemeData(
+                      color: context.colorScheme.onSurfaceVariant,
+                    ),
+                    selectedLabelTextStyle:
+                        context.textTheme.labelLarge!.copyWith(
+                      color: context.colorScheme.onSurface,
+                    ),
+                    unselectedLabelTextStyle:
+                        context.textTheme.labelLarge!.copyWith(
+                      color: context.colorScheme.onSurface,
+                    ),
+                    destinations: navigationItems
+                        .map(
+                          (e) => NavigationRailDestination(
+                            icon: e.icon,
+                            label: Text(
+                              Intl.message(e.label.name),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    onDestinationSelected: (index) {
+                      globalState.appController
+                          .toPage(navigationItems[index].label);
+                    },
+                    extended: false,
+                    selectedIndex: currentIndex,
+                    labelType: showLabel
+                        ? NavigationRailLabelType.all
+                        : NavigationRailLabelType.none,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          IconButton(
+            onPressed: () {
+              ref.read(appSettingProvider.notifier).updateState(
+                (state) => state.copyWith(
+                  showLabel: !state.showLabel,
+                ),
+              );
+            },
+            icon: const Icon(Icons.menu),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+        ],
+      ),
+    );
+    return Drawer(
+      width: MediaQuery.of(context).size.width * 0.5,
+      child: panel,
     );
   }
 }
