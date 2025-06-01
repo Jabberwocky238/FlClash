@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-import 'package:fl_clash/common/common.dart';
+import 'package:jw_clash/common/common.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../enum/enum.dart';

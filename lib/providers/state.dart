@@ -1,8 +1,8 @@
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/state.dart';
+import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/models/models.dart';
+import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -53,7 +53,8 @@ NavigationItemsState currentNavigationsState(Ref ref) {
   return NavigationItemsState(
     value: navigationItemsState.value
         .where(
-          (element) => element.modes.contains(navigationItemMode),
+          // (element) => element.modes.contains(navigationItemMode),
+          (element) => true,
         )
         .toList(),
   );
@@ -307,12 +308,12 @@ MoreToolsSelectorState moreToolsSelectorState(Ref ref) {
   final viewMode = ref.watch(viewModeProvider);
   final navigationItems = ref.watch(navigationsStateProvider.select((state) {
     return state.value.where((element) {
-      final isMore = element.modes.contains(NavigationItemMode.more);
-      final isDesktop = element.modes.contains(NavigationItemMode.desktop);
-      if (isMore && !isDesktop) return true;
-      if (viewMode != ViewMode.mobile || !isMore) {
-        return false;
-      }
+      // final isMore = element.modes.contains(NavigationItemMode.more);
+      // final isDesktop = element.modes.contains(NavigationItemMode.desktop);
+      // if (isMore && !isDesktop) return true;
+      // if (viewMode != ViewMode.mobile || !isMore) {
+      //   return false;
+      // }
       return true;
     }).toList();
   }));

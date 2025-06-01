@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:fl_clash/clash/interface.dart';
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/models/core.dart';
-import 'package:fl_clash/state.dart';
+import 'package:jw_clash/clash/interface.dart';
+import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/models/core.dart';
+import 'package:jw_clash/state.dart';
 
 class ClashService extends ClashHandlerInterface {
   static ClashService? _instance;

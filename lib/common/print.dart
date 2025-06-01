@@ -1,5 +1,5 @@
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/state.dart';
+import 'package:jw_clash/models/models.dart';
+import 'package:jw_clash/state.dart';
 import 'package:flutter/cupertino.dart';
 
 class CommonPrint {

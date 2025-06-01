@@ -5,11 +5,11 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
-import 'package:fl_clash/models/core.dart';
-import 'package:fl_clash/plugins/app.dart';
-import 'package:fl_clash/plugins/tile.dart';
-import 'package:fl_clash/plugins/vpn.dart';
-import 'package:fl_clash/state.dart';
+import 'package:jw_clash/models/core.dart';
+import 'package:jw_clash/plugins/app.dart';
+import 'package:jw_clash/plugins/tile.dart';
+import 'package:jw_clash/plugins/vpn.dart';
+import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

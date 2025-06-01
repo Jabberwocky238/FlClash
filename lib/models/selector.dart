@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/models/models.dart';
+import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

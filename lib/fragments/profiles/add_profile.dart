@@ -1,7 +1,7 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/pages/scan.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/pages/scan.dart';
+import 'package:jw_clash/state.dart';
+import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AddProfile extends StatelessWidget {

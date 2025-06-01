@@ -1,4 +1,4 @@
-import 'package:fl_clash/common/app_localizations.dart';
+import 'package:jw_clash/common/app_localizations.dart';
 
 extension DateTimeExtension on DateTime {
   bool get isBeforeNow {

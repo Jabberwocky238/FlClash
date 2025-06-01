@@ -5,12 +5,12 @@ import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:fl_clash/clash/clash.dart';
-import 'package:fl_clash/common/archive.dart';
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/providers/providers.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/widgets/dialog.dart';
+import 'package:jw_clash/clash/clash.dart';
+import 'package:jw_clash/common/archive.dart';
+import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/providers/providers.dart';
+import 'package:jw_clash/state.dart';
+import 'package:jw_clash/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';

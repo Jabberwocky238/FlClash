@@ -2,8 +2,8 @@
 
 import 'dart:io';
 
-import 'package:fl_clash/fragments/dashboard/widgets/widgets.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:jw_clash/fragments/dashboard/widgets/widgets.dart';
+import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';

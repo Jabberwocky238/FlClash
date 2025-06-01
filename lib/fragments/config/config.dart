@@ -1,10 +1,10 @@
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/fragments/config/dns.dart';
-import 'package:fl_clash/fragments/config/general.dart';
-import 'package:fl_clash/fragments/config/network.dart';
-import 'package:fl_clash/models/clash_config.dart';
-import 'package:fl_clash/providers/config.dart' show patchClashConfigProvider;
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/fragments/config/dns.dart';
+import 'package:jw_clash/fragments/config/general.dart';
+import 'package:jw_clash/fragments/config/network.dart';
+import 'package:jw_clash/models/clash_config.dart';
+import 'package:jw_clash/providers/config.dart' show patchClashConfigProvider;
+import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

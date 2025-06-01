@@ -1,9 +1,9 @@
 import 'dart:math';
-import 'package:fl_clash/common/constant.dart';
-import 'package:fl_clash/common/measure.dart';
-import 'package:fl_clash/common/theme.dart';
-import 'package:fl_clash/providers/config.dart';
-import 'package:fl_clash/state.dart';
+import 'package:jw_clash/common/constant.dart';
+import 'package:jw_clash/common/measure.dart';
+import 'package:jw_clash/common/theme.dart';
+import 'package:jw_clash/providers/config.dart';
+import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fl_clash/common/common.dart';
+import 'package:jw_clash/common/common.dart';
 import 'package:flutter/material.dart';
 
 class CommonTargetIcon extends StatelessWidget {

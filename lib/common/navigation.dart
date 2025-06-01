@@ -1,6 +1,6 @@
-import 'package:fl_clash/enum/enum.dart';
-import 'package:fl_clash/fragments/fragments.dart';
-import 'package:fl_clash/models/models.dart';
+import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/fragments/fragments.dart';
+import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 
 class Navigation {
