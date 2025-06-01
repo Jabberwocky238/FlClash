@@ -2,6 +2,7 @@ import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'context.dart';
+import 'package:jw_clash/common/common.dart';
 
 mixin AutoDisposeNotifierMixin<T> on AutoDisposeNotifier<T> {
   set value(T value) {
@@ -27,6 +28,7 @@ mixin PageMixin<T extends StatefulWidget> on State<T> {
 
   initPageState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      // commonPrint.log('[PageMixin:30] (mixin.dart) 页面显示');
       final commonScaffoldState = context.commonScaffoldState;
       commonScaffoldState?.actions = actions;
       commonScaffoldState?.floatingActionButton = floatingActionButton;

@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 
 import 'card.dart';
 import 'input.dart';
-import 'scaffold.dart';
+// import 'scaffold.dart';
+import 'scaffold_new.dart';
 import 'sheet.dart';
 
 class Delegate {
@@ -305,7 +306,7 @@ class ListItem<T> extends StatelessWidget {
           );
         },
         openBuilder: (_, action) {
-          return CommonScaffold.open(
+          return CommonScaffoldNew.open(
             key: Key(openDelegate.title),
             onBack: action,
             title: openDelegate.title,
@@ -314,6 +315,15 @@ class ListItem<T> extends StatelessWidget {
               if (openDelegate.action != null) openDelegate.action!,
             ],
           );
+          // return CommonScaffold.open(
+          //   key: Key(openDelegate.title),
+          //   onBack: action,
+          //   title: openDelegate.title,
+          //   body: child,
+          //   actions: [
+          //     if (openDelegate.action != null) openDelegate.action!,
+          //   ],
+          // );
         },
       );
     }

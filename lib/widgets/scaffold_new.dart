@@ -20,6 +20,7 @@ class CommonScaffoldNew extends StatefulWidget {
   final bool automaticallyImplyLeading;
   final bool? centerTitle;
   final AppBarEditState? appBarEditState;
+  final bool isDrawerOpen;
 
   const CommonScaffoldNew({
     super.key,
@@ -33,6 +34,7 @@ class CommonScaffoldNew extends StatefulWidget {
     this.automaticallyImplyLeading = true,
     this.centerTitle,
     this.appBarEditState,
+    this.isDrawerOpen = false,
   });
 
   CommonScaffoldNew.open({
@@ -68,6 +70,8 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
   final _textController = TextEditingController();
 
   Function(List<String>)? _onKeywordsUpdate;
+
+  Widget? get _sideNavigationBar => widget.navigationBar;
 
   set actions(List<Widget> actions) {
     _appBarState.value = _appBarState.value.copyWith(actions: actions);
@@ -248,6 +252,13 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
   }
 
   Widget _buildTitle(AppBarSearchState? startState) {
+    return Text(
+            !_isEdit
+                ? widget.title!
+                : appLocalizations.selectedCountTitle(
+                    "${_appBarState.value.editState?.editCount ?? 0}",
+                  ),
+          );
     return _isSearch
         ? TextField(
             autofocus: true,
@@ -275,27 +286,27 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
     bool hasSearch,
     List<Widget> actions,
   ) {
-    if (_isSearch) {
-      return genActions([
-        IconButton(
-          onPressed: _handleClear,
-          icon: Icon(Icons.close),
-        ),
-      ]);
-    }
+    // if (_isSearch) {
+    //   return genActions([
+    //     IconButton(
+    //       onPressed: _handleClear,
+    //       icon: Icon(Icons.close),
+    //     ),
+    //   ]);
+    // }
     return genActions(
       [
-        if (hasSearch)
-          IconButton(
-            onPressed: () {
-              updateSearchState(
-                (state) => state?.copyWith(
-                  isSearch: true,
-                ),
-              );
-            },
-            icon: Icon(Icons.search),
-          ),
+        // if (hasSearch)
+        //   IconButton(
+        //     onPressed: () {
+        //       updateSearchState(
+        //         (state) => state?.copyWith(
+        //           isSearch: true,
+        //         ),
+        //       );
+        //     },
+        //     icon: Icon(Icons.search),
+        //   ),
         ...actions
       ],
     );
@@ -355,7 +366,8 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
                         leading: _buildLeading(),
                         title: _buildTitle(state.searchState),
                         actions: _buildActions(
-                          state.searchState != null,
+                          // state.searchState != null,
+                          false,
                           state.actions.isNotEmpty
                               ? state.actions
                               : widget.actions ?? [],
@@ -417,7 +429,7 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
                 ),
               );
             },
-          ),
+          ), 
           Expanded(
             child: widget.body,
           ),
@@ -426,7 +438,7 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
     );
     final scaffold = Scaffold(
       appBar: _buildAppBar(),
-      drawer: widget.navigationBar,
+      drawer: _sideNavigationBar,
       body: body,
       backgroundColor: widget.backgroundColor,
       floatingActionButton: ValueListenableBuilder<Widget?>(
@@ -443,6 +455,18 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
       ),
     );
     return scaffold;
+    return _sideNavigationBar != null
+    ? Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _sideNavigationBar!,
+          Expanded(
+            flex: 1,
+            child: scaffold,
+          ),
+        ],
+      )
+    : scaffold;
   }
 }
 

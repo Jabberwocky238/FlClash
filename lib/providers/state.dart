@@ -308,12 +308,12 @@ MoreToolsSelectorState moreToolsSelectorState(Ref ref) {
   final viewMode = ref.watch(viewModeProvider);
   final navigationItems = ref.watch(navigationsStateProvider.select((state) {
     return state.value.where((element) {
-      // final isMore = element.modes.contains(NavigationItemMode.more);
-      // final isDesktop = element.modes.contains(NavigationItemMode.desktop);
-      // if (isMore && !isDesktop) return true;
-      // if (viewMode != ViewMode.mobile || !isMore) {
-      //   return false;
-      // }
+      final isMore = element.modes.contains(NavigationItemMode.more);
+      final isDesktop = element.modes.contains(NavigationItemMode.desktop);
+      if (isMore && !isDesktop) return true;
+      if (viewMode != ViewMode.mobile || !isMore) {
+        return false;
+      }
       return true;
     }).toList();
   }));

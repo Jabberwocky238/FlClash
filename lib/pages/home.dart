@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:math';
-
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
@@ -30,12 +28,8 @@ class HomePage extends StatelessWidget {
             (element) => element.label == pageLabel,
           );
           final currentIndex = index == -1 ? 0 : index;
-          // final navigationBar = CommonNavigationBar(
-          //   viewMode: viewMode,
-          //   navigationItems: navigationItems,
-          //   currentIndex: currentIndex,
-          // );
-          final navigationBar = CommonNavigationBarNew(
+          final navigationBar = CommonNavigationBar(
+            viewMode: viewMode,
             navigationItems: navigationItems,
             currentIndex: currentIndex,
           );
@@ -50,8 +44,16 @@ class HomePage extends StatelessWidget {
             ),
             navigationBar: navigationBar,
             body: child!,
-            // bottomNavigationBar: bottomNavigationBar,
           );
+          // return CommonScaffold(
+          //   key: globalState.homeScaffoldKey,
+          //   title: Intl.message(
+          //     pageLabel.name,
+          //   ),
+          //   sideNavigationBar: sideNavigationBar,
+          //   body: child!,
+          //   bottomNavigationBar: bottomNavigationBar,
+          // );
         },
         child: _HomePageView(),
       ),
@@ -157,106 +159,6 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
   }
 }
 
-class CommonNavigationBarNew extends ConsumerWidget {
-  final List<NavigationItem> navigationItems;
-  final int currentIndex;
-
-  const CommonNavigationBarNew({
-    super.key,
-    required this.navigationItems,
-    required this.currentIndex,
-  });
-
-  @override
-  Widget build(BuildContext context, ref) {
-    final showLabel = ref.watch(appSettingProvider).showLabel;
-    final panel = Material(
-      color: context.colorScheme.surfaceContainer,
-      child: Column(
-        children: [
-          Expanded(
-            child: ScrollConfiguration(
-              behavior: HiddenBarScrollBehavior(),
-              child: SingleChildScrollView(
-                child: IntrinsicHeight(
-                  child: NavigationRail(
-                    backgroundColor: context.colorScheme.surfaceContainer,
-                    selectedIconTheme: IconThemeData(
-                      color: context.colorScheme.onSurfaceVariant,
-                    ),
-                    unselectedIconTheme: IconThemeData(
-                      color: context.colorScheme.onSurfaceVariant,
-                    ),
-                    selectedLabelTextStyle:
-                        context.textTheme.labelLarge!.copyWith(
-                      color: context.colorScheme.onSurface,
-                    ),
-                    unselectedLabelTextStyle:
-                        context.textTheme.labelLarge!.copyWith(
-                      color: context.colorScheme.onSurface,
-                    ),
-                    destinations: navigationItems
-                        .map(
-                          (e) => NavigationRailDestination(
-                            icon: e.icon,
-                            label: Text(
-                              Intl.message(e.label.name),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    onDestinationSelected: (index) {
-                      globalState.appController.toPage(navigationItems[index].label);
-                      Navigator.pop(context); // 添加这一行来关闭抽屉
-                    },
-                    extended: false,
-                    selectedIndex: currentIndex,
-                    labelType: showLabel
-                        ? NavigationRailLabelType.all
-                        : NavigationRailLabelType.none,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          IconButton(
-            onPressed: () {
-              ref.read(appSettingProvider.notifier).updateState(
-                (state) => state.copyWith(
-                  showLabel: !state.showLabel,
-                ),
-              );
-            },
-            icon: const Icon(Icons.menu),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-        ],
-      ),
-    );
-    final panel2 = ListView(
-      children: navigationItems.map((e) => ListTile(
-        leading: e.icon,
-        title: Text(Intl.message(e.label.name)),
-        selected: navigationItems.indexOf(e) == currentIndex,
-        onTap: () {
-          globalState.appController.toPage(e.label);
-          Navigator.pop(context);
-        },
-      )).toList(),
-    );
-    final drawerWidth = min(MediaQuery.of(context).size.width * 0.5, 200);
-    return Drawer(
-      width: drawerWidth.toDouble(),
-      child: panel2,
-    );
-  }
-}
-
 class CommonNavigationBar extends ConsumerWidget {
   final ViewMode viewMode;
   final List<NavigationItem> navigationItems;
@@ -271,33 +173,35 @@ class CommonNavigationBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    if (viewMode == ViewMode.mobile) {
-      return NavigationBarTheme(
-        data: _NavigationBarDefaultsM3(context),
-        child: NavigationBar(
-          destinations: navigationItems
-              .map(
-                (e) => NavigationDestination(
-                  icon: e.icon,
-                  label: Intl.message(e.label.name),
-                ),
-              )
-              .toList(),
-          onDestinationSelected: (index) {
-            globalState.appController.toPage(navigationItems[index].label);
-          },
-          selectedIndex: currentIndex,
-        ),
-      );
-    }
-    final showLabel = ref.watch(appSettingProvider).showLabel;
+    // if (viewMode == ViewMode.mobile) {
+    //   return NavigationBarTheme(
+    //     data: _NavigationBarDefaultsM3(context),
+    //     child: NavigationBar(
+    //       destinations: navigationItems
+    //           .map(
+    //             (e) => NavigationDestination(
+    //               icon: e.icon,
+    //               label: Intl.message(e.label.name),
+    //             ),
+    //           )
+    //           .toList(),
+    //       onDestinationSelected: (index) {
+    //         globalState.appController.toPage(navigationItems[index].label);
+    //       },
+    //       selectedIndex: currentIndex,
+    //     ),
+    //   );
+    // }
+    // final showLabel = ref.watch(appSettingProvider).showLabel;
     return Material(
       color: context.colorScheme.surfaceContainer,
-      child: Column(
-        children: [
-          Expanded(
-            child: ScrollConfiguration(
-              behavior: HiddenBarScrollBehavior(),
+      child: SizedBox(
+        width: 200,
+        child: Column(
+          children: [
+            Expanded(
+              child: ScrollConfiguration(
+                behavior: HiddenBarScrollBehavior(),
               child: SingleChildScrollView(
                 child: IntrinsicHeight(
                   child: NavigationRail(
@@ -330,11 +234,13 @@ class CommonNavigationBar extends ConsumerWidget {
                       globalState.appController
                           .toPage(navigationItems[index].label);
                     },
-                    extended: false,
+                    extended: true,
+                    // extended: false,
                     selectedIndex: currentIndex,
-                    labelType: showLabel
-                        ? NavigationRailLabelType.all
-                        : NavigationRailLabelType.none,
+                    labelType: NavigationRailLabelType.none
+                    // labelType: showLabel
+                    //     ? NavigationRailLabelType.all
+                    //     : NavigationRailLabelType.none,
                   ),
                 ),
               ),
@@ -357,6 +263,7 @@ class CommonNavigationBar extends ConsumerWidget {
             height: 16,
           ),
         ],
+      ),
       ),
     );
   }
