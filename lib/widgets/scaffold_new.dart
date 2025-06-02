@@ -89,6 +89,10 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
     _onKeywordsUpdate = onKeywordsUpdate;
   }
 
+  GlobalKey<ScaffoldState> get _scaffoldKey => GlobalKey<ScaffoldState>();
+
+
+
   @override
   void initState() {
     super.initState();
@@ -195,6 +199,22 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
         isSearch: false,
       ),
     );
+  }
+
+  switchDrawer() {
+    if (_scaffoldKey.currentState?.isDrawerOpen == true) {
+      _scaffoldKey.currentState?.closeDrawer();
+    } else {
+      _scaffoldKey.currentState?.openDrawer();
+    }
+  }
+
+  openDrawer() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
+
+  closeDrawer() {
+    _scaffoldKey.currentState?.closeDrawer();
   }
 
   @override
@@ -437,6 +457,7 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
       ),
     );
     final scaffold = Scaffold(
+      key: _scaffoldKey,
       appBar: _buildAppBar(),
       drawer: _sideNavigationBar,
       body: body,

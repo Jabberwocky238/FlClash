@@ -108,6 +108,7 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
     }
     final isAnimateToPage = ref.read(appSettingProvider).isAnimateToPage;
     final isMobile = ref.read(isMobileViewProvider);
+    globalState.homeScaffoldKey.currentState?.closeDrawer();
     if (isAnimateToPage && isMobile && !ignoreAnimateTo) {
       await _pageController.animateToPage(
         index,
