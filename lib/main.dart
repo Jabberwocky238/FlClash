@@ -56,6 +56,7 @@ Future<void> _service(List<String> flags) async {
 
   vpn?.handleGetStartForegroundParams = () {
     final traffic = clashLibHandler.getTraffic();
+    commonPrint.log("traffic: $traffic");
     return json.encode({
       "title": clashLibHandler.getCurrentProfileName(),
       "content": "$traffic"

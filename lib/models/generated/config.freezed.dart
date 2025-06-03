@@ -2251,11 +2251,10 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 mixin _$Config {
   @JsonKey(fromJson: AppSettingProps.safeFromJson)
   AppSettingProps get appSetting => throw _privateConstructorUsedError;
-  List<Profile> get profiles => throw _privateConstructorUsedError;
-  List<HotKeyAction> get hotKeyActions => throw _privateConstructorUsedError;
+  List<Profile> get profiles =>
+      throw _privateConstructorUsedError; // @Default([]) List<HotKeyAction> hotKeyActions,
   String? get currentProfileId => throw _privateConstructorUsedError;
-  bool get overrideDns => throw _privateConstructorUsedError;
-  DAV? get dav => throw _privateConstructorUsedError;
+  bool get overrideDns => throw _privateConstructorUsedError; // DAV? dav,
   AuthProps get authProps => throw _privateConstructorUsedError;
   NetworkProps get networkProps => throw _privateConstructorUsedError;
   VpnProps get vpnProps => throw _privateConstructorUsedError;
@@ -2283,10 +2282,8 @@ abstract class $ConfigCopyWith<$Res> {
       {@JsonKey(fromJson: AppSettingProps.safeFromJson)
       AppSettingProps appSetting,
       List<Profile> profiles,
-      List<HotKeyAction> hotKeyActions,
       String? currentProfileId,
       bool overrideDns,
-      DAV? dav,
       AuthProps authProps,
       NetworkProps networkProps,
       VpnProps vpnProps,
@@ -2296,7 +2293,6 @@ abstract class $ConfigCopyWith<$Res> {
       ClashConfig patchClashConfig});
 
   $AppSettingPropsCopyWith<$Res> get appSetting;
-  $DAVCopyWith<$Res>? get dav;
   $AuthPropsCopyWith<$Res> get authProps;
   $NetworkPropsCopyWith<$Res> get networkProps;
   $VpnPropsCopyWith<$Res> get vpnProps;
@@ -2323,10 +2319,8 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   $Res call({
     Object? appSetting = null,
     Object? profiles = null,
-    Object? hotKeyActions = null,
     Object? currentProfileId = freezed,
     Object? overrideDns = null,
-    Object? dav = freezed,
     Object? authProps = null,
     Object? networkProps = null,
     Object? vpnProps = null,
@@ -2344,10 +2338,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.profiles
           : profiles // ignore: cast_nullable_to_non_nullable
               as List<Profile>,
-      hotKeyActions: null == hotKeyActions
-          ? _value.hotKeyActions
-          : hotKeyActions // ignore: cast_nullable_to_non_nullable
-              as List<HotKeyAction>,
       currentProfileId: freezed == currentProfileId
           ? _value.currentProfileId
           : currentProfileId // ignore: cast_nullable_to_non_nullable
@@ -2356,10 +2346,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.overrideDns
           : overrideDns // ignore: cast_nullable_to_non_nullable
               as bool,
-      dav: freezed == dav
-          ? _value.dav
-          : dav // ignore: cast_nullable_to_non_nullable
-              as DAV?,
       authProps: null == authProps
           ? _value.authProps
           : authProps // ignore: cast_nullable_to_non_nullable
@@ -2398,20 +2384,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   $AppSettingPropsCopyWith<$Res> get appSetting {
     return $AppSettingPropsCopyWith<$Res>(_value.appSetting, (value) {
       return _then(_value.copyWith(appSetting: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DAVCopyWith<$Res>? get dav {
-    if (_value.dav == null) {
-      return null;
-    }
-
-    return $DAVCopyWith<$Res>(_value.dav!, (value) {
-      return _then(_value.copyWith(dav: value) as $Val);
     });
   }
 
@@ -2497,10 +2469,8 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       {@JsonKey(fromJson: AppSettingProps.safeFromJson)
       AppSettingProps appSetting,
       List<Profile> profiles,
-      List<HotKeyAction> hotKeyActions,
       String? currentProfileId,
       bool overrideDns,
-      DAV? dav,
       AuthProps authProps,
       NetworkProps networkProps,
       VpnProps vpnProps,
@@ -2511,8 +2481,6 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
 
   @override
   $AppSettingPropsCopyWith<$Res> get appSetting;
-  @override
-  $DAVCopyWith<$Res>? get dav;
   @override
   $AuthPropsCopyWith<$Res> get authProps;
   @override
@@ -2544,10 +2512,8 @@ class __$$ConfigImplCopyWithImpl<$Res>
   $Res call({
     Object? appSetting = null,
     Object? profiles = null,
-    Object? hotKeyActions = null,
     Object? currentProfileId = freezed,
     Object? overrideDns = null,
-    Object? dav = freezed,
     Object? authProps = null,
     Object? networkProps = null,
     Object? vpnProps = null,
@@ -2565,10 +2531,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value._profiles
           : profiles // ignore: cast_nullable_to_non_nullable
               as List<Profile>,
-      hotKeyActions: null == hotKeyActions
-          ? _value._hotKeyActions
-          : hotKeyActions // ignore: cast_nullable_to_non_nullable
-              as List<HotKeyAction>,
       currentProfileId: freezed == currentProfileId
           ? _value.currentProfileId
           : currentProfileId // ignore: cast_nullable_to_non_nullable
@@ -2577,10 +2539,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.overrideDns
           : overrideDns // ignore: cast_nullable_to_non_nullable
               as bool,
-      dav: freezed == dav
-          ? _value.dav
-          : dav // ignore: cast_nullable_to_non_nullable
-              as DAV?,
       authProps: null == authProps
           ? _value.authProps
           : authProps // ignore: cast_nullable_to_non_nullable
@@ -2620,10 +2578,8 @@ class _$ConfigImpl implements _Config {
       {@JsonKey(fromJson: AppSettingProps.safeFromJson)
       this.appSetting = defaultAppSettingProps,
       final List<Profile> profiles = const [],
-      final List<HotKeyAction> hotKeyActions = const [],
       this.currentProfileId,
       this.overrideDns = false,
-      this.dav,
       this.authProps = defaultAuthProps,
       this.networkProps = defaultNetworkProps,
       this.vpnProps = defaultVpnProps,
@@ -2631,8 +2587,7 @@ class _$ConfigImpl implements _Config {
       this.proxiesStyle = defaultProxiesStyle,
       this.windowProps = defaultWindowProps,
       this.patchClashConfig = defaultClashConfig})
-      : _profiles = profiles,
-        _hotKeyActions = hotKeyActions;
+      : _profiles = profiles;
 
   factory _$ConfigImpl.fromJson(Map<String, dynamic> json) =>
       _$$ConfigImplFromJson(json);
@@ -2649,22 +2604,13 @@ class _$ConfigImpl implements _Config {
     return EqualUnmodifiableListView(_profiles);
   }
 
-  final List<HotKeyAction> _hotKeyActions;
-  @override
-  @JsonKey()
-  List<HotKeyAction> get hotKeyActions {
-    if (_hotKeyActions is EqualUnmodifiableListView) return _hotKeyActions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_hotKeyActions);
-  }
-
+// @Default([]) List<HotKeyAction> hotKeyActions,
   @override
   final String? currentProfileId;
   @override
   @JsonKey()
   final bool overrideDns;
-  @override
-  final DAV? dav;
+// DAV? dav,
   @override
   @JsonKey()
   final AuthProps authProps;
@@ -2689,7 +2635,7 @@ class _$ConfigImpl implements _Config {
 
   @override
   String toString() {
-    return 'Config(appSetting: $appSetting, profiles: $profiles, hotKeyActions: $hotKeyActions, currentProfileId: $currentProfileId, overrideDns: $overrideDns, dav: $dav, authProps: $authProps, networkProps: $networkProps, vpnProps: $vpnProps, themeProps: $themeProps, proxiesStyle: $proxiesStyle, windowProps: $windowProps, patchClashConfig: $patchClashConfig)';
+    return 'Config(appSetting: $appSetting, profiles: $profiles, currentProfileId: $currentProfileId, overrideDns: $overrideDns, authProps: $authProps, networkProps: $networkProps, vpnProps: $vpnProps, themeProps: $themeProps, proxiesStyle: $proxiesStyle, windowProps: $windowProps, patchClashConfig: $patchClashConfig)';
   }
 
   @override
@@ -2700,13 +2646,10 @@ class _$ConfigImpl implements _Config {
             (identical(other.appSetting, appSetting) ||
                 other.appSetting == appSetting) &&
             const DeepCollectionEquality().equals(other._profiles, _profiles) &&
-            const DeepCollectionEquality()
-                .equals(other._hotKeyActions, _hotKeyActions) &&
             (identical(other.currentProfileId, currentProfileId) ||
                 other.currentProfileId == currentProfileId) &&
             (identical(other.overrideDns, overrideDns) ||
                 other.overrideDns == overrideDns) &&
-            (identical(other.dav, dav) || other.dav == dav) &&
             (identical(other.authProps, authProps) ||
                 other.authProps == authProps) &&
             (identical(other.networkProps, networkProps) ||
@@ -2729,10 +2672,8 @@ class _$ConfigImpl implements _Config {
       runtimeType,
       appSetting,
       const DeepCollectionEquality().hash(_profiles),
-      const DeepCollectionEquality().hash(_hotKeyActions),
       currentProfileId,
       overrideDns,
-      dav,
       authProps,
       networkProps,
       vpnProps,
@@ -2762,10 +2703,8 @@ abstract class _Config implements Config {
       {@JsonKey(fromJson: AppSettingProps.safeFromJson)
       final AppSettingProps appSetting,
       final List<Profile> profiles,
-      final List<HotKeyAction> hotKeyActions,
       final String? currentProfileId,
       final bool overrideDns,
-      final DAV? dav,
       final AuthProps authProps,
       final NetworkProps networkProps,
       final VpnProps vpnProps,
@@ -2781,15 +2720,11 @@ abstract class _Config implements Config {
   @JsonKey(fromJson: AppSettingProps.safeFromJson)
   AppSettingProps get appSetting;
   @override
-  List<Profile> get profiles;
-  @override
-  List<HotKeyAction> get hotKeyActions;
+  List<Profile> get profiles; // @Default([]) List<HotKeyAction> hotKeyActions,
   @override
   String? get currentProfileId;
   @override
-  bool get overrideDns;
-  @override
-  DAV? get dav;
+  bool get overrideDns; // DAV? dav,
   @override
   AuthProps get authProps;
   @override

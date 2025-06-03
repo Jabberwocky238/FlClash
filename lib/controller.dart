@@ -762,10 +762,10 @@ class AppController {
       return;
     }
     _ref.read(profilesProvider.notifier).setProfile(
-          currentProfile.copyWith(
-            unfoldSet: value,
-          ),
-        );
+      currentProfile.copyWith(
+        unfoldSet: value,
+      ),
+    );
   }
 
   changeMode(Mode mode) {
@@ -780,10 +780,10 @@ class AppController {
 
   updateAutoLaunch() {
     _ref.read(appSettingProvider.notifier).updateState(
-          (state) => state.copyWith(
-            autoLaunch: !state.autoLaunch,
-          ),
-        );
+      (state) => state.copyWith(
+        autoLaunch: !state.autoLaunch,
+      ),
+    );
   }
 
   updateVisible() async {
@@ -842,6 +842,7 @@ class AppController {
     );
   }
 
+  /// todo: remove
   Future<bool> exportLogs() async {
     final logsRaw = _ref.read(logsProvider).list.map(
           (item) => item.toString(),

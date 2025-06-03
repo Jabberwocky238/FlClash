@@ -301,15 +301,8 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
               ?.map((e) => Profile.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      hotKeyActions: (json['hotKeyActions'] as List<dynamic>?)
-              ?.map((e) => HotKeyAction.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
       currentProfileId: json['currentProfileId'] as String?,
       overrideDns: json['overrideDns'] as bool? ?? false,
-      dav: json['dav'] == null
-          ? null
-          : DAV.fromJson(json['dav'] as Map<String, dynamic>),
       authProps: json['authProps'] == null
           ? defaultAuthProps
           : AuthProps.fromJson(json['authProps'] as Map<String, dynamic>),
@@ -339,10 +332,8 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
     <String, dynamic>{
       'appSetting': instance.appSetting,
       'profiles': instance.profiles,
-      'hotKeyActions': instance.hotKeyActions,
       'currentProfileId': instance.currentProfileId,
       'overrideDns': instance.overrideDns,
-      'dav': instance.dav,
       'authProps': instance.authProps,
       'networkProps': instance.networkProps,
       'vpnProps': instance.vpnProps,
