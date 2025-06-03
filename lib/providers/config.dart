@@ -191,25 +191,6 @@ class CurrentProfileId extends _$CurrentProfileId
 }
 
 @riverpod
-class AppDAVSetting extends _$AppDAVSetting with AutoDisposeNotifierMixin {
-  @override
-  DAV? build() {
-    return globalState.config.dav;
-  }
-
-  @override
-  onUpdate(value) {
-    globalState.config = globalState.config.copyWith(
-      dav: value,
-    );
-  }
-
-  updateState(DAV? Function(DAV? state) builder) {
-    state = builder(state);
-  }
-}
-
-@riverpod
 class OverrideDns extends _$OverrideDns with AutoDisposeNotifierMixin {
   @override
   bool build() {
@@ -224,20 +205,6 @@ class OverrideDns extends _$OverrideDns with AutoDisposeNotifierMixin {
   }
 }
 
-@riverpod
-class HotKeyActions extends _$HotKeyActions with AutoDisposeNotifierMixin {
-  @override
-  List<HotKeyAction> build() {
-    return globalState.config.hotKeyActions;
-  }
-
-  @override
-  onUpdate(value) {
-    globalState.config = globalState.config.copyWith(
-      hotKeyActions: value,
-    );
-  }
-}
 
 @riverpod
 class ProxiesStyleSetting extends _$ProxiesStyleSetting

@@ -185,23 +185,6 @@ class AppController {
     _ref.read(logsProvider).add(log);
   }
 
-  updateOrAddHotKeyAction(HotKeyAction hotKeyAction) {
-    final hotKeyActions = _ref.read(hotKeyActionsProvider);
-    final index =
-        hotKeyActions.indexWhere((item) => item.action == hotKeyAction.action);
-    if (index == -1) {
-      _ref.read(hotKeyActionsProvider.notifier).value = List.from(hotKeyActions)
-        ..add(hotKeyAction);
-    } else {
-      _ref.read(hotKeyActionsProvider.notifier).value = List.from(hotKeyActions)
-        ..[index] = hotKeyAction;
-    }
-
-    _ref.read(hotKeyActionsProvider.notifier).value = index == -1
-        ? (List.from(hotKeyActions)..add(hotKeyAction))
-        : (List.from(hotKeyActions)..[index] = hotKeyAction);
-  }
-
   List<Group> getCurrentGroups() {
     return _ref.read(currentGroupsStateProvider.select((state) => state.value));
   }
@@ -962,7 +945,7 @@ class AppController {
       _ref.read(appSettingProvider.notifier).value = config.appSetting;
       _ref.read(currentProfileIdProvider.notifier).value =
           config.currentProfileId;
-      _ref.read(appDAVSettingProvider.notifier).value = config.dav;
+      // _ref.read(appDAVSettingProvider.notifier).value = config.dav;
       _ref.read(themeSettingProvider.notifier).value = config.themeProps;
       _ref.read(windowSettingProvider.notifier).value = config.windowProps;
       _ref.read(vpnSettingProvider.notifier).value = config.vpnProps;
@@ -970,7 +953,7 @@ class AppController {
           config.proxiesStyle;
       _ref.read(overrideDnsProvider.notifier).value = config.overrideDns;
       _ref.read(networkSettingProvider.notifier).value = config.networkProps;
-      _ref.read(hotKeyActionsProvider.notifier).value = config.hotKeyActions;
+      // _ref.read(hotKeyActionsProvider.notifier).value = config.hotKeyActions;
     }
     final currentProfile = _ref.read(currentProfileProvider);
     if (currentProfile == null) {

@@ -129,22 +129,6 @@ final currentProfileIdProvider =
 );
 
 typedef _$CurrentProfileId = AutoDisposeNotifier<String?>;
-String _$appDAVSettingHash() => r'20439d1f8cc0843a092766dc1cad68e8e8273dbb';
-
-/// See also [AppDAVSetting].
-@ProviderFor(AppDAVSetting)
-final appDAVSettingProvider =
-    AutoDisposeNotifierProvider<AppDAVSetting, DAV?>.internal(
-  AppDAVSetting.new,
-  name: r'appDAVSettingProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$appDAVSettingHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$AppDAVSetting = AutoDisposeNotifier<DAV?>;
 String _$overrideDnsHash() => r'1fc914de471319bf1e003edf9627b8c646b641bf';
 
 /// See also [OverrideDns].
@@ -160,22 +144,6 @@ final overrideDnsProvider =
 );
 
 typedef _$OverrideDns = AutoDisposeNotifier<bool>;
-String _$hotKeyActionsHash() => r'1d308d61b74accebbb11b1771a55975760503691';
-
-/// See also [HotKeyActions].
-@ProviderFor(HotKeyActions)
-final hotKeyActionsProvider =
-    AutoDisposeNotifierProvider<HotKeyActions, List<HotKeyAction>>.internal(
-  HotKeyActions.new,
-  name: r'hotKeyActionsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$hotKeyActionsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$HotKeyActions = AutoDisposeNotifier<List<HotKeyAction>>;
 String _$proxiesStyleSettingHash() =>
     r'162e7320dff8063e7a2deca5071ef5024f4d3d04';
 

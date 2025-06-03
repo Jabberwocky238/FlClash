@@ -347,7 +347,7 @@ class ProxyGroupViewState extends ConsumerState<ProxyGroupView> {
             return ProxyCard(
               testUrl: state.testUrl,
               groupType: state.groupType,
-              type: proxyCardType,
+              // type: proxyCardType,
               key: ValueKey('$groupName.${proxy.name}'),
               proxy: proxy,
               groupName: groupName,

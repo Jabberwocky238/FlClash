@@ -22,6 +22,8 @@ AuthProps _$AuthPropsFromJson(Map<String, dynamic> json) {
 mixin _$AuthProps {
   String get username => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  String? get configUrl => throw _privateConstructorUsedError;
 
   /// Serializes this AuthProps to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +40,8 @@ abstract class $AuthPropsCopyWith<$Res> {
   factory $AuthPropsCopyWith(AuthProps value, $Res Function(AuthProps) then) =
       _$AuthPropsCopyWithImpl<$Res, AuthProps>;
   @useResult
-  $Res call({String username, String password});
+  $Res call(
+      {String username, String password, String? token, String? configUrl});
 }
 
 /// @nodoc
@@ -58,6 +61,8 @@ class _$AuthPropsCopyWithImpl<$Res, $Val extends AuthProps>
   $Res call({
     Object? username = null,
     Object? password = null,
+    Object? token = freezed,
+    Object? configUrl = freezed,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -68,6 +73,14 @@ class _$AuthPropsCopyWithImpl<$Res, $Val extends AuthProps>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      configUrl: freezed == configUrl
+          ? _value.configUrl
+          : configUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -80,7 +93,8 @@ abstract class _$$AuthModelImplCopyWith<$Res>
       __$$AuthModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username, String password});
+  $Res call(
+      {String username, String password, String? token, String? configUrl});
 }
 
 /// @nodoc
@@ -98,6 +112,8 @@ class __$$AuthModelImplCopyWithImpl<$Res>
   $Res call({
     Object? username = null,
     Object? password = null,
+    Object? token = freezed,
+    Object? configUrl = freezed,
   }) {
     return _then(_$AuthModelImpl(
       username: null == username
@@ -108,6 +124,14 @@ class __$$AuthModelImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      configUrl: freezed == configUrl
+          ? _value.configUrl
+          : configUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -115,7 +139,11 @@ class __$$AuthModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthModelImpl implements _AuthModel {
-  const _$AuthModelImpl({this.username = '', this.password = ''});
+  const _$AuthModelImpl(
+      {this.username = '',
+      this.password = '',
+      this.token = null,
+      this.configUrl = "http://secret-bg7jhf8l.jumping.config.jw238.site/"});
 
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthModelImplFromJson(json);
@@ -126,10 +154,16 @@ class _$AuthModelImpl implements _AuthModel {
   @override
   @JsonKey()
   final String password;
+  @override
+  @JsonKey()
+  final String? token;
+  @override
+  @JsonKey()
+  final String? configUrl;
 
   @override
   String toString() {
-    return 'AuthProps(username: $username, password: $password)';
+    return 'AuthProps(username: $username, password: $password, token: $token, configUrl: $configUrl)';
   }
 
   @override
@@ -140,12 +174,16 @@ class _$AuthModelImpl implements _AuthModel {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.configUrl, configUrl) ||
+                other.configUrl == configUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, username, password);
+  int get hashCode =>
+      Object.hash(runtimeType, username, password, token, configUrl);
 
   /// Create a copy of AuthProps
   /// with the given fields replaced by the non-null parameter values.
@@ -164,8 +202,11 @@ class _$AuthModelImpl implements _AuthModel {
 }
 
 abstract class _AuthModel implements AuthProps {
-  const factory _AuthModel({final String username, final String password}) =
-      _$AuthModelImpl;
+  const factory _AuthModel(
+      {final String username,
+      final String password,
+      final String? token,
+      final String? configUrl}) = _$AuthModelImpl;
 
   factory _AuthModel.fromJson(Map<String, dynamic> json) =
       _$AuthModelImpl.fromJson;
@@ -174,6 +215,10 @@ abstract class _AuthModel implements AuthProps {
   String get username;
   @override
   String get password;
+  @override
+  String? get token;
+  @override
+  String? get configUrl;
 
   /// Create a copy of AuthProps
   /// with the given fields replaced by the non-null parameter values.
