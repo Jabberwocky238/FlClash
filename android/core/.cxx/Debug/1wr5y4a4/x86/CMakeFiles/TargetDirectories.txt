@@ -1,3 +1,0 @@
-D:/1-code/FlClash/android/core/.cxx/Debug/1wr5y4a4/x86/CMakeFiles/core.dir
-D:/1-code/FlClash/android/core/.cxx/Debug/1wr5y4a4/x86/CMakeFiles/edit_cache.dir
-D:/1-code/FlClash/android/core/.cxx/Debug/1wr5y4a4/x86/CMakeFiles/rebuild_cache.dir

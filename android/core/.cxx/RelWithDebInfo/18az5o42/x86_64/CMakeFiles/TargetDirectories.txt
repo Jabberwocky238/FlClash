@@ -1,3 +1,0 @@
-D:/1-code/FlClash/android/core/.cxx/RelWithDebInfo/18az5o42/x86_64/CMakeFiles/core.dir
-D:/1-code/FlClash/android/core/.cxx/RelWithDebInfo/18az5o42/x86_64/CMakeFiles/edit_cache.dir
-D:/1-code/FlClash/android/core/.cxx/RelWithDebInfo/18az5o42/x86_64/CMakeFiles/rebuild_cache.dir

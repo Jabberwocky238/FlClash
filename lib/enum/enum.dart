@@ -147,10 +147,11 @@ enum CommonCardType { plain, filled }
 //   CommonCardType get variant => CommonCardType.plain;
 // }
 
-enum ProxiesType { tab, list }
-
-enum ProxiesLayout { loose, standard, tight }
-
+/// 样式
+enum ProxiesType { tab, list } 
+/// 样式
+enum ProxiesLayout { loose, standard, tight } 
+/// 样式
 enum ProxyCardType { expand, shrink, min }
 
 enum DnsMode {

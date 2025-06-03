@@ -7,8 +7,8 @@ import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'common.dart';
-import 'setting.dart';
-import 'tab.dart';
+// import 'setting.dart';
+// import 'tab.dart';
 
 class ProxiesFragment extends ConsumerStatefulWidget {
   const ProxiesFragment({super.key});
@@ -19,9 +19,7 @@ class ProxiesFragment extends ConsumerStatefulWidget {
 
 class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     with PageMixin {
-  final GlobalKey<ProxiesTabFragmentState> _proxiesTabKey = GlobalKey();
   bool _hasProviders = false;
-  bool _isTab = false;
 
   @override
   get actions => [
@@ -41,65 +39,56 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
               Icons.poll_outlined,
             ),
           ),
-        _isTab
-            ? IconButton(
-                onPressed: () {
-                  _proxiesTabKey.currentState?.scrollToGroupSelected();
-                },
-                icon: const Icon(
-                  Icons.adjust_outlined,
-                ),
-              )
-            : IconButton(
-                onPressed: () {
-                  showExtend(
-                    context,
-                    builder: (_, type) {
-                      return AdaptiveSheetScaffold(
-                        type: type,
-                        body: const _IconConfigView(),
-                        title: appLocalizations.iconConfiguration,
-                      );
-                    },
-                  );
-                },
-                icon: const Icon(
-                  Icons.style_outlined,
-                ),
-              ),
-        IconButton(
-          onPressed: () {
-            showSheet(
-              context: context,
-              props: SheetProps(
-                isScrollControlled: true,
-              ),
-              builder: (_, type) {
-                return AdaptiveSheetScaffold(
-                  type: type,
-                  body: const ProxiesSetting(),
-                  title: appLocalizations.settings,
-                );
-              },
-            );
-          },
-          icon: const Icon(
-            Icons.tune,
-          ),
-        )
+        // IconButton(
+        //   onPressed: () {
+        //     showExtend(
+        //       context,
+        //       builder: (_, type) {
+        //         return AdaptiveSheetScaffold(
+        //           type: type,
+        //           body: const _IconConfigView(),
+        //           title: appLocalizations.iconConfiguration,
+        //         );
+        //       },
+        //     );
+        //   },
+        //   icon: const Icon(
+        //     Icons.style_outlined,
+        //   ),
+        // ),
+      //   IconButton(
+      //     onPressed: () {
+      //       showSheet(
+      //         context: context,
+      //         props: SheetProps(
+      //           isScrollControlled: true,
+      //         ),
+      //         builder: (_, type) {
+      //           return AdaptiveSheetScaffold(
+      //             type: type,
+      //             body: const ProxiesSetting(),
+      //             title: appLocalizations.settings,
+      //           );
+      //         },
+      //       );
+      //     },
+      //     icon: const Icon(
+      //       Icons.tune,
+      //     ),
+      //   )
       ];
 
+  // @override
+  // get floatingActionButton => DelayTestButton(
+  //   onClick: () async {
+  //     await delayTest(
+  //       currentTabProxies,
+  //       currentTabTestUrl,
+  //     );
+  //   },
+  // );
   @override
-  get floatingActionButton => _isTab
-      ? DelayTestButton(
-          onClick: () async {
-            await delayTest(
-              currentTabProxies,
-              currentTabTestUrl,
-            );
-          },
-        )
-      : null;
+  get floatingActionButton => null;
 
   @override
   void initState() {
@@ -112,7 +101,6 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
         }
         if (next.pageLabel == PageLabel.proxies) {
           _hasProviders = next.hasProviders;
-          _isTab = next.type == ProxiesType.tab;
           initPageState();
           return;
         }
@@ -130,12 +118,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     );
 
     ref.watch(themeSettingProvider.select((state) => state.textScale));
-    return switch (proxiesType) {
-      ProxiesType.tab => ProxiesTabFragment(
-          key: _proxiesTabKey,
-        ),
-      ProxiesType.list => const ProxiesListFragment(),
-    };
+    return const ProxiesListFragment();
   }
 }
 

@@ -91,8 +91,6 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
 
   GlobalKey<ScaffoldState> get _scaffoldKey => GlobalKey<ScaffoldState>();
 
-
-
   @override
   void initState() {
     super.initState();

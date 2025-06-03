@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/l10n/l10n.dart';
-import 'package:jw_clash/manager/hotkey_manager.dart';
+// import 'package:jw_clash/manager/hotkey_manager.dart';
 import 'package:jw_clash/manager/manager.dart';
 import 'package:jw_clash/plugins/app.dart';
 import 'package:jw_clash/providers/providers.dart';
@@ -81,10 +81,8 @@ class ApplicationState extends ConsumerState<Application> {
     if (system.isDesktop) {
       return WindowManager(
         child: TrayManager(
-          child: HotKeyManager(
-            child: ProxyManager(
-              child: child,
-            ),
+          child: ProxyManager(
+            child: child,
           ),
         ),
       );

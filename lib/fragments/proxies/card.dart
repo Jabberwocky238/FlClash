@@ -12,7 +12,7 @@ class ProxyCard extends StatelessWidget {
   final String groupName;
   final Proxy proxy;
   final GroupType groupType;
-  final ProxyCardType type;
+  // final ProxyCardType type;
   final String? testUrl;
 
   const ProxyCard({
@@ -21,7 +21,7 @@ class ProxyCard extends StatelessWidget {
     required this.testUrl,
     required this.proxy,
     required this.groupType,
-    required this.type,
+    // required this.type,
   });
 
   Measure get measure => globalState.measure;
@@ -35,7 +35,7 @@ class ProxyCard extends StatelessWidget {
 
   Widget _buildDelayText() {
     return SizedBox(
-      height: measure.labelSmallHeight,
+      // height: measure.labelSmallHeight,
       child: Consumer(
         builder: (context, ref, __) {
           final delay = ref.watch(getDelayProvider(
@@ -75,9 +75,8 @@ class ProxyCard extends StatelessWidget {
   }
 
   Widget _buildProxyNameText(BuildContext context) {
-    if (type == ProxyCardType.min) {
-      return SizedBox(
-        height: measure.bodyMediumHeight * 1,
+    return SizedBox(
+        // height: measure.bodySmallHeight * 1,
         child: EmojiText(
           proxy.name,
           maxLines: 1,
@@ -85,17 +84,27 @@ class ProxyCard extends StatelessWidget {
           style: context.textTheme.bodyMedium,
         ),
       );
-    } else {
-      return SizedBox(
-        height: measure.bodyMediumHeight * 2,
-        child: EmojiText(
-          proxy.name,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: context.textTheme.bodyMedium,
-        ),
-      );
-    }
+    // if (type == ProxyCardType.min) {
+    //   return SizedBox(
+    //     height: measure.bodyMediumHeight * 1,
+    //     child: EmojiText(
+    //       proxy.name,
+    //       maxLines: 1,
+    //       overflow: TextOverflow.ellipsis,
+    //       style: context.textTheme.bodyMedium,
+    //     ),
+    //   );
+    // } else {
+    //   return SizedBox(
+    //     height: measure.bodyMediumHeight * 2,
+    //     child: EmojiText(
+    //       proxy.name,
+    //       maxLines: 2,
+    //       overflow: TextOverflow.ellipsis,
+    //       style: context.textTheme.bodyMedium,
+    //     ),
+    //   );
+    // }
   }
 
   _changeProxy(WidgetRef ref) async {
@@ -122,7 +131,7 @@ class ProxyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final measure = globalState.measure;
+    // final measure = globalState.measure;
     final delayText = _buildDelayText();
     final proxyNameText = _buildProxyNameText(context);
     return Stack(
@@ -144,49 +153,26 @@ class ProxyCard extends StatelessWidget {
           child: Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Flex(
+              direction: Axis.horizontal,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 proxyNameText,
-                const SizedBox(
-                  height: 8,
+                // const SizedBox(
+                //   width: 8,
+                // ),
+                SizedBox(
+                  height: measure.bodySmallHeight,
+                  child: _ProxyDesc(
+                    proxy: proxy,
+                  ),
                 ),
-                if (type == ProxyCardType.expand) ...[
-                  SizedBox(
-                    height: measure.bodySmallHeight,
-                    child: _ProxyDesc(
-                      proxy: proxy,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 6,
-                  ),
-                  delayText,
-                ] else
-                  SizedBox(
-                    height: measure.bodySmallHeight,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          child: TooltipText(
-                            text: Text(
-                              proxy.type,
-                              style: context.textTheme.bodySmall?.copyWith(
-                                overflow: TextOverflow.ellipsis,
-                                color:
-                                    context.textTheme.bodySmall?.color?.opacity80,
-                              ),
-                            ),
-                          ),
-                        ),
-                        delayText,
-                      ],
-                    ),
-                  ),
+                // const SizedBox(
+                //   width: 6,
+                // ),
+                delayText,
               ],
             ),
           ),

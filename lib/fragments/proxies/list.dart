@@ -113,7 +113,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
     required List<String> groupNames,
     required int columns,
     required Set<String> currentUnfoldSet,
-    required ProxyCardType type,
+    // required ProxyCardType type,
   }) {
     final items = <Widget>[];
     final GroupNameProxiesMap groupNameProxiesMap = {};
@@ -151,7 +151,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
                 (proxy) => Flexible(
                   child: ProxyCard(
                     testUrl: group.testUrl,
-                    type: type,
+                    // type: type,
                     groupType: group.type,
                     key: ValueKey('$groupName.${proxy.name}'),
                     proxy: proxy,
@@ -260,7 +260,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
           groupNames: state.groupNames,
           currentUnfoldSet: state.currentUnfoldSet,
           columns: state.columns,
-          type: state.proxyCardType,
+          // type: state.proxyCardType,
         );
         final itemsOffset = _getItemHeightList(items, state.proxyCardType);
         return CommonScrollBar(
@@ -274,6 +274,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
                     padding: const EdgeInsets.all(16),
                     controller: _controller,
                     itemExtentBuilder: (index, __) {
+                      // return 26;
                       return itemsOffset[index];
                     },
                     itemCount: items.length,
