@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:jw_clash/common/constant.dart';
 import 'package:jw_clash/common/measure.dart';
 import 'package:jw_clash/common/theme.dart';
-import 'package:jw_clash/providers/config.dart';
+// import 'package:jw_clash/providers/config.dart';
 import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,12 +17,13 @@ class ThemeManager extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final textScale = ref.read(
-      themeSettingProvider.select((state) => state.textScale),
-    );
+    // final textScale = ref.read(
+    //   themeSettingProvider.select((state) => state.textScale),
+    // );
     final double textScaleFactor = max(
       min(
-        textScale.enable ? textScale.scale : defaultTextScaleFactor,
+        // textScale.enable ? textScale.scale : defaultTextScaleFactor,
+        defaultTextScaleFactor,
         maxTextScale,
       ),
       minTextScale,

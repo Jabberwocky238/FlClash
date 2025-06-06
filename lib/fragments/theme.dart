@@ -48,7 +48,7 @@ class ThemeFragment extends StatelessWidget {
           _ThemeModeItem(),
           _PrimaryColorItem(),
           _PrueBlackItem(),
-          _TextScaleFactorItem(),
+          // _TextScaleFactorItem(),
           const SizedBox(
             height: 64,
           ),
@@ -471,90 +471,90 @@ class _PrueBlackItem extends ConsumerWidget {
   }
 }
 
-class _TextScaleFactorItem extends ConsumerWidget {
-  const _TextScaleFactorItem();
+// class _TextScaleFactorItem extends ConsumerWidget {
+//   const _TextScaleFactorItem();
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final textScale = ref.watch(
-      themeSettingProvider.select(
-        (state) => state.textScale,
-      ),
-    );
-    final String process = "${((textScale.scale * 100) as double).round()}%";
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(bottom: 8),
-          child: ListItem.switchItem(
-            leading: Icon(
-              Icons.text_fields,
-            ),
-            horizontalTitleGap: 12,
-            title: Text(
-              appLocalizations.textScale,
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: context.colorScheme.onSurfaceVariant,
-                  ),
-            ),
-            delegate: SwitchDelegate(
-              value: textScale.enable,
-              onChanged: (value) {
-                ref.read(themeSettingProvider.notifier).updateState(
-                      (state) => state.copyWith.textScale(
-                        enable: value,
-                      ),
-                    );
-              },
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            spacing: 32,
-            children: [
-              Expanded(
-                child: DisabledMask(
-                  status: !textScale.enable,
-                  child: ActivateBox(
-                    active: textScale.enable,
-                    child: SliderTheme(
-                      data: _SliderDefaultsM3(context),
-                      child: Slider(
-                        padding: EdgeInsets.zero,
-                        min: minTextScale,
-                        max: maxTextScale,
-                        value: textScale.scale,
-                        onChanged: (value) {
-                          ref.read(themeSettingProvider.notifier).updateState(
-                                (state) => state.copyWith.textScale(
-                                  scale: value,
-                                ),
-                              );
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 4),
-                child: Text(
-                  process,
-                  style: context.textTheme.titleMedium,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     final textScale = ref.watch(
+//       themeSettingProvider.select(
+//         (state) => state.textScale,
+//       ),
+//     );
+//     final String process = "${((textScale.scale * 100) as double).round()}%";
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Padding(
+//           padding: EdgeInsets.only(bottom: 8),
+//           child: ListItem.switchItem(
+//             leading: Icon(
+//               Icons.text_fields,
+//             ),
+//             horizontalTitleGap: 12,
+//             title: Text(
+//               appLocalizations.textScale,
+//               style: Theme.of(context).textTheme.titleSmall?.copyWith(
+//                     color: context.colorScheme.onSurfaceVariant,
+//                   ),
+//             ),
+//             delegate: SwitchDelegate(
+//               value: textScale.enable,
+//               onChanged: (value) {
+//                 ref.read(themeSettingProvider.notifier).updateState(
+//                       (state) => state.copyWith.textScale(
+//                         enable: value,
+//                       ),
+//                     );
+//               },
+//             ),
+//           ),
+//         ),
+//         Padding(
+//           padding: EdgeInsets.symmetric(horizontal: 16),
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             mainAxisSize: MainAxisSize.max,
+//             spacing: 32,
+//             children: [
+//               Expanded(
+//                 child: DisabledMask(
+//                   status: !textScale.enable,
+//                   child: ActivateBox(
+//                     active: textScale.enable,
+//                     child: SliderTheme(
+//                       data: _SliderDefaultsM3(context),
+//                       child: Slider(
+//                         padding: EdgeInsets.zero,
+//                         min: minTextScale,
+//                         max: maxTextScale,
+//                         value: textScale.scale,
+//                         onChanged: (value) {
+//                           ref.read(themeSettingProvider.notifier).updateState(
+//                                 (state) => state.copyWith.textScale(
+//                                   scale: value,
+//                                 ),
+//                               );
+//                         },
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//               Padding(
+//                 padding: EdgeInsets.only(right: 4),
+//                 child: Text(
+//                   process,
+//                   style: context.textTheme.titleMedium,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 class _PaletteDialog extends StatefulWidget {
   const _PaletteDialog();

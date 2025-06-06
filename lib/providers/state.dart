@@ -498,11 +498,11 @@ OverrideData? getProfileOverrideData(Ref ref, String profileId) {
 @riverpod
 VM2? layoutChange(Ref ref) {
   final viewWidth = ref.watch(viewWidthProvider);
-  final textScale =
-      ref.watch(themeSettingProvider.select((state) => state.textScale));
+  // final textScale =
+  //     ref.watch(themeSettingProvider.select((state) => state.textScale));
   return VM2(
     a: viewWidth,
-    b: textScale,
+    b: viewWidth,
   );
 }
 

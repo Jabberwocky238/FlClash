@@ -1635,7 +1635,7 @@ class _GetProfileOverrideDataProviderElement
   String get profileId => (origin as GetProfileOverrideDataProvider).profileId;
 }
 
-String _$layoutChangeHash() => r'f25182e1dfaf3c70000404d7635bb1e1db09efbb';
+String _$layoutChangeHash() => r'5e12fcd0f3bb356fe412bdecc53fa55b41b0387c';
 
 /// See also [layoutChange].
 @ProviderFor(layoutChange)

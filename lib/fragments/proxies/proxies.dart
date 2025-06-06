@@ -108,7 +108,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(themeSettingProvider.select((state) => state.textScale));
+    // ref.watch(themeSettingProvider.select((state) => state.textScale));
     return const ProxiesListFragment();
   }
 }

@@ -28,13 +28,13 @@ class AppBarState with _$AppBarState {
   }) = _AppBarState;
 }
 
-@freezed
-class AppBarSearchState with _$AppBarSearchState {
-  const factory AppBarSearchState({
-    required Function(String) onSearch,
-    @Default(false) bool isSearch,
-  }) = _AppBarSearchState;
-}
+// @freezed
+// class AppBarSearchState with _$AppBarSearchState {
+//   const factory AppBarSearchState({
+//     required Function(String) onSearch,
+//     @Default(false) bool isSearch,
+//   }) = _AppBarSearchState;
+// }
 
 @freezed
 class AppBarEditState with _$AppBarEditState {

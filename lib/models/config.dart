@@ -176,16 +176,16 @@ class ProxiesStyle with _$ProxiesStyle {
       json == null ? defaultProxiesStyle : _$ProxiesStyleFromJson(json);
 }
 
-@freezed
-class TextScale with _$TextScale {
-  const factory TextScale({
-    @Default(false) enable,
-    @Default(1.0) scale,
-  }) = _TextScale;
+// @freezed
+// class TextScale with _$TextScale {
+//   const factory TextScale({
+//     @Default(false) enable,
+//     @Default(1.0) scale,
+//   }) = _TextScale;
 
-  factory TextScale.fromJson(Map<String, Object?> json) =>
-      _$TextScaleFromJson(json);
-}
+//   factory TextScale.fromJson(Map<String, Object?> json) =>
+//       _$TextScaleFromJson(json);
+// }
 
 @freezed
 class ThemeProps with _$ThemeProps {
@@ -195,7 +195,7 @@ class ThemeProps with _$ThemeProps {
     @Default(ThemeMode.dark) ThemeMode themeMode,
     @Default(DynamicSchemeVariant.content) DynamicSchemeVariant schemeVariant,
     @Default(false) bool pureBlack,
-    @Default(TextScale()) TextScale textScale,
+    // @Default(TextScale()) TextScale textScale,
   }) = _ThemeProps;
 
   factory ThemeProps.fromJson(Map<String, Object?> json) =>

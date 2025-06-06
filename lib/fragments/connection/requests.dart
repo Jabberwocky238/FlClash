@@ -178,10 +178,9 @@ class _RequestsFragmentState extends ConsumerState<RequestsFragment>
             _currentMaxWidth = constraints.maxWidth - 40 - (value ? 60 : 0);
             return child!;
           },
-          child: TextScaleNotification(
-            child: ValueListenableBuilder<ConnectionsState>(
-              valueListenable: _requestsStateNotifier,
-              builder: (_, state, __) {
+          child: ValueListenableBuilder<ConnectionsState>(
+            valueListenable: _requestsStateNotifier,
+            builder: (_, state, __) {
                 _preLoad();
                 final connections = state.list;
                 if (connections.isEmpty) {
@@ -253,10 +252,10 @@ class _RequestsFragmentState extends ConsumerState<RequestsFragment>
                 );
               },
             ),
-            onNotification: (_) {
-              globalState.cacheHeightMap[_tag]?.clear();
-            },
-          ),
+            // onNotification: (_) {
+            //   globalState.cacheHeightMap[_tag]?.clear();
+            // },
+          // ),
         );
       },
     );
