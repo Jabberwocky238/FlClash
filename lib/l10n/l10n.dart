@@ -28,10 +28,9 @@ class AppLocalizations {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<AppLocalizations> load(Locale locale) {
-    final name =
-        (locale.countryCode?.isEmpty ?? false)
-            ? locale.languageCode
-            : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -108,11 +107,6 @@ class AppLocalizations {
       desc: '',
       args: [],
     );
-  }
-
-  /// `Auth`
-  String get auth {
-    return Intl.message('Auth', name: 'auth', desc: '', args: []);
   }
 
   /// `Resources`
@@ -583,16 +577,6 @@ class AppLocalizations {
   /// `File`
   String get file {
     return Intl.message('File', name: 'file', desc: '', args: []);
-  }
-
-  /// `UserEmail`
-  String get userEmail {
-    return Intl.message('UserEmail', name: 'userEmail', desc: '', args: []);
-  }
-
-  /// `UserPassword`
-  String get userPassword {
-    return Intl.message('UserPassword', name: 'userPassword', desc: '', args: []);
   }
 
   /// `Directly upload profile`
@@ -3134,6 +3118,21 @@ class AppLocalizations {
   String get logsTest {
     return Intl.message('Logs test', name: 'logsTest', desc: '', args: []);
   }
+
+  /// `Auth`
+  String get auth {
+    return Intl.message('Auth', name: 'auth', desc: '', args: []);
+  }
+
+  /// `Email`
+  String get userEmail {
+    return Intl.message('Email', name: 'userEmail', desc: '', args: []);
+  }
+
+  /// `Password`
+  String get userPassword {
+    return Intl.message('Password', name: 'userPassword', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -3164,4 +3163,3 @@ class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
     return false;
   }
 }
-

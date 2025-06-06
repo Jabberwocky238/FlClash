@@ -401,8 +401,5 @@
   "recoveryStrategy": "Стратегия восстановления",
   "recoveryStrategy_override": "Переопределение",
   "recoveryStrategy_compatible": "Совместимый",
-  "logsTest": "Тест журналов",
-  "auth": "Auth",
-  "userEmail": "Email",
-  "userPassword": "Password"
+  "logsTest": "Тест журналов"
 }

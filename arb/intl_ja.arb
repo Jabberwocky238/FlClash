@@ -401,8 +401,5 @@
   "recoveryStrategy": "リカバリー戦略",
   "recoveryStrategy_override": "オーバーライド",
   "recoveryStrategy_compatible": "互換性",
-  "logsTest": "ログテスト",
-  "auth": "Auth",
-  "userEmail": "Email",
-  "userPassword": "Password"
+  "logsTest": "ログテスト"
 }

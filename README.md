@@ -2,7 +2,12 @@
 
 [**简体中文**](README_zh_CN.md)
 
-</div>dart run build_runner watch -d
+</div>
+
+dart run build_runner watch -d
+flutter pub global activate intl_utils
+flutter pub global run intl_utils:generate
+
 
 ## FlClash
 

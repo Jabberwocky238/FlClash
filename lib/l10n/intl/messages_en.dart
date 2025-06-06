@@ -87,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "applicationDesc": MessageLookupByLibrary.simpleMessage(
       "Modify application related settings",
     ),
+    "auth": MessageLookupByLibrary.simpleMessage("Auth"),
     "auto": MessageLookupByLibrary.simpleMessage("Auto"),
     "autoCheckUpdate": MessageLookupByLibrary.simpleMessage(
       "Auto check updates",
@@ -688,6 +689,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "useHosts": MessageLookupByLibrary.simpleMessage("Use hosts"),
     "useSystemHosts": MessageLookupByLibrary.simpleMessage("Use system hosts"),
+    "userEmail": MessageLookupByLibrary.simpleMessage("Email"),
+    "userPassword": MessageLookupByLibrary.simpleMessage("Password"),
     "value": MessageLookupByLibrary.simpleMessage("Value"),
     "valueExists": MessageLookupByLibrary.simpleMessage(
       "The current value already exists",

@@ -402,7 +402,7 @@
   "recoveryStrategy_override": "覆盖",
   "recoveryStrategy_compatible": "兼容",
   "logsTest": "日志测试",
-  "auth": "账户管理",
-  "userEmail": "账户",
+  "auth": "账户",
+  "userEmail": "邮箱",
   "userPassword": "密码"
 }
