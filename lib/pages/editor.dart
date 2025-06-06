@@ -1,7 +1,6 @@
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/common.dart';
-import 'package:jw_clash/providers/app.dart';
 import 'package:jw_clash/widgets/pop_scope.dart';
 import 'package:jw_clash/widgets/popup.dart';
 import 'package:jw_clash/widgets/scaffold.dart';

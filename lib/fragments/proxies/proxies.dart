@@ -6,9 +6,6 @@ import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'common.dart';
-// import 'setting.dart';
-// import 'tab.dart';
 
 class ProxiesFragment extends ConsumerStatefulWidget {
   const ProxiesFragment({super.key});
@@ -111,12 +108,6 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
 
   @override
   Widget build(BuildContext context) {
-    final proxiesType = ref.watch(
-      proxiesStyleSettingProvider.select(
-        (state) => state.type,
-      ),
-    );
-
     ref.watch(themeSettingProvider.select((state) => state.textScale));
     return const ProxiesListFragment();
   }
