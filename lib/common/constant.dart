@@ -62,7 +62,7 @@ const logListEquality = ListEquality<Log>();
 const groupListEquality = ListEquality<Group>();
 const externalProviderListEquality = ListEquality<ExternalProvider>();
 const packageListEquality = ListEquality<Package>();
-const hotKeyActionListEquality = ListEquality<HotKeyAction>();
+// const hotKeyActionListEquality = ListEquality<HotKeyAction>();
 const stringAndStringMapEquality = MapEquality<String, String>();
 const stringAndStringMapEntryIterableEquality =
     IterableEquality<MapEntry<String, String>>();
@@ -70,11 +70,11 @@ const delayMapEquality = MapEquality<String, Map<String, int?>>();
 const stringSetEquality = SetEquality<String>();
 const keyboardModifierListEquality = SetEquality<KeyboardModifier>();
 
-const viewModeColumnsMap = {
-  ViewMode.mobile: [2, 1],
-  ViewMode.laptop: [3, 2],
-  ViewMode.desktop: [4, 3],
-};
+// const viewModeColumnsMap = {
+//   ViewMode.mobile: [2, 1],
+//   ViewMode.laptop: [3, 2],
+//   ViewMode.desktop: [4, 3],
+// };
 
 const defaultPrimaryColor = 0XFFD8C0C3;
 

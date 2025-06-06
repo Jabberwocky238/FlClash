@@ -471,17 +471,17 @@ class IpInfo {
   }
 }
 
-@freezed
-class HotKeyAction with _$HotKeyAction {
-  const factory HotKeyAction({
-    required HotAction action,
-    int? key,
-    @Default({}) Set<KeyboardModifier> modifiers,
-  }) = _HotKeyAction;
+// @freezed
+// class HotKeyAction with _$HotKeyAction {
+//   const factory HotKeyAction({
+//     required HotAction action,
+//     int? key,
+//     @Default({}) Set<KeyboardModifier> modifiers,
+//   }) = _HotKeyAction;
 
-  factory HotKeyAction.fromJson(Map<String, Object?> json) =>
-      _$HotKeyActionFromJson(json);
-}
+//   factory HotKeyAction.fromJson(Map<String, Object?> json) =>
+//       _$HotKeyActionFromJson(json);
+// }
 
 typedef Validator = String? Function(String? value);
 

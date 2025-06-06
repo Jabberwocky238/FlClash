@@ -82,7 +82,7 @@ class HomeState with _$HomeState {
   const factory HomeState({
     required PageLabel pageLabel,
     // required List<NavigationItem> navigationItems,
-    required ViewMode viewMode,
+    // required ViewMode viewMode,
     required String? locale,
   }) = _HomeState;
 }

@@ -93,7 +93,7 @@ class _EditorPageState extends ConsumerState<EditorPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isMobileView = ref.watch(isMobileViewProvider);
+    // final isMobileView = ref.watch(isMobileViewProvider);
     return CommonPopScope(
       onPop: () async {
         if (widget.onPop == null) {
@@ -154,7 +154,7 @@ class _EditorPageState extends ConsumerState<EditorPage> {
           findBuilder: (context, controller, readOnly) => FindPanel(
             controller: controller,
             readOnly: readOnly,
-            isMobileView: isMobileView,
+            isMobileView: true,
           ),
           padding: EdgeInsets.only(
             right: 16,

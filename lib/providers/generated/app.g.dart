@@ -22,38 +22,6 @@ final viewWidthProvider = AutoDisposeProvider<double>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ViewWidthRef = AutoDisposeProviderRef<double>;
-String _$viewModeHash() => r'736e2acc7e7d98ee30132de1990bf85f9506b47a';
-
-/// See also [viewMode].
-@ProviderFor(viewMode)
-final viewModeProvider = AutoDisposeProvider<ViewMode>.internal(
-  viewMode,
-  name: r'viewModeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$viewModeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ViewModeRef = AutoDisposeProviderRef<ViewMode>;
-String _$isMobileViewHash() => r'554c9ed269a02af001e623e596622e2bb2d658e7';
-
-/// See also [isMobileView].
-@ProviderFor(isMobileView)
-final isMobileViewProvider = AutoDisposeProvider<bool>.internal(
-  isMobileView,
-  name: r'isMobileViewProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$isMobileViewHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef IsMobileViewRef = AutoDisposeProviderRef<bool>;
 String _$viewHeightHash() => r'410aee5b41388226ab16737f0e85a56f7e9fe801';
 
 /// See also [viewHeight].
@@ -203,7 +171,7 @@ final runTimeProvider = AutoDisposeNotifierProvider<RunTime, int?>.internal(
 );
 
 typedef _$RunTime = AutoDisposeNotifier<int?>;
-String _$viewSizeHash() => r'07f9cce28a69d1496ba4643ef72a739312f6fc28';
+String _$viewSizeHash() => r'8f7e485a3a2ec7cade8577c737cf7ead14868081';
 
 /// See also [ViewSize].
 @ProviderFor(ViewSize)

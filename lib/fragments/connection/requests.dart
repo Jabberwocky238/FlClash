@@ -57,8 +57,7 @@ class _RequestsFragmentState extends ConsumerState<RequestsFragment>
     ref.listenManual(
       isCurrentPageProvider(
         PageLabel.requests,
-        handler: (pageLabel, viewMode) =>
-            pageLabel == PageLabel.tools && viewMode == ViewMode.mobile,
+        handler: (pageLabel) => pageLabel == PageLabel.tools,
       ),
       (prev, next) {
         if (prev != next && next == true) {
@@ -136,10 +135,10 @@ class _RequestsFragmentState extends ConsumerState<RequestsFragment>
       if (!mounted) {
         return;
       }
-      final isMobileView = ref.read(isMobileViewProvider);
-      if (isMobileView) {
-        await Future.delayed(Duration(milliseconds: 300));
-      }
+      // final isMobileView = ref.read(isMobileViewProvider);
+      // if (isMobileView) {
+      //   await Future.delayed(Duration(milliseconds: 300));
+      // }
       final parts = _requests.batch(10);
       globalState.cacheHeightMap[_tag] ??= FixedMap(
         _requests.length,

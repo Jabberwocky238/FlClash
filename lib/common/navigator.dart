@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 
 class BaseNavigator {
   static Future<T?> push<T>(BuildContext context, Widget child) async {
-    if (globalState.appState.viewMode != ViewMode.mobile) {
-      return await Navigator.of(context).push<T>(
-        CommonDesktopRoute(
-          builder: (context) => child,
-        ),
-      );
-    }
+    // if (globalState.appState.viewMode != ViewMode.mobile) {
+    //   return await Navigator.of(context).push<T>(
+    //     CommonDesktopRoute(
+    //       builder: (context) => child,
+    //     ),
+    //   );
+    // }
     return await Navigator.of(context).push<T>(
       CommonRoute(
         builder: (context) => child,

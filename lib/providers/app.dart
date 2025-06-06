@@ -196,9 +196,9 @@ class ViewSize extends _$ViewSize with AutoDisposeNotifierMixin {
     );
   }
 
-  ViewMode get viewMode => utils.getViewMode(state.width);
+  // ViewMode get viewMode => utils.getViewMode(state.width);
 
-  bool get isMobileView => viewMode == ViewMode.mobile;
+  // bool get isMobileView => viewMode == ViewMode.mobile;
 }
 
 @riverpod
@@ -206,15 +206,15 @@ double viewWidth(Ref ref) {
   return ref.watch(viewSizeProvider).width;
 }
 
-@riverpod
-ViewMode viewMode(Ref ref) {
-  return utils.getViewMode(ref.watch(viewWidthProvider));
-}
+// @riverpod
+// ViewMode viewMode(Ref ref) {
+//   return utils.getViewMode(ref.watch(viewWidthProvider));
+// }
 
-@riverpod
-bool isMobileView(Ref ref) {
-  return ref.watch(viewModeProvider) == ViewMode.mobile;
-}
+// @riverpod
+// bool isMobileView(Ref ref) {
+//   return ref.watch(viewModeProvider) == ViewMode.mobile;
+// }
 
 @riverpod
 double viewHeight(Ref ref) {

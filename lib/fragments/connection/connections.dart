@@ -76,8 +76,7 @@ class _ConnectionsFragmentState extends ConsumerState<ConnectionsFragment>
     ref.listenManual(
       isCurrentPageProvider(
         PageLabel.connections,
-        handler: (pageLabel, viewMode) =>
-            pageLabel == PageLabel.tools && viewMode == ViewMode.mobile,
+        handler: (pageLabel) => pageLabel == PageLabel.tools,
       ),
       (prev, next) {
         if (prev != next && next == true) {

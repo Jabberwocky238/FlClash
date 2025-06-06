@@ -214,11 +214,11 @@ class Utils {
         .toList();
   }
 
-  ViewMode getViewMode(double viewWidth) {
-    if (viewWidth <= maxMobileWidth) return ViewMode.mobile;
-    if (viewWidth <= maxLaptopWidth) return ViewMode.laptop;
-    return ViewMode.desktop;
-  }
+  // ViewMode getViewMode(double viewWidth) {
+  //   if (viewWidth <= maxMobileWidth) return ViewMode.mobile;
+  //   if (viewWidth <= maxLaptopWidth) return ViewMode.laptop;
+  //   return ViewMode.desktop;
+  // }
 
   int getProxiesColumns(double viewWidth, ProxiesLayout proxiesLayout) {
     final columns = max((viewWidth / 300).ceil(), 2);

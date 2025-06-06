@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
       child: Consumer(
         builder: (_, ref, child) {
           final state = ref.watch(homeStateProvider);
-          final viewMode = state.viewMode;
+          // final viewMode = state.viewMode;
           // final navigationItems = state.navigationItems;
           final pageLabel = state.pageLabel;
           final index = navigationItems.lastIndexWhere(
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
           );
           final currentIndex = index == -1 ? 0 : index;
           final navigationBar = CommonNavigationBar(
-            viewMode: viewMode,
+            // viewMode: viewMode, 
             navigationItems: navigationItems,
             currentIndex: currentIndex,
           );
@@ -106,9 +106,9 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
       return;
     }
     final isAnimateToPage = ref.read(appSettingProvider).isAnimateToPage;
-    final isMobile = ref.read(isMobileViewProvider);
+    // final isMobile = ref.read(isMobileViewProvider);
     globalState.homeScaffoldKey.currentState?.closeDrawer();
-    if (isAnimateToPage && isMobile && !ignoreAnimateTo) {
+    if (isAnimateToPage && true && !ignoreAnimateTo) {
       await _pageController.animateToPage(
         index,
         duration: kTabScrollDuration,
@@ -160,13 +160,13 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
 }
 
 class CommonNavigationBar extends ConsumerWidget {
-  final ViewMode viewMode;
+  // final ViewMode viewMode;
   final List<NavigationItem> navigationItems;
   final int currentIndex;
 
   const CommonNavigationBar({
     super.key,
-    required this.viewMode,
+    // required this.viewMode,
     required this.navigationItems,
     required this.currentIndex,
   });

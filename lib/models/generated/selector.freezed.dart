@@ -1363,7 +1363,7 @@ abstract class _TrayState implements TrayState {
 mixin _$HomeState {
   PageLabel get pageLabel =>
       throw _privateConstructorUsedError; // required List<NavigationItem> navigationItems,
-  ViewMode get viewMode => throw _privateConstructorUsedError;
+// required ViewMode viewMode,
   String? get locale => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
@@ -1378,7 +1378,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({PageLabel pageLabel, ViewMode viewMode, String? locale});
+  $Res call({PageLabel pageLabel, String? locale});
 }
 
 /// @nodoc
@@ -1397,7 +1397,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? pageLabel = null,
-    Object? viewMode = null,
     Object? locale = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1405,10 +1404,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.pageLabel
           : pageLabel // ignore: cast_nullable_to_non_nullable
               as PageLabel,
-      viewMode: null == viewMode
-          ? _value.viewMode
-          : viewMode // ignore: cast_nullable_to_non_nullable
-              as ViewMode,
       locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
@@ -1425,7 +1420,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PageLabel pageLabel, ViewMode viewMode, String? locale});
+  $Res call({PageLabel pageLabel, String? locale});
 }
 
 /// @nodoc
@@ -1442,7 +1437,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageLabel = null,
-    Object? viewMode = null,
     Object? locale = freezed,
   }) {
     return _then(_$HomeStateImpl(
@@ -1450,10 +1444,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.pageLabel
           : pageLabel // ignore: cast_nullable_to_non_nullable
               as PageLabel,
-      viewMode: null == viewMode
-          ? _value.viewMode
-          : viewMode // ignore: cast_nullable_to_non_nullable
-              as ViewMode,
       locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
@@ -1465,20 +1455,18 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl(
-      {required this.pageLabel, required this.viewMode, required this.locale});
+  const _$HomeStateImpl({required this.pageLabel, required this.locale});
 
   @override
   final PageLabel pageLabel;
 // required List<NavigationItem> navigationItems,
-  @override
-  final ViewMode viewMode;
+// required ViewMode viewMode,
   @override
   final String? locale;
 
   @override
   String toString() {
-    return 'HomeState(pageLabel: $pageLabel, viewMode: $viewMode, locale: $locale)';
+    return 'HomeState(pageLabel: $pageLabel, locale: $locale)';
   }
 
   @override
@@ -1488,13 +1476,11 @@ class _$HomeStateImpl implements _HomeState {
             other is _$HomeStateImpl &&
             (identical(other.pageLabel, pageLabel) ||
                 other.pageLabel == pageLabel) &&
-            (identical(other.viewMode, viewMode) ||
-                other.viewMode == viewMode) &&
             (identical(other.locale, locale) || other.locale == locale));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageLabel, viewMode, locale);
+  int get hashCode => Object.hash(runtimeType, pageLabel, locale);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -1508,13 +1494,11 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {required final PageLabel pageLabel,
-      required final ViewMode viewMode,
       required final String? locale}) = _$HomeStateImpl;
 
   @override
   PageLabel get pageLabel; // required List<NavigationItem> navigationItems,
-  @override
-  ViewMode get viewMode;
+// required ViewMode viewMode,
   @override
   String? get locale;
 

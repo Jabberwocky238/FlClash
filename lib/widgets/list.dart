@@ -277,27 +277,27 @@ class ListItem<T> extends StatelessWidget {
       return OpenContainer(
         closedBuilder: (_, action) {
           openAction() {
-            final isMobile = globalState.appState.viewMode == ViewMode.mobile;
-            if (!isMobile) {
-              showExtend(
-                context,
-                props: ExtendProps(
-                  blur: openDelegate.blur,
-                  maxWidth: openDelegate.maxWidth,
-                ),
-                builder: (_, type) {
-                  return AdaptiveSheetScaffold(
-                    actions: [
-                      if (openDelegate.action != null) openDelegate.action!,
-                    ],
-                    type: type,
-                    body: child,
-                    title: openDelegate.title,
-                  );
-                },
-              );
-              return;
-            }
+            // final isMobile = globalState.appState.viewMode == ViewMode.mobile;
+            // if (!isMobile) {
+            //   showExtend(
+            //     context,
+            //     props: ExtendProps(
+            //       blur: openDelegate.blur,
+            //       maxWidth: openDelegate.maxWidth,
+            //     ),
+            //     builder: (_, type) {
+            //       return AdaptiveSheetScaffold(
+            //         actions: [
+            //           if (openDelegate.action != null) openDelegate.action!,
+            //         ],
+            //         type: type,
+            //         body: child,
+            //         title: openDelegate.title,
+            //       );
+            //     },
+            //   );
+            //   return;
+            // }
             action();
           }
 

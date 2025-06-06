@@ -50,8 +50,8 @@ Future<T?> showSheet<T>({
   required SheetBuilder builder,
   SheetProps props = const SheetProps(),
 }) {
-  final isMobile = globalState.appState.viewMode == ViewMode.mobile;
-  return switch (isMobile) {
+  // final isMobile = globalState.appState.viewMode == ViewMode.mobile;
+  return switch (true) {
     true => showModalBottomSheet<T>(
         context: context,
         isScrollControlled: props.isScrollControlled,
@@ -83,8 +83,8 @@ Future<T?> showExtend<T>(
   required SheetBuilder builder,
   ExtendProps props = const ExtendProps(),
 }) {
-  final isMobile = globalState.appState.viewMode == ViewMode.mobile;
-  return switch (isMobile) {
+  // final isMobile = globalState.appState.viewMode == ViewMode.mobile;
+  return switch (true) {
     true => BaseNavigator.push(
         context,
         builder(context, SheetType.page),

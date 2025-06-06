@@ -143,7 +143,7 @@ final vpnStateProvider = AutoDisposeProvider<VpnState>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef VpnStateRef = AutoDisposeProviderRef<VpnState>;
-String _$homeStateHash() => r'cd59400ae8c7be6807dfeb434c2fd88bf7638cb1';
+String _$homeStateHash() => r'84017b057c06505960e9f45bcd400d5f5087116b';
 
 /// See also [homeState].
 @ProviderFor(homeState)
@@ -469,7 +469,7 @@ final packageListSelectorStateProvider =
 typedef PackageListSelectorStateRef
     = AutoDisposeProviderRef<PackageListSelectorState>;
 String _$moreToolsSelectorStateHash() =>
-    r'd27e3eceec2422ad6b6231cf52b892e63c67e365';
+    r'25c1227af68c66af663f6ab9621cd84fa552cb4d';
 
 /// See also [moreToolsSelectorState].
 @ProviderFor(moreToolsSelectorState)
@@ -488,7 +488,7 @@ final moreToolsSelectorStateProvider =
 // ignore: unused_element
 typedef MoreToolsSelectorStateRef
     = AutoDisposeProviderRef<MoreToolsSelectorState>;
-String _$isCurrentPageHash() => r'7c300770aef90da23109d9fcfc3bf26140d8cd08';
+String _$isCurrentPageHash() => r'9b0e79233891d88b51d53a294ac5e5d27983f275';
 
 /// See also [isCurrentPage].
 @ProviderFor(isCurrentPage)
@@ -502,7 +502,7 @@ class IsCurrentPageFamily extends Family<bool> {
   /// See also [isCurrentPage].
   IsCurrentPageProvider call(
     PageLabel pageLabel, {
-    bool Function(PageLabel, ViewMode)? handler,
+    bool Function(PageLabel)? handler,
   }) {
     return IsCurrentPageProvider(
       pageLabel,
@@ -540,7 +540,7 @@ class IsCurrentPageProvider extends AutoDisposeProvider<bool> {
   /// See also [isCurrentPage].
   IsCurrentPageProvider(
     PageLabel pageLabel, {
-    bool Function(PageLabel, ViewMode)? handler,
+    bool Function(PageLabel)? handler,
   }) : this._internal(
           (ref) => isCurrentPage(
             ref as IsCurrentPageRef,
@@ -572,7 +572,7 @@ class IsCurrentPageProvider extends AutoDisposeProvider<bool> {
   }) : super.internal();
 
   final PageLabel pageLabel;
-  final bool Function(PageLabel, ViewMode)? handler;
+  final bool Function(PageLabel)? handler;
 
   @override
   Override overrideWith(
@@ -622,7 +622,7 @@ mixin IsCurrentPageRef on AutoDisposeProviderRef<bool> {
   PageLabel get pageLabel;
 
   /// The parameter `handler` of this provider.
-  bool Function(PageLabel, ViewMode)? get handler;
+  bool Function(PageLabel)? get handler;
 }
 
 class _IsCurrentPageProviderElement extends AutoDisposeProviderElement<bool>
@@ -632,7 +632,7 @@ class _IsCurrentPageProviderElement extends AutoDisposeProviderElement<bool>
   @override
   PageLabel get pageLabel => (origin as IsCurrentPageProvider).pageLabel;
   @override
-  bool Function(PageLabel, ViewMode)? get handler =>
+  bool Function(PageLabel)? get handler =>
       (origin as IsCurrentPageProvider).handler;
 }
 

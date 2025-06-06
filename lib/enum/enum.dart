@@ -89,7 +89,7 @@ extension UsedProxyExtension on UsedProxy {
 
 enum Mode { rule, global, direct }
 
-enum ViewMode { mobile, laptop, desktop }
+// enum ViewMode { mobile, laptop, desktop }
 
 enum LogLevel {
   debug,
@@ -212,13 +212,13 @@ extension KeyboardModifierExt on KeyboardModifier {
   }
 }
 
-enum HotAction {
-  start,
-  view,
-  mode,
-  proxy,
-  tun,
-}
+// enum HotAction {
+//   start,
+//   view,
+//   mode,
+//   proxy,
+//   tun,
+// }
 
 enum ProxiesIconStyle {
   standard,

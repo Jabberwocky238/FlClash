@@ -43,8 +43,7 @@ class _LogsFragmentState extends ConsumerState<LogsFragment> with PageMixin {
     ref.listenManual(
       isCurrentPageProvider(
         PageLabel.logs,
-        handler: (pageLabel, viewMode) =>
-            pageLabel == PageLabel.tools && viewMode == ViewMode.mobile,
+        handler: (pageLabel) => pageLabel == PageLabel.tools,
       ),
       (prev, next) {
         if (prev != next && next == true) {
@@ -158,10 +157,10 @@ class _LogsFragmentState extends ConsumerState<LogsFragment> with PageMixin {
       if (!mounted) {
         return;
       }
-      final isMobileView = ref.read(isMobileViewProvider);
-      if (isMobileView) {
-        await Future.delayed(Duration(milliseconds: 300));
-      }
+      // final isMobileView = ref.read(isMobileViewProvider);
+      // if (isMobileView) {
+      //   await Future.delayed(Duration(milliseconds: 300));
+      // }
       final parts = _logs.batch(10);
       globalState.cacheHeightMap[_tag] ??= FixedMap(
         _logs.length,
