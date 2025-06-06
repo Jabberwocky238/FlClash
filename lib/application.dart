@@ -124,6 +124,7 @@ class ApplicationState extends ConsumerState<Application> {
       child: ThemeManager(
         child: child,
       ),
+      // child: child,
     );
   }
 
@@ -165,14 +166,14 @@ class ApplicationState extends ConsumerState<Application> {
                   primaryColor: themeProps.primaryColor,
                 ),
               ),
-              darkTheme: ThemeData(
-                useMaterial3: true,
-                pageTransitionsTheme: _pageTransitionsTheme,
-                colorScheme: _getAppColorScheme(
-                  brightness: Brightness.dark,
-                  primaryColor: themeProps.primaryColor,
-                ).toPureBlack(themeProps.pureBlack),
-              ),
+              // darkTheme: ThemeData(
+              //   useMaterial3: true,
+              //   pageTransitionsTheme: _pageTransitionsTheme,
+              //   colorScheme: _getAppColorScheme(
+              //     brightness: Brightness.dark,
+              //     primaryColor: themeProps.primaryColor,
+              //   ).toPureBlack(themeProps.pureBlack),
+              // ),
               home: child,
             );
           },

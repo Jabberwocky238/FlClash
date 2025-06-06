@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         builder: (_, ref, child) {
           final state = ref.watch(homeStateProvider);
           final viewMode = state.viewMode;
-          final navigationItems = state.navigationItems;
+          // final navigationItems = state.navigationItems;
           final pageLabel = state.pageLabel;
           final index = navigationItems.lastIndexWhere(
             (element) => element.label == pageLabel,
@@ -33,10 +33,10 @@ class HomePage extends StatelessWidget {
             navigationItems: navigationItems,
             currentIndex: currentIndex,
           );
-          final bottomNavigationBar =
-              viewMode == ViewMode.mobile ? navigationBar : null;
-          final sideNavigationBar =
-              viewMode != ViewMode.mobile ? navigationBar : null;
+          // final bottomNavigationBar =
+          //     viewMode == ViewMode.mobile ? navigationBar : null;
+          // final sideNavigationBar =
+          //     viewMode != ViewMode.mobile ? navigationBar : null;
           return CommonScaffoldNew(
             key: globalState.homeScaffoldKey,
             title: Intl.message(
@@ -78,21 +78,20 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
       initialPage: _pageIndex,
       keepPage: true,
     );
-    ref.listenManual(currentPageLabelProvider, (prev, next) {
-      if (prev != next) {
-        _toPage(next);
-      }
-    });
-    ref.listenManual(currentNavigationsStateProvider, (prev, next) {
-      if (prev?.value.length != next.value.length) {
-        _updatePageController();
-      }
-    });
+    // ref.listenManual(currentPageLabelProvider, (prev, next) {
+    //   if (prev != next) {
+    //     _toPage(next);
+    //   }
+    // });
+    // ref.listenManual(currentNavigationsStateProvider, (prev, next) {
+    //   if (prev?.value.length != next.value.length) {
+    //     _updatePageController();
+    //   }
+    // });
   }
 
   int get _pageIndex {
-    final navigationItems = ref.read(currentNavigationsStateProvider).value;
-    return navigationItems.indexWhere(
+    return navigationItems.lastIndexWhere(
       (item) => item.label == globalState.appState.pageLabel,
     );
   }
@@ -122,7 +121,7 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
 
   _updatePageController() {
     final pageLabel = globalState.appState.pageLabel;
-    _toPage(pageLabel, true);
+    _toPage(pageLabel, false);
   }
 
   @override
@@ -143,7 +142,7 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (_pageIndex != index) {
               final pageLabel = navigationItems[index].label;
-              _toPage(pageLabel, true);
+              _toPage(pageLabel, false);
             }
           });
         });
@@ -247,22 +246,22 @@ class CommonNavigationBar extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
-          IconButton(
-            onPressed: () {
-              ref.read(appSettingProvider.notifier).updateState(
-                    (state) => state.copyWith(
-                      showLabel: !state.showLabel,
-                    ),
-                  );
-            },
-            icon: const Icon(Icons.menu),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
+          // const SizedBox(
+          //   height: 16,
+          // ),
+          // IconButton(
+          //   onPressed: () {
+          //     ref.read(appSettingProvider.notifier).updateState(
+          //           (state) => state.copyWith(
+          //             showLabel: !state.showLabel,
+          //           ),
+          //         );
+          //   },
+          //   icon: const Icon(Icons.menu),
+          // ),
+          // const SizedBox(
+          //   height: 16,
+          // ),
         ],
       ),
       ),

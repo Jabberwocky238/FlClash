@@ -20,6 +20,15 @@ class Navigation {
       ),
       NavigationItem(
         icon: const Icon(Icons.article),
+        label: PageLabel.auth,
+        fragment: const AuthFragment(
+          key: GlobalObjectKey(
+            PageLabel.auth,
+          ),
+        ),
+      ),
+      NavigationItem(
+        icon: const Icon(Icons.article),
         label: PageLabel.proxies,
         fragment: const ProxiesFragment(
           key: GlobalObjectKey(
@@ -108,3 +117,4 @@ class Navigation {
 }
 
 final navigation = Navigation();
+final navigationItems = navigation.getItems();

@@ -23,7 +23,7 @@ class CommonMessage with _$CommonMessage {
 class AppBarState with _$AppBarState {
   const factory AppBarState({
     @Default([]) List<Widget> actions,
-    AppBarSearchState? searchState,
+    // AppBarSearchState? searchState,
     AppBarEditState? editState,
   }) = _AppBarState;
 }

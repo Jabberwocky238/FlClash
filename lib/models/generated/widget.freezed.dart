@@ -313,8 +313,8 @@ abstract class _CommonMessage implements CommonMessage {
 
 /// @nodoc
 mixin _$AppBarState {
-  List<Widget> get actions => throw _privateConstructorUsedError;
-  AppBarSearchState? get searchState => throw _privateConstructorUsedError;
+  List<Widget> get actions =>
+      throw _privateConstructorUsedError; // AppBarSearchState? searchState,
   AppBarEditState? get editState => throw _privateConstructorUsedError;
 
   /// Create a copy of AppBarState
@@ -330,12 +330,8 @@ abstract class $AppBarStateCopyWith<$Res> {
           AppBarState value, $Res Function(AppBarState) then) =
       _$AppBarStateCopyWithImpl<$Res, AppBarState>;
   @useResult
-  $Res call(
-      {List<Widget> actions,
-      AppBarSearchState? searchState,
-      AppBarEditState? editState});
+  $Res call({List<Widget> actions, AppBarEditState? editState});
 
-  $AppBarSearchStateCopyWith<$Res>? get searchState;
   $AppBarEditStateCopyWith<$Res>? get editState;
 }
 
@@ -355,7 +351,6 @@ class _$AppBarStateCopyWithImpl<$Res, $Val extends AppBarState>
   @override
   $Res call({
     Object? actions = null,
-    Object? searchState = freezed,
     Object? editState = freezed,
   }) {
     return _then(_value.copyWith(
@@ -363,29 +358,11 @@ class _$AppBarStateCopyWithImpl<$Res, $Val extends AppBarState>
           ? _value.actions
           : actions // ignore: cast_nullable_to_non_nullable
               as List<Widget>,
-      searchState: freezed == searchState
-          ? _value.searchState
-          : searchState // ignore: cast_nullable_to_non_nullable
-              as AppBarSearchState?,
       editState: freezed == editState
           ? _value.editState
           : editState // ignore: cast_nullable_to_non_nullable
               as AppBarEditState?,
     ) as $Val);
-  }
-
-  /// Create a copy of AppBarState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppBarSearchStateCopyWith<$Res>? get searchState {
-    if (_value.searchState == null) {
-      return null;
-    }
-
-    return $AppBarSearchStateCopyWith<$Res>(_value.searchState!, (value) {
-      return _then(_value.copyWith(searchState: value) as $Val);
-    });
   }
 
   /// Create a copy of AppBarState
@@ -411,13 +388,8 @@ abstract class _$$AppBarStateImplCopyWith<$Res>
       __$$AppBarStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<Widget> actions,
-      AppBarSearchState? searchState,
-      AppBarEditState? editState});
+  $Res call({List<Widget> actions, AppBarEditState? editState});
 
-  @override
-  $AppBarSearchStateCopyWith<$Res>? get searchState;
   @override
   $AppBarEditStateCopyWith<$Res>? get editState;
 }
@@ -436,7 +408,6 @@ class __$$AppBarStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? actions = null,
-    Object? searchState = freezed,
     Object? editState = freezed,
   }) {
     return _then(_$AppBarStateImpl(
@@ -444,10 +415,6 @@ class __$$AppBarStateImplCopyWithImpl<$Res>
           ? _value._actions
           : actions // ignore: cast_nullable_to_non_nullable
               as List<Widget>,
-      searchState: freezed == searchState
-          ? _value.searchState
-          : searchState // ignore: cast_nullable_to_non_nullable
-              as AppBarSearchState?,
       editState: freezed == editState
           ? _value.editState
           : editState // ignore: cast_nullable_to_non_nullable
@@ -460,7 +427,7 @@ class __$$AppBarStateImplCopyWithImpl<$Res>
 
 class _$AppBarStateImpl implements _AppBarState {
   const _$AppBarStateImpl(
-      {final List<Widget> actions = const [], this.searchState, this.editState})
+      {final List<Widget> actions = const [], this.editState})
       : _actions = actions;
 
   final List<Widget> _actions;
@@ -472,14 +439,13 @@ class _$AppBarStateImpl implements _AppBarState {
     return EqualUnmodifiableListView(_actions);
   }
 
-  @override
-  final AppBarSearchState? searchState;
+// AppBarSearchState? searchState,
   @override
   final AppBarEditState? editState;
 
   @override
   String toString() {
-    return 'AppBarState(actions: $actions, searchState: $searchState, editState: $editState)';
+    return 'AppBarState(actions: $actions, editState: $editState)';
   }
 
   @override
@@ -488,15 +454,13 @@ class _$AppBarStateImpl implements _AppBarState {
         (other.runtimeType == runtimeType &&
             other is _$AppBarStateImpl &&
             const DeepCollectionEquality().equals(other._actions, _actions) &&
-            (identical(other.searchState, searchState) ||
-                other.searchState == searchState) &&
             (identical(other.editState, editState) ||
                 other.editState == editState));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_actions), searchState, editState);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_actions), editState);
 
   /// Create a copy of AppBarState
   /// with the given fields replaced by the non-null parameter values.
@@ -510,13 +474,10 @@ class _$AppBarStateImpl implements _AppBarState {
 abstract class _AppBarState implements AppBarState {
   const factory _AppBarState(
       {final List<Widget> actions,
-      final AppBarSearchState? searchState,
       final AppBarEditState? editState}) = _$AppBarStateImpl;
 
   @override
-  List<Widget> get actions;
-  @override
-  AppBarSearchState? get searchState;
+  List<Widget> get actions; // AppBarSearchState? searchState,
   @override
   AppBarEditState? get editState;
 

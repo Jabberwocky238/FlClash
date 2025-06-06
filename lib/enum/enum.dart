@@ -409,6 +409,9 @@ enum PageLabel {
   requests,
   resources,
   connections,
+
+  //auth
+  auth,
 }
 
 enum RuleAction {

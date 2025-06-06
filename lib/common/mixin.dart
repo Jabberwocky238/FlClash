@@ -33,13 +33,13 @@ mixin PageMixin<T extends StatefulWidget> on State<T> {
       commonScaffoldState?.actions = actions;
       commonScaffoldState?.floatingActionButton = floatingActionButton;
       commonScaffoldState?.onKeywordsUpdate = onKeywordsUpdate;
-      commonScaffoldState?.updateSearchState(
-        (_) => onSearch != null
-            ? AppBarSearchState(
-                onSearch: onSearch!,
-              )
-            : null,
-      );
+      // commonScaffoldState?.updateSearchState(
+      //   (_) => onSearch != null
+      //       ? AppBarSearchState(
+      //           onSearch: onSearch!,
+      //         )
+      //       : null,
+      // );
     });
   }
 

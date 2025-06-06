@@ -1361,9 +1361,8 @@ abstract class _TrayState implements TrayState {
 
 /// @nodoc
 mixin _$HomeState {
-  PageLabel get pageLabel => throw _privateConstructorUsedError;
-  List<NavigationItem> get navigationItems =>
-      throw _privateConstructorUsedError;
+  PageLabel get pageLabel =>
+      throw _privateConstructorUsedError; // required List<NavigationItem> navigationItems,
   ViewMode get viewMode => throw _privateConstructorUsedError;
   String? get locale => throw _privateConstructorUsedError;
 
@@ -1379,11 +1378,7 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call(
-      {PageLabel pageLabel,
-      List<NavigationItem> navigationItems,
-      ViewMode viewMode,
-      String? locale});
+  $Res call({PageLabel pageLabel, ViewMode viewMode, String? locale});
 }
 
 /// @nodoc
@@ -1402,7 +1397,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? pageLabel = null,
-    Object? navigationItems = null,
     Object? viewMode = null,
     Object? locale = freezed,
   }) {
@@ -1411,10 +1405,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.pageLabel
           : pageLabel // ignore: cast_nullable_to_non_nullable
               as PageLabel,
-      navigationItems: null == navigationItems
-          ? _value.navigationItems
-          : navigationItems // ignore: cast_nullable_to_non_nullable
-              as List<NavigationItem>,
       viewMode: null == viewMode
           ? _value.viewMode
           : viewMode // ignore: cast_nullable_to_non_nullable
@@ -1435,11 +1425,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {PageLabel pageLabel,
-      List<NavigationItem> navigationItems,
-      ViewMode viewMode,
-      String? locale});
+  $Res call({PageLabel pageLabel, ViewMode viewMode, String? locale});
 }
 
 /// @nodoc
@@ -1456,7 +1442,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pageLabel = null,
-    Object? navigationItems = null,
     Object? viewMode = null,
     Object? locale = freezed,
   }) {
@@ -1465,10 +1450,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.pageLabel
           : pageLabel // ignore: cast_nullable_to_non_nullable
               as PageLabel,
-      navigationItems: null == navigationItems
-          ? _value._navigationItems
-          : navigationItems // ignore: cast_nullable_to_non_nullable
-              as List<NavigationItem>,
       viewMode: null == viewMode
           ? _value.viewMode
           : viewMode // ignore: cast_nullable_to_non_nullable
@@ -1485,22 +1466,11 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
-      {required this.pageLabel,
-      required final List<NavigationItem> navigationItems,
-      required this.viewMode,
-      required this.locale})
-      : _navigationItems = navigationItems;
+      {required this.pageLabel, required this.viewMode, required this.locale});
 
   @override
   final PageLabel pageLabel;
-  final List<NavigationItem> _navigationItems;
-  @override
-  List<NavigationItem> get navigationItems {
-    if (_navigationItems is EqualUnmodifiableListView) return _navigationItems;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_navigationItems);
-  }
-
+// required List<NavigationItem> navigationItems,
   @override
   final ViewMode viewMode;
   @override
@@ -1508,7 +1478,7 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(pageLabel: $pageLabel, navigationItems: $navigationItems, viewMode: $viewMode, locale: $locale)';
+    return 'HomeState(pageLabel: $pageLabel, viewMode: $viewMode, locale: $locale)';
   }
 
   @override
@@ -1518,16 +1488,13 @@ class _$HomeStateImpl implements _HomeState {
             other is _$HomeStateImpl &&
             (identical(other.pageLabel, pageLabel) ||
                 other.pageLabel == pageLabel) &&
-            const DeepCollectionEquality()
-                .equals(other._navigationItems, _navigationItems) &&
             (identical(other.viewMode, viewMode) ||
                 other.viewMode == viewMode) &&
             (identical(other.locale, locale) || other.locale == locale));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pageLabel,
-      const DeepCollectionEquality().hash(_navigationItems), viewMode, locale);
+  int get hashCode => Object.hash(runtimeType, pageLabel, viewMode, locale);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -1541,14 +1508,11 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {required final PageLabel pageLabel,
-      required final List<NavigationItem> navigationItems,
       required final ViewMode viewMode,
       required final String? locale}) = _$HomeStateImpl;
 
   @override
-  PageLabel get pageLabel;
-  @override
-  List<NavigationItem> get navigationItems;
+  PageLabel get pageLabel; // required List<NavigationItem> navigationItems,
   @override
   ViewMode get viewMode;
   @override
