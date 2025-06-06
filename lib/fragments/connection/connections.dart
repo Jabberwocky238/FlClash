@@ -45,14 +45,6 @@ class _ConnectionsFragmentState extends ConsumerState<ConnectionsFragment>
       ];
 
   @override
-  get onSearch => (value) {
-        _connectionsStateNotifier.value =
-            _connectionsStateNotifier.value.copyWith(
-          query: value,
-        );
-      };
-
-  @override
   get onKeywordsUpdate => (keywords) {
         _connectionsStateNotifier.value =
             _connectionsStateNotifier.value.copyWith(keywords: keywords);

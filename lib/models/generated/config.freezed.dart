@@ -2493,7 +2493,7 @@ AuthProps _$AuthPropsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthProps {
-  String get username => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
 
@@ -2512,7 +2512,7 @@ abstract class $AuthPropsCopyWith<$Res> {
   factory $AuthPropsCopyWith(AuthProps value, $Res Function(AuthProps) then) =
       _$AuthPropsCopyWithImpl<$Res, AuthProps>;
   @useResult
-  $Res call({String username, String password, String? token});
+  $Res call({String email, String password, String? token});
 }
 
 /// @nodoc
@@ -2530,14 +2530,14 @@ class _$AuthPropsCopyWithImpl<$Res, $Val extends AuthProps>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
+    Object? email = null,
     Object? password = null,
     Object? token = freezed,
   }) {
     return _then(_value.copyWith(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -2559,7 +2559,7 @@ abstract class _$$AuthModelImplCopyWith<$Res>
       __$$AuthModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username, String password, String? token});
+  $Res call({String email, String password, String? token});
 }
 
 /// @nodoc
@@ -2575,14 +2575,14 @@ class __$$AuthModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
+    Object? email = null,
     Object? password = null,
     Object? token = freezed,
   }) {
     return _then(_$AuthModelImpl(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -2600,14 +2600,14 @@ class __$$AuthModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AuthModelImpl implements _AuthModel {
   const _$AuthModelImpl(
-      {this.username = 'username', this.password = 'password', this.token});
+      {this.email = 'email', this.password = 'password', this.token});
 
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthModelImplFromJson(json);
 
   @override
   @JsonKey()
-  final String username;
+  final String email;
   @override
   @JsonKey()
   final String password;
@@ -2616,7 +2616,7 @@ class _$AuthModelImpl implements _AuthModel {
 
   @override
   String toString() {
-    return 'AuthProps(username: $username, password: $password, token: $token)';
+    return 'AuthProps(email: $email, password: $password, token: $token)';
   }
 
   @override
@@ -2624,8 +2624,7 @@ class _$AuthModelImpl implements _AuthModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthModelImpl &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.token, token) || other.token == token));
@@ -2633,7 +2632,7 @@ class _$AuthModelImpl implements _AuthModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, username, password, token);
+  int get hashCode => Object.hash(runtimeType, email, password, token);
 
   /// Create a copy of AuthProps
   /// with the given fields replaced by the non-null parameter values.
@@ -2653,7 +2652,7 @@ class _$AuthModelImpl implements _AuthModel {
 
 abstract class _AuthModel implements AuthProps {
   const factory _AuthModel(
-      {final String username,
+      {final String email,
       final String password,
       final String? token}) = _$AuthModelImpl;
 
@@ -2661,7 +2660,7 @@ abstract class _AuthModel implements AuthProps {
       _$AuthModelImpl.fromJson;
 
   @override
-  String get username;
+  String get email;
   @override
   String get password;
   @override

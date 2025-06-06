@@ -1,6 +1,11 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'blocks.dart';
 
 class AuthFragment extends StatefulWidget {
   const AuthFragment({super.key});
@@ -9,27 +14,32 @@ class AuthFragment extends StatefulWidget {
   State<AuthFragment> createState() => _AuthFragmentState();
 }
 
-class _AuthFragmentState extends State<AuthFragment> {
-  @override
-  Widget build(BuildContext context) {
-     List<Widget> items = [
-      const TextCard(name: "用户ID", value: "1234567890"),
-      const TextCard(name: "绑定邮箱", value: "1234567890"),
-    ];
-    return generateListView(
-      items
-          .separated(
-            const Divider(
-              height: 0,
-            ),
-          )
-          .toList(),
-    );
-  }
-
+class _AuthFragmentState extends State<AuthFragment> with PageMixin {
+  
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(
+      builder: (_, ref, __) {
+        ref.listenManual(
+          isCurrentPageProvider(
+            PageLabel.auth,
+            handler: (pageLabel) => pageLabel == PageLabel.auth,
+          ),
+          (prev, next) {
+            if (prev != next && next == true) {
+              initPageState();
+            }
+          },
+          fireImmediately: true,
+        );
+        return const AuthSettingView();
+      },
+    ); 
   }
 
   @override

@@ -400,5 +400,8 @@
   "recoveryStrategy": "Recovery strategy",
   "recoveryStrategy_override": "Override",
   "recoveryStrategy_compatible": "Compatible",
-  "logsTest": "Logs test"
+  "logsTest": "Logs test",
+  "auth": "Auth",
+  "userEmail": "Email",
+  "userPassword": "Password"
 }

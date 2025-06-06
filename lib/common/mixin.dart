@@ -28,18 +28,10 @@ mixin PageMixin<T extends StatefulWidget> on State<T> {
 
   initPageState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // commonPrint.log('[PageMixin:30] (mixin.dart) 页面显示');
       final commonScaffoldState = context.commonScaffoldState;
       commonScaffoldState?.actions = actions;
       commonScaffoldState?.floatingActionButton = floatingActionButton;
       commonScaffoldState?.onKeywordsUpdate = onKeywordsUpdate;
-      // commonScaffoldState?.updateSearchState(
-      //   (_) => onSearch != null
-      //       ? AppBarSearchState(
-      //           onSearch: onSearch!,
-      //         )
-      //       : null,
-      // );
     });
   }
 
@@ -48,8 +40,6 @@ mixin PageMixin<T extends StatefulWidget> on State<T> {
   List<Widget> get actions => [];
 
   Widget? get floatingActionButton => null;
-
-  Function(String)? get onSearch => null;
 
   Function(List<String>)? get onKeywordsUpdate => null;
 }

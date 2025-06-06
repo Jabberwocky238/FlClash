@@ -401,5 +401,8 @@
   "recoveryStrategy": "恢复策略",
   "recoveryStrategy_override": "覆盖",
   "recoveryStrategy_compatible": "兼容",
-  "logsTest": "日志测试"
+  "logsTest": "日志测试",
+  "auth": "账户管理",
+  "userEmail": "账户",
+  "userPassword": "密码"
 }

@@ -17,22 +17,19 @@ class Navigation {
           key: GlobalObjectKey(PageLabel.dashboard),
         ),
       ),
-      NavigationItem(
-        icon: const Icon(Icons.article),
+      const NavigationItem(
+        icon: Icon(Icons.person),
         label: PageLabel.auth,
-        fragment: const AuthFragment(
-          key: GlobalObjectKey(
-            PageLabel.auth,
-          ),
+        fragment: AuthFragment(
+          key: GlobalObjectKey(PageLabel.auth),
         ),
+        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop],
       ),
       NavigationItem(
         icon: const Icon(Icons.article),
         label: PageLabel.proxies,
         fragment: const ProxiesFragment(
-          key: GlobalObjectKey(
-            PageLabel.proxies,
-          ),
+          key: GlobalObjectKey(PageLabel.proxies),
         ),
         modes: hasProxies
             ? [NavigationItemMode.mobile, NavigationItemMode.desktop]

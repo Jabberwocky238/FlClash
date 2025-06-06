@@ -29,7 +29,6 @@ export 'scroll.dart';
 export 'string.dart';
 export 'system.dart';
 export 'text.dart';
-export 'text_card.dart';
 export 'tray.dart';
 export 'window.dart';
 export 'windows.dart';

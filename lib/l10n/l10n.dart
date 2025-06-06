@@ -110,6 +110,11 @@ class AppLocalizations {
     );
   }
 
+  /// `Auth`
+  String get auth {
+    return Intl.message('Auth', name: 'auth', desc: '', args: []);
+  }
+
   /// `Resources`
   String get resources {
     return Intl.message('Resources', name: 'resources', desc: '', args: []);
@@ -578,6 +583,16 @@ class AppLocalizations {
   /// `File`
   String get file {
     return Intl.message('File', name: 'file', desc: '', args: []);
+  }
+
+  /// `UserEmail`
+  String get userEmail {
+    return Intl.message('UserEmail', name: 'userEmail', desc: '', args: []);
+  }
+
+  /// `UserPassword`
+  String get userPassword {
+    return Intl.message('UserPassword', name: 'userPassword', desc: '', args: []);
   }
 
   /// `Directly upload profile`

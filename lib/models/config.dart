@@ -239,7 +239,7 @@ extension ConfigExt on Config {
 @freezed
 class AuthProps with _$AuthProps {
   const factory AuthProps({
-    @Default('username') String username,
+    @Default('email') String email,
     @Default('password') String password,
     String? token,
   }) = _AuthModel;
