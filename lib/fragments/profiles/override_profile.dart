@@ -178,7 +178,7 @@ class _OverrideProfileState extends State<OverrideProfile> {
             );
             final isEdit = vm2.a;
             final editCount = vm2.b;
-            return CommonScaffold(
+            return CommonScaffoldNew(
               title: appLocalizations.override,
               body: _buildContent(),
               actions: [

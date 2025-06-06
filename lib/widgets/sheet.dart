@@ -176,9 +176,9 @@ class _AdaptiveSheetScaffoldState extends State<AdaptiveSheetScaffold> {
         ),
       );
     }
-    return CommonScaffold(
+    return CommonScaffoldNew(
       appBar: appBar,
-      backgroundColor: backgroundColor,
+      // backgroundColor: backgroundColor,
       body: widget.body,
     );
   }

@@ -43,7 +43,7 @@ final navigationsStateProvider =
 // ignore: unused_element
 typedef NavigationsStateRef = AutoDisposeProviderRef<NavigationItemsState>;
 String _$currentNavigationsStateHash() =>
-    r'c9a08ca514b183932be291cee3b304569932b935';
+    r'3184bc64677ec01ab40dc6b7b78aebea70d96109';
 
 /// See also [currentNavigationsState].
 @ProviderFor(currentNavigationsState)

@@ -8,7 +8,6 @@ import 'package:jw_clash/l10n/l10n.dart';
 import 'package:jw_clash/plugins/service.dart';
 import 'package:jw_clash/widgets/dialog.dart';
 import 'package:jw_clash/widgets/scaffold.dart';
-import 'package:jw_clash/widgets/scaffold_new.dart';
 import 'package:flutter/material.dart';
 import 'package:material_color_utilities/palettes/core_palette.dart';
 import 'package:package_info_plus/package_info_plus.dart';

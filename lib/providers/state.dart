@@ -44,12 +44,12 @@ NavigationItemsState navigationsState(Ref ref) {
 
 @riverpod
 NavigationItemsState currentNavigationsState(Ref ref) {
-  final viewWidth = ref.watch(viewWidthProvider);
+  // final viewWidth = ref.watch(viewWidthProvider);
   final navigationItemsState = ref.watch(navigationsStateProvider);
-  final navigationItemMode = switch (viewWidth <= maxMobileWidth) {
-    true => NavigationItemMode.mobile,
-    false => NavigationItemMode.desktop,
-  };
+  // final navigationItemMode = switch (viewWidth <= maxMobileWidth) {
+  //   true => NavigationItemMode.mobile,
+  //   false => NavigationItemMode.desktop,
+  // };
   return NavigationItemsState(
     value: navigationItemsState.value
         .where(

@@ -4,7 +4,7 @@ import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
-import 'package:jw_clash/widgets/scaffold_new.dart';
+// import 'package:jw_clash/widgets/scaffold.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -119,10 +119,10 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
     }
   }
 
-  _updatePageController() {
-    final pageLabel = globalState.appState.pageLabel;
-    _toPage(pageLabel, false);
-  }
+  // _updatePageController() {
+  //   final pageLabel = globalState.appState.pageLabel;
+  //   _toPage(pageLabel, false);
+  // }
 
   @override
   void dispose() {

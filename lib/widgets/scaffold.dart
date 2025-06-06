@@ -9,35 +9,34 @@ import 'package:flutter/services.dart';
 
 import 'chip.dart';
 
-class CommonScaffold extends StatefulWidget {
+class CommonScaffoldNew extends StatefulWidget {
   final AppBar? appBar;
   final Widget body;
-  final Widget? bottomNavigationBar;
-  final Widget? sideNavigationBar;
-  final Color? backgroundColor;
+  final Widget? navigationBar;
   final String? title;
   final Widget? leading;
   final List<Widget>? actions;
   final bool automaticallyImplyLeading;
   final bool? centerTitle;
   final AppBarEditState? appBarEditState;
+  final bool isDrawerOpen;
 
-  const CommonScaffold({
+  const CommonScaffoldNew({
     super.key,
     this.appBar,
     required this.body,
-    this.sideNavigationBar,
-    this.backgroundColor,
-    this.bottomNavigationBar,
+    this.navigationBar,
+    // this.backgroundColor,
     this.leading,
     this.title,
     this.actions,
     this.automaticallyImplyLeading = true,
     this.centerTitle,
     this.appBarEditState,
+    this.isDrawerOpen = false,
   });
 
-  CommonScaffold.open({
+  CommonScaffoldNew.open({
     Key? key,
     required Widget body,
     required String title,
@@ -58,10 +57,10 @@ class CommonScaffold extends StatefulWidget {
         );
 
   @override
-  State<CommonScaffold> createState() => CommonScaffoldState();
+  State<CommonScaffoldNew> createState() => CommonScaffoldNewState();
 }
 
-class CommonScaffoldState extends State<CommonScaffold> {
+class CommonScaffoldNewState extends State<CommonScaffoldNew> {
   late final ValueNotifier<AppBarState> _appBarState;
   final ValueNotifier<Widget?> _floatingActionButton = ValueNotifier(null);
   final ValueNotifier<List<String>> _keywordsNotifier = ValueNotifier([]);
@@ -71,14 +70,10 @@ class CommonScaffoldState extends State<CommonScaffold> {
 
   Function(List<String>)? _onKeywordsUpdate;
 
-  Widget? get _sideNavigationBar => widget.sideNavigationBar;
+  Widget? get _sideNavigationBar => widget.navigationBar;
 
   set actions(List<Widget> actions) {
     _appBarState.value = _appBarState.value.copyWith(actions: actions);
-  }
-
-  bool get _isSearch {
-    return _appBarState.value.searchState?.isSearch == true;
   }
 
   bool get _isEdit {
@@ -89,22 +84,14 @@ class CommonScaffoldState extends State<CommonScaffold> {
     _onKeywordsUpdate = onKeywordsUpdate;
   }
 
+  GlobalKey<ScaffoldState> get _scaffoldKey => GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
     _appBarState = ValueNotifier(
       AppBarState(
         editState: widget.appBarEditState,
-      ),
-    );
-  }
-
-  updateSearchState(
-    AppBarSearchState? Function(AppBarSearchState? state) builder,
-  ) {
-    _appBarState.value = _appBarState.value.copyWith(
-      searchState: builder(
-        _appBarState.value.searchState,
       ),
     );
   }
@@ -123,28 +110,6 @@ class CommonScaffoldState extends State<CommonScaffold> {
     if (_floatingActionButton.value != floatingActionButton) {
       _floatingActionButton.value = floatingActionButton;
     }
-  }
-
-  Widget _buildSearchingAppBarTheme(Widget child) {
-    final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;
-    return Theme(
-      data: theme.copyWith(
-        appBarTheme: theme.appBarTheme.copyWith(
-          backgroundColor: colorScheme.brightness == Brightness.dark
-              ? Colors.grey[900]
-              : Colors.white,
-          iconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
-          titleTextStyle: theme.textTheme.titleLarge,
-          toolbarTextStyle: theme.textTheme.bodyMedium,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          hintStyle: theme.inputDecorationTheme.hintStyle,
-          border: InputBorder.none,
-        ),
-      ),
-      child: child,
-    );
   }
 
   Future<T?> loadingRun<T>(
@@ -168,33 +133,49 @@ class CommonScaffoldState extends State<CommonScaffold> {
     }
   }
 
-  _handleClearInput() {
-    _textController.text = "";
+  // _handleClearInput() {
+  //   _textController.text = "";
 
-    if (_appBarState.value.searchState != null) {
-      _appBarState.value.searchState!.onSearch("");
+  //   if (_appBarState.value.searchState != null) {
+  //     _appBarState.value.searchState!.onSearch("");
+  //   }
+  // }
+
+  // _handleClear() {
+  //   if (_textController.text.isNotEmpty) {
+  //     _handleClearInput();
+  //     return;
+  //   }
+  //   updateSearchState(
+  //     (state) => state?.copyWith(
+  //       isSearch: false,
+  //     ),
+  //   );
+  // }
+
+  // _handleExitSearching() {
+  //   _handleClearInput();
+  //   updateSearchState(
+  //     (state) => state?.copyWith(
+  //       isSearch: false,
+  //     ),
+  //   );
+  // }
+
+  switchDrawer() {
+    if (_scaffoldKey.currentState?.isDrawerOpen == true) {
+      _scaffoldKey.currentState?.closeDrawer();
+    } else {
+      _scaffoldKey.currentState?.openDrawer();
     }
   }
 
-  _handleClear() {
-    if (_textController.text.isNotEmpty) {
-      _handleClearInput();
-      return;
-    }
-    updateSearchState(
-      (state) => state?.copyWith(
-        isSearch: false,
-      ),
-    );
+  openDrawer() {
+    _scaffoldKey.currentState?.openDrawer();
   }
 
-  _handleExitSearching() {
-    _handleClearInput();
-    updateSearchState(
-      (state) => state?.copyWith(
-        isSearch: false,
-      ),
-    );
+  closeDrawer() {
+    _scaffoldKey.currentState?.closeDrawer();
   }
 
   @override
@@ -206,7 +187,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
   }
 
   @override
-  void didUpdateWidget(CommonScaffold oldWidget) {
+  void didUpdateWidget(CommonScaffoldNew oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.title != widget.title) {
       _appBarState.value = AppBarState();
@@ -243,30 +224,17 @@ class CommonScaffoldState extends State<CommonScaffold> {
         icon: Icon(Icons.close),
       );
     }
-    return _isSearch
-        ? IconButton(
-            onPressed: _handleExitSearching,
-            icon: Icon(Icons.arrow_back),
-          )
-        : widget.leading;
+    return widget.leading;
+    // return _isSearch
+    //     ? IconButton(
+    //         onPressed: _handleExitSearching,
+    //         icon: Icon(Icons.arrow_back),
+    //       )
+    //     : widget.leading;
   }
 
-  Widget _buildTitle(AppBarSearchState? startState) {
-    return _isSearch
-        ? TextField(
-            autofocus: true,
-            controller: _textController,
-            style: context.textTheme.titleLarge,
-            onChanged: (value) {
-              if (startState != null) {
-                startState.onSearch(value);
-              }
-            },
-            decoration: InputDecoration(
-              hintText: appLocalizations.search,
-            ),
-          )
-        : Text(
+  Widget _buildTitle() {
+    return Text(
             !_isEdit
                 ? widget.title!
                 : appLocalizations.selectedCountTitle(
@@ -279,27 +247,8 @@ class CommonScaffoldState extends State<CommonScaffold> {
     bool hasSearch,
     List<Widget> actions,
   ) {
-    if (_isSearch) {
-      return genActions([
-        IconButton(
-          onPressed: _handleClear,
-          icon: Icon(Icons.close),
-        ),
-      ]);
-    }
     return genActions(
       [
-        if (hasSearch)
-          IconButton(
-            onPressed: () {
-              updateSearchState(
-                (state) => state?.copyWith(
-                  isSearch: true,
-                ),
-              );
-            },
-            icon: Icon(Icons.search),
-          ),
         ...actions
       ],
     );
@@ -318,7 +267,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
         child: appBar,
       );
     }
-    return _isSearch ? _buildSearchingAppBarTheme(appBar) : appBar;
+    return appBar;
   }
 
   PreferredSizeWidget _buildAppBar() {
@@ -337,7 +286,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
                   Theme.of(context).brightness == Brightness.dark
                       ? Brightness.light
                       : Brightness.dark,
-              systemNavigationBarColor: widget.bottomNavigationBar != null
+              systemNavigationBarColor: widget.navigationBar != null
                   ? context.colorScheme.surfaceContainer
                   : context.colorScheme.surface,
               systemNavigationBarDividerColor: Colors.transparent,
@@ -357,9 +306,10 @@ class CommonScaffoldState extends State<CommonScaffold> {
                         automaticallyImplyLeading:
                             widget.automaticallyImplyLeading,
                         leading: _buildLeading(),
-                        title: _buildTitle(state.searchState),
+                        title: _buildTitle(),
                         actions: _buildActions(
-                          state.searchState != null,
+                          // state.searchState != null,
+                          false,
                           state.actions.isNotEmpty
                               ? state.actions
                               : widget.actions ?? [],
@@ -421,7 +371,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
                 ),
               );
             },
-          ),
+          ), 
           Expanded(
             child: widget.body,
           ),
@@ -429,10 +379,11 @@ class CommonScaffoldState extends State<CommonScaffold> {
       ),
     );
     final scaffold = Scaffold(
+      key: _scaffoldKey,
       appBar: _buildAppBar(),
       drawer: _sideNavigationBar,
       body: body,
-      backgroundColor: widget.backgroundColor,
+      // backgroundColor: widget.backgroundColor,
       floatingActionButton: ValueListenableBuilder<Widget?>(
         valueListenable: _floatingActionButton,
         builder: (_, value, __) {
@@ -445,20 +396,8 @@ class CommonScaffoldState extends State<CommonScaffold> {
           );
         },
       ),
-      bottomNavigationBar: widget.bottomNavigationBar,
     );
-    return _sideNavigationBar != null
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _sideNavigationBar!,
-              Expanded(
-                flex: 1,
-                child: scaffold,
-              ),
-            ],
-          )
-        : scaffold;
+    return scaffold;
   }
 }
 

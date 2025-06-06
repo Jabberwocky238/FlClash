@@ -1,6 +1,6 @@
 import 'package:jw_clash/manager/message_manager.dart';
 import 'package:jw_clash/widgets/scaffold.dart';
-import 'package:jw_clash/widgets/scaffold_new.dart';
+import 'package:jw_clash/widgets/scaffold.dart';
 import 'package:flutter/material.dart';
 
 extension BuildContextExtension on BuildContext {
