@@ -1,9 +1,14 @@
 name: build
 
+# on:
+#   push:
+#     tags:
+#       - 'v*'
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - jw-pruned
+
 env:
   IS_STABLE: ${{ !contains(github.ref, '-') }}
 
