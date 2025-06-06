@@ -24,7 +24,7 @@ final currentGroupsStateProvider = AutoDisposeProvider<GroupsState>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CurrentGroupsStateRef = AutoDisposeProviderRef<GroupsState>;
-String _$navigationsStateHash() => r'802ae70cc8b7d7f5620b340911da89d74960bfbd';
+String _$navigationsStateHash() => r'2f5e46e4778c512db6ba813f383297b8064f02fd';
 
 /// See also [navigationsState].
 @ProviderFor(navigationsState)

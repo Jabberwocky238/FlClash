@@ -5,8 +5,8 @@ import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TUNButton extends StatelessWidget {
-  const TUNButton({super.key});
+class UserNameBlock extends StatelessWidget {
+  const UserNameBlock({super.key});
 
   @override
   Widget build(BuildContext context) {

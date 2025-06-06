@@ -7,7 +7,6 @@ class Navigation {
   static Navigation? _instance;
 
   List<NavigationItem> getItems({
-    bool openLogs = false,
     bool hasProxies = false,
   }) {
     return [
@@ -57,7 +56,7 @@ class Navigation {
           ),
         ),
         description: "requestsDesc",
-        modes: [NavigationItemMode.desktop, NavigationItemMode.more],
+        modes: [NavigationItemMode.desktop],
       ),
       const NavigationItem(
         icon: Icon(Icons.ballot),
@@ -68,7 +67,7 @@ class Navigation {
           ),
         ),
         description: "connectionsDesc",
-        modes: [NavigationItemMode.desktop, NavigationItemMode.more],
+        modes: [NavigationItemMode.desktop],
       ),
       const NavigationItem(
         icon: Icon(Icons.storage),
@@ -91,9 +90,7 @@ class Navigation {
           ),
         ),
         description: "logsDesc",
-        modes: openLogs
-            ? [NavigationItemMode.desktop, NavigationItemMode.more]
-            : [],
+        modes: [NavigationItemMode.desktop, NavigationItemMode.more],
       ),
       const NavigationItem(
         icon: Icon(Icons.construction),

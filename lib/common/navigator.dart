@@ -27,6 +27,7 @@ final Animatable<Offset> _kRightMiddleTween = Tween<Offset>(
   begin: const Offset(1.0, 0.0),
   end: Offset.zero,
 );
+
 final Animatable<Offset> _kMiddleLeftTween = Tween<Offset>(
   begin: Offset.zero,
   end: const Offset(-1.0 / 3.0, 0.0),

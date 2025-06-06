@@ -20,8 +20,7 @@ class NavigationItem with _$NavigationItem {
     required Widget fragment,
     @Default(true) bool keep,
     String? path,
-    @Default([NavigationItemMode.mobile, NavigationItemMode.desktop])
-    List<NavigationItemMode> modes,
+    @Default([NavigationItemMode.mobile, NavigationItemMode.desktop]) List<NavigationItemMode> modes,
   }) = _NavigationItem;
 }
 
@@ -88,10 +87,6 @@ extension ConnectionExt on Connection {
 String _logDateTime(_) {
   return DateTime.now().toString();
 }
-
-// String _logId(_) {
-//   return utils.id;
-// }
 
 @freezed
 class Log with _$Log {
@@ -168,20 +163,6 @@ extension ConnectionsStateExt on ConnectionsState {
               chainsText.contains(lowerQuery));
     }).toList();
   }
-}
-
-const defaultDavFileName = "backup.zip";
-
-@freezed
-class DAV with _$DAV {
-  const factory DAV({
-    required String uri,
-    required String user,
-    required String password,
-    @Default(defaultDavFileName) String fileName,
-  }) = _DAV;
-
-  factory DAV.fromJson(Map<String, Object?> json) => _$DAVFromJson(json);
 }
 
 @freezed

@@ -69,14 +69,11 @@ List<DashboardWidget> dashboardWidgetsSafeFormJson(
 class AppSettingProps with _$AppSettingProps {
   const factory AppSettingProps({
     String? locale,
-    @Default(defaultDashboardWidgets)
-    @JsonKey(fromJson: dashboardWidgetsSafeFormJson)
-    List<DashboardWidget> dashboardWidgets,
+    @Default(defaultDashboardWidgets) @JsonKey(fromJson: dashboardWidgetsSafeFormJson) List<DashboardWidget> dashboardWidgets,
     @Default(false) bool onlyStatisticsProxy,
     @Default(false) bool autoLaunch,
     @Default(false) bool silentLaunch,
     @Default(false) bool autoRun,
-    @Default(false) bool openLogs,
     @Default(true) bool closeConnections,
     @Default(defaultTestUrl) String testUrl,
     @Default(true) bool isAnimateToPage,
@@ -176,26 +173,13 @@ class ProxiesStyle with _$ProxiesStyle {
       json == null ? defaultProxiesStyle : _$ProxiesStyleFromJson(json);
 }
 
-// @freezed
-// class TextScale with _$TextScale {
-//   const factory TextScale({
-//     @Default(false) enable,
-//     @Default(1.0) scale,
-//   }) = _TextScale;
-
-//   factory TextScale.fromJson(Map<String, Object?> json) =>
-//       _$TextScaleFromJson(json);
-// }
-
 @freezed
 class ThemeProps with _$ThemeProps {
   const factory ThemeProps({
     int? primaryColor,
-    // @Default(defaultPrimaryColors) List<int> primaryColors,
     @Default(ThemeMode.dark) ThemeMode themeMode,
     @Default(DynamicSchemeVariant.content) DynamicSchemeVariant schemeVariant,
     @Default(false) bool pureBlack,
-    // @Default(TextScale()) TextScale textScale,
   }) = _ThemeProps;
 
   factory ThemeProps.fromJson(Map<String, Object?> json) =>
@@ -216,14 +200,10 @@ class ThemeProps with _$ThemeProps {
 @freezed
 class Config with _$Config {
   const factory Config({
-    @JsonKey(fromJson: AppSettingProps.safeFromJson)
-    @Default(defaultAppSettingProps)
-    AppSettingProps appSetting,
+    @JsonKey(fromJson: AppSettingProps.safeFromJson) @Default(defaultAppSettingProps) AppSettingProps appSetting,
     @Default([]) List<Profile> profiles,
-    // @Default([]) List<HotKeyAction> hotKeyActions,
     String? currentProfileId,
     @Default(false) bool overrideDns,
-    // DAV? dav,
     @Default(defaultAuthProps) AuthProps authProps,
     @Default(defaultNetworkProps) NetworkProps networkProps,
     @Default(defaultVpnProps) VpnProps vpnProps,
@@ -253,5 +233,25 @@ class Config with _$Config {
 extension ConfigExt on Config {
   Profile? get currentProfile {
     return profiles.getProfile(currentProfileId);
+  }
+}
+
+@freezed
+class AuthProps with _$AuthProps {
+  const factory AuthProps({
+    @Default('username') String username,
+    @Default('password') String password,
+    String? token,
+  }) = _AuthModel;
+
+  factory AuthProps.fromJson(Map<String, dynamic> json) =>
+      _$AuthPropsFromJson(json);
+
+  factory AuthProps.safeFromJson(Map<String, dynamic> json) {
+    try {
+      return AuthProps.fromJson(json);
+    } catch (_) {
+      return defaultAuthProps;
+    }
   }
 }

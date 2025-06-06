@@ -44,3 +44,5 @@ class AppBarEditState with _$AppBarEditState {
     required Function() onExit,
   }) = _AppBarEditState;
 }
+
+

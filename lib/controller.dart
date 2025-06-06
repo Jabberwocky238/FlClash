@@ -241,7 +241,7 @@ class AppController {
     final profile = _ref.watch(currentProfileProvider);
     await _ref.read(currentProfileProvider)?.checkAndUpdate();
     final patchConfig = _ref.read(patchClashConfigProvider);
-    final appSetting = _ref.read(appSettingProvider);
+    // final appSetting = _ref.read(appSettingProvider);
     bool enableTun = patchConfig.tun.enable;
     if (enableTun != lastTunEnable && lastTunEnable == false) {
       final code = await system.authorizeCore();
@@ -256,11 +256,12 @@ class AppController {
           enableTun = false;
       }
     }
-    if (appSetting.openLogs) {
-      clashCore.startLog();
-    } else {
-      clashCore.stopLog();
-    }
+    // if (appSetting.openLogs) {
+    //   clashCore.startLog();
+    // } else {
+    //   clashCore.stopLog();
+    // }
+    clashCore.startLog();
     final res = await clashCore.updateConfig(
       globalState.getUpdateConfigParams(isPatch),
     );

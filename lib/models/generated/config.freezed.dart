@@ -28,7 +28,6 @@ mixin _$AppSettingProps {
   bool get autoLaunch => throw _privateConstructorUsedError;
   bool get silentLaunch => throw _privateConstructorUsedError;
   bool get autoRun => throw _privateConstructorUsedError;
-  bool get openLogs => throw _privateConstructorUsedError;
   bool get closeConnections => throw _privateConstructorUsedError;
   String get testUrl => throw _privateConstructorUsedError;
   bool get isAnimateToPage => throw _privateConstructorUsedError;
@@ -64,7 +63,6 @@ abstract class $AppSettingPropsCopyWith<$Res> {
       bool autoLaunch,
       bool silentLaunch,
       bool autoRun,
-      bool openLogs,
       bool closeConnections,
       String testUrl,
       bool isAnimateToPage,
@@ -98,7 +96,6 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
     Object? autoLaunch = null,
     Object? silentLaunch = null,
     Object? autoRun = null,
-    Object? openLogs = null,
     Object? closeConnections = null,
     Object? testUrl = null,
     Object? isAnimateToPage = null,
@@ -134,10 +131,6 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
       autoRun: null == autoRun
           ? _value.autoRun
           : autoRun // ignore: cast_nullable_to_non_nullable
-              as bool,
-      openLogs: null == openLogs
-          ? _value.openLogs
-          : openLogs // ignore: cast_nullable_to_non_nullable
               as bool,
       closeConnections: null == closeConnections
           ? _value.closeConnections
@@ -199,7 +192,6 @@ abstract class _$$AppSettingPropsImplCopyWith<$Res>
       bool autoLaunch,
       bool silentLaunch,
       bool autoRun,
-      bool openLogs,
       bool closeConnections,
       String testUrl,
       bool isAnimateToPage,
@@ -231,7 +223,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
     Object? autoLaunch = null,
     Object? silentLaunch = null,
     Object? autoRun = null,
-    Object? openLogs = null,
     Object? closeConnections = null,
     Object? testUrl = null,
     Object? isAnimateToPage = null,
@@ -267,10 +258,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
       autoRun: null == autoRun
           ? _value.autoRun
           : autoRun // ignore: cast_nullable_to_non_nullable
-              as bool,
-      openLogs: null == openLogs
-          ? _value.openLogs
-          : openLogs // ignore: cast_nullable_to_non_nullable
               as bool,
       closeConnections: null == closeConnections
           ? _value.closeConnections
@@ -327,7 +314,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       this.autoLaunch = false,
       this.silentLaunch = false,
       this.autoRun = false,
-      this.openLogs = false,
       this.closeConnections = true,
       this.testUrl = defaultTestUrl,
       this.isAnimateToPage = true,
@@ -369,9 +355,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
   final bool autoRun;
   @override
   @JsonKey()
-  final bool openLogs;
-  @override
-  @JsonKey()
   final bool closeConnections;
   @override
   @JsonKey()
@@ -403,7 +386,7 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
 
   @override
   String toString() {
-    return 'AppSettingProps(locale: $locale, dashboardWidgets: $dashboardWidgets, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, openLogs: $openLogs, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, developerMode: $developerMode, recoveryStrategy: $recoveryStrategy)';
+    return 'AppSettingProps(locale: $locale, dashboardWidgets: $dashboardWidgets, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, developerMode: $developerMode, recoveryStrategy: $recoveryStrategy)';
   }
 
   @override
@@ -421,8 +404,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
             (identical(other.silentLaunch, silentLaunch) ||
                 other.silentLaunch == silentLaunch) &&
             (identical(other.autoRun, autoRun) || other.autoRun == autoRun) &&
-            (identical(other.openLogs, openLogs) ||
-                other.openLogs == openLogs) &&
             (identical(other.closeConnections, closeConnections) ||
                 other.closeConnections == closeConnections) &&
             (identical(other.testUrl, testUrl) || other.testUrl == testUrl) &&
@@ -453,7 +434,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       autoLaunch,
       silentLaunch,
       autoRun,
-      openLogs,
       closeConnections,
       testUrl,
       isAnimateToPage,
@@ -491,7 +471,6 @@ abstract class _AppSettingProps implements AppSettingProps {
       final bool autoLaunch,
       final bool silentLaunch,
       final bool autoRun,
-      final bool openLogs,
       final bool closeConnections,
       final String testUrl,
       final bool isAnimateToPage,
@@ -519,8 +498,6 @@ abstract class _AppSettingProps implements AppSettingProps {
   bool get silentLaunch;
   @override
   bool get autoRun;
-  @override
-  bool get openLogs;
   @override
   bool get closeConnections;
   @override
@@ -1792,8 +1769,7 @@ ThemeProps _$ThemePropsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeProps {
-  int? get primaryColor =>
-      throw _privateConstructorUsedError; // @Default(defaultPrimaryColors) List<int> primaryColors,
+  int? get primaryColor => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   DynamicSchemeVariant get schemeVariant => throw _privateConstructorUsedError;
   bool get pureBlack => throw _privateConstructorUsedError;
@@ -1930,7 +1906,6 @@ class _$ThemePropsImpl implements _ThemeProps {
 
   @override
   final int? primaryColor;
-// @Default(defaultPrimaryColors) List<int> primaryColors,
   @override
   @JsonKey()
   final ThemeMode themeMode;
@@ -1993,8 +1968,7 @@ abstract class _ThemeProps implements ThemeProps {
       _$ThemePropsImpl.fromJson;
 
   @override
-  int?
-      get primaryColor; // @Default(defaultPrimaryColors) List<int> primaryColors,
+  int? get primaryColor;
   @override
   ThemeMode get themeMode;
   @override
@@ -2018,10 +1992,9 @@ Config _$ConfigFromJson(Map<String, dynamic> json) {
 mixin _$Config {
   @JsonKey(fromJson: AppSettingProps.safeFromJson)
   AppSettingProps get appSetting => throw _privateConstructorUsedError;
-  List<Profile> get profiles =>
-      throw _privateConstructorUsedError; // @Default([]) List<HotKeyAction> hotKeyActions,
+  List<Profile> get profiles => throw _privateConstructorUsedError;
   String? get currentProfileId => throw _privateConstructorUsedError;
-  bool get overrideDns => throw _privateConstructorUsedError; // DAV? dav,
+  bool get overrideDns => throw _privateConstructorUsedError;
   AuthProps get authProps => throw _privateConstructorUsedError;
   NetworkProps get networkProps => throw _privateConstructorUsedError;
   VpnProps get vpnProps => throw _privateConstructorUsedError;
@@ -2371,13 +2344,11 @@ class _$ConfigImpl implements _Config {
     return EqualUnmodifiableListView(_profiles);
   }
 
-// @Default([]) List<HotKeyAction> hotKeyActions,
   @override
   final String? currentProfileId;
   @override
   @JsonKey()
   final bool overrideDns;
-// DAV? dav,
   @override
   @JsonKey()
   final AuthProps authProps;
@@ -2487,11 +2458,11 @@ abstract class _Config implements Config {
   @JsonKey(fromJson: AppSettingProps.safeFromJson)
   AppSettingProps get appSetting;
   @override
-  List<Profile> get profiles; // @Default([]) List<HotKeyAction> hotKeyActions,
+  List<Profile> get profiles;
   @override
   String? get currentProfileId;
   @override
-  bool get overrideDns; // DAV? dav,
+  bool get overrideDns;
   @override
   AuthProps get authProps;
   @override
@@ -2513,5 +2484,193 @@ abstract class _Config implements Config {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+AuthProps _$AuthPropsFromJson(Map<String, dynamic> json) {
+  return _AuthModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AuthProps {
+  String get username => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+
+  /// Serializes this AuthProps to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of AuthProps
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AuthPropsCopyWith<AuthProps> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuthPropsCopyWith<$Res> {
+  factory $AuthPropsCopyWith(AuthProps value, $Res Function(AuthProps) then) =
+      _$AuthPropsCopyWithImpl<$Res, AuthProps>;
+  @useResult
+  $Res call({String username, String password, String? token});
+}
+
+/// @nodoc
+class _$AuthPropsCopyWithImpl<$Res, $Val extends AuthProps>
+    implements $AuthPropsCopyWith<$Res> {
+  _$AuthPropsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of AuthProps
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? username = null,
+    Object? password = null,
+    Object? token = freezed,
+  }) {
+    return _then(_value.copyWith(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AuthModelImplCopyWith<$Res>
+    implements $AuthPropsCopyWith<$Res> {
+  factory _$$AuthModelImplCopyWith(
+          _$AuthModelImpl value, $Res Function(_$AuthModelImpl) then) =
+      __$$AuthModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String username, String password, String? token});
+}
+
+/// @nodoc
+class __$$AuthModelImplCopyWithImpl<$Res>
+    extends _$AuthPropsCopyWithImpl<$Res, _$AuthModelImpl>
+    implements _$$AuthModelImplCopyWith<$Res> {
+  __$$AuthModelImplCopyWithImpl(
+      _$AuthModelImpl _value, $Res Function(_$AuthModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthProps
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? username = null,
+    Object? password = null,
+    Object? token = freezed,
+  }) {
+    return _then(_$AuthModelImpl(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AuthModelImpl implements _AuthModel {
+  const _$AuthModelImpl(
+      {this.username = 'username', this.password = 'password', this.token});
+
+  factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AuthModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String username;
+  @override
+  @JsonKey()
+  final String password;
+  @override
+  final String? token;
+
+  @override
+  String toString() {
+    return 'AuthProps(username: $username, password: $password, token: $token)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthModelImpl &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, username, password, token);
+
+  /// Create a copy of AuthProps
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
+      __$$AuthModelImplCopyWithImpl<_$AuthModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AuthModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AuthModel implements AuthProps {
+  const factory _AuthModel(
+      {final String username,
+      final String password,
+      final String? token}) = _$AuthModelImpl;
+
+  factory _AuthModel.fromJson(Map<String, dynamic> json) =
+      _$AuthModelImpl.fromJson;
+
+  @override
+  String get username;
+  @override
+  String get password;
+  @override
+  String? get token;
+
+  /// Create a copy of AuthProps
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

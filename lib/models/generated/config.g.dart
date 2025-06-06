@@ -17,7 +17,6 @@ _$AppSettingPropsImpl _$$AppSettingPropsImplFromJson(
       autoLaunch: json['autoLaunch'] as bool? ?? false,
       silentLaunch: json['silentLaunch'] as bool? ?? false,
       autoRun: json['autoRun'] as bool? ?? false,
-      openLogs: json['openLogs'] as bool? ?? false,
       closeConnections: json['closeConnections'] as bool? ?? true,
       testUrl: json['testUrl'] as String? ?? defaultTestUrl,
       isAnimateToPage: json['isAnimateToPage'] as bool? ?? true,
@@ -43,7 +42,6 @@ Map<String, dynamic> _$$AppSettingPropsImplToJson(
       'autoLaunch': instance.autoLaunch,
       'silentLaunch': instance.silentLaunch,
       'autoRun': instance.autoRun,
-      'openLogs': instance.openLogs,
       'closeConnections': instance.closeConnections,
       'testUrl': instance.testUrl,
       'isAnimateToPage': instance.isAnimateToPage,
@@ -320,4 +318,18 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'proxiesStyle': instance.proxiesStyle,
       'windowProps': instance.windowProps,
       'patchClashConfig': instance.patchClashConfig,
+    };
+
+_$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
+    _$AuthModelImpl(
+      username: json['username'] as String? ?? 'username',
+      password: json['password'] as String? ?? 'password',
+      token: json['token'] as String?,
+    );
+
+Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
+    <String, dynamic>{
+      'username': instance.username,
+      'password': instance.password,
+      'token': instance.token,
     };

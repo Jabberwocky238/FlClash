@@ -31,12 +31,10 @@ GroupsState currentGroupsState(Ref ref) {
 
 @riverpod
 NavigationItemsState navigationsState(Ref ref) {
-  final openLogs = ref.watch(appSettingProvider).openLogs;
   final hasProxies = ref.watch(
       currentGroupsStateProvider.select((state) => state.value.isNotEmpty));
   return NavigationItemsState(
     value: navigation.getItems(
-      openLogs: openLogs,
       hasProxies: hasProxies,
     ),
   );
@@ -44,16 +42,10 @@ NavigationItemsState navigationsState(Ref ref) {
 
 @riverpod
 NavigationItemsState currentNavigationsState(Ref ref) {
-  // final viewWidth = ref.watch(viewWidthProvider);
   final navigationItemsState = ref.watch(navigationsStateProvider);
-  // final navigationItemMode = switch (viewWidth <= maxMobileWidth) {
-  //   true => NavigationItemMode.mobile,
-  //   false => NavigationItemMode.desktop,
-  // };
   return NavigationItemsState(
     value: navigationItemsState.value
         .where(
-          // (element) => element.modes.contains(navigationItemMode),
           (element) => true,
         )
         .toList(),
@@ -157,13 +149,9 @@ VpnState vpnState(Ref ref) {
 @riverpod
 HomeState homeState(Ref ref) {
   final pageLabel = ref.watch(currentPageLabelProvider);
-  // final navigationItems = ref.watch(currentNavigationsStateProvider).value;
-  // final viewMode = ref.watch(viewModeProvider);
   final locale = ref.watch(appSettingProvider).locale;
   return HomeState(
     pageLabel: pageLabel,
-    // navigationItems: navigationItems,
-    // viewMode: viewMode,
     locale: locale,
   );
 }
