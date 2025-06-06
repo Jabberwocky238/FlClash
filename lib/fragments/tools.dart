@@ -16,7 +16,7 @@ import 'package:intl/intl.dart';
 // import 'backup_and_recovery.dart';
 import 'developer.dart';
 import 'theme.dart';
-// import 'package:path/path.dart' show dirname, join;
+import 'package:path/path.dart' show dirname, join;
 
 class ToolsFragment extends ConsumerStatefulWidget {
   const ToolsFragment({super.key});
@@ -26,41 +26,41 @@ class ToolsFragment extends ConsumerStatefulWidget {
 }
 
 class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
-  _buildNavigationMenuItem(NavigationItem navigationItem) {
-    return ListItem.open(
-      leading: navigationItem.icon,
-      title: Text(Intl.message(navigationItem.label.name)),
-      subtitle: navigationItem.description != null
-          ? Text(Intl.message(navigationItem.description!))
-          : null,
-      delegate: OpenDelegate(
-        title: Intl.message(navigationItem.label.name),
-        widget: navigationItem.fragment,
-      ),
-    );
-  }
+  // _buildNavigationMenuItem(NavigationItem navigationItem) {
+  //   return ListItem.open(
+  //     leading: navigationItem.icon,
+  //     title: Text(Intl.message(navigationItem.label.name)),
+  //     subtitle: navigationItem.description != null
+  //         ? Text(Intl.message(navigationItem.description!))
+  //         : null,
+  //     delegate: OpenDelegate(
+  //       title: Intl.message(navigationItem.label.name),
+  //       widget: navigationItem.fragment,
+  //     ),
+  //   );
+  // }
 
-  Widget _buildNavigationMenu(List<NavigationItem> navigationItems) {
-    return Column(
-      children: [
-        for (final navigationItem in navigationItems) ...[
-          _buildNavigationMenuItem(navigationItem),
-          navigationItems.last != navigationItem
-              ? const Divider(
-                  height: 0,
-                )
-              : Container(),
-        ]
-      ],
-    );
-  }
+  // Widget _buildNavigationMenu(List<NavigationItem> navigationItems) {
+  //   return Column(
+  //     children: [
+  //       for (final navigationItem in navigationItems) ...[
+  //         _buildNavigationMenuItem(navigationItem),
+  //         navigationItems.last != navigationItem
+  //             ? const Divider(
+  //                 height: 0,
+  //               )
+  //             : Container(),
+  //       ]
+  //     ],
+  //   );
+  // }
 
-  List<Widget> _getOtherList(bool enableDeveloperMode) {
+  List<Widget> _getOtherList() {
     return generateSection(
       title: appLocalizations.other,
       items: [
         _DisclaimerItem(),
-        if (enableDeveloperMode) _DeveloperItem(),
+        _DeveloperItem(),
         _InfoItem(),
       ],
     );
@@ -74,7 +74,7 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
         _ThemeItem(),
         // _BackupItem(), // WEBDAV
         // if (system.isDesktop) _HotkeyItem(),
-        // if (Platform.isWindows) _LoopbackItem(),
+        if (Platform.isWindows) _LoopbackItem(),
         if (Platform.isAndroid) _AccessItem(),
         _ConfigItem(),
         _SettingItem(),
@@ -84,28 +84,28 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
 
   @override
   Widget build(BuildContext context) {
-    final vm2 = ref.watch(
-      appSettingProvider.select(
-        (state) => VM2(a: state.locale, b: state.developerMode),
-      ),
-    );
+    // final vm2 = ref.watch(
+    //   appSettingProvider.select(
+    //     (state) => VM2(a: state.locale, b: state.developerMode),
+    //   ),
+    // );
     final items = [
-      Consumer(
-        builder: (_, ref, __) {
-          final state = ref.watch(moreToolsSelectorStateProvider);
-          if (state.navigationItems.isEmpty) {
-            return Container();
-          }
-          return Column(
-            children: [
-              ListHeader(title: appLocalizations.more),
-              _buildNavigationMenu(state.navigationItems)
-            ],
-          );
-        },
-      ),
+      // Consumer(
+      //   builder: (_, ref, __) {
+      //     final state = ref.watch(moreToolsSelectorStateProvider);
+      //     if (state.navigationItems.isEmpty) {
+      //       return Container();
+      //     }
+      //     return Column(
+      //       children: [
+      //         ListHeader(title: appLocalizations.more),
+      //         _buildNavigationMenu(state.navigationItems)
+      //       ],
+      //     );
+      //   },
+      // ),
       ..._getSettingList(),
-      ..._getOtherList(vm2.b),
+      ..._getOtherList(),
     ];
     return ListView.builder(
       itemCount: items.length,
@@ -197,23 +197,23 @@ class _ThemeItem extends StatelessWidget {
 //   }
 // }
 
-// class _LoopbackItem extends StatelessWidget {
-//   const _LoopbackItem();
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListItem(
-//       leading: const Icon(Icons.lock),
-//       title: Text(appLocalizations.loopback),
-//       subtitle: Text(appLocalizations.loopbackDesc),
-//       onTap: () {
-//         windows?.runas(
-//           '"${join(dirname(Platform.resolvedExecutable), "EnableLoopback.exe")}"',
-//           "",
-//         );
-//       },
-//     );
-//   }
-// }
+class _LoopbackItem extends StatelessWidget {
+  const _LoopbackItem();
+  @override
+  Widget build(BuildContext context) {
+    return ListItem(
+      leading: const Icon(Icons.lock),
+      title: Text(appLocalizations.loopback),
+      subtitle: Text(appLocalizations.loopbackDesc),
+      onTap: () {
+        windows?.runas(
+          '"${join(dirname(Platform.resolvedExecutable), "EnableLoopback.exe")}"',
+          "",
+        );
+      },
+    );
+  }
+}
 
 class _AccessItem extends StatelessWidget {
   const _AccessItem();
