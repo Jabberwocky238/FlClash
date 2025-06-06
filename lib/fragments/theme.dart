@@ -46,7 +46,7 @@ class ThemeFragment extends StatelessWidget {
         spacing: 24,
         children: [
           _ThemeModeItem(),
-          _PrimaryColorItem(),
+          // _PrimaryColorItem(),
           _PrueBlackItem(),
           // _TextScaleFactorItem(),
           const SizedBox(
@@ -164,277 +164,277 @@ class _ThemeModeItem extends ConsumerWidget {
   }
 }
 
-class _PrimaryColorItem extends ConsumerStatefulWidget {
-  const _PrimaryColorItem();
+// class _PrimaryColorItem extends ConsumerStatefulWidget {
+//   const _PrimaryColorItem();
 
-  @override
-  ConsumerState<_PrimaryColorItem> createState() => _PrimaryColorItemState();
-}
+//   @override
+//   ConsumerState<_PrimaryColorItem> createState() => _PrimaryColorItemState();
+// }
 
-class _PrimaryColorItemState extends ConsumerState<_PrimaryColorItem> {
-  int? _removablePrimaryColor;
+// class _PrimaryColorItemState extends ConsumerState<_PrimaryColorItem> {
+//   int? _removablePrimaryColor;
 
-  int _calcColumns(double maxWidth) {
-    return max((maxWidth / 96).ceil(), 3);
-  }
+//   int _calcColumns(double maxWidth) {
+//     return max((maxWidth / 96).ceil(), 3);
+//   }
 
-  _handleReset() async {
-    final res = await globalState.showMessage(
-      message: TextSpan(
-        text: appLocalizations.resetTip,
-      ),
-    );
-    if (res != true) {
-      return;
-    }
-    ref.read(themeSettingProvider.notifier).updateState(
-      (state) {
-        return state.copyWith(
-          primaryColors: defaultPrimaryColors,
-          primaryColor: defaultPrimaryColor,
-          schemeVariant: DynamicSchemeVariant.tonalSpot,
-        );
-      },
-    );
-  }
+//   _handleReset() async {
+//     final res = await globalState.showMessage(
+//       message: TextSpan(
+//         text: appLocalizations.resetTip,
+//       ),
+//     );
+//     if (res != true) {
+//       return;
+//     }
+//     ref.read(themeSettingProvider.notifier).updateState(
+//       (state) {
+//         return state.copyWith(
+//           // primaryColors: defaultPrimaryColors,
+//           primaryColor: defaultPrimaryColor,
+//           schemeVariant: DynamicSchemeVariant.tonalSpot,
+//         );
+//       },
+//     );
+//   }
 
-  _handleDel() async {
-    if (_removablePrimaryColor == null) {
-      return;
-    }
-    final res = await globalState.showMessage(
-        message: TextSpan(text: appLocalizations.deleteColorTip));
-    if (res != true) {
-      return;
-    }
-    ref.read(themeSettingProvider.notifier).updateState(
-      (state) {
-        final newPrimaryColors = List<int>.from(state.primaryColors)
-          ..remove(_removablePrimaryColor);
-        int? newPrimaryColor = state.primaryColor;
-        if (state.primaryColor == _removablePrimaryColor) {
-          if (newPrimaryColors.contains(defaultPrimaryColor)) {
-            newPrimaryColor = defaultPrimaryColor;
-          } else {
-            newPrimaryColor = null;
-          }
-        }
-        return state.copyWith(
-          primaryColors: newPrimaryColors,
-          primaryColor: newPrimaryColor,
-        );
-      },
-    );
-    setState(() {
-      _removablePrimaryColor = null;
-    });
-  }
+//   _handleDel() async {
+//     if (_removablePrimaryColor == null) {
+//       return;
+//     }
+//     final res = await globalState.showMessage(
+//         message: TextSpan(text: appLocalizations.deleteColorTip));
+//     if (res != true) {
+//       return;
+//     }
+//     ref.read(themeSettingProvider.notifier).updateState(
+//       (state) {
+//         final newPrimaryColors = List<int>.from(state.primaryColors)
+//           ..remove(_removablePrimaryColor);
+//         int? newPrimaryColor = state.primaryColor;
+//         if (state.primaryColor == _removablePrimaryColor) {
+//           if (newPrimaryColors.contains(defaultPrimaryColor)) {
+//             newPrimaryColor = defaultPrimaryColor;
+//           } else {
+//             newPrimaryColor = null;
+//           }
+//         }
+//         return state.copyWith(
+//           primaryColors: newPrimaryColors,
+//           primaryColor: newPrimaryColor,
+//         );
+//       },
+//     );
+//     setState(() {
+//       _removablePrimaryColor = null;
+//     });
+//   }
 
-  _handleAdd() async {
-    final res = await globalState.showCommonDialog<int>(
-      child: _PaletteDialog(),
-    );
-    if (res == null) {
-      return;
-    }
-    final isExists = ref.read(
-      themeSettingProvider.select((state) => state.primaryColors.contains(res)),
-    );
-    if (isExists && mounted) {
-      context.showNotifier(appLocalizations.colorExists);
-      return;
-    }
-    ref.read(themeSettingProvider.notifier).updateState(
-      (state) {
-        return state.copyWith(
-          primaryColors: List.from(
-            state.primaryColors,
-          )..add(res),
-        );
-      },
-    );
-  }
+//   _handleAdd() async {
+//     final res = await globalState.showCommonDialog<int>(
+//       child: _PaletteDialog(),
+//     );
+//     if (res == null) {
+//       return;
+//     }
+//     final isExists = ref.read(
+//       themeSettingProvider.select((state) => state.primaryColors.contains(res)),
+//     );
+//     if (isExists && mounted) {
+//       context.showNotifier(appLocalizations.colorExists);
+//       return;
+//     }
+//     ref.read(themeSettingProvider.notifier).updateState(
+//       (state) {
+//         return state.copyWith(
+//           primaryColors: List.from(
+//             state.primaryColors,
+//           )..add(res),
+//         );
+//       },
+//     );
+//   }
 
-  _handleChangeSchemeVariant() async {
-    final schemeVariant = ref.read(
-      themeSettingProvider.select(
-        (state) => state.schemeVariant,
-      ),
-    );
-    final value = await globalState.showCommonDialog<DynamicSchemeVariant>(
-      child: OptionsDialog<DynamicSchemeVariant>(
-        title: appLocalizations.colorSchemes,
-        options: DynamicSchemeVariant.values,
-        textBuilder: (item) => Intl.message("${item.name}Scheme"),
-        value: schemeVariant,
-      ),
-    );
-    if (value == null) {
-      return;
-    }
-    ref.read(themeSettingProvider.notifier).updateState(
-      (state) {
-        return state.copyWith(
-          schemeVariant: value,
-        );
-      },
-    );
-  }
+//   _handleChangeSchemeVariant() async {
+//     final schemeVariant = ref.read(
+//       themeSettingProvider.select(
+//         (state) => state.schemeVariant,
+//       ),
+//     );
+//     final value = await globalState.showCommonDialog<DynamicSchemeVariant>(
+//       child: OptionsDialog<DynamicSchemeVariant>(
+//         title: appLocalizations.colorSchemes,
+//         options: DynamicSchemeVariant.values,
+//         textBuilder: (item) => Intl.message("${item.name}Scheme"),
+//         value: schemeVariant,
+//       ),
+//     );
+//     if (value == null) {
+//       return;
+//     }
+//     ref.read(themeSettingProvider.notifier).updateState(
+//       (state) {
+//         return state.copyWith(
+//           schemeVariant: value,
+//         );
+//       },
+//     );
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    final vm4 = ref.watch(
-      themeSettingProvider.select(
-        (state) => VM4(
-          a: state.primaryColor,
-          b: state.primaryColors,
-          c: state.schemeVariant,
-          d: state.primaryColor == defaultPrimaryColor &&
-              intListEquality.equals(state.primaryColors, defaultPrimaryColors),
-        ),
-      ),
-    );
-    final primaryColor = vm4.a;
-    final primaryColors = [null, ...vm4.b];
-    final schemeVariant = vm4.c;
-    final isEquals = vm4.d;
+//   @override
+//   Widget build(BuildContext context) {
+//     final vm4 = ref.watch(
+//       themeSettingProvider.select(
+//         (state) => VM4(
+//           a: state.primaryColor,
+//           b: state.primaryColors,
+//           c: state.schemeVariant,
+//           d: state.primaryColor == defaultPrimaryColor &&
+//               intListEquality.equals(state.primaryColors, defaultPrimaryColors),
+//         ),
+//       ),
+//     );
+//     final primaryColor = vm4.a;
+//     final primaryColors = [null, ...vm4.b];
+//     final schemeVariant = vm4.c;
+//     final isEquals = vm4.d;
 
-    return CommonPopScope(
-      onPop: () {
-        if (_removablePrimaryColor != null) {
-          setState(() {
-            _removablePrimaryColor = null;
-          });
-          return false;
-        }
-        return true;
-      },
-      child: ItemCard(
-        info: Info(
-          label: appLocalizations.themeColor,
-          iconData: Icons.palette,
-        ),
-        actions: genActions(
-          [
-            if (_removablePrimaryColor == null)
-              FilledButton(
-                style: ButtonStyle(
-                  visualDensity: VisualDensity.compact,
-                ),
-                onPressed: _handleChangeSchemeVariant,
-                child: Text(Intl.message("${schemeVariant.name}Scheme")),
-              ),
-            if (_removablePrimaryColor != null)
-              FilledButton(
-                style: ButtonStyle(
-                  visualDensity: VisualDensity.compact,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _removablePrimaryColor = null;
-                  });
-                },
-                child: Text(appLocalizations.cancel),
-              ),
-            if (_removablePrimaryColor == null && !isEquals)
-              IconButton.filledTonal(
-                iconSize: 20,
-                padding: EdgeInsets.all(4),
-                visualDensity: VisualDensity.compact,
-                onPressed: _handleReset,
-                icon: Icon(Icons.replay),
-              )
-          ],
-          space: 8,
-        ),
-        child: Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 16,
-          ),
-          child: LayoutBuilder(
-            builder: (_, constraints) {
-              final columns = _calcColumns(constraints.maxWidth);
-              final itemWidth =
-                  (constraints.maxWidth - (columns - 1) * 16) / columns;
-              return Wrap(
-                spacing: 16,
-                runSpacing: 16,
-                children: [
-                  for (final color in primaryColors)
-                    Container(
-                      clipBehavior: Clip.none,
-                      width: itemWidth,
-                      height: itemWidth,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        clipBehavior: Clip.none,
-                        children: [
-                          EffectGestureDetector(
-                            child: ColorSchemeBox(
-                              isSelected: color == primaryColor,
-                              primaryColor: color != null ? Color(color) : null,
-                              onPressed: () {
-                                setState(() {
-                                  _removablePrimaryColor = null;
-                                });
-                                ref
-                                    .read(themeSettingProvider.notifier)
-                                    .updateState(
-                                      (state) => state.copyWith(
-                                        primaryColor: color,
-                                      ),
-                                    );
-                              },
-                            ),
-                            onLongPress: () {
-                              setState(() {
-                                _removablePrimaryColor = color;
-                              });
-                            },
-                          ),
-                          if (_removablePrimaryColor != null &&
-                              _removablePrimaryColor == color)
-                            Container(
-                              color: Colors.white.opacity0,
-                              padding: EdgeInsets.all(8),
-                              child: IconButton.filledTonal(
-                                onPressed: _handleDel,
-                                padding: EdgeInsets.all(12),
-                                iconSize: 30,
-                                icon: Icon(
-                                  color: context.colorScheme.primary,
-                                  Icons.delete,
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  if (_removablePrimaryColor == null)
-                    Container(
-                      width: itemWidth,
-                      height: itemWidth,
-                      padding: EdgeInsets.all(
-                        4,
-                      ),
-                      child: IconButton.filledTonal(
-                        onPressed: _handleAdd,
-                        iconSize: 32,
-                        icon: Icon(
-                          color: context.colorScheme.primary,
-                          Icons.add,
-                        ),
-                      ),
-                    )
-                ],
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
+//     return CommonPopScope(
+//       onPop: () {
+//         if (_removablePrimaryColor != null) {
+//           setState(() {
+//             _removablePrimaryColor = null;
+//           });
+//           return false;
+//         }
+//         return true;
+//       },
+//       child: ItemCard(
+//         info: Info(
+//           label: appLocalizations.themeColor,
+//           iconData: Icons.palette,
+//         ),
+//         actions: genActions(
+//           [
+//             if (_removablePrimaryColor == null)
+//               FilledButton(
+//                 style: ButtonStyle(
+//                   visualDensity: VisualDensity.compact,
+//                 ),
+//                 onPressed: _handleChangeSchemeVariant,
+//                 child: Text(Intl.message("${schemeVariant.name}Scheme")),
+//               ),
+//             if (_removablePrimaryColor != null)
+//               FilledButton(
+//                 style: ButtonStyle(
+//                   visualDensity: VisualDensity.compact,
+//                 ),
+//                 onPressed: () {
+//                   setState(() {
+//                     _removablePrimaryColor = null;
+//                   });
+//                 },
+//                 child: Text(appLocalizations.cancel),
+//               ),
+//             if (_removablePrimaryColor == null && !isEquals)
+//               IconButton.filledTonal(
+//                 iconSize: 20,
+//                 padding: EdgeInsets.all(4),
+//                 visualDensity: VisualDensity.compact,
+//                 onPressed: _handleReset,
+//                 icon: Icon(Icons.replay),
+//               )
+//           ],
+//           space: 8,
+//         ),
+//         child: Container(
+//           margin: const EdgeInsets.symmetric(
+//             horizontal: 16,
+//           ),
+//           child: LayoutBuilder(
+//             builder: (_, constraints) {
+//               final columns = _calcColumns(constraints.maxWidth);
+//               final itemWidth =
+//                   (constraints.maxWidth - (columns - 1) * 16) / columns;
+//               return Wrap(
+//                 spacing: 16,
+//                 runSpacing: 16,
+//                 children: [
+//                   for (final color in primaryColors)
+//                     Container(
+//                       clipBehavior: Clip.none,
+//                       width: itemWidth,
+//                       height: itemWidth,
+//                       child: Stack(
+//                         alignment: Alignment.center,
+//                         clipBehavior: Clip.none,
+//                         children: [
+//                           EffectGestureDetector(
+//                             child: ColorSchemeBox(
+//                               isSelected: color == primaryColor,
+//                               primaryColor: color != null ? Color(color) : null,
+//                               onPressed: () {
+//                                 setState(() {
+//                                   _removablePrimaryColor = null;
+//                                 });
+//                                 ref
+//                                     .read(themeSettingProvider.notifier)
+//                                     .updateState(
+//                                       (state) => state.copyWith(
+//                                         primaryColor: color,
+//                                       ),
+//                                     );
+//                               },
+//                             ),
+//                             onLongPress: () {
+//                               setState(() {
+//                                 _removablePrimaryColor = color;
+//                               });
+//                             },
+//                           ),
+//                           if (_removablePrimaryColor != null &&
+//                               _removablePrimaryColor == color)
+//                             Container(
+//                               color: Colors.white.opacity0,
+//                               padding: EdgeInsets.all(8),
+//                               child: IconButton.filledTonal(
+//                                 onPressed: _handleDel,
+//                                 padding: EdgeInsets.all(12),
+//                                 iconSize: 30,
+//                                 icon: Icon(
+//                                   color: context.colorScheme.primary,
+//                                   Icons.delete,
+//                                 ),
+//                               ),
+//                             ),
+//                         ],
+//                       ),
+//                     ),
+//                   if (_removablePrimaryColor == null)
+//                     Container(
+//                       width: itemWidth,
+//                       height: itemWidth,
+//                       padding: EdgeInsets.all(
+//                         4,
+//                       ),
+//                       child: IconButton.filledTonal(
+//                         onPressed: _handleAdd,
+//                         iconSize: 32,
+//                         icon: Icon(
+//                           color: context.colorScheme.primary,
+//                           Icons.add,
+//                         ),
+//                       ),
+//                     )
+//                 ],
+//               );
+//             },
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class _PrueBlackItem extends ConsumerWidget {
   const _PrueBlackItem();
@@ -619,111 +619,111 @@ class _PaletteDialogState extends State<_PaletteDialog> {
   }
 }
 
-class _SliderDefaultsM3 extends SliderThemeData {
-  _SliderDefaultsM3(this.context) : super(trackHeight: 16.0);
+// class _SliderDefaultsM3 extends SliderThemeData {
+//   _SliderDefaultsM3(this.context) : super(trackHeight: 16.0);
 
-  final BuildContext context;
-  late final ColorScheme _colors = Theme.of(context).colorScheme;
+//   final BuildContext context;
+//   late final ColorScheme _colors = Theme.of(context).colorScheme;
 
-  @override
-  Color? get activeTrackColor => _colors.primary;
+//   @override
+//   Color? get activeTrackColor => _colors.primary;
 
-  @override
-  Color? get inactiveTrackColor => _colors.secondaryContainer;
+//   @override
+//   Color? get inactiveTrackColor => _colors.secondaryContainer;
 
-  @override
-  Color? get secondaryActiveTrackColor => _colors.primary.withOpacity(0.54);
+//   @override
+//   Color? get secondaryActiveTrackColor => _colors.primary.withOpacity(0.54);
 
-  @override
-  Color? get disabledActiveTrackColor => _colors.onSurface.withOpacity(0.38);
+//   @override
+//   Color? get disabledActiveTrackColor => _colors.onSurface.withOpacity(0.38);
 
-  @override
-  Color? get disabledInactiveTrackColor => _colors.onSurface.withOpacity(0.12);
+//   @override
+//   Color? get disabledInactiveTrackColor => _colors.onSurface.withOpacity(0.12);
 
-  @override
-  Color? get disabledSecondaryActiveTrackColor =>
-      _colors.onSurface.withOpacity(0.38);
+//   @override
+//   Color? get disabledSecondaryActiveTrackColor =>
+//       _colors.onSurface.withOpacity(0.38);
 
-  @override
-  Color? get activeTickMarkColor => _colors.onPrimary.withOpacity(1.0);
+//   @override
+//   Color? get activeTickMarkColor => _colors.onPrimary.withOpacity(1.0);
 
-  @override
-  Color? get inactiveTickMarkColor =>
-      _colors.onSecondaryContainer.withOpacity(1.0);
+//   @override
+//   Color? get inactiveTickMarkColor =>
+//       _colors.onSecondaryContainer.withOpacity(1.0);
 
-  @override
-  Color? get disabledActiveTickMarkColor => _colors.onInverseSurface;
+//   @override
+//   Color? get disabledActiveTickMarkColor => _colors.onInverseSurface;
 
-  @override
-  Color? get disabledInactiveTickMarkColor => _colors.onSurface;
+//   @override
+//   Color? get disabledInactiveTickMarkColor => _colors.onSurface;
 
-  @override
-  Color? get thumbColor => _colors.primary;
+//   @override
+//   Color? get thumbColor => _colors.primary;
 
-  @override
-  Color? get disabledThumbColor => _colors.onSurface.withOpacity(0.38);
+//   @override
+//   Color? get disabledThumbColor => _colors.onSurface.withOpacity(0.38);
 
-  @override
-  Color? get overlayColor =>
-      WidgetStateColor.resolveWith((Set<WidgetState> states) {
-        if (states.contains(WidgetState.dragged)) {
-          return _colors.primary.withOpacity(0.1);
-        }
-        if (states.contains(WidgetState.hovered)) {
-          return _colors.primary.withOpacity(0.08);
-        }
-        if (states.contains(WidgetState.focused)) {
-          return _colors.primary.withOpacity(0.1);
-        }
+//   @override
+//   Color? get overlayColor =>
+//       WidgetStateColor.resolveWith((Set<WidgetState> states) {
+//         if (states.contains(WidgetState.dragged)) {
+//           return _colors.primary.withOpacity(0.1);
+//         }
+//         if (states.contains(WidgetState.hovered)) {
+//           return _colors.primary.withOpacity(0.08);
+//         }
+//         if (states.contains(WidgetState.focused)) {
+//           return _colors.primary.withOpacity(0.1);
+//         }
 
-        return Colors.transparent;
-      });
+//         return Colors.transparent;
+//       });
 
-  @override
-  TextStyle? get valueIndicatorTextStyle =>
-      Theme.of(context).textTheme.labelLarge!.copyWith(
-            color: _colors.onInverseSurface,
-          );
+//   @override
+//   TextStyle? get valueIndicatorTextStyle =>
+//       Theme.of(context).textTheme.labelLarge!.copyWith(
+//             color: _colors.onInverseSurface,
+//           );
 
-  @override
-  Color? get valueIndicatorColor => _colors.inverseSurface;
+//   @override
+//   Color? get valueIndicatorColor => _colors.inverseSurface;
 
-  @override
-  SliderComponentShape? get valueIndicatorShape =>
-      const RoundedRectSliderValueIndicatorShape();
+//   @override
+//   SliderComponentShape? get valueIndicatorShape =>
+//       const RoundedRectSliderValueIndicatorShape();
 
-  @override
-  SliderComponentShape? get thumbShape => const HandleThumbShape();
+//   @override
+//   SliderComponentShape? get thumbShape => const HandleThumbShape();
 
-  @override
-  SliderTrackShape? get trackShape => const GappedSliderTrackShape();
+//   @override
+//   SliderTrackShape? get trackShape => const GappedSliderTrackShape();
 
-  @override
-  SliderComponentShape? get overlayShape => const RoundSliderOverlayShape();
+//   @override
+//   SliderComponentShape? get overlayShape => const RoundSliderOverlayShape();
 
-  @override
-  SliderTickMarkShape? get tickMarkShape =>
-      const RoundSliderTickMarkShape(tickMarkRadius: 4.0 / 2);
+//   @override
+//   SliderTickMarkShape? get tickMarkShape =>
+//       const RoundSliderTickMarkShape(tickMarkRadius: 4.0 / 2);
 
-  @override
-  WidgetStateProperty<Size?>? get thumbSize {
-    return WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-      if (states.contains(WidgetState.disabled)) {
-        return const Size(4.0, 44.0);
-      }
-      if (states.contains(WidgetState.hovered)) {
-        return const Size(4.0, 44.0);
-      }
-      if (states.contains(WidgetState.focused)) {
-        return const Size(2.0, 44.0);
-      }
-      if (states.contains(WidgetState.pressed)) {
-        return const Size(2.0, 44.0);
-      }
-      return const Size(4.0, 44.0);
-    });
-  }
+//   @override
+//   WidgetStateProperty<Size?>? get thumbSize {
+//     return WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+//       if (states.contains(WidgetState.disabled)) {
+//         return const Size(4.0, 44.0);
+//       }
+//       if (states.contains(WidgetState.hovered)) {
+//         return const Size(4.0, 44.0);
+//       }
+//       if (states.contains(WidgetState.focused)) {
+//         return const Size(2.0, 44.0);
+//       }
+//       if (states.contains(WidgetState.pressed)) {
+//         return const Size(2.0, 44.0);
+//       }
+//       return const Size(4.0, 44.0);
+//     });
+//   }
 
-  @override
-  double? get trackGap => 6.0;
-}
+//   @override
+//   double? get trackGap => 6.0;
+// }

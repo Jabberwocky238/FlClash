@@ -237,10 +237,6 @@ const _$ProxyCardTypeEnumMap = {
 _$ThemePropsImpl _$$ThemePropsImplFromJson(Map<String, dynamic> json) =>
     _$ThemePropsImpl(
       primaryColor: (json['primaryColor'] as num?)?.toInt(),
-      primaryColors: (json['primaryColors'] as List<dynamic>?)
-              ?.map((e) => (e as num).toInt())
-              .toList() ??
-          defaultPrimaryColors,
       themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
           ThemeMode.dark,
       schemeVariant: $enumDecodeNullable(
@@ -252,7 +248,6 @@ _$ThemePropsImpl _$$ThemePropsImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ThemePropsImplToJson(_$ThemePropsImpl instance) =>
     <String, dynamic>{
       'primaryColor': instance.primaryColor,
-      'primaryColors': instance.primaryColors,
       'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
       'schemeVariant': _$DynamicSchemeVariantEnumMap[instance.schemeVariant]!,
       'pureBlack': instance.pureBlack,

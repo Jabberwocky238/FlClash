@@ -88,12 +88,12 @@ final mainIsolate = "FlClashMainIsolate";
 
 final serviceIsolate = "FlClashServiceIsolate";
 
-const defaultPrimaryColors = [
-  0xFF795548,
-  0xFF03A9F4,
-  0xFFFFFF00,
-  0XFFBBC9CC,
-  0XFFABD397,
-  defaultPrimaryColor,
-  0XFF665390,
-];
+// const defaultPrimaryColors = [
+//   0xFF795548,
+//   0xFF03A9F4,
+//   0xFFFFFF00,
+//   0XFFBBC9CC,
+//   0XFFABD397,
+//   defaultPrimaryColor,
+//   0XFF665390,
+// ];
