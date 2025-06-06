@@ -24,8 +24,6 @@ class ProxyCard extends StatelessWidget {
     // required this.type,
   });
 
-  Measure get measure => globalState.measure;
-
   _handleTestCurrentDelay() {
     proxyDelayTest(
       proxy,
@@ -44,15 +42,15 @@ class ProxyCard extends StatelessWidget {
           ));
           return delay == 0 || delay == null
               ? SizedBox(
-                  height: measure.labelSmallHeight,
-                  width: measure.labelSmallHeight,
+                  height: globalState.theme.labelSmallHeight,
+                  width: globalState.theme.labelSmallHeight,
                   child: delay == 0
                       ? const CircularProgressIndicator(
                           strokeWidth: 2,
                         )
                       : IconButton(
                           icon: const Icon(Icons.bolt),
-                          iconSize: globalState.measure.labelSmallHeight,
+                          iconSize: globalState.theme.labelSmallHeight,
                           padding: EdgeInsets.zero,
                           onPressed: _handleTestCurrentDelay,
                         ),
@@ -164,7 +162,7 @@ class ProxyCard extends StatelessWidget {
                 //   width: 8,
                 // ),
                 SizedBox(
-                  height: measure.bodySmallHeight,
+                  height: globalState.theme.bodySmallHeight,
                   child: _ProxyDesc(
                     proxy: proxy,
                   ),

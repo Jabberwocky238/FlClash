@@ -17,7 +17,7 @@ class TooltipText extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, container) {
         final maxWidth = container.maxWidth;
-        final size = globalState.measure.computeTextSize(
+        final size = globalState.theme.computeTextSize(
           text,
         );
         if (maxWidth < size.width) {

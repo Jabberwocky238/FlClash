@@ -117,9 +117,9 @@ class TrafficUsage extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: context.textTheme.bodySmall,
                                 );
-                                final uploadTextSize = globalState.measure
+                                final uploadTextSize = globalState.theme
                                     .computeTextSize(uploadText);
-                                final downloadTextSize = globalState.measure
+                                final downloadTextSize = globalState.theme
                                     .computeTextSize(downloadText);
                                 final maxTextWidth = max(uploadTextSize.width,
                                     downloadTextSize.width);

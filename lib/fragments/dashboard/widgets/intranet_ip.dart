@@ -27,7 +27,7 @@ class IntranetIP extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
-                height: globalState.measure.bodyMediumHeight + 2,
+                height: globalState.theme.bodyMediumHeight + 2,
                 child: Consumer(
                   builder: (_, ref, __) {
                     final localIp = ref.watch(localIpProvider);

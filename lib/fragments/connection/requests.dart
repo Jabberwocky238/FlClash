@@ -78,7 +78,7 @@ class _RequestsFragmentState extends ConsumerState<RequestsFragment>
   }
 
   double _calcCacheHeight(Connection item) {
-    final size = globalState.measure.computeTextSize(
+    final size = globalState.theme.computeTextSize(
       Text(
         item.desc,
         style: context.textTheme.bodyLarge,
@@ -87,18 +87,18 @@ class _RequestsFragmentState extends ConsumerState<RequestsFragment>
     );
     final chainsText = item.chains.join("");
     final length = item.chains.length;
-    final chainSize = globalState.measure.computeTextSize(
+    final chainSize = globalState.theme.computeTextSize(
       Text(
         chainsText,
         style: context.textTheme.bodyMedium,
       ),
       maxWidth: (_currentMaxWidth - (length - 1) * 6 - length * 24),
     );
-    final baseHeight = globalState.measure.bodyMediumHeight;
+    final baseHeight = globalState.theme.bodyMediumHeight;
     final lines = (chainSize.height / baseHeight).round();
     final computerHeight =
         size.height + chainSize.height + 24 + 24 * (lines - 1);
-    return computerHeight + 8 + 32 + globalState.measure.bodyMediumHeight;
+    return computerHeight + 8 + 32 + globalState.theme.bodyMediumHeight;
   }
 
   @override

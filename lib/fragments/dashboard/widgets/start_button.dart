@@ -72,7 +72,7 @@ class _StartButtonState extends State<StartButton>
           },
           fireImmediately: true,
         );
-        final textWidth = globalState.measure
+        final textWidth = globalState.theme
                 .computeTextSize(
                   Text(
                     utils.getTimeDifference(

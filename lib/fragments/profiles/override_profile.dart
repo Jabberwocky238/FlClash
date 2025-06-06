@@ -639,8 +639,7 @@ class RuleContent extends ConsumerWidget {
       itemExtentBuilder: (index) {
         final rule = rules[index];
         return 40 +
-            globalState.measure
-                .computeTextSize(
+            globalState.theme.computeTextSize(
                   Text(
                     rule.value,
                     style: context.textTheme.bodyMedium?.toJetBrainsMono,

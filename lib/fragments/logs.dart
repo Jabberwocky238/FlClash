@@ -114,10 +114,9 @@ class _LogsFragmentState extends ConsumerState<LogsFragment> with PageMixin {
   }
 
   double _getItemHeight(Log log) {
-    final measure = globalState.measure;
-    final bodySmallHeight = measure.bodySmallHeight;
-    final bodyMediumHeight = measure.bodyMediumHeight;
-    final height = globalState.measure
+    final bodySmallHeight = globalState.theme.bodySmallHeight;
+    final bodyMediumHeight = globalState.theme.bodyMediumHeight;
+    final height = globalState.theme
         .computeTextSize(
           Text(
             log.payload,

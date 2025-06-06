@@ -32,7 +32,7 @@ class GlobalState {
   String? coreSHA256;
   late PackageInfo packageInfo;
   Function? updateCurrentDelayDebounce;
-  late Measure measure;
+  // late Measure measure;
   late CommonTheme theme;
   late Color accentColor;
   CorePalette? corePalette;

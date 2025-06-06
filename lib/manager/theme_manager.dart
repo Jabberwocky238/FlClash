@@ -1,8 +1,6 @@
 import 'dart:math';
 import 'package:jw_clash/common/constant.dart';
-import 'package:jw_clash/common/measure.dart';
 import 'package:jw_clash/common/theme.dart';
-// import 'package:jw_clash/providers/config.dart';
 import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +27,6 @@ class ThemeManager extends ConsumerWidget {
       minTextScale,
     );
 
-    globalState.measure = Measure.of(context, textScaleFactor);
     globalState.theme = CommonTheme.of(context, textScaleFactor);
     final padding = MediaQuery.of(context).padding;
     final height = MediaQuery.of(context).size.height;

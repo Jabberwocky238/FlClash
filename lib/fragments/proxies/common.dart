@@ -5,12 +5,12 @@ import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/state.dart';
 
 double get listHeaderHeight {
-  final measure = globalState.measure;
+  final measure = globalState.theme;
   return 28 + measure.titleMediumHeight + 4 + measure.bodyMediumHeight;
 }
 
 double getItemHeight(ProxyCardType proxyCardType) {
-  final measure = globalState.measure;
+  final measure = globalState.theme;
   final baseHeight = 16 + measure.bodyMediumHeight * 2 + measure.bodySmallHeight + 8 + 4;
   return measure.bodyLargeHeight * 2;
   return switch (proxyCardType) {

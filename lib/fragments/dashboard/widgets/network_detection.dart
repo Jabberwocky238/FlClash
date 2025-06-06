@@ -146,7 +146,7 @@ class _NetworkDetectionState extends ConsumerState<NetworkDetection> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: globalState.measure.titleMediumHeight + 16,
+                  height: globalState.theme.titleMediumHeight + 16,
                   padding: baseInfoEdgeInsets.copyWith(
                     bottom: 0,
                   ),
@@ -220,7 +220,7 @@ class _NetworkDetectionState extends ConsumerState<NetworkDetection> {
                     top: 0,
                   ),
                   child: SizedBox(
-                    height: globalState.measure.bodyMediumHeight + 2,
+                    height: globalState.theme.bodyMediumHeight + 2,
                     child: FadeThroughBox(
                       child: ipInfo != null
                           ? TooltipText(

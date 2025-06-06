@@ -14,8 +14,6 @@ class TextCard extends StatelessWidget {
     required this.value,
   });
 
-  Measure get measure => globalState.measure;
-
   Widget _buildStringText(BuildContext context, String text) {
     return SizedBox(
         // height: measure.bodySmallHeight * 1,

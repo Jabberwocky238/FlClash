@@ -68,7 +68,7 @@ class _MemoryInfoState extends State<MemoryInfo> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: globalState.measure.bodyMediumHeight + 2,
+                height: globalState.theme.bodyMediumHeight + 2,
                 child: ValueListenableBuilder(
                   valueListenable: _memoryInfoStateNotifier,
                   builder: (_, trafficValue, __) {

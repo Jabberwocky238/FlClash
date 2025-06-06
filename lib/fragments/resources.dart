@@ -147,7 +147,7 @@ class _GeoDataListItemState extends State<GeoDataListItem> {
             FutureBuilder<FileInfo>(
               future: _getGeoFileLastModified(geoItem.fileName),
               builder: (_, snapshot) {
-                final height = globalState.measure.bodyMediumHeight;
+                final height = globalState.theme.bodyMediumHeight;
                 return SizedBox(
                   height: height,
                   child: snapshot.data == null
