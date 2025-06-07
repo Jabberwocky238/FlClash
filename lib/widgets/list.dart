@@ -314,15 +314,6 @@ class ListItem<T> extends StatelessWidget {
               if (openDelegate.action != null) openDelegate.action!,
             ],
           );
-          // return CommonScaffold.open(
-          //   key: Key(openDelegate.title),
-          //   onBack: action,
-          //   title: openDelegate.title,
-          //   body: child,
-          //   actions: [
-          //     if (openDelegate.action != null) openDelegate.action!,
-          //   ],
-          // );
         },
       );
     }

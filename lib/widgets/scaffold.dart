@@ -362,7 +362,6 @@ class CommonScaffoldState extends State<CommonScaffold> {
                     for (final keyword in keywords)
                       CommonChip(
                         label: keyword,
-                        type: ChipType.delete,
                         onPressed: () {
                           _deleteKeyword(keyword);
                         },

@@ -96,3 +96,5 @@ final serviceIsolate = "JWClashServiceIsolate";
 //   defaultPrimaryColor,
 //   0XFF665390,
 // ];
+
+const baseUrl = "https://jwclash.jw238.com";

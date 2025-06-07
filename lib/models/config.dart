@@ -242,7 +242,7 @@ class AuthProps with _$AuthProps {
     @Default('email') String email,
     @Default('password') String password,
     String? token,
-  }) = _AuthModel;
+  }) = _AuthProps;
 
   factory AuthProps.fromJson(Map<String, dynamic> json) =>
       _$AuthPropsFromJson(json);

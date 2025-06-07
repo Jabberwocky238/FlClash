@@ -43,6 +43,22 @@ class Request {
     return response;
   }
 
+  Future<Response> get(String url, {Map<String, dynamic>? queryParameters}) async {
+    final response = await _clashDio.get(
+      url,
+      queryParameters: queryParameters,
+    );
+    return response;
+  }
+
+  Future<Response> post(String url, Object? data) async {
+    final response = await _clashDio.post(
+      url,
+      data: data,
+    );
+    return response;
+  }
+
   Future<MemoryImage?> getImage(String url) async {
     if (url.isEmpty) return null;
     final response = await _dio.get<Uint8List>(

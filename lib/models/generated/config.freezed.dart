@@ -2488,7 +2488,7 @@ abstract class _Config implements Config {
 }
 
 AuthProps _$AuthPropsFromJson(Map<String, dynamic> json) {
-  return _AuthModel.fromJson(json);
+  return _AuthProps.fromJson(json);
 }
 
 /// @nodoc
@@ -2552,22 +2552,22 @@ class _$AuthPropsCopyWithImpl<$Res, $Val extends AuthProps>
 }
 
 /// @nodoc
-abstract class _$$AuthModelImplCopyWith<$Res>
+abstract class _$$AuthPropsImplCopyWith<$Res>
     implements $AuthPropsCopyWith<$Res> {
-  factory _$$AuthModelImplCopyWith(
-          _$AuthModelImpl value, $Res Function(_$AuthModelImpl) then) =
-      __$$AuthModelImplCopyWithImpl<$Res>;
+  factory _$$AuthPropsImplCopyWith(
+          _$AuthPropsImpl value, $Res Function(_$AuthPropsImpl) then) =
+      __$$AuthPropsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String email, String password, String? token});
 }
 
 /// @nodoc
-class __$$AuthModelImplCopyWithImpl<$Res>
-    extends _$AuthPropsCopyWithImpl<$Res, _$AuthModelImpl>
-    implements _$$AuthModelImplCopyWith<$Res> {
-  __$$AuthModelImplCopyWithImpl(
-      _$AuthModelImpl _value, $Res Function(_$AuthModelImpl) _then)
+class __$$AuthPropsImplCopyWithImpl<$Res>
+    extends _$AuthPropsCopyWithImpl<$Res, _$AuthPropsImpl>
+    implements _$$AuthPropsImplCopyWith<$Res> {
+  __$$AuthPropsImplCopyWithImpl(
+      _$AuthPropsImpl _value, $Res Function(_$AuthPropsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthProps
@@ -2579,7 +2579,7 @@ class __$$AuthModelImplCopyWithImpl<$Res>
     Object? password = null,
     Object? token = freezed,
   }) {
-    return _then(_$AuthModelImpl(
+    return _then(_$AuthPropsImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -2598,12 +2598,12 @@ class __$$AuthModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AuthModelImpl implements _AuthModel {
-  const _$AuthModelImpl(
+class _$AuthPropsImpl implements _AuthProps {
+  const _$AuthPropsImpl(
       {this.email = 'email', this.password = 'password', this.token});
 
-  factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AuthModelImplFromJson(json);
+  factory _$AuthPropsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AuthPropsImplFromJson(json);
 
   @override
   @JsonKey()
@@ -2623,7 +2623,7 @@ class _$AuthModelImpl implements _AuthModel {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthModelImpl &&
+            other is _$AuthPropsImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
@@ -2639,25 +2639,25 @@ class _$AuthModelImpl implements _AuthModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
-      __$$AuthModelImplCopyWithImpl<_$AuthModelImpl>(this, _$identity);
+  _$$AuthPropsImplCopyWith<_$AuthPropsImpl> get copyWith =>
+      __$$AuthPropsImplCopyWithImpl<_$AuthPropsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AuthModelImplToJson(
+    return _$$AuthPropsImplToJson(
       this,
     );
   }
 }
 
-abstract class _AuthModel implements AuthProps {
-  const factory _AuthModel(
+abstract class _AuthProps implements AuthProps {
+  const factory _AuthProps(
       {final String email,
       final String password,
-      final String? token}) = _$AuthModelImpl;
+      final String? token}) = _$AuthPropsImpl;
 
-  factory _AuthModel.fromJson(Map<String, dynamic> json) =
-      _$AuthModelImpl.fromJson;
+  factory _AuthProps.fromJson(Map<String, dynamic> json) =
+      _$AuthPropsImpl.fromJson;
 
   @override
   String get email;
@@ -2670,6 +2670,6 @@ abstract class _AuthModel implements AuthProps {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>
+  _$$AuthPropsImplCopyWith<_$AuthPropsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

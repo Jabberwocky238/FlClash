@@ -320,14 +320,14 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'patchClashConfig': instance.patchClashConfig,
     };
 
-_$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
-    _$AuthModelImpl(
+_$AuthPropsImpl _$$AuthPropsImplFromJson(Map<String, dynamic> json) =>
+    _$AuthPropsImpl(
       email: json['email'] as String? ?? 'email',
       password: json['password'] as String? ?? 'password',
       token: json['token'] as String?,
     );
 
-Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
+Map<String, dynamic> _$$AuthPropsImplToJson(_$AuthPropsImpl instance) =>
     <String, dynamic>{
       'email': instance.email,
       'password': instance.password,

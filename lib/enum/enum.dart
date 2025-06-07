@@ -139,8 +139,6 @@ enum RecoveryOption {
   onlyProfiles,
 }
 
-enum ChipType { action, delete }
-
 enum CommonCardType { plain, filled }
 //
 // extension CommonCardTypeExt on CommonCardType {

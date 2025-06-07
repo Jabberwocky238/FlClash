@@ -79,13 +79,6 @@ class _LogsFragmentState extends ConsumerState<LogsFragment> with PageMixin {
       ];
 
   @override
-  get onSearch => (value) {
-        _logsStateNotifier.value = _logsStateNotifier.value.copyWith(
-          query: value,
-        );
-      };
-
-  @override
   get onKeywordsUpdate => (keywords) {
         _logsStateNotifier.value =
             _logsStateNotifier.value.copyWith(keywords: keywords);

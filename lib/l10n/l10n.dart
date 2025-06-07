@@ -2544,6 +2544,21 @@ class AppLocalizations {
     );
   }
 
+  /// `Register success`
+  String get registerSuccess {
+    return Intl.message('Register success', name: 'registerSuccess', desc: '', args: []);
+  }
+
+  /// `Email already exists`
+  String get registerEmailExists {
+    return Intl.message('Email already exists', name: 'registerEmailExists', desc: '', args: []);
+  }
+
+  /// `Register failed`
+  String get registerFailed {
+    return Intl.message('Register failed', name: 'registerFailed', desc: '', args: []);
+  }
+
   /// `Config listen route address`
   String get routeAddressDesc {
     return Intl.message(
@@ -3044,6 +3059,21 @@ class AppLocalizations {
     );
   }
 
+  /// `Login`
+  String get login {
+    return Intl.message('Login', name: 'login', desc: '', args: []);
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message('Register', name: 'register', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
   /// `Crash test`
   String get crashTest {
     return Intl.message('Crash test', name: 'crashTest', desc: '', args: []);
@@ -3127,6 +3157,11 @@ class AppLocalizations {
   /// `Email`
   String get userEmail {
     return Intl.message('Email', name: 'userEmail', desc: '', args: []);
+  }
+
+  /// 请输入邮箱验证码
+  String get pleaseEnterEmailVerificationCode {
+    return Intl.message('Please enter email verification code', name: 'pleaseEnterEmailVerificationCode', desc: '', args: []);
   }
 
   /// `Password`
