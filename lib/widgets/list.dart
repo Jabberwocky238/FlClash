@@ -305,7 +305,7 @@ class ListItem<T> extends StatelessWidget {
           );
         },
         openBuilder: (_, action) {
-          return CommonScaffoldNew.open(
+          return CommonScaffold.open(
             key: Key(openDelegate.title),
             onBack: action,
             title: openDelegate.title,

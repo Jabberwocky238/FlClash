@@ -1,7 +1,4 @@
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/models/models.dart';
-import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
 
 import 'scaffold.dart';
@@ -176,7 +173,7 @@ class _AdaptiveSheetScaffoldState extends State<AdaptiveSheetScaffold> {
         ),
       );
     }
-    return CommonScaffoldNew(
+    return CommonScaffold(
       appBar: appBar,
       // backgroundColor: backgroundColor,
       body: widget.body,

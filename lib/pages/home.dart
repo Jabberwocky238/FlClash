@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
           //     viewMode == ViewMode.mobile ? navigationBar : null;
           // final sideNavigationBar =
           //     viewMode != ViewMode.mobile ? navigationBar : null;
-          return CommonScaffoldNew(
+          return CommonScaffold(
             key: globalState.homeScaffoldKey,
             title: Intl.message(
               pageLabel.name,

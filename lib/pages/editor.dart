@@ -104,7 +104,7 @@ class _EditorPageState extends ConsumerState<EditorPage> {
         }
         return false;
       },
-      child: CommonScaffoldNew(
+      child: CommonScaffold(
         actions: [
           if (widget.onSave != null)
             _wrapController(

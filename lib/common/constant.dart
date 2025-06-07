@@ -9,12 +9,12 @@ import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 
 const appName = "JWClash";
-const appHelperService = "FlClashHelperService";
+const appHelperService = "JWClashHelperService";
 const coreName = "clash.meta";
 const browserUa =
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 const packageName = "com.follow.clash";
-final unixSocketPath = "/tmp/FlClashSocket_${Random().nextInt(10000)}.sock";
+final unixSocketPath = "/tmp/JWClashSocket_${Random().nextInt(10000)}.sock";
 const helperPort = 47890;
 const maxTextScale = 1.4;
 const minTextScale = 0.8;
@@ -23,7 +23,8 @@ final baseInfoEdgeInsets = EdgeInsets.symmetric(
   horizontal: 16.ap,
 );
 
-final defaultTextScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
+final systemTextScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
+final defaultTextScaleFactor = (Platform.isAndroid ? 1.5 : 1) * systemTextScaleFactor;
 const httpTimeoutDuration = Duration(milliseconds: 5000);
 const moreDuration = Duration(milliseconds: 100);
 const animateDuration = Duration(milliseconds: 100);
@@ -43,7 +44,7 @@ const localhost = "127.0.0.1";
 const clashConfigKey = "clash_config";
 const configKey = "config";
 const double dialogCommonWidth = 300;
-const repository = "chen08209/FlClash";
+const repository = "jabberwocky238/FlClash";
 const defaultExternalController = "127.0.0.1:9090";
 const maxMobileWidth = 600;
 const maxLaptopWidth = 840;
@@ -62,10 +63,8 @@ const logListEquality = ListEquality<Log>();
 const groupListEquality = ListEquality<Group>();
 const externalProviderListEquality = ListEquality<ExternalProvider>();
 const packageListEquality = ListEquality<Package>();
-// const hotKeyActionListEquality = ListEquality<HotKeyAction>();
 const stringAndStringMapEquality = MapEquality<String, String>();
-const stringAndStringMapEntryIterableEquality =
-    IterableEquality<MapEntry<String, String>>();
+const stringAndStringMapEntryIterableEquality = IterableEquality<MapEntry<String, String>>();
 const delayMapEquality = MapEquality<String, Map<String, int?>>();
 const stringSetEquality = SetEquality<String>();
 const keyboardModifierListEquality = SetEquality<KeyboardModifier>();
@@ -84,9 +83,9 @@ double getWidgetHeight(num lines) {
 
 const maxLength = 150;
 
-final mainIsolate = "FlClashMainIsolate";
+final mainIsolate = "JWClashMainIsolate";
 
-final serviceIsolate = "FlClashServiceIsolate";
+final serviceIsolate = "JWClashServiceIsolate";
 
 // const defaultPrimaryColors = [
 //   0xFF795548,

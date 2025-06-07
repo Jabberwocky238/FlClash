@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 
 import 'chip.dart';
 
-class CommonScaffoldNew extends StatefulWidget {
+class CommonScaffold extends StatefulWidget {
   final AppBar? appBar;
   final Widget body;
   final Widget? navigationBar;
@@ -21,7 +21,7 @@ class CommonScaffoldNew extends StatefulWidget {
   final AppBarEditState? appBarEditState;
   final bool isDrawerOpen;
 
-  const CommonScaffoldNew({
+  const CommonScaffold({
     super.key,
     this.appBar,
     required this.body,
@@ -36,7 +36,7 @@ class CommonScaffoldNew extends StatefulWidget {
     this.isDrawerOpen = false,
   });
 
-  CommonScaffoldNew.open({
+  CommonScaffold.open({
     Key? key,
     required Widget body,
     required String title,
@@ -57,10 +57,10 @@ class CommonScaffoldNew extends StatefulWidget {
         );
 
   @override
-  State<CommonScaffoldNew> createState() => CommonScaffoldNewState();
+  State<CommonScaffold> createState() => CommonScaffoldState();
 }
 
-class CommonScaffoldNewState extends State<CommonScaffoldNew> {
+class CommonScaffoldState extends State<CommonScaffold> {
   late final ValueNotifier<AppBarState> _appBarState;
   final ValueNotifier<Widget?> _floatingActionButton = ValueNotifier(null);
   final ValueNotifier<List<String>> _keywordsNotifier = ValueNotifier([]);
@@ -187,7 +187,7 @@ class CommonScaffoldNewState extends State<CommonScaffoldNew> {
   }
 
   @override
-  void didUpdateWidget(CommonScaffoldNew oldWidget) {
+  void didUpdateWidget(CommonScaffold oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.title != widget.title) {
       _appBarState.value = AppBarState();

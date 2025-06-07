@@ -41,7 +41,7 @@ class GlobalState {
   final navigatorKey = GlobalKey<NavigatorState>();
   late AppController appController;
   // GlobalKey<CommonScaffoldState> homeScaffoldKey = GlobalKey();
-  GlobalKey<CommonScaffoldNewState> homeScaffoldKey = GlobalKey();
+  GlobalKey<CommonScaffoldState> homeScaffoldKey = GlobalKey();
 
   bool get isStart => startTime != null && startTime!.isBeforeNow;
 

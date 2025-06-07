@@ -31,13 +31,6 @@ class _RequestsFragmentState extends ConsumerState<RequestsFragment>
   double _currentMaxWidth = 0;
 
   @override
-  get onSearch => (value) {
-        _requestsStateNotifier.value = _requestsStateNotifier.value.copyWith(
-          query: value,
-        );
-      };
-
-  @override
   get onKeywordsUpdate => (keywords) {
         _requestsStateNotifier.value =
             _requestsStateNotifier.value.copyWith(keywords: keywords);
