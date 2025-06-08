@@ -208,6 +208,28 @@ class CommonCard extends StatelessWidget {
   }
 }
 
+class CommonCardGroup extends StatelessWidget {
+  final List<CommonCard> cards;
+
+  const CommonCardGroup({
+    super.key,
+    required this.cards,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: Axis.horizontal,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: 8,
+      children: cards,
+    );
+  }
+}
+
+
 class SelectIcon extends StatelessWidget {
   const SelectIcon({super.key});
 

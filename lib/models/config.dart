@@ -239,8 +239,8 @@ extension ConfigExt on Config {
 @freezed
 class AuthProps with _$AuthProps {
   const factory AuthProps({
-    @Default('email') String email,
-    @Default('password') String password,
+    @Default('') String email,
+    @Default('') String password,
     String? token,
   }) = _AuthProps;
 

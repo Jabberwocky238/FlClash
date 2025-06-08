@@ -2599,8 +2599,7 @@ class __$$AuthPropsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthPropsImpl implements _AuthProps {
-  const _$AuthPropsImpl(
-      {this.email = 'email', this.password = 'password', this.token});
+  const _$AuthPropsImpl({this.email = '', this.password = '', this.token});
 
   factory _$AuthPropsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthPropsImplFromJson(json);
