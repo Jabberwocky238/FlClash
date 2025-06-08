@@ -161,7 +161,9 @@ Future<String?> login(AuthProps authProps) async {
     );
     if (response.statusCode == 200) {
       globalState.showMessage(message: TextSpan(text: "登录成功"));
-      return response.data["token"];
+      final token = response.data["token"];
+      globalState.appController.addProfileFormURL("$baseUrl/fetch?token=$token");
+      return token;
     } else {
       globalState.showMessage(message: TextSpan(text: "登录失败"));
       return null;

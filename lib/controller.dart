@@ -262,6 +262,7 @@ class AppController {
     //   clashCore.stopLog();
     // }
     clashCore.startLog();
+    
     final res = await clashCore.updateConfig(
       globalState.getUpdateConfigParams(isPatch),
     );

@@ -40,7 +40,6 @@ class GlobalState {
   UpdateTasks tasks = [];
   final navigatorKey = GlobalKey<NavigatorState>();
   late AppController appController;
-  // GlobalKey<CommonScaffoldState> homeScaffoldKey = GlobalKey();
   GlobalKey<CommonScaffoldState> homeScaffoldKey = GlobalKey();
 
   bool get isStart => startTime != null && startTime!.isBeforeNow;
