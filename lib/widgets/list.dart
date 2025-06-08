@@ -144,7 +144,7 @@ class ListItem<T> extends StatelessWidget {
     required this.title,
     this.subtitle,
     this.leading,
-    this.padding = const EdgeInsets.symmetric(horizontal: 16),
+    this.padding = const EdgeInsets.symmetric(horizontal: 8),
     this.trailing,
     required OpenDelegate this.delegate,
     this.horizontalTitleGap,

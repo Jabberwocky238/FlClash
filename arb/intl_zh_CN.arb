@@ -404,5 +404,13 @@
   "logsTest": "日志测试",
   "auth": "账户",
   "userEmail": "邮箱",
-  "userPassword": "密码"
+  "userPassword": "密码",
+  "login": "登录",
+  "logout": "注销",
+  "register": "注册",
+  "registerFailed": "注册失败",
+  "registerSuccess": "注册成功",
+  "registerEmailExists": "账号已存在",
+  "pleaseEnterEmailVerificationCode": "请输入邮箱验证码",
+  "EEEE": ""
 }

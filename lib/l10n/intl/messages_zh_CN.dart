@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "EEEE": MessageLookupByLibrary.simpleMessage(""),
     "about": MessageLookupByLibrary.simpleMessage("关于"),
     "accessControl": MessageLookupByLibrary.simpleMessage("访问控制"),
     "accessControlAllowDesc": MessageLookupByLibrary.simpleMessage(
@@ -233,6 +234,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "logLevel": MessageLookupByLibrary.simpleMessage("日志等级"),
     "logcat": MessageLookupByLibrary.simpleMessage("日志捕获"),
     "logcatDesc": MessageLookupByLibrary.simpleMessage("禁用将会隐藏日志入口"),
+    "login": MessageLookupByLibrary.simpleMessage("登录"),
+    "logout": MessageLookupByLibrary.simpleMessage("注销"),
     "logs": MessageLookupByLibrary.simpleMessage("日志"),
     "logsDesc": MessageLookupByLibrary.simpleMessage("日志捕获记录"),
     "logsTest": MessageLookupByLibrary.simpleMessage("日志测试"),
@@ -301,6 +304,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordTip": MessageLookupByLibrary.simpleMessage("密码不能为空"),
     "paste": MessageLookupByLibrary.simpleMessage("粘贴"),
     "pleaseBindWebDAV": MessageLookupByLibrary.simpleMessage("请绑定WebDAV"),
+    "pleaseEnterEmailVerificationCode": MessageLookupByLibrary.simpleMessage(
+      "请输入邮箱验证码",
+    ),
     "pleaseInputAdminPassword": MessageLookupByLibrary.simpleMessage(
       "请输入管理员密码",
     ),
@@ -355,6 +361,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "recoverySuccess": MessageLookupByLibrary.simpleMessage("恢复成功"),
     "redo": MessageLookupByLibrary.simpleMessage("重做"),
     "regExp": MessageLookupByLibrary.simpleMessage("正则"),
+    "register": MessageLookupByLibrary.simpleMessage("注册"),
+    "registerEmailExists": MessageLookupByLibrary.simpleMessage("账号已存在"),
+    "registerFailed": MessageLookupByLibrary.simpleMessage("注册失败"),
+    "registerSuccess": MessageLookupByLibrary.simpleMessage("注册成功"),
     "remote": MessageLookupByLibrary.simpleMessage("远程"),
     "remoteBackupDesc": MessageLookupByLibrary.simpleMessage("备份数据到WebDAV"),
     "remoteRecoveryDesc": MessageLookupByLibrary.simpleMessage("通过WebDAV恢复数据"),

@@ -85,6 +85,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         type: CommonCardType.filled,
         radius: 18,
         child: ListItem.open(
+          leading: const Icon(Icons.login),
           title: Text(appLocalizations.login, textAlign: TextAlign.center,),
           delegate: OpenDelegate(
             title: appLocalizations.login,
@@ -96,6 +97,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         type: CommonCardType.filled,
         radius: 18,
         child: ListItem.open(
+          leading: const Icon(Icons.person_add),
           title: Text(appLocalizations.register, textAlign: TextAlign.center,),
           delegate: OpenDelegate(
             title: appLocalizations.register,
@@ -107,6 +109,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         type: CommonCardType.filled,
         radius: 18,
         child: ListItem(
+          leading: const Icon(Icons.logout),
           title: Text(appLocalizations.logout, textAlign: TextAlign.center,),
           onTap: () {
             ref.read(authSettingProvider.notifier).updateState(

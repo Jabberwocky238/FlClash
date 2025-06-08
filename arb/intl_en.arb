@@ -403,5 +403,13 @@
   "logsTest": "Logs test",
   "auth": "Auth",
   "userEmail": "Email",
-  "userPassword": "Password"
+  "userPassword": "Password",
+  "login": "Login",
+  "logout": "logout",
+  "register": "register",
+  "registerFailed": "registerFailed",
+  "registerSuccess": "registerSuccess",
+  "registerEmailExists": "registerEmailExists",
+  "pleaseEnterEmailVerificationCode": "pleaseEnterEmailVerificationCode",
+  "EEEE": ""
 }
