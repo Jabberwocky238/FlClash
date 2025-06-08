@@ -1,5 +1,4 @@
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/fade_box.dart';

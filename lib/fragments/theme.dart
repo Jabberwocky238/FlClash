@@ -1,6 +1,4 @@
 // ignore_for_file: deprecated_member_use
-import 'dart:ui' as ui;
-
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/providers/config.dart';
