@@ -58,8 +58,8 @@ class AuthController {
         },
       );
       sayMessage("注册成功");
-      printMessage("toPage PageLabel.auth");
-      globalState.appController.toPage(PageLabel.auth);
+      // printMessage("toPage PageLabel.auth");
+      // globalState.appController.toPage(PageLabel.auth);
       return true;
     } on DioException catch (err, _) {
       if (err.response?.statusCode == 441) {
@@ -73,8 +73,8 @@ class AuthController {
 
   void _saveAuthState(AuthProps authState) {
     _ref.read(authSettingProvider.notifier).updateState(
-          (state) => authState,
-        );
+      (state) => authState,
+    );
   }
 
   Future<String?> login(AuthProps authProps) async {

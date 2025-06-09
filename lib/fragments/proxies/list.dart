@@ -40,6 +40,21 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
     _controller.addListener(_adjustHeader);
   }
 
+  @override
+  void didUpdateWidget(ProxiesListFragment oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // 找到第一个group
+    final groupName = globalState.appController.getCurrentGroups().first.name;
+    final currentUnfoldSet = <String>{groupName};
+    _handleChange(
+      currentUnfoldSet,
+      groupName,
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _adjustHeader();
+    });
+  }
+
   _adjustHeader() {
     final offset = _controller.offset;
     final index = _headerOffset.findInterval(offset);
@@ -615,3 +630,4 @@ class _ListHeaderState extends State<ListHeader>
     );
   }
 }
+

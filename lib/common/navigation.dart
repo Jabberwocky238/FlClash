@@ -43,7 +43,7 @@ class Navigation {
             PageLabel.profiles,
           ),
         ),
-        // isShow: false,
+        isShow: false,
       ),
       const NavigationItem(
         icon: Icon(Icons.view_timeline),
@@ -55,7 +55,7 @@ class Navigation {
         ),
         description: "requestsDesc",
         modes: [NavigationItemMode.desktop],
-        // isShow: false,
+        isShow: false,
       ),
       const NavigationItem(
         icon: Icon(Icons.ballot),
@@ -80,7 +80,7 @@ class Navigation {
           ),
         ),
         modes: [NavigationItemMode.more],
-        // isShow: false,
+        isShow: false,
       ),
       NavigationItem(
         icon: const Icon(Icons.adb),
@@ -92,7 +92,7 @@ class Navigation {
         ),
         description: "logsDesc",
         modes: [NavigationItemMode.desktop, NavigationItemMode.more],
-        // isShow: false,
+        isShow: false,
       ),
       const NavigationItem(
         icon: Icon(Icons.construction),
@@ -103,7 +103,7 @@ class Navigation {
           ),
         ),
         modes: [NavigationItemMode.desktop, NavigationItemMode.mobile],
-        // isShow: false,
+        isShow: false,
       ),
     ];
   }
