@@ -68,7 +68,7 @@ class Profile with _$Profile {
       _$ProfileFromJson(json);
 
   factory Profile.fromJWCLash({
-    String url = '',
+    required String url,
   }) {
     return Profile(
       label: defaultJWClashProfileLabel,

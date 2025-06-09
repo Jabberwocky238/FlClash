@@ -89,10 +89,11 @@ class AuthController {
       if (response.statusCode == 200) {
         sayMessage("登录成功");
         final token = response.data["token"];
+        printMessage("token: $token");
         _saveAuthState(authProps.copyWith(token: token));
         await _switchToVVPPNNProfile(token);
         printMessage("toPage PageLabel.auth");
-        globalState.appController.toPage(PageLabel.auth);
+        // globalState.appController.toPage(PageLabel.auth);
         return token;
       } else {
         sayMessage("登录失败");
@@ -117,13 +118,12 @@ class AuthController {
     var profile = config.profiles
       .firstWhereOrNull((profile) => profile.id == defaultJWClashProfileId);
     if (profile == null) {
-      profile = await Profile.fromJWCLash(
-        url: url,
-      ).update();
+      profile = await Profile.fromJWCLash(url: url).update();
     } else {
-      await globalState.appController.deleteProfile(defaultJWClashProfileId);
+      profile = profile.copyWith(url: url);
     }
-    await globalState.appController.addProfile(profile);
+    // printMessage("profile: $profile");
+    await globalState.appController.setProfileAndAutoApply(profile);
     _ref.read(currentProfileIdProvider.notifier).value = profile.id;
   }
 }
