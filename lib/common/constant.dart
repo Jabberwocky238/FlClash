@@ -97,5 +97,5 @@ final serviceIsolate = "JWClashServiceIsolate";
 //   0XFF665390,
 // ];
 
-// const baseUrl = "https://jwclash.jw238.com";
+// const baseUrl = "https://jwclash.jw238.site";
 const baseUrl = "http://127.0.0.1:8877";

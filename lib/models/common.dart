@@ -19,6 +19,7 @@ class NavigationItem with _$NavigationItem {
     final String? description,
     required Widget fragment,
     @Default(true) bool keep,
+    @Default(true) bool isShow,
     String? path,
     @Default([NavigationItemMode.mobile, NavigationItemMode.desktop]) List<NavigationItemMode> modes,
   }) = _NavigationItem;

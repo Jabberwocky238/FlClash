@@ -173,26 +173,6 @@ class CommonNavigationBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    // if (viewMode == ViewMode.mobile) {
-    //   return NavigationBarTheme(
-    //     data: _NavigationBarDefaultsM3(context),
-    //     child: NavigationBar(
-    //       destinations: navigationItems
-    //           .map(
-    //             (e) => NavigationDestination(
-    //               icon: e.icon,
-    //               label: Intl.message(e.label.name),
-    //             ),
-    //           )
-    //           .toList(),
-    //       onDestinationSelected: (index) {
-    //         globalState.appController.toPage(navigationItems[index].label);
-    //       },
-    //       selectedIndex: currentIndex,
-    //     ),
-    //   );
-    // }
-    // final showLabel = ref.watch(appSettingProvider).showLabel;
     return Material(
       color: context.colorScheme.surfaceContainer,
       child: SizedBox(
@@ -221,6 +201,7 @@ class CommonNavigationBar extends ConsumerWidget {
                       color: context.colorScheme.onSurface,
                     ),
                     destinations: navigationItems
+                        .where((e) => e.isShow)
                         .map(
                           (e) => NavigationRailDestination(
                             icon: e.icon,

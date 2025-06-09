@@ -21,6 +21,7 @@ mixin _$NavigationItem {
   String? get description => throw _privateConstructorUsedError;
   Widget get fragment => throw _privateConstructorUsedError;
   bool get keep => throw _privateConstructorUsedError;
+  bool get isShow => throw _privateConstructorUsedError;
   String? get path => throw _privateConstructorUsedError;
   List<NavigationItemMode> get modes => throw _privateConstructorUsedError;
 
@@ -43,6 +44,7 @@ abstract class $NavigationItemCopyWith<$Res> {
       String? description,
       Widget fragment,
       bool keep,
+      bool isShow,
       String? path,
       List<NavigationItemMode> modes});
 }
@@ -67,6 +69,7 @@ class _$NavigationItemCopyWithImpl<$Res, $Val extends NavigationItem>
     Object? description = freezed,
     Object? fragment = null,
     Object? keep = null,
+    Object? isShow = null,
     Object? path = freezed,
     Object? modes = null,
   }) {
@@ -90,6 +93,10 @@ class _$NavigationItemCopyWithImpl<$Res, $Val extends NavigationItem>
       keep: null == keep
           ? _value.keep
           : keep // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isShow: null == isShow
+          ? _value.isShow
+          : isShow // ignore: cast_nullable_to_non_nullable
               as bool,
       path: freezed == path
           ? _value.path
@@ -117,6 +124,7 @@ abstract class _$$NavigationItemImplCopyWith<$Res>
       String? description,
       Widget fragment,
       bool keep,
+      bool isShow,
       String? path,
       List<NavigationItemMode> modes});
 }
@@ -139,6 +147,7 @@ class __$$NavigationItemImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? fragment = null,
     Object? keep = null,
+    Object? isShow = null,
     Object? path = freezed,
     Object? modes = null,
   }) {
@@ -163,6 +172,10 @@ class __$$NavigationItemImplCopyWithImpl<$Res>
           ? _value.keep
           : keep // ignore: cast_nullable_to_non_nullable
               as bool,
+      isShow: null == isShow
+          ? _value.isShow
+          : isShow // ignore: cast_nullable_to_non_nullable
+              as bool,
       path: freezed == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -184,6 +197,7 @@ class _$NavigationItemImpl implements _NavigationItem {
       this.description,
       required this.fragment,
       this.keep = true,
+      this.isShow = true,
       this.path,
       final List<NavigationItemMode> modes = const [
         NavigationItemMode.mobile,
@@ -203,6 +217,9 @@ class _$NavigationItemImpl implements _NavigationItem {
   @JsonKey()
   final bool keep;
   @override
+  @JsonKey()
+  final bool isShow;
+  @override
   final String? path;
   final List<NavigationItemMode> _modes;
   @override
@@ -215,7 +232,7 @@ class _$NavigationItemImpl implements _NavigationItem {
 
   @override
   String toString() {
-    return 'NavigationItem(icon: $icon, label: $label, description: $description, fragment: $fragment, keep: $keep, path: $path, modes: $modes)';
+    return 'NavigationItem(icon: $icon, label: $label, description: $description, fragment: $fragment, keep: $keep, isShow: $isShow, path: $path, modes: $modes)';
   }
 
   @override
@@ -230,13 +247,22 @@ class _$NavigationItemImpl implements _NavigationItem {
             (identical(other.fragment, fragment) ||
                 other.fragment == fragment) &&
             (identical(other.keep, keep) || other.keep == keep) &&
+            (identical(other.isShow, isShow) || other.isShow == isShow) &&
             (identical(other.path, path) || other.path == path) &&
             const DeepCollectionEquality().equals(other._modes, _modes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, icon, label, description,
-      fragment, keep, path, const DeepCollectionEquality().hash(_modes));
+  int get hashCode => Object.hash(
+      runtimeType,
+      icon,
+      label,
+      description,
+      fragment,
+      keep,
+      isShow,
+      path,
+      const DeepCollectionEquality().hash(_modes));
 
   /// Create a copy of NavigationItem
   /// with the given fields replaced by the non-null parameter values.
@@ -255,6 +281,7 @@ abstract class _NavigationItem implements NavigationItem {
       final String? description,
       required final Widget fragment,
       final bool keep,
+      final bool isShow,
       final String? path,
       final List<NavigationItemMode> modes}) = _$NavigationItemImpl;
 
@@ -268,6 +295,8 @@ abstract class _NavigationItem implements NavigationItem {
   Widget get fragment;
   @override
   bool get keep;
+  @override
+  bool get isShow;
   @override
   String? get path;
   @override

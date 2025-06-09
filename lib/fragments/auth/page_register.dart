@@ -143,12 +143,12 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
         title: Text(appLocalizations.register, textAlign: TextAlign.center,),
         onTap: () async {
           final result = await register(_authStateNotifier.value);
-          if (result) {
-            final token = await login(_authStateNotifier.value, ref);
-            if (token != null) {
-              _saveAuthState(_authStateNotifier.value.copyWith(token: token));
-            }
-          }
+          // if (result) {
+          //   final token = await login(_authStateNotifier.value, ref);
+          //   if (token != null) {
+          //     _saveAuthState(_authStateNotifier.value.copyWith(token: token));
+          //   }
+          // }
         },
       ),
     );
