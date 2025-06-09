@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/fragments/auth/controller.dart';
 import 'package:jw_clash/l10n/l10n.dart';
 // import 'package:jw_clash/manager/hotkey_manager.dart';
 import 'package:jw_clash/manager/manager.dart';
@@ -50,10 +51,12 @@ class ApplicationState extends ConsumerState<Application> {
     _autoUpdateGroupTask();
     _autoUpdateProfilesTask();
     globalState.appController = AppController(context, ref);
+    globalState.authController = AuthController(context, ref);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       final currentContext = globalState.navigatorKey.currentContext;
       if (currentContext != null) {
         globalState.appController = AppController(currentContext, ref);
+        globalState.authController = AuthController(currentContext, ref);
       }
       await globalState.appController.init();
       globalState.appController.initLink();

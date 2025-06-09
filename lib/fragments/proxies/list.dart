@@ -151,7 +151,6 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
                 (proxy) => Flexible(
                   child: ProxyCard(
                     testUrl: group.testUrl,
-                    // type: type,
                     groupType: group.type,
                     key: ValueKey('$groupName.${proxy.name}'),
                     proxy: proxy,

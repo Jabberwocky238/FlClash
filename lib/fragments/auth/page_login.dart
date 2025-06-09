@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
@@ -23,12 +22,6 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
   @override
   void initState() {
     super.initState();
-  }
-
-  void _saveAuthState(AuthProps authState) {
-    ref.read(authSettingProvider.notifier).updateState(
-      (state) => authState,
-    );
   }
 
   @override
@@ -140,51 +133,12 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
       child: ListItem(
         title: Text(appLocalizations.login, textAlign: TextAlign.center,),
         onTap: () async {
-          final token = await login(_authStateNotifier.value, ref);
-          if (token != null) {
-            _saveAuthState(_authStateNotifier.value.copyWith(token: token));
-          }
+          await globalState.homeScaffoldKey.currentState?.loadingRun(() async {
+            await globalState.authController.login(_authStateNotifier.value);
+          });
         },
       ),
     );
   }
 }
 
-
-Future<String?> login(AuthProps authProps, WidgetRef ref) async {
-  try {
-    final response = await request.post(
-      "$baseUrl/token",
-      {
-        "email": authProps.email,
-        "password": authProps.password,
-      },
-    );
-    if (response.statusCode == 200) {
-      globalState.showMessage(message: TextSpan(text: "登录成功"));
-      final token = response.data["token"];
-      await switchToVVPPNNProfile(token, ref);
-      return token;
-    } else {
-      globalState.showMessage(message: TextSpan(text: "登录失败"));
-      return null;
-    }
-  } catch (e) {
-    globalState.showMessage(message: TextSpan(text: "登录失败"));
-    return null;
-  }
-}
-
-Future<void> switchToVVPPNNProfile(String token, WidgetRef ref) async {
-  final config = await preferences.getConfig();
-  if (config == null) {
-    return;
-  }
-  final profile = config.profiles.firstWhereOrNull((profile) => profile.label == "VVPPNN");
-  if (profile == null) {
-    globalState.appController.addProfileFormURL("$baseUrl/fetch?token=$token", label: "VVPPNN");
-    return;
-  }
-  await globalState.appController.updateProfileWithLabel("VVPPNN");
-  ref.read(currentProfileIdProvider.notifier).value = profile.id;
-}

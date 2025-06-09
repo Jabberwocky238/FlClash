@@ -54,7 +54,8 @@ final commonFilter = ImageFilter.blur(
   sigmaY: 5,
   tileMode: TileMode.mirror,
 );
-
+const defaultJWClashProfileId = "JWCLash-VVPPNN";
+const defaultJWClashProfileLabel = "JWCLash-VVPPNN";
 const navigationItemListEquality = ListEquality<NavigationItem>();
 const connectionListEquality = ListEquality<Connection>();
 const stringListEquality = ListEquality<String>();

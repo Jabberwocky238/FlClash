@@ -4,6 +4,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/theme.dart';
 import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/fragments/auth/controller.dart';
 import 'package:jw_clash/l10n/l10n.dart';
 import 'package:jw_clash/plugins/service.dart';
 import 'package:jw_clash/widgets/dialog.dart';
@@ -40,6 +41,7 @@ class GlobalState {
   UpdateTasks tasks = [];
   final navigatorKey = GlobalKey<NavigatorState>();
   late AppController appController;
+  late AuthController authController;
   GlobalKey<CommonScaffoldState> homeScaffoldKey = GlobalKey();
 
   bool get isStart => startTime != null && startTime!.isBeforeNow;

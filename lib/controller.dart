@@ -347,17 +347,7 @@ class AppController {
       await updateProfile(profile);
     }
   }
-
-  /// 单独更新VVPPNN
-  updateProfileWithLabel(String label) async {
-    for (final profile in _ref.read(profilesProvider)) {
-      if (profile.label != label) {
-        continue;
-      }
-      await updateProfile(profile);
-    }
-  }
-
+  
   savePreferences() async {
     commonPrint.log("save preferences");
     await preferences.saveConfig(globalState.config);
@@ -609,13 +599,13 @@ class AppController {
     return;
   }
 
-  addProfileFormURL(String url, {String? label}) async {
+  Future<Profile?> addProfileFormURL(String url, {String? label}) async {
     if (globalState.navigatorKey.currentState?.canPop() ?? false) {
       globalState.navigatorKey.currentState?.popUntil((route) => route.isFirst);
     }
     toProfiles();
     final commonScaffoldState = globalState.homeScaffoldKey.currentState;
-    if (commonScaffoldState?.mounted != true) return;
+    if (commonScaffoldState?.mounted != true) return null;
     final profile = await commonScaffoldState?.loadingRun<Profile>(
       () async {
         return await Profile.normal(
@@ -628,6 +618,7 @@ class AppController {
     if (profile != null) {
       await addProfile(profile);
     }
+    return profile;
   }
 
   addProfileFormFile() async {

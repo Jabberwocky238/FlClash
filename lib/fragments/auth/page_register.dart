@@ -7,8 +7,6 @@ import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-import 'page_login.dart';
-
 class PageRegister extends ConsumerStatefulWidget {
   const PageRegister  ({super.key});
 
@@ -24,12 +22,6 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
   @override
   void initState() {
     super.initState();
-  }
-
-  void _saveAuthState(AuthProps authState) {
-    ref.read(authSettingProvider.notifier).updateState(
-      (state) => authState,
-    );
   }
 
   @override
@@ -142,63 +134,9 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
       child: ListItem(
         title: Text(appLocalizations.register, textAlign: TextAlign.center,),
         onTap: () async {
-          final result = await register(_authStateNotifier.value);
-          // if (result) {
-          //   final token = await login(_authStateNotifier.value, ref);
-          //   if (token != null) {
-          //     _saveAuthState(_authStateNotifier.value.copyWith(token: token));
-          //   }
-          // }
+          await globalState.authController.register(_authStateNotifier.value);
         },
       ),
     );
-  }
-}
-
-
-Future<bool> register(AuthProps authProps) async {
-  request.post(
-    "$baseUrl/register",
-    {
-      "email": authProps.email,
-      "password": authProps.password,
-    },
-  );
-  final value = await globalState.showCommonDialog<String>(
-    child: InputDialog(
-      title: appLocalizations.pleaseEnterEmailVerificationCode,
-      value: "333444",
-      suffixText: "",
-      resetValue: "",
-    ),
-  );
-  try {
-    final response = await request.post(
-      "$baseUrl/verify",
-      {
-        "email": authProps.email,
-        "code": value,
-      },
-    );
-    final code = response.data["code"];
-    switch (code) {
-      case 200:
-        globalState.showMessage(
-            message: TextSpan(text: appLocalizations.registerSuccess));
-        return true;
-      case 450:
-        globalState.showMessage(
-            message: TextSpan(text: appLocalizations.registerEmailExists));
-        return true;
-      default:
-        globalState.showMessage(
-            message: TextSpan(text: appLocalizations.registerFailed));
-        return false;
-    }
-  } catch (e) {
-    // commonPrint.log("e: $e");
-    globalState.showMessage(
-        message: TextSpan(text: appLocalizations.registerFailed));
-    return false;
   }
 }
