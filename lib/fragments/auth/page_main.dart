@@ -3,11 +3,9 @@ import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
+import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-
-import 'page_login.dart';
-import 'page_register.dart';
 
 class AuthFragment extends ConsumerStatefulWidget {
   const AuthFragment({super.key});
@@ -83,25 +81,31 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
       CommonCard(
         type: CommonCardType.filled,
         radius: 18,
-        child: ListItem.next(
+        child: ListItem(
           leading: const Icon(Icons.login),
           title: Text(appLocalizations.login, textAlign: TextAlign.center,),
-          delegate: NextDelegate(
-            title: appLocalizations.login,
-            widget: PageLogin(),
-          ),
+          // delegate: NextDelegate(
+          //   title: appLocalizations.login,
+          //   widget: PageLogin(),
+          // ),
+          onTap: () {
+            globalState.appController.toPage(PageLabel.login);
+          },
         ),
       ),
       CommonCard(
         type: CommonCardType.filled,
         radius: 18,
-        child: ListItem.open(
+        child: ListItem(
           leading: const Icon(Icons.person_add),
           title: Text(appLocalizations.register, textAlign: TextAlign.center,),
-          delegate: OpenDelegate(
-            title: appLocalizations.register,
-            widget: PageRegister(),
-          ),
+          // delegate: OpenDelegate(
+          //   title: appLocalizations.register,
+          //   widget: PageRegister(),
+          // ),
+          onTap: () {
+            globalState.appController.toPage(PageLabel.register);
+          },
         ),
       ),
       CommonCard(

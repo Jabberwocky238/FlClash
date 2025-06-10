@@ -7,8 +7,6 @@ import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-import 'controller.dart';
-
 class PageRegister extends ConsumerStatefulWidget {
   const PageRegister({super.key});
 
@@ -17,9 +15,8 @@ class PageRegister extends ConsumerStatefulWidget {
 }
 
 class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
-  final _authStateNotifier = ValueNotifier<UserRegisterProps>(
-    const UserRegisterProps()
-  );
+  final _authStateNotifier =
+      ValueNotifier<UserRegisterProps>(const UserRegisterProps());
 
   @override
   void initState() {
@@ -127,15 +124,14 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
             title: Text("验证码"),
             delegate: TextFieldDelegate(
               suffixWidget: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final email = _authStateNotifier.value.email;
-                  if (email == null || email.isEmpty) {
-                    sayMessage("邮箱不能为空");
-                  } else if (!email.isEmail) {
-                    sayMessage("邮箱格式不正确");
-                  } else {
-                    globalState.authController.sendCode(email);
-                  }
+                  final result =
+                      await globalState.authController.sendCode(email);
+                  globalState.showMessage(
+                    cancelable: false,
+                    message: TextSpan(text: result.message),
+                  );
                 },
                 child: const Text("发送验证码"),
               ),
@@ -161,7 +157,18 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
           textAlign: TextAlign.center,
         ),
         onTap: () async {
-          await globalState.authController.register(_authStateNotifier.value);
+          // await globalState.authController.register(_authStateNotifier.value);
+          final result = await globalState.authController
+              .register(_authStateNotifier.value);
+          go() => result.success
+              ? globalState.appController.toPage(PageLabel.login)
+              : null;
+          globalState.showMessage(
+            cancelable: false,
+            message: TextSpan(text: result.message),
+            afterCancel: go,
+            afterConfirm: go,
+          );
         },
       ),
     );

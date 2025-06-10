@@ -4,6 +4,7 @@ import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
+import 'package:jw_clash/widgets/navigation_drawer.dart';
 // import 'package:jw_clash/widgets/scaffold.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -28,15 +29,16 @@ class HomePage extends StatelessWidget {
             (element) => element.label == pageLabel,
           );
           final currentIndex = index == -1 ? 0 : index;
-          final navigationBar = CommonNavigationBar(
+          // final navigationBar = CommonNavigationBar(
+          //   // viewMode: viewMode, 
+          //   navigationItems: navigationItems,
+          //   currentIndex: currentIndex,
+          // );
+          final navigationBar = CommonDrawerNavigationBar(
             // viewMode: viewMode, 
             navigationItems: navigationItems,
             currentIndex: currentIndex,
           );
-          // final bottomNavigationBar =
-          //     viewMode == ViewMode.mobile ? navigationBar : null;
-          // final sideNavigationBar =
-          //     viewMode != ViewMode.mobile ? navigationBar : null;
           return CommonScaffold(
             key: globalState.homeScaffoldKey,
             title: Intl.message(
@@ -45,15 +47,6 @@ class HomePage extends StatelessWidget {
             navigationBar: navigationBar,
             body: child!,
           );
-          // return CommonScaffold(
-          //   key: globalState.homeScaffoldKey,
-          //   title: Intl.message(
-          //     pageLabel.name,
-          //   ),
-          //   sideNavigationBar: sideNavigationBar,
-          //   body: child!,
-          //   bottomNavigationBar: bottomNavigationBar,
-          // );
         },
         child: _HomePageView(),
       ),
@@ -78,11 +71,11 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
       initialPage: _pageIndex,
       keepPage: true,
     );
-    // ref.listenManual(currentPageLabelProvider, (prev, next) {
-    //   if (prev != next) {
-    //     _toPage(next);
-    //   }
-    // });
+    ref.listenManual(currentPageLabelProvider, (prev, next) {
+      if (prev != next) {
+        _toPage(next);
+      }
+    });
     // ref.listenManual(currentNavigationsStateProvider, (prev, next) {
     //   if (prev?.value.length != next.value.length) {
     //     _updatePageController();
@@ -137,16 +130,16 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
       controller: _pageController,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: navigationItems.length,
-      onPageChanged: (index) {
-        debouncer.call(DebounceTag.pageChange, () {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (_pageIndex != index) {
-              final pageLabel = navigationItems[index].label;
-              _toPage(pageLabel, false);
-            }
-          });
-        });
-      },
+      // onPageChanged: (index) {
+      //   debouncer.call(DebounceTag.pageChange, () {
+      //     WidgetsBinding.instance.addPostFrameCallback((_) {
+      //       if (_pageIndex != index) {
+      //         final pageLabel = navigationItems[index].label;
+      //         _toPage(pageLabel, false);
+      //       }
+      //     });
+      //   });
+      // },
       itemBuilder: (_, index) {
         final navigationItem = navigationItems[index];
         return KeepScope(
@@ -201,7 +194,7 @@ class CommonNavigationBar extends ConsumerWidget {
                       color: context.colorScheme.onSurface,
                     ),
                     destinations: navigationItems
-                        .where((e) => e.isShow)
+                        .where((e) => !e.modes.contains(NavigationItemMode.invisible))
                         .map(
                           (e) => NavigationRailDestination(
                             icon: e.icon,

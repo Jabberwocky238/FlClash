@@ -35,6 +35,7 @@ class Navigation {
             ? [NavigationItemMode.mobile, NavigationItemMode.desktop]
             : [],
       ),
+      // ###############################################
       const NavigationItem(
         icon: Icon(Icons.folder),
         label: PageLabel.profiles,
@@ -43,7 +44,7 @@ class Navigation {
             PageLabel.profiles,
           ),
         ),
-        isShow: false,
+        modes: [NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.view_timeline),
@@ -54,8 +55,7 @@ class Navigation {
           ),
         ),
         description: "requestsDesc",
-        modes: [NavigationItemMode.desktop],
-        isShow: false,
+        modes: [NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.ballot),
@@ -66,8 +66,7 @@ class Navigation {
           ),
         ),
         description: "connectionsDesc",
-        modes: [NavigationItemMode.desktop],
-        isShow: false,
+        modes: [NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.storage),
@@ -79,8 +78,7 @@ class Navigation {
             PageLabel.resources,
           ),
         ),
-        modes: [NavigationItemMode.more],
-        isShow: false,
+        modes: [NavigationItemMode.more, NavigationItemMode.invisible],
       ),
       NavigationItem(
         icon: const Icon(Icons.adb),
@@ -91,8 +89,7 @@ class Navigation {
           ),
         ),
         description: "logsDesc",
-        modes: [NavigationItemMode.desktop, NavigationItemMode.more],
-        isShow: false,
+        modes: [NavigationItemMode.desktop, NavigationItemMode.more, NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.construction),
@@ -102,8 +99,23 @@ class Navigation {
             PageLabel.tools,
           ),
         ),
-        modes: [NavigationItemMode.desktop, NavigationItemMode.mobile],
-        isShow: false,
+        modes: [NavigationItemMode.desktop, NavigationItemMode.mobile, NavigationItemMode.invisible],
+      ),
+            const NavigationItem(
+        icon: Icon(Icons.person),
+        label: PageLabel.login,
+        fragment: PageLogin(
+          key: GlobalObjectKey(PageLabel.login),
+        ),
+        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
+      ),
+      const NavigationItem(
+        icon: Icon(Icons.person),
+        label: PageLabel.register,
+        fragment: PageRegister(
+          key: GlobalObjectKey(PageLabel.register),
+        ),
+        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
     ];
   }

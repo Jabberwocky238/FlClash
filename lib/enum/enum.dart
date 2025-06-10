@@ -104,7 +104,7 @@ enum TransportProtocol { udp, tcp }
 
 enum TrafficUnit { B, KB, MB, GB, TB }
 
-enum NavigationItemMode { mobile, desktop, more }
+enum NavigationItemMode { mobile, desktop, more, invisible }
 
 enum Network { tcp, udp }
 
@@ -408,6 +408,8 @@ enum PageLabel {
   resources,
   connections,
   auth,
+  login,
+  register,
 }
 
 enum RuleAction {

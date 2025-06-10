@@ -115,19 +115,24 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
       type: CommonCardType.filled,
       radius: 18,
       child: ListItem(
-        title: Text(appLocalizations.login, textAlign: TextAlign.center,),
+        title: Text(
+          appLocalizations.login,
+          textAlign: TextAlign.center,
+        ),
         onTap: () async {
-          await globalState.homeScaffoldKey.currentState?.loadingRun(() async {
-            final result = await globalState.authController.login(_authStateNotifier.value);
-            if (result != null && context.mounted) {
-              AdaptiveSheetScaffold.close(context);
-            } else {
-              commonPrint.log("登录失败");
-            }
-          });
+          final result =
+              await globalState.authController.login(_authStateNotifier.value);
+          go() => result.success
+              ? globalState.appController.toPage(PageLabel.auth)
+              : null;
+          globalState.showMessage(
+            cancelable: false,
+            message: TextSpan(text: result.message),
+            afterCancel: go,
+            afterConfirm: go,
+          );
         },
       ),
     );
   }
 }
-

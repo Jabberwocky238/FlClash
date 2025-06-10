@@ -138,6 +138,8 @@ class GlobalState {
     required InlineSpan message,
     String? confirmText,
     bool cancelable = true,
+    VoidCallback? afterConfirm,
+    VoidCallback? afterCancel,
   }) async {
     return await showCommonDialog<bool>(
       child: Builder(
@@ -149,12 +151,18 @@ class GlobalState {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(false);
+                    if (afterCancel != null) {
+                      afterCancel();
+                    }
                   },
                   child: Text(appLocalizations.cancel),
                 ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(true);
+                  if (afterConfirm != null) {
+                    afterConfirm();
+                  }
                 },
                 child: Text(confirmText ?? appLocalizations.confirm),
               )
