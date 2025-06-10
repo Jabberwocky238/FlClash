@@ -13,7 +13,7 @@ const appHelperService = "JWClashHelperService";
 const coreName = "clash.meta";
 const browserUa =
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
-const packageName = "com.follow.jwclash";
+const packageName = "com.enzyme";
 final unixSocketPath = "/tmp/JWClashSocket_${Random().nextInt(10000)}.sock";
 const helperPort = 47890;
 const maxTextScale = 1.4;
@@ -98,5 +98,5 @@ final serviceIsolate = "JWClashServiceIsolate";
 //   0XFF665390,
 // ];
 
-const baseUrl = "https://jwclash.jw238.site";
-// const baseUrl = "http://127.0.0.1:8877";
+// const baseUrl = "https://jwclash.jw238.site";
+const baseUrl = "http://127.0.0.1:8877";

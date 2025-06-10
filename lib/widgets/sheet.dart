@@ -114,6 +114,11 @@ class AdaptiveSheetScaffold extends StatefulWidget {
     this.actions = const [],
   });
 
+  /// 关闭当前 sheet，可以携带返回值
+  static void close<T>(BuildContext context, [T? result]) {
+    Navigator.of(context).pop(result);
+  }
+
   @override
   State<AdaptiveSheetScaffold> createState() => _AdaptiveSheetScaffoldState();
 }

@@ -452,27 +452,6 @@ String getProxyDesc(Ref ref, Proxy proxy) {
   }
 }
 
-@riverpod
-class ProfileOverrideState extends _$ProfileOverrideState {
-  @override
-  ProfileOverrideStateModel build() {
-    return ProfileOverrideStateModel(
-      isEdit: false,
-      selectedRules: {},
-    );
-  }
-
-  updateState(
-    ProfileOverrideStateModel? Function(ProfileOverrideStateModel state)
-        builder,
-  ) {
-    final value = builder(state);
-    if (value == null) {
-      return;
-    }
-    state = value;
-  }
-}
 
 @riverpod
 OverrideData? getProfileOverrideData(Ref ref, String profileId) {

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/models/config.dart';
+import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -83,10 +83,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
       CommonCard(
         type: CommonCardType.filled,
         radius: 18,
-        child: ListItem.open(
+        child: ListItem.next(
           leading: const Icon(Icons.login),
           title: Text(appLocalizations.login, textAlign: TextAlign.center,),
-          delegate: OpenDelegate(
+          delegate: NextDelegate(
             title: appLocalizations.login,
             widget: PageLogin(),
           ),

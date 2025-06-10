@@ -45,6 +45,16 @@ class CheckboxDelegate<T> extends Delegate {
   });
 }
 
+class TextFieldDelegate extends Delegate {
+  final Widget? suffixWidget;
+  final Function(String? value) onChanged;
+
+  const TextFieldDelegate({
+    this.suffixWidget,
+    required this.onChanged,
+  });
+}
+
 class OpenDelegate extends Delegate {
   final Widget widget;
   final String title;
@@ -198,6 +208,21 @@ class ListItem<T> extends StatelessWidget {
     this.tileTitleAlignment = ListTileTitleAlignment.center,
   }) : onTap = null;
 
+  const ListItem.textField({
+    super.key,
+    required this.title,
+    this.subtitle,
+    this.leading,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16),
+    this.trailing,
+    required TextFieldDelegate this.delegate,
+    this.horizontalTitleGap,
+    this.dense,
+    this.titleTextStyle,
+    this.subtitleTextStyle,
+    this.tileTitleAlignment = ListTileTitleAlignment.center,
+  }) : onTap = null;
+
   const ListItem.checkbox({
     super.key,
     required this.title,
@@ -247,6 +272,7 @@ class ListItem<T> extends StatelessWidget {
     void Function()? onTap,
     Widget? trailing,
     Widget? leading,
+    Widget? title,
   }) {
     return ListTile(
       key: key,
@@ -255,7 +281,7 @@ class ListItem<T> extends StatelessWidget {
       subtitleTextStyle: subtitleTextStyle,
       leading: leading ?? this.leading,
       horizontalTitleGap: horizontalTitleGap,
-      title: title,
+      title: title ?? this.title,
       minVerticalPadding: 12,
       subtitle: subtitle,
       titleAlignment: tileTitleAlignment,
@@ -375,6 +401,30 @@ class ListItem<T> extends StatelessWidget {
           inputDelegate.onChanged(value);
         },
         trailing: Text(inputDelegate.value),
+      );
+    }
+    if (delegate is TextFieldDelegate) {
+      final textFieldDelegate = delegate as TextFieldDelegate;
+      final titleWidget = Row(
+        children: [
+          title,
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: TextField(
+                onChanged: (value) => textFieldDelegate.onChanged(value),
+              ),
+            ),
+          ),
+          if (textFieldDelegate.suffixWidget != null)
+            textFieldDelegate.suffixWidget!,
+        ],
+      );
+      return _buildListTile(
+        onTap: null,
+        leading: leading,
+        title: titleWidget,
       );
     }
     if (delegate is CheckboxDelegate) {

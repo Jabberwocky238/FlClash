@@ -191,6 +191,28 @@ class CurrentProfileId extends _$CurrentProfileId
 }
 
 @riverpod
+class ProfileOverrideState extends _$ProfileOverrideState {
+  @override
+  ProfileOverrideStateModel build() {
+    return ProfileOverrideStateModel(
+      isEdit: false,
+      selectedRules: {},
+    );
+  }
+
+  updateState(
+    ProfileOverrideStateModel? Function(ProfileOverrideStateModel state)
+        builder,
+  ) {
+    final value = builder(state);
+    if (value == null) {
+      return;
+    }
+    state = value;
+  }
+}
+
+@riverpod
 class OverrideDns extends _$OverrideDns with AutoDisposeNotifierMixin {
   @override
   bool build() {
@@ -247,5 +269,13 @@ class PatchClashConfig extends _$PatchClashConfig
     globalState.config = globalState.config.copyWith(
       patchClashConfig: value,
     );
+  }
+}
+
+@riverpod
+class UserRegisterState extends _$UserRegisterState {
+  @override
+  UserRegisterProps build() {
+    return const UserRegisterProps();
   }
 }

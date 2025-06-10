@@ -236,22 +236,3 @@ extension ConfigExt on Config {
   }
 }
 
-@freezed
-class AuthProps with _$AuthProps {
-  const factory AuthProps({
-    @Default('') String email,
-    @Default('') String password,
-    String? token,
-  }) = _AuthProps;
-
-  factory AuthProps.fromJson(Map<String, dynamic> json) =>
-      _$AuthPropsFromJson(json);
-
-  factory AuthProps.safeFromJson(Map<String, dynamic> json) {
-    try {
-      return AuthProps.fromJson(json);
-    } catch (_) {
-      return defaultAuthProps;
-    }
-  }
-}

@@ -1813,23 +1813,5 @@ class _GenColorSchemeProviderElement
   @override
   bool get ignoreConfig => (origin as GenColorSchemeProvider).ignoreConfig;
 }
-
-String _$profileOverrideStateHash() =>
-    r'16d7c75849ed077d60553e5d2bba4ed54b307971';
-
-/// See also [ProfileOverrideState].
-@ProviderFor(ProfileOverrideState)
-final profileOverrideStateProvider = AutoDisposeNotifierProvider<
-    ProfileOverrideState, ProfileOverrideStateModel>.internal(
-  ProfileOverrideState.new,
-  name: r'profileOverrideStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$profileOverrideStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ProfileOverrideState = AutoDisposeNotifier<ProfileOverrideStateModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

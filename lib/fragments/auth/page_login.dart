@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/models/config.dart';
+import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
@@ -15,8 +15,8 @@ class PageLogin extends ConsumerStatefulWidget {
 }
 
 class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
-  final _authStateNotifier = ValueNotifier<AuthProps>(
-    const AuthProps(email: '', password: ''),
+  final _authStateNotifier = ValueNotifier<UserLoginProps>(
+    const UserLoginProps(),
   );
 
   @override
@@ -67,23 +67,15 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
   }
 
   Widget _getUserEmailItem(BuildContext context) {
-    return ValueListenableBuilder<AuthProps>(
+    return ValueListenableBuilder<UserLoginProps>(
       valueListenable: _authStateNotifier,
       builder: (context, authState, child) {
         return CommonCard(
           type: CommonCardType.filled,
           radius: 18,
-          child: ListItem.input(
-            padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 4,
-              bottom: 4,
-            ),
-            title: Text(appLocalizations.userEmail),
-            delegate: InputDelegate(
-              title: appLocalizations.userEmail,
-              value: authState.email,
+          child: ListItem.textField(
+            title: Text("邮箱"),
+            delegate: TextFieldDelegate(
               onChanged: (value) {
                 _authStateNotifier.value = _authStateNotifier.value.copyWith(
                   email: value ?? authState.email,
@@ -97,23 +89,15 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
   }
 
   Widget _getUserPasswordItem(BuildContext context) {
-    return ValueListenableBuilder<AuthProps>(
+    return ValueListenableBuilder<UserLoginProps>(
       valueListenable: _authStateNotifier,
       builder: (context, authState, child) {
         return CommonCard(
           type: CommonCardType.filled,
           radius: 18,
-          child: ListItem.input(
-            padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 4,
-              bottom: 4,
-            ),
-            title: Text(appLocalizations.userPassword),
-            delegate: InputDelegate(
-              title: appLocalizations.userPassword,
-              value: authState.password,
+          child: ListItem.textField(
+            title: Text("密码"),
+            delegate: TextFieldDelegate(
               onChanged: (value) {
                 _authStateNotifier.value = _authStateNotifier.value.copyWith(
                   password: value ?? authState.password,
@@ -134,7 +118,12 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
         title: Text(appLocalizations.login, textAlign: TextAlign.center,),
         onTap: () async {
           await globalState.homeScaffoldKey.currentState?.loadingRun(() async {
-            await globalState.authController.login(_authStateNotifier.value);
+            final result = await globalState.authController.login(_authStateNotifier.value);
+            if (result != null && context.mounted) {
+              AdaptiveSheetScaffold.close(context);
+            } else {
+              commonPrint.log("登录失败");
+            }
           });
         },
       ),
