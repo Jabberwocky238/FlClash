@@ -24,20 +24,20 @@ class ProxiesListFragment extends StatefulWidget {
 }
 
 class _ProxiesListFragmentState extends State<ProxiesListFragment> {
-  final _controller = ScrollController();
-  final _headerStateNotifier = ValueNotifier<ProxiesListHeaderSelectorState>(
-    const ProxiesListHeaderSelectorState(
-      offset: 0,
-      currentIndex: 0,
-    ),
-  );
-  List<double> _headerOffset = [];
-  GroupNameProxiesMap _lastGroupNameProxiesMap = {};
+  // final _controller = ScrollController();
+  // final _headerStateNotifier = ValueNotifier<ProxiesListHeaderSelectorState>(
+  //   const ProxiesListHeaderSelectorState(
+  //     offset: 0,
+  //     currentIndex: 0,
+  //   ),
+  // );
+  // List<double> _headerOffset = [];
+  // GroupNameProxiesMap _lastGroupNameProxiesMap = {};
 
   @override
   void initState() {
     super.initState();
-    _controller.addListener(_adjustHeader);
+    // _controller.addListener(_adjustHeader);
   }
 
   @override
@@ -50,28 +50,28 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
       currentUnfoldSet,
       groupName,
     );
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _adjustHeader();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _adjustHeader();
+    // });
   }
 
-  _adjustHeader() {
-    final offset = _controller.offset;
-    final index = _headerOffset.findInterval(offset);
-    final currentIndex = index;
-    double headerOffset = 0.0;
-    if (index + 1 <= _headerOffset.length - 1) {
-      final endOffset = _headerOffset[index + 1];
-      final startOffset = endOffset - listHeaderHeight - 8;
-      if (offset > startOffset && offset < endOffset) {
-        headerOffset = offset - startOffset;
-      }
-    }
-    _headerStateNotifier.value = _headerStateNotifier.value.copyWith(
-      currentIndex: currentIndex,
-      offset: max(headerOffset, 0),
-    );
-  }
+  // _adjustHeader() {
+  //   final offset = _controller.offset;
+  //   final index = _headerOffset.findInterval(offset);
+  //   final currentIndex = index;
+  //   double headerOffset = 0.0;
+  //   if (index + 1 <= _headerOffset.length - 1) {
+  //     final endOffset = _headerOffset[index + 1];
+  //     final startOffset = endOffset - listHeaderHeight - 8;
+  //     if (offset > startOffset && offset < endOffset) {
+  //       headerOffset = offset - startOffset;
+  //     }
+  //   }
+  //   _headerStateNotifier.value = _headerStateNotifier.value.copyWith(
+  //     currentIndex: currentIndex,
+  //     offset: max(headerOffset, 0),
+  //   );
+  // }
 
   double _getListItemHeight(Type type, ProxyCardType proxyCardType) {
     return switch (type) {
@@ -83,9 +83,9 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
 
   @override
   void dispose() {
-    _headerStateNotifier.dispose();
-    _controller.removeListener(_adjustHeader);
-    _controller.dispose();
+    // _headerStateNotifier.dispose();
+    // _controller.removeListener(_adjustHeader);
+    // _controller.dispose();
     super.dispose();
   }
 
@@ -99,9 +99,9 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
     globalState.appController.updateCurrentUnfoldSet(
       tempUnfoldSet,
     );
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _adjustHeader();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _adjustHeader();
+    // });
   }
 
   List<double> _getItemHeightList(
@@ -119,7 +119,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
       itemHeightList.add(itemHeight);
       currentHeight = currentHeight + itemHeight;
     }
-    _headerOffset = headerOffset;
+    // _headerOffset = headerOffset;
     return itemHeightList;
   }
 
@@ -139,20 +139,20 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
         continue;
       }
       final isExpand = currentUnfoldSet.contains(groupName);
-      items.addAll([
-        ListHeader(
-          onScrollToSelected: _scrollToGroupSelected,
-          key: Key(groupName),
-          isExpand: isExpand,
-          group: group,
-          onChange: (String groupName) {
-            _handleChange(currentUnfoldSet, groupName);
-          },
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-      ]);
+      // items.addAll([
+      //   ListHeader(
+      //     onScrollToSelected: _scrollToGroupSelected,
+      //     key: Key(groupName),
+      //     isExpand: isExpand,
+      //     group: group,
+      //     onChange: (String groupName) {
+      //       _handleChange(currentUnfoldSet, groupName);
+      //     },
+      //   ),
+      //   const SizedBox(
+      //     height: 8,
+      //   ),
+      // ]);
       if (isExpand) {
         final sortedProxies = globalState.appController.getSortProxies(
           group.all,
@@ -203,61 +203,61 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
         );
       }
     }
-    _lastGroupNameProxiesMap = groupNameProxiesMap;
+    // _lastGroupNameProxiesMap = groupNameProxiesMap;
     return items;
   }
 
-  _buildHeader(
-    WidgetRef ref, {
-    required String groupName,
-    required Set<String> currentUnfoldSet,
-  }) {
-    final group =
-        ref.read(groupsProvider.select((state) => state.getGroup(groupName)));
-    if (group == null) {
-      return SizedBox();
-    }
-    final isExpand = currentUnfoldSet.contains(groupName);
-    return SizedBox(
-      height: listHeaderHeight,
-      child: ListHeader(
-        enterAnimated: false,
-        onScrollToSelected: _scrollToGroupSelected,
-        key: Key(groupName),
-        isExpand: isExpand,
-        group: group,
-        onChange: (String groupName) {
-          _handleChange(currentUnfoldSet, groupName);
-        },
-      ),
-    );
-  }
+  // _buildHeader(
+  //   WidgetRef ref, {
+  //   required String groupName,
+  //   required Set<String> currentUnfoldSet,
+  // }) {
+  //   final group =
+  //       ref.read(groupsProvider.select((state) => state.getGroup(groupName)));
+  //   if (group == null) {
+  //     return SizedBox();
+  //   }
+  //   final isExpand = currentUnfoldSet.contains(groupName);
+  //   return SizedBox(
+  //     height: listHeaderHeight,
+  //     child: ListHeader(
+  //       enterAnimated: false,
+  //       onScrollToSelected: _scrollToGroupSelected,
+  //       key: Key(groupName),
+  //       isExpand: isExpand,
+  //       group: group,
+  //       onChange: (String groupName) {
+  //         _handleChange(currentUnfoldSet, groupName);
+  //       },
+  //     ),
+  //   );
+  // }
 
-  _scrollToGroupSelected(String groupName) {
-    if (_controller.position.maxScrollExtent == 0) {
-      return;
-    }
-    final appController = globalState.appController;
-    final currentGroups = appController.getCurrentGroups();
-    final groupNames = currentGroups.map((e) => e.name).toList();
-    final findIndex = groupNames.indexWhere((item) => item == groupName);
-    final index = findIndex != -1 ? findIndex : 0;
-    final currentInitOffset = _headerOffset[index];
-    final proxies = _lastGroupNameProxiesMap[groupName];
-    _controller.animateTo(
-      min(
-        currentInitOffset +
-            8 +
-            getScrollToSelectedOffset(
-              groupName: groupName,
-              proxies: proxies ?? [],
-            ),
-        _controller.position.maxScrollExtent,
-      ),
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeIn,
-    );
-  }
+  // _scrollToGroupSelected(String groupName) {
+  //   if (_controller.position.maxScrollExtent == 0) {
+  //     return;
+  //   }
+  //   final appController = globalState.appController;
+  //   final currentGroups = appController.getCurrentGroups();
+  //   final groupNames = currentGroups.map((e) => e.name).toList();
+  //   final findIndex = groupNames.indexWhere((item) => item == groupName);
+  //   final index = findIndex != -1 ? findIndex : 0;
+  //   final currentInitOffset = _headerOffset[index];
+  //   final proxies = _lastGroupNameProxiesMap[groupName];
+  //   _controller.animateTo(
+  //     min(
+  //       currentInitOffset +
+  //           8 +
+  //           getScrollToSelectedOffset(
+  //             groupName: groupName,
+  //             proxies: proxies ?? [],
+  //           ),
+  //       _controller.position.maxScrollExtent,
+  //     ),
+  //     duration: const Duration(milliseconds: 300),
+  //     curve: Curves.easeIn,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -277,357 +277,298 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
           // type: state.proxyCardType,
         );
         final itemsOffset = _getItemHeightList(items, state.proxyCardType);
-        return CommonScrollBar(
-          controller: _controller,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: ScrollConfiguration(
-                  behavior: HiddenBarScrollBehavior(),
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    controller: _controller,
-                    itemExtentBuilder: (index, __) {
-                      // return 26;
-                      return itemsOffset[index];
-                    },
-                    itemCount: items.length,
-                    itemBuilder: (_, index) {
-                      return items[index];
-                    },
-                  ),
-                ),
-              ),
-              LayoutBuilder(builder: (_, container) {
-                return ValueListenableBuilder(
-                  valueListenable: _headerStateNotifier,
-                  builder: (_, headerState, ___) {
-                    final index =
-                        headerState.currentIndex > state.groupNames.length - 1
-                            ? 0
-                            : headerState.currentIndex;
-                    if (index < 0 || state.groupNames.isEmpty) {
-                      return Container();
-                    }
-                    return Stack(
-                      children: [
-                        Positioned(
-                          top: -headerState.offset,
-                          child: Container(
-                            width: container.maxWidth,
-                            color: context.colorScheme.surface,
-                            padding: const EdgeInsets.only(
-                              top: 16,
-                              left: 16,
-                              right: 16,
-                              bottom: 8,
-                            ),
-                            child: _buildHeader(
-                              ref,
-                              groupName: state.groupNames[index],
-                              currentUnfoldSet: state.currentUnfoldSet,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }),
-            ],
-          ),
+        // return CommonScrollBar(
+        //   controller: _controller,
+        //   child: Stack(
+        //     children: [
+        //       Positioned.fill(
+        //         child: ScrollConfiguration(
+        //           behavior: HiddenBarScrollBehavior(),
+        //           child: ListView.builder(
+        //             padding: const EdgeInsets.all(16),
+        //             // controller: _controller,
+        //             itemExtentBuilder: (index, __) {
+        //               // return 26;
+        //               return itemsOffset[index];
+        //             },
+        //             itemCount: items.length,
+        //             itemBuilder: (_, index) {
+        //               return items[index];
+        //             },
+        //           ),
+        //         ),
+        //       ),
+        //       LayoutBuilder(builder: (_, container) {
+        //         return ValueListenableBuilder(
+        //           valueListenable: _headerStateNotifier,
+        //           builder: (_, headerState, ___) {
+        //             final index =
+        //                 headerState.currentIndex > state.groupNames.length - 1
+        //                     ? 0
+        //                     : headerState.currentIndex;
+        //             if (index < 0 || state.groupNames.isEmpty) {
+        //               return Container();
+        //             }
+        //             return Stack(
+        //               children: [
+        //                 // Positioned(
+        //                 //   top: -headerState.offset,
+        //                 //   child: Container(
+        //                 //     width: container.maxWidth,
+        //                 //     color: context.colorScheme.surface,
+        //                 //     padding: const EdgeInsets.only(
+        //                 //       top: 16,
+        //                 //       left: 16,
+        //                 //       right: 16,
+        //                 //       bottom: 8,
+        //                 //     ),
+        //                 //     child: _buildHeader(
+        //                 //       ref,
+        //                 //       groupName: state.groupNames[index],
+        //                 //       currentUnfoldSet: state.currentUnfoldSet,
+        //                 //     ),
+        //                 //   ),
+        //                 // ),
+        //               ],
+        //             );
+        //           },
+        //         );
+        //       }),
+        //     ],
+        //   ),
+        // );
+        return ListView.builder(
+          padding: const EdgeInsets.all(16),
+          // controller: _controller,
+          itemExtentBuilder: (index, __) {
+            // return 26;
+            return itemsOffset[index];
+          },
+          itemCount: items.length,
+          itemBuilder: (_, index) {
+            return items[index];
+          },
         );
       },
     );
   }
 }
 
-class ListHeader extends StatefulWidget {
-  final Group group;
+// class ListHeader extends StatefulWidget {
+//   final Group group;
 
-  final Function(String groupName) onChange;
-  final Function(String groupName) onScrollToSelected;
-  final bool isExpand;
+//   final Function(String groupName) onChange;
+//   final Function(String groupName) onScrollToSelected;
+//   final bool isExpand;
 
-  final bool enterAnimated;
+//   final bool enterAnimated;
 
-  const ListHeader({
-    super.key,
-    this.enterAnimated = true,
-    required this.group,
-    required this.onChange,
-    required this.onScrollToSelected,
-    required this.isExpand,
-  });
+//   const ListHeader({
+//     super.key,
+//     this.enterAnimated = true,
+//     required this.group,
+//     required this.onChange,
+//     required this.onScrollToSelected,
+//     required this.isExpand,
+//   });
 
-  @override
-  State<ListHeader> createState() => _ListHeaderState();
-}
+//   @override
+//   State<ListHeader> createState() => _ListHeaderState();
+// }
 
-class _ListHeaderState extends State<ListHeader>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _iconTurns;
-  var isLock = false;
+// class _ListHeaderState extends State<ListHeader>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController _animationController;
+//   late Animation<double> _iconTurns;
+//   var isLock = false;
 
-  String get icon => widget.group.icon;
+//   String get icon => widget.group.icon;
 
-  String get groupName => widget.group.name;
+//   String get groupName => widget.group.name;
 
-  String get groupType => widget.group.type.name;
+//   String get groupType => widget.group.type.name;
 
-  bool get isExpand => widget.isExpand;
+//   bool get isExpand => widget.isExpand;
 
-  _delayTest() async {
-    if (isLock) return;
-    isLock = true;
-    await delayTest(
-      widget.group.all,
-      widget.group.testUrl,
-    );
-    isLock = false;
-  }
+//   _delayTest() async {
+//     if (isLock) return;
+//     isLock = true;
+//     await delayTest(
+//       widget.group.all,
+//       widget.group.testUrl,
+//     );
+//     isLock = false;
+//   }
 
-  _handleChange(String groupName) {
-    widget.onChange(groupName);
-  }
+//   _handleChange(String groupName) {
+//     widget.onChange(groupName);
+//   }
 
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 200),
-      vsync: this,
-    );
-    _iconTurns = _animationController.drive(
-      Tween<double>(begin: 0.0, end: 0.5),
-    );
-    if (isExpand) {
-      _animationController.value = 1.0;
-    }
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     _animationController = AnimationController(
+//       duration: const Duration(milliseconds: 200),
+//       vsync: this,
+//     );
+//     _iconTurns = _animationController.drive(
+//       Tween<double>(begin: 0.0, end: 0.5),
+//     );
+//     if (isExpand) {
+//       _animationController.value = 1.0;
+//     }
+//   }
 
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     _animationController.dispose();
+//     super.dispose();
+//   }
 
-  @override
-  void didUpdateWidget(ListHeader oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.isExpand != widget.isExpand) {
-      if (isExpand) {
-        _animationController.forward();
-      } else {
-        _animationController.reverse();
-      }
-    }
-  }
+//   @override
+//   void didUpdateWidget(ListHeader oldWidget) {
+//     super.didUpdateWidget(oldWidget);
+//     if (oldWidget.isExpand != widget.isExpand) {
+//       if (isExpand) {
+//         _animationController.forward();
+//       } else {
+//         _animationController.reverse();
+//       }
+//     }
+//   }
 
-  Widget _buildIcon() {
-    return Consumer(
-      builder: (_, ref, child) {
-        final iconStyle = ref.watch(
-          proxiesStyleSettingProvider.select(
-            (state) => state.iconStyle,
-          ),
-        );
-        final icon = ref.watch(proxiesStyleSettingProvider.select((state) {
-          final iconMapEntryList = state.iconMap.entries.toList();
-          final index = iconMapEntryList.indexWhere((item) {
-            try {
-              return RegExp(item.key).hasMatch(groupName);
-            } catch (_) {
-              return false;
-            }
-          });
-          if (index != -1) {
-            return iconMapEntryList[index].value;
-          }
-          return this.icon;
-        }));
-        return switch (iconStyle) {
-          ProxiesIconStyle.standard => LayoutBuilder(
-              builder: (_, constraints) {
-                return Container(
-                  margin: const EdgeInsets.only(
-                    right: 16,
-                  ),
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Container(
-                      height: constraints.maxHeight,
-                      width: constraints.maxWidth,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(6.ap),
-                      decoration: BoxDecoration(
-                        color: context.colorScheme.secondaryContainer,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      child: CommonTargetIcon(
-                        src: icon,
-                        size: constraints.maxHeight - 12.ap,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ProxiesIconStyle.icon => Container(
-              margin: const EdgeInsets.only(
-                right: 16,
-              ),
-              child: LayoutBuilder(
-                builder: (_, constraints) {
-                  return CommonTargetIcon(
-                    src: icon,
-                    size: constraints.maxHeight - 8,
-                  );
-                },
-              ),
-            ),
-          ProxiesIconStyle.none => Container(),
-        };
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return CommonCard(
-      enterAnimated: widget.enterAnimated,
-      key: widget.key,
-      radius: 14,
-      type: CommonCardType.filled,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Row(
-                children: [
-                  _buildIcon(),
-                  Flexible(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          groupName,
-                          style: context.textTheme.titleMedium,
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Flexible(
-                          flex: 1,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                groupType,
-                                style: context.textTheme.labelMedium?.toLight,
-                              ),
-                              Flexible(
-                                flex: 1,
-                                child: Consumer(
-                                  builder: (_, ref, __) {
-                                    final proxyName = ref
-                                        .watch(getSelectedProxyNameProvider(
-                                          groupName,
-                                        ))
-                                        .getSafeValue("");
-                                    return Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        if (proxyName.isNotEmpty) ...[
-                                          Flexible(
-                                            flex: 1,
-                                            child: EmojiText(
-                                              overflow: TextOverflow.ellipsis,
-                                              " · $proxyName",
-                                              style: context.textTheme
-                                                  .labelMedium?.toLight,
-                                            ),
-                                          ),
-                                        ]
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Row(
-              children: [
-                if (isExpand) ...[
-                  IconButton(
-                    visualDensity: VisualDensity.standard,
-                    onPressed: () {
-                      widget.onScrollToSelected(groupName);
-                    },
-                    icon: const Icon(
-                      Icons.adjust,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: _delayTest,
-                    visualDensity: VisualDensity.standard,
-                    icon: const Icon(
-                      Icons.network_ping,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 6,
-                  ),
-                ],
-                AnimatedBuilder(
-                  animation: _animationController.view,
-                  builder: (_, __) {
-                    return IconButton.filledTonal(
-                      onPressed: () {
-                        _handleChange(groupName);
-                      },
-                      icon: RotationTransition(
-                        turns: _iconTurns,
-                        child: const Icon(
-                          Icons.expand_more,
-                        ),
-                      ),
-                    );
-                  },
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-      onPressed: () {
-        _handleChange(groupName);
-      },
-    );
-  }
-}
-
+//   @override
+//   Widget build(BuildContext context) {
+//     return CommonCard(
+//       enterAnimated: widget.enterAnimated,
+//       key: widget.key,
+//       radius: 14,
+//       type: CommonCardType.filled,
+//       child: Padding(
+//         padding: const EdgeInsets.symmetric(
+//           horizontal: 16,
+//           vertical: 12,
+//         ),
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             Flexible(
+//               child: Row(
+//                 children: [
+//                   Flexible(
+//                     child: Column(
+//                       mainAxisSize: MainAxisSize.min,
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Text(
+//                           groupName,
+//                           style: context.textTheme.titleMedium,
+//                         ),
+//                         const SizedBox(
+//                           height: 4,
+//                         ),
+//                         Flexible(
+//                           flex: 1,
+//                           child: Row(
+//                             mainAxisSize: MainAxisSize.min,
+//                             mainAxisAlignment: MainAxisAlignment.start,
+//                             crossAxisAlignment: CrossAxisAlignment.center,
+//                             children: [
+//                               Text(
+//                                 groupType,
+//                                 style: context.textTheme.labelMedium?.toLight,
+//                               ),
+//                               Flexible(
+//                                 flex: 1,
+//                                 child: Consumer(
+//                                   builder: (_, ref, __) {
+//                                     final proxyName = ref
+//                                         .watch(getSelectedProxyNameProvider(
+//                                           groupName,
+//                                         ))
+//                                         .getSafeValue("");
+//                                     return Row(
+//                                       mainAxisSize: MainAxisSize.min,
+//                                       mainAxisAlignment:
+//                                           MainAxisAlignment.start,
+//                                       crossAxisAlignment:
+//                                           CrossAxisAlignment.center,
+//                                       children: [
+//                                         if (proxyName.isNotEmpty) ...[
+//                                           Flexible(
+//                                             flex: 1,
+//                                             child: EmojiText(
+//                                               overflow: TextOverflow.ellipsis,
+//                                               " · $proxyName",
+//                                               style: context.textTheme
+//                                                   .labelMedium?.toLight,
+//                                             ),
+//                                           ),
+//                                         ]
+//                                       ],
+//                                     );
+//                                   },
+//                                 ),
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                         const SizedBox(
+//                           width: 4,
+//                         ),
+//                       ],
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             ),
+//             Row(
+//               children: [
+//                 if (isExpand) ...[
+//                   IconButton(
+//                     visualDensity: VisualDensity.standard,
+//                     onPressed: () {
+//                       widget.onScrollToSelected(groupName);
+//                     },
+//                     icon: const Icon(
+//                       Icons.adjust,
+//                     ),
+//                   ),
+//                   IconButton(
+//                     onPressed: _delayTest,
+//                     visualDensity: VisualDensity.standard,
+//                     icon: const Icon(
+//                       Icons.network_ping,
+//                     ),
+//                   ),
+//                   const SizedBox(
+//                     width: 6,
+//                   ),
+//                 ],
+//                 AnimatedBuilder(
+//                   animation: _animationController.view,
+//                   builder: (_, __) {
+//                     return IconButton.filledTonal(
+//                       onPressed: () {
+//                         _handleChange(groupName);
+//                       },
+//                       icon: RotationTransition(
+//                         turns: _iconTurns,
+//                         child: const Icon(
+//                           Icons.expand_more,
+//                         ),
+//                       ),
+//                     );
+//                   },
+//                 )
+//               ],
+//             )
+//           ],
+//         ),
+//       ),
+//       onPressed: () {
+//         _handleChange(groupName);
+//       },
+//     );
+//   }
+// }

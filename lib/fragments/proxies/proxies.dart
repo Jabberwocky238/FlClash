@@ -2,13 +2,10 @@ import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/fragments/proxies/list.dart';
 import 'package:jw_clash/providers/providers.dart';
-import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'common.dart';
-
-// import 'common.dart';
 
 class ProxiesFragment extends ConsumerStatefulWidget {
   const ProxiesFragment({super.key});
