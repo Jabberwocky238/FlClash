@@ -50,6 +50,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
       currentUnfoldSet,
       groupName,
     );
+    
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   _adjustHeader();
     // });

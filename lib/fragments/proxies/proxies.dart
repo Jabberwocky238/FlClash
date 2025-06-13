@@ -16,15 +16,16 @@ class ProxiesFragment extends ConsumerStatefulWidget {
 
 class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     with PageMixin {
-
   @override
   get actions => [
         IconButton(
-          onPressed: () async {
-            await delayTest(
-              ref.watch(proxiesStateProvider),
-              ref.watch(appSettingProvider.select((state) => state.testUrl)),
-            );
+          onPressed: () {
+            debouncer.call(commonDuration, () {
+              delayTest(
+                ref.watch(proxiesStateProvider),
+                ref.watch(appSettingProvider.select((state) => state.testUrl)),
+              );
+            });
           },
           icon: const Icon(
             Icons.speed_outlined,
@@ -97,8 +98,15 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
       },
     );
     super.initState();
-  }
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      delayTest(
+        ref.watch(proxiesStateProvider),
+        ref.watch(appSettingProvider.select((state) => state.testUrl)),
+      );
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     // ref.watch(themeSettingProvider.select((state) => state.textScale));
