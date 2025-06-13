@@ -30,6 +30,12 @@ GroupsState currentGroupsState(Ref ref) {
 }
 
 @riverpod
+String? currentGroupName(Ref ref) {
+  final groupName = ref.watch(currentProfileProvider.select((state) => state?.currentGroupName));
+  return groupName;
+}
+
+@riverpod
 NavigationItemsState navigationsState(Ref ref) {
   final hasProxies = ref.watch(
       currentGroupsStateProvider.select((state) => state.value.isNotEmpty));

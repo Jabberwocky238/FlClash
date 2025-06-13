@@ -82,27 +82,6 @@ class ProxyCard extends StatelessWidget {
         style: context.textTheme.bodyMedium,
       ),
     );
-    // if (type == ProxyCardType.min) {
-    //   return SizedBox(
-    //     height: measure.bodyMediumHeight * 1,
-    //     child: EmojiText(
-    //       proxy.name,
-    //       maxLines: 1,
-    //       overflow: TextOverflow.ellipsis,
-    //       style: context.textTheme.bodyMedium,
-    //     ),
-    //   );
-    // } else {
-    //   return SizedBox(
-    //     height: measure.bodyMediumHeight * 2,
-    //     child: EmojiText(
-    //       proxy.name,
-    //       maxLines: 2,
-    //       overflow: TextOverflow.ellipsis,
-    //       style: context.textTheme.bodyMedium,
-    //     ),
-    //   );
-    // }
   }
 
   _changeProxy(WidgetRef ref) async {
@@ -143,6 +122,7 @@ class ProxyCard extends StatelessWidget {
               enterAnimated: true,
               onPressed: () {
                 _changeProxy(ref);
+                globalState.appController.toPage(PageLabel.dashboard);
               },
               isSelected: selectedProxyName == proxy.name,
               child: child!,

@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
@@ -49,6 +48,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
               const SizedBox(
                 height: 16,
               ),
+              _getUserDebugItem(context),
+              const SizedBox(
+                height: 16,
+              ),
               _getButtonGroup(context),
             ],
           ),
@@ -64,14 +67,21 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
       type: CommonCardType.filled,
       radius: 18,
       child: ListItem(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-          top: 4,
-          bottom: 4,
-        ),
         title: Text(appLocalizations.userEmail),
         subtitle: Text(currentEmail),
+      ),
+    );
+  }
+
+  Widget _getUserDebugItem(BuildContext context) {
+    final currentToken =
+        ref.watch(authSettingProvider.select((state) => state.token));
+    return CommonCard(
+      type: CommonCardType.filled,
+      radius: 18,
+      child: ListItem(
+        title: Text("Token"),
+        subtitle: Text(currentToken ?? ""),
       ),
     );
   }
@@ -83,7 +93,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         radius: 18,
         child: ListItem(
           leading: const Icon(Icons.login),
-          title: Text(appLocalizations.login, textAlign: TextAlign.center,),
+          title: Text(
+            appLocalizations.login,
+            textAlign: TextAlign.center,
+          ),
           // delegate: NextDelegate(
           //   title: appLocalizations.login,
           //   widget: PageLogin(),
@@ -98,7 +111,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         radius: 18,
         child: ListItem(
           leading: const Icon(Icons.person_add),
-          title: Text(appLocalizations.register, textAlign: TextAlign.center,),
+          title: Text(
+            appLocalizations.register,
+            textAlign: TextAlign.center,
+          ),
           // delegate: OpenDelegate(
           //   title: appLocalizations.register,
           //   widget: PageRegister(),
@@ -113,10 +129,19 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         radius: 18,
         child: ListItem(
           leading: const Icon(Icons.logout),
-          title: Text(appLocalizations.logout, textAlign: TextAlign.center,),
-          onTap: () {
-            ref.read(authSettingProvider.notifier).updateState(
-              (state) => const AuthProps(email: '', password: ''),
+          title: Text(
+            appLocalizations.logout,
+            textAlign: TextAlign.center,
+          ),
+          onTap: () async {
+             await globalState.showMessage(
+              message: TextSpan(text: "确定退出登录吗？"),
+              title: appLocalizations.logout,
+              afterCancel: () {},
+              afterConfirm: () async {
+                await globalState.authController.logout();
+                commonPrint.log("logout");
+              },
             );
           },
         ),

@@ -6,14 +6,14 @@ import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ShowProxies extends ConsumerStatefulWidget {
+class ShowProxies extends StatefulWidget {
   const ShowProxies({super.key});
 
   @override
-  ConsumerState<ShowProxies> createState() => _ShowProxiesState();
+  State<ShowProxies> createState() => _ShowProxiesState();
 }
 
-class _ShowProxiesState extends ConsumerState<ShowProxies> {
+class _ShowProxiesState extends State<ShowProxies> {
   @override
   void initState() {
     super.initState();
@@ -26,7 +26,6 @@ class _ShowProxiesState extends ConsumerState<ShowProxies> {
 
   @override
   Widget build(BuildContext context) {
-    final proxies = ref.watch(proxiesStateProvider);
     return SizedBox(
       height: getWidgetHeight(1),
       child: CommonCard(
@@ -48,25 +47,27 @@ class _ShowProxiesState extends ConsumerState<ShowProxies> {
             children: [
               SizedBox(
                 height: globalState.theme.bodyMediumHeight + 2,
-                child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "当前可用节点数:",
-                          style: context.textTheme.bodyMedium?.toLight
-                              .adjustSize(1),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          proxies.length.toString(),
-                          style: context.textTheme.bodyMedium?.toLight
-                              .adjustSize(1),
-                    )
-                  ],
-                ),
-              )
+                child: Consumer(builder: (_, ref, __) {
+                  final proxies = ref.watch(proxiesStateProvider);
+                  return Row(
+                    children: [
+                      Text(
+                        "当前可用节点数:",
+                        style:
+                            context.textTheme.bodyMedium?.toLight.adjustSize(1),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        proxies.length.toString(),
+                        style:
+                            context.textTheme.bodyMedium?.toLight.adjustSize(1),
+                      ),
+                    ],
+                  );
+                }),
+              ),
             ],
           ),
         ),

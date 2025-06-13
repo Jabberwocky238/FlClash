@@ -24,6 +24,23 @@ final currentGroupsStateProvider = AutoDisposeProvider<GroupsState>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CurrentGroupsStateRef = AutoDisposeProviderRef<GroupsState>;
+String _$currentGroupNameHash() => r'341f93879dc9114a3b8cd5bfe580f8015017564e';
+
+/// See also [currentGroupName].
+@ProviderFor(currentGroupName)
+final currentGroupNameProvider = AutoDisposeProvider<String?>.internal(
+  currentGroupName,
+  name: r'currentGroupNameProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$currentGroupNameHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CurrentGroupNameRef = AutoDisposeProviderRef<String?>;
 String _$navigationsStateHash() => r'2f5e46e4778c512db6ba813f383297b8064f02fd';
 
 /// See also [navigationsState].

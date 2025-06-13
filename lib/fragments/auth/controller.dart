@@ -59,12 +59,13 @@ class AuthController {
       }
       final token = await _login(authProps.email!, authProps.password!);
       if (token != null) {
-        _saveAuthState(AuthProps(
+        await _saveAuthState(AuthProps(
           email: authProps.email!,
           password: authProps.password!,
           token: token,
         ));
         await _switchToVVPPNNProfile(token);
+        await globalState.appController.autoUpdateProfiles();
         return (success: true, message: "登录成功 token: $token");
       } else {
         return (success: false, message: "登录失败");
@@ -77,6 +78,17 @@ class AuthController {
       } else {
         return (success: false, message: "登录失败");
       }
+    }
+  }
+
+  Future<AuthResult> logout() async {
+    try {
+      await _saveAuthState(const AuthProps(email: '', password: '', token: ''));
+      await _switchToVVPPNNProfile(null);
+      await globalState.appController.autoUpdateProfiles();
+      return (success: true, message: "退出成功");
+    } on DioException catch (err, _) {
+      return (success: false, message: "退出失败");
     }
   }
 
@@ -95,50 +107,60 @@ class AuthController {
     }
   }
 
-  void _saveAuthState(AuthProps authState) {
+  Future<void> _saveAuthState(AuthProps authState) async {
     _ref.read(authSettingProvider.notifier).updateState(
-          (state) => authState,
-        );
+      (state) => authState,
+    );
   }
 
-  Future<void> _switchToVVPPNNProfile(String token) async {
+  Future<void> _switchToVVPPNNProfile(String? token) async {
     final config = await preferences.getConfig();
     if (config == null) {
       return;
     }
-    final url = "$baseUrl/fetch?token=$token";
+    final url = "$baseUrl/fetch_config${token == null || token.isEmpty ? "" : "?token=$token"}";
     var profile = config.profiles
         .firstWhereOrNull((profile) => profile.id == defaultJWClashProfileId);
     if (profile == null) {
       profile = await Profile.fromJWCLash(url: url).update();
     } else {
-      profile = profile.copyWith(url: url);
+      profile = await profile.copyWith(url: url).update();
     }
     // printMessage("profile: $profile");
     await globalState.appController.setProfileAndAutoApply(profile);
     _ref.read(currentProfileIdProvider.notifier).value = profile.id;
+    printMessage("switch to ${profile.url}");
   }
+}
 
-  Future<Response<dynamic>> _sendCode(String email) async {
-    return await request.post(
-      "$baseUrl/sendcode",
-      {"email": email},
-    );
+Future<Response<dynamic>> _sendCode(String email) async {
+  if (email.isEmpty) {
+    throw Exception("email cannot be empty");
   }
+  return await request.post(
+    "$baseUrl/auth/sendcode",
+    {"email": email},
+  );
+}
 
-  Future<Response<dynamic>> _register(
-      String email, String password, String code) async {
-    return await request.post(
-      "$baseUrl/register",
-      {"email": email, "password": password, "code": code},
-    );
+Future<Response<dynamic>> _register(
+    String email, String password, String code) async {
+  if (email.isEmpty || password.isEmpty || code.isEmpty) {
+    throw Exception("email, password, code cannot be empty");
   }
+  return await request.post(
+    "$baseUrl/auth/register",
+    {"email": email, "password": password, "code": code},
+  );
+}
 
-  Future<String?> _login(String email, String password) async {
-    final response = await request.post(
-      "$baseUrl/token",
-      {"email": email, "password": password},
-    );
-    return response.data['token'];
+Future<String?> _login(String email, String password) async {
+  if (email.isEmpty || password.isEmpty) {
+    throw Exception("email, password cannot be empty");
   }
+  final response = await request.post(
+    "$baseUrl/auth/token",
+    {"email": email, "password": password},
+  );
+  return response.data['token'];
 }

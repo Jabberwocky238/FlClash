@@ -183,7 +183,7 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
       ),
     );
   }
-  
+
   _buildIPInfo(BuildContext context, NetworkDetectionState state) {
     final ipInfo = state.ipInfo;
     final isLoading = state.isLoading;
@@ -193,48 +193,46 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
         left: 12,
       ),
       child: Center(
-        child: FadeThroughBox(
-          child: ipInfo != null
-              ? Row(
-                  children: [
-                    Text(
-                      _countryCodeToEmoji(
-                        ipInfo.countryCode,
-                      ),
-                      style: textStyle?.copyWith(
-                        fontFamily: FontFamily.twEmoji.value,
-                      ),
+        child: ipInfo != null
+            ? Row(
+                children: [
+                  Text(
+                    _countryCodeToEmoji(
+                      ipInfo.countryCode,
                     ),
-                    const SizedBox(width: 8),
-                    Text(
-                      ipInfo.ip,
-                      style: textStyle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    style: textStyle?.copyWith(
+                      fontFamily: FontFamily.twEmoji.value,
                     ),
-                  ],
-                )
-              : FadeThroughBox(
-                  child: isLoading == false && ipInfo == null
-                      ? Text(
-                          "timeout",
-                          style: context.textTheme.bodyMedium
-                              ?.copyWith(color: Colors.red)
-                              .adjustSize(1),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        )
-                      : Container(
-                          padding: const EdgeInsets.all(2),
-                          child: const AspectRatio(
-                            aspectRatio: 1,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                            ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    ipInfo.ip,
+                    style: textStyle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              )
+            : FadeThroughBox(
+                child: isLoading == false && ipInfo == null
+                    ? Text(
+                        "timeout",
+                        style: context.textTheme.bodyMedium
+                            ?.copyWith(color: Colors.red)
+                            .adjustSize(1),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    : Container(
+                        padding: const EdgeInsets.all(2),
+                        child: const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
                           ),
                         ),
-                ),
-        ),
+                      ),
+              ),
       ),
     );
   }
