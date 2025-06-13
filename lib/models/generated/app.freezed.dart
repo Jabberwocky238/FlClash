@@ -29,6 +29,7 @@ mixin _$AppState {
   int? get runTime => throw _privateConstructorUsedError;
   List<ExternalProvider> get providers => throw _privateConstructorUsedError;
   String? get localIp => throw _privateConstructorUsedError;
+  OrderSelectionProps get orderSelection => throw _privateConstructorUsedError;
   FixedList<Connection> get requests => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
   FixedList<Log> get logs => throw _privateConstructorUsedError;
@@ -61,12 +62,15 @@ abstract class $AppStateCopyWith<$Res> {
       int? runTime,
       List<ExternalProvider> providers,
       String? localIp,
+      OrderSelectionProps orderSelection,
       FixedList<Connection> requests,
       int version,
       FixedList<Log> logs,
       FixedList<Traffic> traffics,
       Traffic totalTraffic,
       bool needApply});
+
+  $OrderSelectionPropsCopyWith<$Res> get orderSelection;
 }
 
 /// @nodoc
@@ -96,6 +100,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? runTime = freezed,
     Object? providers = null,
     Object? localIp = freezed,
+    Object? orderSelection = null,
     Object? requests = null,
     Object? version = null,
     Object? logs = null,
@@ -152,6 +157,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.localIp
           : localIp // ignore: cast_nullable_to_non_nullable
               as String?,
+      orderSelection: null == orderSelection
+          ? _value.orderSelection
+          : orderSelection // ignore: cast_nullable_to_non_nullable
+              as OrderSelectionProps,
       requests: null == requests
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -178,6 +187,16 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
               as bool,
     ) as $Val);
   }
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderSelectionPropsCopyWith<$Res> get orderSelection {
+    return $OrderSelectionPropsCopyWith<$Res>(_value.orderSelection, (value) {
+      return _then(_value.copyWith(orderSelection: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -201,12 +220,16 @@ abstract class _$$AppStateImplCopyWith<$Res>
       int? runTime,
       List<ExternalProvider> providers,
       String? localIp,
+      OrderSelectionProps orderSelection,
       FixedList<Connection> requests,
       int version,
       FixedList<Log> logs,
       FixedList<Traffic> traffics,
       Traffic totalTraffic,
       bool needApply});
+
+  @override
+  $OrderSelectionPropsCopyWith<$Res> get orderSelection;
 }
 
 /// @nodoc
@@ -234,6 +257,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? runTime = freezed,
     Object? providers = null,
     Object? localIp = freezed,
+    Object? orderSelection = null,
     Object? requests = null,
     Object? version = null,
     Object? logs = null,
@@ -290,6 +314,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.localIp
           : localIp // ignore: cast_nullable_to_non_nullable
               as String?,
+      orderSelection: null == orderSelection
+          ? _value.orderSelection
+          : orderSelection // ignore: cast_nullable_to_non_nullable
+              as OrderSelectionProps,
       requests: null == requests
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -334,6 +362,7 @@ class _$AppStateImpl implements _AppState {
       this.runTime,
       final List<ExternalProvider> providers = const [],
       this.localIp,
+      this.orderSelection = const OrderSelectionProps(),
       required this.requests,
       required this.version,
       required this.logs,
@@ -402,6 +431,9 @@ class _$AppStateImpl implements _AppState {
   @override
   final String? localIp;
   @override
+  @JsonKey()
+  final OrderSelectionProps orderSelection;
+  @override
   final FixedList<Connection> requests;
   @override
   final int version;
@@ -417,7 +449,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, sortNum: $sortNum, viewSize: $viewSize, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, requests: $requests, version: $version, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
+    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, sortNum: $sortNum, viewSize: $viewSize, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, requests: $requests, version: $version, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
   }
 
   @override
@@ -442,6 +474,8 @@ class _$AppStateImpl implements _AppState {
             const DeepCollectionEquality()
                 .equals(other._providers, _providers) &&
             (identical(other.localIp, localIp) || other.localIp == localIp) &&
+            (identical(other.orderSelection, orderSelection) ||
+                other.orderSelection == orderSelection) &&
             (identical(other.requests, requests) ||
                 other.requests == requests) &&
             (identical(other.version, version) || other.version == version) &&
@@ -455,26 +489,28 @@ class _$AppStateImpl implements _AppState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isInit,
-      pageLabel,
-      const DeepCollectionEquality().hash(_packages),
-      sortNum,
-      viewSize,
-      const DeepCollectionEquality().hash(_delayMap),
-      const DeepCollectionEquality().hash(_groups),
-      checkIpNum,
-      brightness,
-      runTime,
-      const DeepCollectionEquality().hash(_providers),
-      localIp,
-      requests,
-      version,
-      logs,
-      traffics,
-      totalTraffic,
-      needApply);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        isInit,
+        pageLabel,
+        const DeepCollectionEquality().hash(_packages),
+        sortNum,
+        viewSize,
+        const DeepCollectionEquality().hash(_delayMap),
+        const DeepCollectionEquality().hash(_groups),
+        checkIpNum,
+        brightness,
+        runTime,
+        const DeepCollectionEquality().hash(_providers),
+        localIp,
+        orderSelection,
+        requests,
+        version,
+        logs,
+        traffics,
+        totalTraffic,
+        needApply
+      ]);
 
   /// Create a copy of AppState
   /// with the given fields replaced by the non-null parameter values.
@@ -499,6 +535,7 @@ abstract class _AppState implements AppState {
       final int? runTime,
       final List<ExternalProvider> providers,
       final String? localIp,
+      final OrderSelectionProps orderSelection,
       required final FixedList<Connection> requests,
       required final int version,
       required final FixedList<Log> logs,
@@ -530,6 +567,8 @@ abstract class _AppState implements AppState {
   List<ExternalProvider> get providers;
   @override
   String? get localIp;
+  @override
+  OrderSelectionProps get orderSelection;
   @override
   FixedList<Connection> get requests;
   @override

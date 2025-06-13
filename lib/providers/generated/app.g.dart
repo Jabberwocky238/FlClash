@@ -303,5 +303,21 @@ final needApplyProvider = AutoDisposeNotifierProvider<NeedApply, bool>.internal(
 );
 
 typedef _$NeedApply = AutoDisposeNotifier<bool>;
+String _$orderSelectionHash() => r'1aa28628e0c6b3c407ef50f251c9d8d9ccb1af0d';
+
+/// See also [OrderSelection].
+@ProviderFor(OrderSelection)
+final orderSelectionProvider =
+    AutoDisposeNotifierProvider<OrderSelection, OrderSelectionProps>.internal(
+  OrderSelection.new,
+  name: r'orderSelectionProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$orderSelectionHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$OrderSelection = AutoDisposeNotifier<OrderSelectionProps>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

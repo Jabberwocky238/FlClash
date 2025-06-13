@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
@@ -7,15 +8,24 @@ import 'package:jw_clash/state.dart';
 import 'package:intl/intl.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
-  final Widget child;
+  final List<Widget> children;
 
   const CustomDrawerHeader({
     super.key,
-    required this.child,
+    required this.children,
   });
 
   @override
   Widget build(BuildContext context) {
+    final realChildren = [
+      Text(
+        'JW Clash',
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+      ),
+      ...children,
+    ].separated(const SizedBox(height: 8)).toList();
     return Container(
       width: double.infinity,
       height: 150,
@@ -26,16 +36,7 @@ class CustomDrawerHeader extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'JW Clash',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  ),
-            ),
-            const SizedBox(height: 8),
-            child,
-          ],
+          children: realChildren,
         ),
       ),
     );
@@ -62,7 +63,7 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
       child: Column(
         children: [
           CustomDrawerHeader(
-            child: Consumer(
+            children: [Consumer(
               builder: (context, ref, _) {
                 return Text(
                   authSetting.email.isEmpty
@@ -73,7 +74,18 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
                       ),
                 );
               },
-            ),
+            ), Consumer(
+              builder: (context, ref, _) {
+                return Text(
+                  authSetting.expiresAt?.isEmpty ?? true
+                      ? 'Free'
+                      : "VIP until ${authSetting.expiresAt}",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
+                );
+              },
+            )],
           ),
           Expanded(
             child: ListView(

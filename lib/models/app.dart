@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'common.dart';
 import 'core.dart';
+import 'user.dart';
 
 part 'generated/app.freezed.dart';
 
@@ -25,6 +26,7 @@ class AppState with _$AppState {
     int? runTime,
     @Default([]) List<ExternalProvider> providers,
     String? localIp,
+    @Default(OrderSelectionProps()) OrderSelectionProps orderSelection,
     required FixedList<Connection> requests,
     required int version,
     required FixedList<Log> logs,

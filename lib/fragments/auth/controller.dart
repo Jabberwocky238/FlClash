@@ -57,15 +57,17 @@ class AuthController {
       if (authProps.password == null || authProps.password!.isEmpty) {
         return (success: false, message: "密码不能为空");
       }
-      final token = await _login(authProps.email!, authProps.password!);
+      final (token, expiresAt) = await _login(authProps.email!, authProps.password!);
       if (token != null) {
+        commonPrint.log("[AuthController] login success: $token, $expiresAt");
         await _saveAuthState(AuthProps(
           email: authProps.email!,
           password: authProps.password!,
           token: token,
+          expiresAt: expiresAt,
         ));
         await _switchToVVPPNNProfile(token);
-        await globalState.appController.autoUpdateProfiles();
+        // await globalState.appController.autoUpdateProfiles();
         return (success: true, message: "登录成功 token: $token");
       } else {
         return (success: false, message: "登录失败");
@@ -83,9 +85,9 @@ class AuthController {
 
   Future<AuthResult> logout() async {
     try {
-      await _saveAuthState(const AuthProps(email: '', password: '', token: ''));
+      await _saveAuthState(const AuthProps(email: '', password: '', token: '', expiresAt: ''));
       await _switchToVVPPNNProfile(null);
-      await globalState.appController.autoUpdateProfiles();
+      // await globalState.appController.autoUpdateProfiles();
       return (success: true, message: "退出成功");
     } on DioException catch (err, _) {
       return (success: false, message: "退出失败");
@@ -129,6 +131,11 @@ class AuthController {
     // printMessage("profile: $profile");
     await globalState.appController.setProfileAndAutoApply(profile);
     _ref.read(currentProfileIdProvider.notifier).value = profile.id;
+    //  设置组
+    final firstGroup = _ref.read(currentGroupsStateProvider.select((state) => state.value)).first;
+    globalState.appController.updateCurrentUnfoldSet(
+      {firstGroup.name},
+    );
     printMessage("switch to ${profile.url}");
   }
 }
@@ -154,7 +161,7 @@ Future<Response<dynamic>> _register(
   );
 }
 
-Future<String?> _login(String email, String password) async {
+Future<(String?, String?)> _login(String email, String password) async {
   if (email.isEmpty || password.isEmpty) {
     throw Exception("email, password cannot be empty");
   }
@@ -162,5 +169,5 @@ Future<String?> _login(String email, String password) async {
     "$baseUrl/auth/token",
     {"email": email, "password": password},
   );
-  return response.data['token'];
+  return (response.data['token'] as String?, response.data['vip_expired_at'] as String?);
 }

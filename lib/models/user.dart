@@ -27,6 +27,7 @@ class AuthProps with _$AuthProps {
     @Default('') String email,
     @Default('') String password,
     String? token,
+    String? expiresAt,
   }) = _AuthProps;
 
   factory AuthProps.fromJson(Map<String, dynamic> json) =>
@@ -56,5 +57,22 @@ class UserLoginProps with _$UserLoginProps {
     String? email,
     String? password,
   }) = _UserLoginProps;
+}
+
+@freezed
+class OrderCommonProps with _$OrderCommonProps {
+  const factory OrderCommonProps({
+    required String orderType,
+    required String name,
+    required String price,
+  }) = _OrderCommonProps;
+}
+
+@freezed
+class OrderSelectionProps with _$OrderSelectionProps {
+  const factory OrderSelectionProps({
+    OrderCommonProps? selectedOrder,
+    @Default([]) List<OrderCommonProps> orders,
+  }) = _OrderSelectionProps;
 }
 

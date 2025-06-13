@@ -423,6 +423,7 @@ enum PageLabel {
   login,
   register,
   webView,
+  order,
 }
 
 enum RuleAction {

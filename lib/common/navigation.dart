@@ -35,6 +35,13 @@ class Navigation {
             ? [NavigationItemMode.mobile, NavigationItemMode.desktop]
             : [],
       ),
+      const NavigationItem(
+        icon: Icon(Icons.article),
+        label: PageLabel.order,
+        fragment: OrderFragment(
+          key: GlobalObjectKey(PageLabel.order),
+        ),
+      ),
       // ###############################################
       const NavigationItem(
         icon: Icon(Icons.folder),
@@ -44,7 +51,7 @@ class Navigation {
             PageLabel.profiles,
           ),
         ),
-        modes: [NavigationItemMode.invisible],
+        // modes: [NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.view_timeline),

@@ -271,4 +271,3 @@ class PatchClashConfig extends _$PatchClashConfig
     );
   }
 }
-

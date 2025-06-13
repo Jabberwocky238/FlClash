@@ -356,3 +356,24 @@ class NeedApply extends _$NeedApply with AutoDisposeNotifierMixin {
     );
   }
 }
+
+@riverpod
+class OrderSelection extends _$OrderSelection with AutoDisposeNotifierMixin {
+  @override
+  OrderSelectionProps build() {
+    return globalState.appState.orderSelection;
+  }
+
+  @override
+  onUpdate(value) {
+    globalState.appState = globalState.appState.copyWith(
+      orderSelection: value,
+    );
+  }
+
+  selectOrder(OrderCommonProps? order) {
+    state = state.copyWith(
+      selectedOrder: order,
+    );
+  }
+}

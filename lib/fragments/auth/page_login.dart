@@ -120,17 +120,21 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
           textAlign: TextAlign.center,
         ),
         onTap: () async {
-          final result =
-              await globalState.authController.login(_authStateNotifier.value);
-          go() => result.success
-              ? globalState.appController.toPage(PageLabel.auth)
-              : null;
-          globalState.showMessage(
-            cancelable: false,
-            message: TextSpan(text: result.message),
-            afterCancel: go,
-            afterConfirm: go,
-          );
+          final commonScaffoldState = globalState.homeScaffoldKey.currentState;
+          if (commonScaffoldState?.mounted != true) return;
+          await commonScaffoldState?.loadingRun(() async {
+            final result = await globalState.authController
+                .login(_authStateNotifier.value);
+            go() => result.success
+                ? globalState.appController.toPage(PageLabel.auth)
+                : null;
+            globalState.showMessage(
+              cancelable: false,
+              message: TextSpan(text: result.message),
+              afterCancel: go,
+              afterConfirm: go,
+            );
+          });
         },
       ),
     );

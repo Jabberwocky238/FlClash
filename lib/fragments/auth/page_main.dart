@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
@@ -18,6 +19,32 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
   void initState() {
     super.initState();
   }
+
+  @override
+  get actions => [
+        IconButton(
+          onPressed: () {
+            debouncer.call(commonDuration, () async {
+              final commonScaffoldState =
+                  globalState.homeScaffoldKey.currentState;
+              if (commonScaffoldState?.mounted != true) return;
+              await commonScaffoldState?.loadingRun(() async {
+                final authProps = ref.watch(authSettingProvider);
+                final result =
+                    await globalState.authController.login(UserLoginProps(
+                  email: authProps.email,
+                  password: authProps.password,
+                ));
+                globalState.showMessage(
+                    message: TextSpan(text: result.message));
+              });
+            });
+          },
+          icon: const Icon(
+            Icons.refresh,
+          ),
+        ),
+      ];
 
   @override
   void dispose() {
@@ -134,7 +161,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
             textAlign: TextAlign.center,
           ),
           onTap: () async {
-             await globalState.showMessage(
+            await globalState.showMessage(
               message: TextSpan(text: "确定退出登录吗？"),
               title: appLocalizations.logout,
               afterCancel: () {},
