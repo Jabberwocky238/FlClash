@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'common.dart';
-import 'config.dart';
 import 'core.dart';
 
 part 'generated/app.freezed.dart';

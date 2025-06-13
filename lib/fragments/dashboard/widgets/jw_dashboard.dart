@@ -183,23 +183,7 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
       ),
     );
   }
-
-  _buildCountryEmoji(BuildContext context, IpInfo? ipInfo) {
-    return ipInfo != null
-        ? Text(
-            _countryCodeToEmoji(
-              ipInfo.countryCode,
-            ),
-            style: context.textTheme.bodyLarge?.toLight.copyWith(
-              fontFamily: FontFamily.twEmoji.value,
-            ),
-          )
-        : Icon(
-            Icons.network_check,
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
-          );
-  }
-
+  
   _buildIPInfo(BuildContext context, NetworkDetectionState state) {
     final ipInfo = state.ipInfo;
     final isLoading = state.isLoading;

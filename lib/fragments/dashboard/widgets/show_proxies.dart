@@ -1,12 +1,6 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/fragments/proxies/list.dart';
-import 'package:jw_clash/models/common.dart';
 import 'package:jw_clash/providers/state.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
