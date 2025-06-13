@@ -104,7 +104,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
 
   List<double> _getItemHeightList(
     List<Widget> items,
-    ProxyCardType proxyCardType,
+    // ProxyCardType proxyCardType,
   ) {
     final itemHeightList = <double>[];
     List<double> headerOffset = [];
@@ -113,7 +113,7 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
       if (item.runtimeType == ListHeader) {
         headerOffset.add(currentHeight);
       }
-      final itemHeight = _getListItemHeight(item.runtimeType, proxyCardType);
+      final itemHeight = _getListItemHeight(item.runtimeType, ProxyCardType.expand);
       itemHeightList.add(itemHeight);
       currentHeight = currentHeight + itemHeight;
     }
@@ -124,10 +124,10 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
   List<Widget> _buildItems(
     WidgetRef ref, {
     required List<String> groupNames,
-    required int columns,
     required Set<String> currentUnfoldSet,
     // required ProxyCardType type,
   }) {
+    final columns = 1;
     final items = <Widget>[];
     final GroupNameProxiesMap groupNameProxiesMap = {};
     for (final groupName in groupNames) {
@@ -271,10 +271,9 @@ class _ProxiesListFragmentState extends State<ProxiesListFragment> {
           ref,
           groupNames: state.groupNames,
           currentUnfoldSet: state.currentUnfoldSet,
-          columns: state.columns,
           // type: state.proxyCardType,
         );
-        final itemsOffset = _getItemHeightList(items, state.proxyCardType);
+        final itemsOffset = _getItemHeightList(items);
         // return CommonScrollBar(
         //   controller: _controller,
         //   child: Stack(

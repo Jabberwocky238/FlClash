@@ -236,7 +236,7 @@ final profilesSelectorStateProvider =
 typedef ProfilesSelectorStateRef
     = AutoDisposeProviderRef<ProfilesSelectorState>;
 String _$proxiesListSelectorStateHash() =>
-    r'0e63ea2fb141e086156a2ed8452584e2375c5aa5';
+    r'd2c1f99ad85ee0fecd08413aaeb659f01e7d8940';
 
 /// See also [proxiesListSelectorState].
 @ProviderFor(proxiesListSelectorState)
@@ -308,7 +308,7 @@ final groupNamesStateProvider = AutoDisposeProvider<GroupNamesState>.internal(
 // ignore: unused_element
 typedef GroupNamesStateRef = AutoDisposeProviderRef<GroupNamesState>;
 String _$proxyGroupSelectorStateHash() =>
-    r'5bc86d13286c6c859f0b874235a281122cc612ba';
+    r'44e51fb6a9283d99782532ad69ac406febc3b427';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -977,23 +977,6 @@ final currentProfileProvider = AutoDisposeProvider<Profile?>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CurrentProfileRef = AutoDisposeProviderRef<Profile?>;
-String _$getProxiesColumnsHash() => r'725066b5fc21f590a4c2656a1fd5e14ab7079079';
-
-/// See also [getProxiesColumns].
-@ProviderFor(getProxiesColumns)
-final getProxiesColumnsProvider = AutoDisposeProvider<int>.internal(
-  getProxiesColumns,
-  name: r'getProxiesColumnsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getProxiesColumnsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetProxiesColumnsRef = AutoDisposeProviderRef<int>;
 String _$getProxyCardStateHash() => r'0f131148cb5ed60c9c4c4f31fbe32f114ac346bb';
 
 /// See also [getProxyCardState].

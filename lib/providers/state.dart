@@ -216,14 +216,14 @@ ProxiesListSelectorState proxiesListSelectorState(Ref ref) {
   final currentUnfoldSet = ref.watch(unfoldSetProvider);
   final proxiesStyle = ref.watch(proxiesStyleSettingProvider);
   final sortNum = ref.watch(sortNumProvider);
-  final columns = ref.watch(getProxiesColumnsProvider);
+  // final columns = ref.watch(getProxiesColumnsProvider);
   return ProxiesListSelectorState(
     groupNames: groupNames,
     currentUnfoldSet: currentUnfoldSet,
     proxiesSortType: proxiesStyle.sortType,
-    proxyCardType: proxiesStyle.cardType,
+    // proxyCardType: proxiesStyle.cardType,
     sortNum: sortNum,
-    columns: columns,
+    // columns: columns,
   );
 }
 
@@ -282,7 +282,7 @@ ProxyGroupSelectorState proxyGroupSelectorState(Ref ref, String groupName) {
     ),
   );
   final sortNum = ref.watch(sortNumProvider);
-  final columns = ref.watch(getProxiesColumnsProvider);
+  // final columns = ref.watch(getProxiesColumnsProvider);
   return ProxyGroupSelectorState(
     testUrl: group?.testUrl,
     proxiesSortType: proxiesStyle.sortType,
@@ -290,7 +290,7 @@ ProxyGroupSelectorState proxyGroupSelectorState(Ref ref, String groupName) {
     sortNum: sortNum,
     groupType: group?.type ?? GroupType.Selector,
     proxies: group?.all ?? [],
-    columns: columns,
+    // columns: columns,
   );
 }
 
@@ -393,13 +393,13 @@ Profile? currentProfile(Ref ref) {
       .watch(profilesProvider.select((state) => state.getProfile(profileId)));
 }
 
-@riverpod
-int getProxiesColumns(Ref ref) {
-  final viewWidth = ref.watch(viewWidthProvider);
-  final proxiesLayout =
-      ref.watch(proxiesStyleSettingProvider.select((state) => state.layout));
-  return utils.getProxiesColumns(viewWidth, proxiesLayout);
-}
+// @riverpod
+// int getProxiesColumns(Ref ref) {
+//   final viewWidth = ref.watch(viewWidthProvider);
+//   final proxiesLayout =
+//       ref.watch(proxiesStyleSettingProvider.select((state) => state.layout));
+//   return utils.getProxiesColumns(viewWidth, proxiesLayout);
+// }
 
 ProxyCardState _getProxyCardState(
   List<Group> groups,

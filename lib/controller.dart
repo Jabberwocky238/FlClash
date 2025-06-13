@@ -193,9 +193,9 @@ class AppController {
     return _ref.read(getRealTestUrlProvider(url));
   }
 
-  int getProxiesColumns() {
-    return _ref.read(getProxiesColumnsProvider);
-  }
+  // int getProxiesColumns() {
+  //   return _ref.read(getProxiesColumnsProvider);
+  // }
 
   addSortNum() {
     return _ref.read(sortNumProvider.notifier).add();

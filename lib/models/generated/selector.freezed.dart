@@ -2086,10 +2086,9 @@ abstract class _NavigationItemsState implements NavigationItemsState {
 mixin _$ProxiesListSelectorState {
   List<String> get groupNames => throw _privateConstructorUsedError;
   Set<String> get currentUnfoldSet => throw _privateConstructorUsedError;
-  ProxiesSortType get proxiesSortType => throw _privateConstructorUsedError;
-  ProxyCardType get proxyCardType => throw _privateConstructorUsedError;
+  ProxiesSortType get proxiesSortType =>
+      throw _privateConstructorUsedError; // required ProxyCardType proxyCardType,
   num get sortNum => throw _privateConstructorUsedError;
-  int get columns => throw _privateConstructorUsedError;
 
   /// Create a copy of ProxiesListSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -2108,9 +2107,7 @@ abstract class $ProxiesListSelectorStateCopyWith<$Res> {
       {List<String> groupNames,
       Set<String> currentUnfoldSet,
       ProxiesSortType proxiesSortType,
-      ProxyCardType proxyCardType,
-      num sortNum,
-      int columns});
+      num sortNum});
 }
 
 /// @nodoc
@@ -2132,9 +2129,7 @@ class _$ProxiesListSelectorStateCopyWithImpl<$Res,
     Object? groupNames = null,
     Object? currentUnfoldSet = null,
     Object? proxiesSortType = null,
-    Object? proxyCardType = null,
     Object? sortNum = null,
-    Object? columns = null,
   }) {
     return _then(_value.copyWith(
       groupNames: null == groupNames
@@ -2149,18 +2144,10 @@ class _$ProxiesListSelectorStateCopyWithImpl<$Res,
           ? _value.proxiesSortType
           : proxiesSortType // ignore: cast_nullable_to_non_nullable
               as ProxiesSortType,
-      proxyCardType: null == proxyCardType
-          ? _value.proxyCardType
-          : proxyCardType // ignore: cast_nullable_to_non_nullable
-              as ProxyCardType,
       sortNum: null == sortNum
           ? _value.sortNum
           : sortNum // ignore: cast_nullable_to_non_nullable
               as num,
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -2178,9 +2165,7 @@ abstract class _$$ProxiesListSelectorStateImplCopyWith<$Res>
       {List<String> groupNames,
       Set<String> currentUnfoldSet,
       ProxiesSortType proxiesSortType,
-      ProxyCardType proxyCardType,
-      num sortNum,
-      int columns});
+      num sortNum});
 }
 
 /// @nodoc
@@ -2201,9 +2186,7 @@ class __$$ProxiesListSelectorStateImplCopyWithImpl<$Res>
     Object? groupNames = null,
     Object? currentUnfoldSet = null,
     Object? proxiesSortType = null,
-    Object? proxyCardType = null,
     Object? sortNum = null,
-    Object? columns = null,
   }) {
     return _then(_$ProxiesListSelectorStateImpl(
       groupNames: null == groupNames
@@ -2218,18 +2201,10 @@ class __$$ProxiesListSelectorStateImplCopyWithImpl<$Res>
           ? _value.proxiesSortType
           : proxiesSortType // ignore: cast_nullable_to_non_nullable
               as ProxiesSortType,
-      proxyCardType: null == proxyCardType
-          ? _value.proxyCardType
-          : proxyCardType // ignore: cast_nullable_to_non_nullable
-              as ProxyCardType,
       sortNum: null == sortNum
           ? _value.sortNum
           : sortNum // ignore: cast_nullable_to_non_nullable
               as num,
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -2241,9 +2216,7 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
       {required final List<String> groupNames,
       required final Set<String> currentUnfoldSet,
       required this.proxiesSortType,
-      required this.proxyCardType,
-      required this.sortNum,
-      required this.columns})
+      required this.sortNum})
       : _groupNames = groupNames,
         _currentUnfoldSet = currentUnfoldSet;
 
@@ -2265,16 +2238,13 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
 
   @override
   final ProxiesSortType proxiesSortType;
-  @override
-  final ProxyCardType proxyCardType;
+// required ProxyCardType proxyCardType,
   @override
   final num sortNum;
-  @override
-  final int columns;
 
   @override
   String toString() {
-    return 'ProxiesListSelectorState(groupNames: $groupNames, currentUnfoldSet: $currentUnfoldSet, proxiesSortType: $proxiesSortType, proxyCardType: $proxyCardType, sortNum: $sortNum, columns: $columns)';
+    return 'ProxiesListSelectorState(groupNames: $groupNames, currentUnfoldSet: $currentUnfoldSet, proxiesSortType: $proxiesSortType, sortNum: $sortNum)';
   }
 
   @override
@@ -2288,10 +2258,7 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
                 .equals(other._currentUnfoldSet, _currentUnfoldSet) &&
             (identical(other.proxiesSortType, proxiesSortType) ||
                 other.proxiesSortType == proxiesSortType) &&
-            (identical(other.proxyCardType, proxyCardType) ||
-                other.proxyCardType == proxyCardType) &&
-            (identical(other.sortNum, sortNum) || other.sortNum == sortNum) &&
-            (identical(other.columns, columns) || other.columns == columns));
+            (identical(other.sortNum, sortNum) || other.sortNum == sortNum));
   }
 
   @override
@@ -2300,9 +2267,7 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
       const DeepCollectionEquality().hash(_groupNames),
       const DeepCollectionEquality().hash(_currentUnfoldSet),
       proxiesSortType,
-      proxyCardType,
-      sortNum,
-      columns);
+      sortNum);
 
   /// Create a copy of ProxiesListSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -2319,22 +2284,16 @@ abstract class _ProxiesListSelectorState implements ProxiesListSelectorState {
       {required final List<String> groupNames,
       required final Set<String> currentUnfoldSet,
       required final ProxiesSortType proxiesSortType,
-      required final ProxyCardType proxyCardType,
-      required final num sortNum,
-      required final int columns}) = _$ProxiesListSelectorStateImpl;
+      required final num sortNum}) = _$ProxiesListSelectorStateImpl;
 
   @override
   List<String> get groupNames;
   @override
   Set<String> get currentUnfoldSet;
   @override
-  ProxiesSortType get proxiesSortType;
-  @override
-  ProxyCardType get proxyCardType;
+  ProxiesSortType get proxiesSortType; // required ProxyCardType proxyCardType,
   @override
   num get sortNum;
-  @override
-  int get columns;
 
   /// Create a copy of ProxiesListSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -2352,7 +2311,6 @@ mixin _$ProxyGroupSelectorState {
   num get sortNum => throw _privateConstructorUsedError;
   GroupType get groupType => throw _privateConstructorUsedError;
   List<Proxy> get proxies => throw _privateConstructorUsedError;
-  int get columns => throw _privateConstructorUsedError;
 
   /// Create a copy of ProxyGroupSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -2373,8 +2331,7 @@ abstract class $ProxyGroupSelectorStateCopyWith<$Res> {
       ProxyCardType proxyCardType,
       num sortNum,
       GroupType groupType,
-      List<Proxy> proxies,
-      int columns});
+      List<Proxy> proxies});
 }
 
 /// @nodoc
@@ -2399,7 +2356,6 @@ class _$ProxyGroupSelectorStateCopyWithImpl<$Res,
     Object? sortNum = null,
     Object? groupType = null,
     Object? proxies = null,
-    Object? columns = null,
   }) {
     return _then(_value.copyWith(
       testUrl: freezed == testUrl
@@ -2426,10 +2382,6 @@ class _$ProxyGroupSelectorStateCopyWithImpl<$Res,
           ? _value.proxies
           : proxies // ignore: cast_nullable_to_non_nullable
               as List<Proxy>,
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -2449,8 +2401,7 @@ abstract class _$$ProxyGroupSelectorStateImplCopyWith<$Res>
       ProxyCardType proxyCardType,
       num sortNum,
       GroupType groupType,
-      List<Proxy> proxies,
-      int columns});
+      List<Proxy> proxies});
 }
 
 /// @nodoc
@@ -2474,7 +2425,6 @@ class __$$ProxyGroupSelectorStateImplCopyWithImpl<$Res>
     Object? sortNum = null,
     Object? groupType = null,
     Object? proxies = null,
-    Object? columns = null,
   }) {
     return _then(_$ProxyGroupSelectorStateImpl(
       testUrl: freezed == testUrl
@@ -2501,10 +2451,6 @@ class __$$ProxyGroupSelectorStateImplCopyWithImpl<$Res>
           ? _value._proxies
           : proxies // ignore: cast_nullable_to_non_nullable
               as List<Proxy>,
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -2518,8 +2464,7 @@ class _$ProxyGroupSelectorStateImpl implements _ProxyGroupSelectorState {
       required this.proxyCardType,
       required this.sortNum,
       required this.groupType,
-      required final List<Proxy> proxies,
-      required this.columns})
+      required final List<Proxy> proxies})
       : _proxies = proxies;
 
   @override
@@ -2541,11 +2486,8 @@ class _$ProxyGroupSelectorStateImpl implements _ProxyGroupSelectorState {
   }
 
   @override
-  final int columns;
-
-  @override
   String toString() {
-    return 'ProxyGroupSelectorState(testUrl: $testUrl, proxiesSortType: $proxiesSortType, proxyCardType: $proxyCardType, sortNum: $sortNum, groupType: $groupType, proxies: $proxies, columns: $columns)';
+    return 'ProxyGroupSelectorState(testUrl: $testUrl, proxiesSortType: $proxiesSortType, proxyCardType: $proxyCardType, sortNum: $sortNum, groupType: $groupType, proxies: $proxies)';
   }
 
   @override
@@ -2561,8 +2503,7 @@ class _$ProxyGroupSelectorStateImpl implements _ProxyGroupSelectorState {
             (identical(other.sortNum, sortNum) || other.sortNum == sortNum) &&
             (identical(other.groupType, groupType) ||
                 other.groupType == groupType) &&
-            const DeepCollectionEquality().equals(other._proxies, _proxies) &&
-            (identical(other.columns, columns) || other.columns == columns));
+            const DeepCollectionEquality().equals(other._proxies, _proxies));
   }
 
   @override
@@ -2573,8 +2514,7 @@ class _$ProxyGroupSelectorStateImpl implements _ProxyGroupSelectorState {
       proxyCardType,
       sortNum,
       groupType,
-      const DeepCollectionEquality().hash(_proxies),
-      columns);
+      const DeepCollectionEquality().hash(_proxies));
 
   /// Create a copy of ProxyGroupSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -2593,8 +2533,7 @@ abstract class _ProxyGroupSelectorState implements ProxyGroupSelectorState {
       required final ProxyCardType proxyCardType,
       required final num sortNum,
       required final GroupType groupType,
-      required final List<Proxy> proxies,
-      required final int columns}) = _$ProxyGroupSelectorStateImpl;
+      required final List<Proxy> proxies}) = _$ProxyGroupSelectorStateImpl;
 
   @override
   String? get testUrl;
@@ -2608,8 +2547,6 @@ abstract class _ProxyGroupSelectorState implements ProxyGroupSelectorState {
   GroupType get groupType;
   @override
   List<Proxy> get proxies;
-  @override
-  int get columns;
 
   /// Create a copy of ProxyGroupSelectorState
   /// with the given fields replaced by the non-null parameter values.

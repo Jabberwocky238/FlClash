@@ -122,9 +122,9 @@ class ProxiesListSelectorState with _$ProxiesListSelectorState {
     required List<String> groupNames,
     required Set<String> currentUnfoldSet,
     required ProxiesSortType proxiesSortType,
-    required ProxyCardType proxyCardType,
+    // required ProxyCardType proxyCardType,
     required num sortNum,
-    required int columns,
+    // required int columns,
   }) = _ProxiesListSelectorState;
 }
 
@@ -137,7 +137,7 @@ class ProxyGroupSelectorState with _$ProxyGroupSelectorState {
     required num sortNum,
     required GroupType groupType,
     required List<Proxy> proxies,
-    required int columns,
+    // required int columns,
   }) = _ProxyGroupSelectorState;
 }
 
