@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'package:window_manager/window_manager.dart';
