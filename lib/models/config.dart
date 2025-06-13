@@ -45,6 +45,7 @@ final defaultThemeProps = ThemeProps(
 
 const List<DashboardWidget> defaultDashboardWidgets = [
   DashboardWidget.jwDashboard,
+  DashboardWidget.showProxies,
   // DashboardWidget.networkSpeed,
   DashboardWidget.systemProxyButton,
   DashboardWidget.tunButton,

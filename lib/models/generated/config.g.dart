@@ -66,6 +66,7 @@ const _$RecoveryStrategyEnumMap = {
 
 const _$DashboardWidgetEnumMap = {
   DashboardWidget.jwDashboard: 'jwDashboard',
+  DashboardWidget.showProxies: 'showProxies',
   DashboardWidget.networkSpeed: 'networkSpeed',
   DashboardWidget.trafficUsage: 'trafficUsage',
   DashboardWidget.networkDetection: 'networkDetection',

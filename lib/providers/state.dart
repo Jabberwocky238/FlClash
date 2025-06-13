@@ -246,6 +246,19 @@ ProxiesSelectorState proxiesSelectorState(Ref ref) {
 }
 
 @riverpod
+List<Proxy> proxiesState(Ref ref) {
+  final groupNames = ref.watch(currentGroupsStateProvider.select((state) {
+    return state.value.map((e) => e.name).toList();
+  }));
+  return groupNames
+      .map((e) => ref.watch(
+          proxyGroupSelectorStateProvider(e).select((state) => state.proxies)))
+      .toList()
+      .expand((element) => element)
+      .toList();
+}
+
+@riverpod
 GroupNamesState groupNamesState(Ref ref) {
   return GroupNamesState(
     groupNames: ref.watch(
@@ -452,7 +465,6 @@ String getProxyDesc(Ref ref, Proxy proxy) {
     return "${proxy.type}(${state.proxyName.isNotEmpty ? state.proxyName : '*'})";
   }
 }
-
 
 @riverpod
 OverrideData? getProfileOverrideData(Ref ref, String profileId) {

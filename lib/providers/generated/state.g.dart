@@ -159,7 +159,7 @@ final homeStateProvider = AutoDisposeProvider<HomeState>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef HomeStateRef = AutoDisposeProviderRef<HomeState>;
-String _$dashboardStateHash() => r'4434206df2753d7df9eb5223c07ddead4ed170fa';
+String _$dashboardStateHash() => r'322172404359118260f75ca5ed53e626b9fc238b';
 
 /// See also [dashboardState].
 @ProviderFor(dashboardState)
@@ -274,6 +274,22 @@ final proxiesSelectorStateProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ProxiesSelectorStateRef = AutoDisposeProviderRef<ProxiesSelectorState>;
+String _$proxiesStateHash() => r'847c51c40dbc20f30ec032a985abc4492bb7c916';
+
+/// See also [proxiesState].
+@ProviderFor(proxiesState)
+final proxiesStateProvider = AutoDisposeProvider<List<Proxy>>.internal(
+  proxiesState,
+  name: r'proxiesStateProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$proxiesStateHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef ProxiesStateRef = AutoDisposeProviderRef<List<Proxy>>;
 String _$groupNamesStateHash() => r'd4ba8f2fd72a0db7186ab5d96aa1548bd5a7cdcb';
 
 /// See also [groupNamesState].

@@ -316,6 +316,12 @@ enum DashboardWidget {
       child: JwDashboard(),
     ),
   ),
+  showProxies(
+    GridItem(
+      crossAxisCellCount: 8,
+      child: ShowProxies(),
+    ),
+  ),
   networkSpeed(
     GridItem(
       crossAxisCellCount: 8,
