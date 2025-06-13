@@ -65,16 +65,14 @@ const _$RecoveryStrategyEnumMap = {
 };
 
 const _$DashboardWidgetEnumMap = {
+  DashboardWidget.jwDashboard: 'jwDashboard',
   DashboardWidget.networkSpeed: 'networkSpeed',
-  DashboardWidget.outboundModeV2: 'outboundModeV2',
-  DashboardWidget.outboundMode: 'outboundMode',
   DashboardWidget.trafficUsage: 'trafficUsage',
   DashboardWidget.networkDetection: 'networkDetection',
   DashboardWidget.tunButton: 'tunButton',
   DashboardWidget.vpnButton: 'vpnButton',
   DashboardWidget.systemProxyButton: 'systemProxyButton',
   DashboardWidget.intranetIp: 'intranetIp',
-  DashboardWidget.memoryInfo: 'memoryInfo',
 };
 
 _$AccessControlImpl _$$AccessControlImplFromJson(Map<String, dynamic> json) =>

@@ -44,13 +44,14 @@ final defaultThemeProps = ThemeProps(
 );
 
 const List<DashboardWidget> defaultDashboardWidgets = [
-  DashboardWidget.networkSpeed,
+  DashboardWidget.jwDashboard,
+  // DashboardWidget.networkSpeed,
   DashboardWidget.systemProxyButton,
   DashboardWidget.tunButton,
-  DashboardWidget.outboundMode,
-  DashboardWidget.networkDetection,
-  DashboardWidget.trafficUsage,
-  DashboardWidget.intranetIp,
+  // DashboardWidget.outboundMode,
+  // DashboardWidget.networkDetection,
+  // DashboardWidget.trafficUsage,
+  // DashboardWidget.intranetIp,
 ];
 
 List<DashboardWidget> dashboardWidgetsSafeFormJson(

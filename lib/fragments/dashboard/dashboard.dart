@@ -36,48 +36,48 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment>
   @override
   Widget? get floatingActionButton => const StartButton();
 
-  @override
-  List<Widget> get actions => [
-        ValueListenableBuilder(
-          valueListenable: key.currentState!.addedChildrenNotifier,
-          builder: (_, addedChildren, child) {
-            return ValueListenableBuilder(
-              valueListenable: key.currentState!.isEditNotifier,
-              builder: (_, isEdit, child) {
-                if (!isEdit || addedChildren.isEmpty) {
-                  return Container();
-                }
-                return child!;
-              },
-              child: child,
-            );
-          },
-          child: IconButton(
-            onPressed: () {
-              key.currentState!.showAddModal();
-            },
-            icon: Icon(
-              Icons.add_circle,
-            ),
-          ),
-        ),
-        IconButton(
-          icon: ValueListenableBuilder(
-            valueListenable: key.currentState!.isEditNotifier,
-            builder: (_, isEdit, ___) {
-              return isEdit
-                  ? Icon(Icons.save)
-                  : Icon(
-                      Icons.edit,
-                    );
-            },
-          ),
-          onPressed: () {
-            key.currentState!.isEditNotifier.value =
-                !key.currentState!.isEditNotifier.value;
-          },
-        ),
-      ];
+  // @override
+  // List<Widget> get actions => [
+  //       ValueListenableBuilder(
+  //         valueListenable: key.currentState!.addedChildrenNotifier,
+  //         builder: (_, addedChildren, child) {
+  //           return ValueListenableBuilder(
+  //             valueListenable: key.currentState!.isEditNotifier,
+  //             builder: (_, isEdit, child) {
+  //               if (!isEdit || addedChildren.isEmpty) {
+  //                 return Container();
+  //               }
+  //               return child!;
+  //             },
+  //             child: child,
+  //           );
+  //         },
+  //         child: IconButton(
+  //           onPressed: () {
+  //             key.currentState!.showAddModal();
+  //           },
+  //           icon: Icon(
+  //             Icons.add_circle,
+  //           ),
+  //         ),
+  //       ),
+  //       IconButton(
+  //         icon: ValueListenableBuilder(
+  //           valueListenable: key.currentState!.isEditNotifier,
+  //           builder: (_, isEdit, ___) {
+  //             return isEdit
+  //                 ? Icon(Icons.save)
+  //                 : Icon(
+  //                     Icons.edit,
+  //                   );
+  //           },
+  //         ),
+  //         onPressed: () {
+  //           key.currentState!.isEditNotifier.value =
+  //               !key.currentState!.isEditNotifier.value;
+  //         },
+  //       ),
+  //     ];
 
   _handleSave(List<GridItem> girdItems, WidgetRef ref) {
     final dashboardWidgets = girdItems

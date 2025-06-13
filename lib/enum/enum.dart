@@ -310,24 +310,30 @@ enum DebounceTag {
 }
 
 enum DashboardWidget {
+  jwDashboard(
+    GridItem(
+      crossAxisCellCount: 8,
+      child: JwDashboard(),
+    ),
+  ),
   networkSpeed(
     GridItem(
       crossAxisCellCount: 8,
       child: NetworkSpeed(),
     ),
   ),
-  outboundModeV2(
-    GridItem(
-      crossAxisCellCount: 8,
-      child: OutboundModeV2(),
-    ),
-  ),
-  outboundMode(
-    GridItem(
-      crossAxisCellCount: 4,
-      child: OutboundMode(),
-    ),
-  ),
+  // outboundModeV2(
+  //   GridItem(
+  //     crossAxisCellCount: 8,
+  //     child: OutboundModeV2(),
+  //   ),
+  // ),
+  // outboundMode(
+  //   GridItem(
+  //     crossAxisCellCount: 4,
+  //     child: OutboundMode(),
+  //   ),
+  // ),
   trafficUsage(
     GridItem(
       crossAxisCellCount: 4,
@@ -363,16 +369,16 @@ enum DashboardWidget {
     ),
     platforms: desktopPlatforms,
   ),
+  // memoryInfo(
+  //   GridItem(
+  //     crossAxisCellCount: 4,
+  //     child: MemoryInfo(),
+  //   ),
+  // ),
   intranetIp(
     GridItem(
       crossAxisCellCount: 4,
       child: IntranetIP(),
-    ),
-  ),
-  memoryInfo(
-    GridItem(
-      crossAxisCellCount: 4,
-      child: MemoryInfo(),
     ),
   );
 

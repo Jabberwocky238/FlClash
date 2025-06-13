@@ -158,8 +158,9 @@ HomeState homeState(Ref ref) {
 
 @riverpod
 DashboardState dashboardState(Ref ref) {
-  final dashboardWidgets =
-      ref.watch(appSettingProvider.select((state) => state.dashboardWidgets));
+  // final dashboardWidgets =
+  //     ref.watch(appSettingProvider.select((state) => state.dashboardWidgets));
+  final dashboardWidgets = defaultDashboardWidgets;
   final viewWidth = ref.watch(viewWidthProvider);
   return DashboardState(
     dashboardWidgets: dashboardWidgets,

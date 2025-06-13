@@ -93,6 +93,7 @@ class CommonCard extends StatelessWidget {
     this.padding,
     this.enterAnimated = false,
     this.info,
+    this.suffix,
   }) : isSelected = isSelected ?? false;
 
   final bool enterAnimated;
@@ -100,6 +101,7 @@ class CommonCard extends StatelessWidget {
   final void Function()? onPressed;
   final Widget? selectWidget;
   final Widget child;
+  final Widget? suffix;
   final EdgeInsets? padding;
   final Info? info;
   final CommonCardType type;
@@ -154,6 +156,7 @@ class CommonCard extends StatelessWidget {
               bottom: 0,
             ),
             info: info!,
+            actions: suffix != null ? [suffix!] : [],
           ),
           Flexible(
             flex: 1,
