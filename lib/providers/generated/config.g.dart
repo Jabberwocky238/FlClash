@@ -194,21 +194,5 @@ final patchClashConfigProvider =
 );
 
 typedef _$PatchClashConfig = AutoDisposeNotifier<ClashConfig>;
-String _$userRegisterStateHash() => r'e99e5306a8ee739acf51c1389f5739ccb547bfbc';
-
-/// See also [UserRegisterState].
-@ProviderFor(UserRegisterState)
-final userRegisterStateProvider =
-    AutoDisposeNotifierProvider<UserRegisterState, UserRegisterProps>.internal(
-  UserRegisterState.new,
-  name: r'userRegisterStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userRegisterStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$UserRegisterState = AutoDisposeNotifier<UserRegisterProps>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

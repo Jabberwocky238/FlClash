@@ -410,6 +410,7 @@ enum PageLabel {
   auth,
   login,
   register,
+  webView,
 }
 
 enum RuleAction {

@@ -272,10 +272,3 @@ class PatchClashConfig extends _$PatchClashConfig
   }
 }
 
-@riverpod
-class UserRegisterState extends _$UserRegisterState {
-  @override
-  UserRegisterProps build() {
-    return const UserRegisterProps();
-  }
-}

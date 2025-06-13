@@ -507,3 +507,8 @@ ColorScheme genColorScheme(
     dynamicSchemeVariant: vm2.b,
   );
 }
+
+@riverpod
+WebViewParams webViewParams(Ref ref) {
+  return ref.watch(appSettingProvider.select((state) => state.webViewParams));
+}

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:animations/animations.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:jw_clash/clash/clash.dart';
@@ -13,7 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:material_color_utilities/palettes/core_palette.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'common/common.dart';
 import 'controller.dart';
 import 'models/models.dart';
@@ -87,6 +90,14 @@ class GlobalState {
       utils.getLocaleForString(config.appSetting.locale) ??
           WidgetsBinding.instance.platformDispatcher.locale,
     );
+    // 设置 WebView 平台实例
+    if (WebViewPlatform.instance == null) {
+      if (Platform.isIOS) {
+        WebViewPlatform.instance = WebKitWebViewPlatform();
+      } else {
+        WebViewPlatform.instance = AndroidWebViewPlatform();
+      }
+    }
   }
 
   String get ua => config.patchClashConfig.globalUa ?? packageInfo.ua;

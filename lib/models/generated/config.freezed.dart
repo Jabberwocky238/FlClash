@@ -38,6 +38,7 @@ mixin _$AppSettingProps {
   bool get hidden => throw _privateConstructorUsedError;
   bool get developerMode => throw _privateConstructorUsedError;
   RecoveryStrategy get recoveryStrategy => throw _privateConstructorUsedError;
+  WebViewParams get webViewParams => throw _privateConstructorUsedError;
 
   /// Serializes this AppSettingProps to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -72,7 +73,10 @@ abstract class $AppSettingPropsCopyWith<$Res> {
       bool minimizeOnExit,
       bool hidden,
       bool developerMode,
-      RecoveryStrategy recoveryStrategy});
+      RecoveryStrategy recoveryStrategy,
+      WebViewParams webViewParams});
+
+  $WebViewParamsCopyWith<$Res> get webViewParams;
 }
 
 /// @nodoc
@@ -106,6 +110,7 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
     Object? hidden = null,
     Object? developerMode = null,
     Object? recoveryStrategy = null,
+    Object? webViewParams = null,
   }) {
     return _then(_value.copyWith(
       locale: freezed == locale
@@ -172,7 +177,21 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
           ? _value.recoveryStrategy
           : recoveryStrategy // ignore: cast_nullable_to_non_nullable
               as RecoveryStrategy,
+      webViewParams: null == webViewParams
+          ? _value.webViewParams
+          : webViewParams // ignore: cast_nullable_to_non_nullable
+              as WebViewParams,
     ) as $Val);
+  }
+
+  /// Create a copy of AppSettingProps
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $WebViewParamsCopyWith<$Res> get webViewParams {
+    return $WebViewParamsCopyWith<$Res>(_value.webViewParams, (value) {
+      return _then(_value.copyWith(webViewParams: value) as $Val);
+    });
   }
 }
 
@@ -201,7 +220,11 @@ abstract class _$$AppSettingPropsImplCopyWith<$Res>
       bool minimizeOnExit,
       bool hidden,
       bool developerMode,
-      RecoveryStrategy recoveryStrategy});
+      RecoveryStrategy recoveryStrategy,
+      WebViewParams webViewParams});
+
+  @override
+  $WebViewParamsCopyWith<$Res> get webViewParams;
 }
 
 /// @nodoc
@@ -233,6 +256,7 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
     Object? hidden = null,
     Object? developerMode = null,
     Object? recoveryStrategy = null,
+    Object? webViewParams = null,
   }) {
     return _then(_$AppSettingPropsImpl(
       locale: freezed == locale
@@ -299,6 +323,10 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
           ? _value.recoveryStrategy
           : recoveryStrategy // ignore: cast_nullable_to_non_nullable
               as RecoveryStrategy,
+      webViewParams: null == webViewParams
+          ? _value.webViewParams
+          : webViewParams // ignore: cast_nullable_to_non_nullable
+              as WebViewParams,
     ));
   }
 }
@@ -323,7 +351,8 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       this.minimizeOnExit = true,
       this.hidden = false,
       this.developerMode = true,
-      this.recoveryStrategy = RecoveryStrategy.compatible})
+      this.recoveryStrategy = RecoveryStrategy.compatible,
+      this.webViewParams = defaultWebViewParams})
       : _dashboardWidgets = dashboardWidgets;
 
   factory _$AppSettingPropsImpl.fromJson(Map<String, dynamic> json) =>
@@ -383,10 +412,13 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
   @override
   @JsonKey()
   final RecoveryStrategy recoveryStrategy;
+  @override
+  @JsonKey()
+  final WebViewParams webViewParams;
 
   @override
   String toString() {
-    return 'AppSettingProps(locale: $locale, dashboardWidgets: $dashboardWidgets, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, developerMode: $developerMode, recoveryStrategy: $recoveryStrategy)';
+    return 'AppSettingProps(locale: $locale, dashboardWidgets: $dashboardWidgets, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, developerMode: $developerMode, recoveryStrategy: $recoveryStrategy, webViewParams: $webViewParams)';
   }
 
   @override
@@ -421,7 +453,9 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
             (identical(other.developerMode, developerMode) ||
                 other.developerMode == developerMode) &&
             (identical(other.recoveryStrategy, recoveryStrategy) ||
-                other.recoveryStrategy == recoveryStrategy));
+                other.recoveryStrategy == recoveryStrategy) &&
+            (identical(other.webViewParams, webViewParams) ||
+                other.webViewParams == webViewParams));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -443,7 +477,8 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       minimizeOnExit,
       hidden,
       developerMode,
-      recoveryStrategy);
+      recoveryStrategy,
+      webViewParams);
 
   /// Create a copy of AppSettingProps
   /// with the given fields replaced by the non-null parameter values.
@@ -480,7 +515,8 @@ abstract class _AppSettingProps implements AppSettingProps {
       final bool minimizeOnExit,
       final bool hidden,
       final bool developerMode,
-      final RecoveryStrategy recoveryStrategy}) = _$AppSettingPropsImpl;
+      final RecoveryStrategy recoveryStrategy,
+      final WebViewParams webViewParams}) = _$AppSettingPropsImpl;
 
   factory _AppSettingProps.fromJson(Map<String, dynamic> json) =
       _$AppSettingPropsImpl.fromJson;
@@ -518,6 +554,8 @@ abstract class _AppSettingProps implements AppSettingProps {
   bool get developerMode;
   @override
   RecoveryStrategy get recoveryStrategy;
+  @override
+  WebViewParams get webViewParams;
 
   /// Create a copy of AppSettingProps
   /// with the given fields replaced by the non-null parameter values.
@@ -2484,5 +2522,174 @@ abstract class _Config implements Config {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConfigImplCopyWith<_$ConfigImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WebViewParams _$WebViewParamsFromJson(Map<String, dynamic> json) {
+  return _WebViewParams.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WebViewParams {
+  String get url => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+
+  /// Serializes this WebViewParams to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of WebViewParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $WebViewParamsCopyWith<WebViewParams> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WebViewParamsCopyWith<$Res> {
+  factory $WebViewParamsCopyWith(
+          WebViewParams value, $Res Function(WebViewParams) then) =
+      _$WebViewParamsCopyWithImpl<$Res, WebViewParams>;
+  @useResult
+  $Res call({String url, String title});
+}
+
+/// @nodoc
+class _$WebViewParamsCopyWithImpl<$Res, $Val extends WebViewParams>
+    implements $WebViewParamsCopyWith<$Res> {
+  _$WebViewParamsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of WebViewParams
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? title = null,
+  }) {
+    return _then(_value.copyWith(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WebViewParamsImplCopyWith<$Res>
+    implements $WebViewParamsCopyWith<$Res> {
+  factory _$$WebViewParamsImplCopyWith(
+          _$WebViewParamsImpl value, $Res Function(_$WebViewParamsImpl) then) =
+      __$$WebViewParamsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String url, String title});
+}
+
+/// @nodoc
+class __$$WebViewParamsImplCopyWithImpl<$Res>
+    extends _$WebViewParamsCopyWithImpl<$Res, _$WebViewParamsImpl>
+    implements _$$WebViewParamsImplCopyWith<$Res> {
+  __$$WebViewParamsImplCopyWithImpl(
+      _$WebViewParamsImpl _value, $Res Function(_$WebViewParamsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of WebViewParams
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? title = null,
+  }) {
+    return _then(_$WebViewParamsImpl(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WebViewParamsImpl implements _WebViewParams {
+  const _$WebViewParamsImpl(
+      {this.url = "https://www.baidu.com", this.title = "百度"});
+
+  factory _$WebViewParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WebViewParamsImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final String url;
+  @override
+  @JsonKey()
+  final String title;
+
+  @override
+  String toString() {
+    return 'WebViewParams(url: $url, title: $title)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WebViewParamsImpl &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.title, title) || other.title == title));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, url, title);
+
+  /// Create a copy of WebViewParams
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WebViewParamsImplCopyWith<_$WebViewParamsImpl> get copyWith =>
+      __$$WebViewParamsImplCopyWithImpl<_$WebViewParamsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WebViewParamsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WebViewParams implements WebViewParams {
+  const factory _WebViewParams({final String url, final String title}) =
+      _$WebViewParamsImpl;
+
+  factory _WebViewParams.fromJson(Map<String, dynamic> json) =
+      _$WebViewParamsImpl.fromJson;
+
+  @override
+  String get url;
+  @override
+  String get title;
+
+  /// Create a copy of WebViewParams
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$WebViewParamsImplCopyWith<_$WebViewParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

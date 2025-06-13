@@ -24,7 +24,7 @@ final baseInfoEdgeInsets = EdgeInsets.symmetric(
 );
 
 final systemTextScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
-final defaultTextScaleFactor = (Platform.isAndroid ? 1.5 : 1) * systemTextScaleFactor;
+final defaultTextScaleFactor = systemTextScaleFactor;
 const httpTimeoutDuration = Duration(milliseconds: 5000);
 const moreDuration = Duration(milliseconds: 100);
 const animateDuration = Duration(milliseconds: 100);
@@ -98,5 +98,5 @@ final serviceIsolate = "JWClashServiceIsolate";
 //   0XFF665390,
 // ];
 
-// const baseUrl = "https://jwclash.jw238.site";
-const baseUrl = "http://127.0.0.1:8877";
+const baseUrl = "https://jwclash.jw238.site";
+// const baseUrl = "http://127.0.0.1:8877";

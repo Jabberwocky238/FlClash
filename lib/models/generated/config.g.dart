@@ -29,6 +29,10 @@ _$AppSettingPropsImpl _$$AppSettingPropsImplFromJson(
       recoveryStrategy: $enumDecodeNullable(
               _$RecoveryStrategyEnumMap, json['recoveryStrategy']) ??
           RecoveryStrategy.compatible,
+      webViewParams: json['webViewParams'] == null
+          ? defaultWebViewParams
+          : WebViewParams.fromJson(
+              json['webViewParams'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AppSettingPropsImplToJson(
@@ -52,6 +56,7 @@ Map<String, dynamic> _$$AppSettingPropsImplToJson(
       'hidden': instance.hidden,
       'developerMode': instance.developerMode,
       'recoveryStrategy': _$RecoveryStrategyEnumMap[instance.recoveryStrategy]!,
+      'webViewParams': instance.webViewParams,
     };
 
 const _$RecoveryStrategyEnumMap = {
@@ -318,4 +323,16 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'proxiesStyle': instance.proxiesStyle,
       'windowProps': instance.windowProps,
       'patchClashConfig': instance.patchClashConfig,
+    };
+
+_$WebViewParamsImpl _$$WebViewParamsImplFromJson(Map<String, dynamic> json) =>
+    _$WebViewParamsImpl(
+      url: json['url'] as String? ?? "https://www.baidu.com",
+      title: json['title'] as String? ?? "百度",
+    );
+
+Map<String, dynamic> _$$WebViewParamsImplToJson(_$WebViewParamsImpl instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'title': instance.title,
     };

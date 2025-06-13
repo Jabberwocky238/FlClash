@@ -38,6 +38,7 @@ const defaultAuthProps = AuthProps();
 const defaultProxiesStyle = ProxiesStyle();
 const defaultWindowProps = WindowProps();
 const defaultAccessControl = AccessControl();
+const defaultWebViewParams = WebViewParams();
 final defaultThemeProps = ThemeProps(
   primaryColor: defaultPrimaryColor,
 );
@@ -84,6 +85,7 @@ class AppSettingProps with _$AppSettingProps {
     @Default(false) bool hidden,
     @Default(true) bool developerMode,
     @Default(RecoveryStrategy.compatible) RecoveryStrategy recoveryStrategy,
+    @Default(defaultWebViewParams) WebViewParams webViewParams,
   }) = _AppSettingProps;
 
   factory AppSettingProps.fromJson(Map<String, Object?> json) =>
@@ -235,4 +237,16 @@ extension ConfigExt on Config {
     return profiles.getProfile(currentProfileId);
   }
 }
+
+@freezed
+class WebViewParams with _$WebViewParams {
+  const factory WebViewParams({
+    @Default("https://www.baidu.com") String url,
+    @Default("百度") String title,
+  }) = _WebViewParams;
+
+  factory WebViewParams.fromJson(Map<String, Object?> json) =>
+      _$WebViewParamsFromJson(json);
+}
+
 

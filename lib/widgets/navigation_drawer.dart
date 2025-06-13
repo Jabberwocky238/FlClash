@@ -55,7 +55,7 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final drawerWidth = screenWidth * 0.5 < 250 ? screenWidth * 0.5 : 250.0;
+    final drawerWidth = screenWidth * 0.7 < 300 ? screenWidth * 0.7 : 300.0;
     final authSetting = ref.watch(authSettingProvider);
     return Drawer(
       width: drawerWidth,

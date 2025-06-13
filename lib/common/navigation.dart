@@ -117,6 +117,14 @@ class Navigation {
         ),
         modes: [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
+      // const NavigationItem(
+      //   icon: Icon(Icons.person),
+      //   label: PageLabel.webView,
+      //   fragment: WebViewFragment(
+      //     key: GlobalObjectKey(PageLabel.webView),
+      //   ),
+      //   modes: [NavigationItemMode.mobile, NavigationItemMode.desktop],
+      // ),  
     ];
   }
 
