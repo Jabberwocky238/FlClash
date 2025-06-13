@@ -74,14 +74,14 @@ class ProxyCard extends StatelessWidget {
 
   Widget _buildProxyNameText(BuildContext context) {
     return SizedBox(
-        // height: measure.bodySmallHeight * 1,
-        child: EmojiText(
-          proxy.name,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: context.textTheme.bodyMedium,
-        ),
-      );
+      // height: measure.bodySmallHeight * 1,
+      child: EmojiText(
+        proxy.name,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: context.textTheme.bodyMedium,
+      ),
+    );
     // if (type == ProxyCardType.min) {
     //   return SizedBox(
     //     height: measure.bodyMediumHeight * 1,
@@ -163,14 +163,22 @@ class ProxyCard extends StatelessWidget {
                 // ),
                 SizedBox(
                   height: globalState.theme.bodySmallHeight,
-                  child: _ProxyDesc(
-                    proxy: proxy,
+                  child: Row(
+                    children: [
+                      _ProxyDesc(
+                        proxy: proxy,
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      delayText
+                    ],
                   ),
                 ),
                 // const SizedBox(
                 //   width: 6,
                 // ),
-                delayText,
+                // delayText,
               ],
             ),
           ),

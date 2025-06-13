@@ -58,7 +58,7 @@ class _ShowProxiesState extends ConsumerState<ShowProxies> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "当前可用节点数: ",
+                          "当前可用节点数:",
                           style: context.textTheme.bodyMedium?.toLight
                               .adjustSize(1),
                         ),

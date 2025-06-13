@@ -7,6 +7,10 @@ import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'common.dart';
+
+// import 'common.dart';
+
 class ProxiesFragment extends ConsumerStatefulWidget {
   const ProxiesFragment({super.key});
 
@@ -36,6 +40,17 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
               Icons.poll_outlined,
             ),
           ),
+        IconButton(
+          onPressed: () async {
+            await delayTest(
+              ref.watch(proxiesStateProvider),
+              ref.watch(appSettingProvider.select((state) => state.testUrl)),
+            );
+          },
+          icon: const Icon(
+            Icons.speed_outlined,
+          ),
+        ),
         // IconButton(
         //   onPressed: () {
         //     showExtend(
@@ -53,26 +68,26 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
         //     Icons.style_outlined,
         //   ),
         // ),
-      //   IconButton(
-      //     onPressed: () {
-      //       showSheet(
-      //         context: context,
-      //         props: SheetProps(
-      //           isScrollControlled: true,
-      //         ),
-      //         builder: (_, type) {
-      //           return AdaptiveSheetScaffold(
-      //             type: type,
-      //             body: const ProxiesSetting(),
-      //             title: appLocalizations.settings,
-      //           );
-      //         },
-      //       );
-      //     },
-      //     icon: const Icon(
-      //       Icons.tune,
-      //     ),
-      //   )
+        //   IconButton(
+        //     onPressed: () {
+        //       showSheet(
+        //         context: context,
+        //         props: SheetProps(
+        //           isScrollControlled: true,
+        //         ),
+        //         builder: (_, type) {
+        //           return AdaptiveSheetScaffold(
+        //             type: type,
+        //             body: const ProxiesSetting(),
+        //             title: appLocalizations.settings,
+        //           );
+        //         },
+        //       );
+        //     },
+        //     icon: const Icon(
+        //       Icons.tune,
+        //     ),
+        //   )
       ];
 
   // @override
