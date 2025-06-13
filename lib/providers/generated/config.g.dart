@@ -21,22 +21,6 @@ final appSettingProvider =
 );
 
 typedef _$AppSetting = AutoDisposeNotifier<AppSettingProps>;
-String _$windowSettingHash() => r'3dbbf3e169023b49e79b2fb983002687ce077e23';
-
-/// See also [WindowSetting].
-@ProviderFor(WindowSetting)
-final windowSettingProvider =
-    AutoDisposeNotifierProvider<WindowSetting, WindowProps>.internal(
-  WindowSetting.new,
-  name: r'windowSettingProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$windowSettingHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$WindowSetting = AutoDisposeNotifier<WindowProps>;
 String _$vpnSettingHash() => r'e660cc71ed6677f136eb98885680aae66be74881';
 
 /// See also [VpnSetting].

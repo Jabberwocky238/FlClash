@@ -36,7 +36,7 @@ const defaultVpnProps = VpnProps();
 const defaultNetworkProps = NetworkProps();
 const defaultAuthProps = AuthProps();
 const defaultProxiesStyle = ProxiesStyle();
-const defaultWindowProps = WindowProps();
+// const defaultWindowProps = WindowProps();
 const defaultAccessControl = AccessControl();
 const defaultWebViewParams = WebViewParams();
 final defaultThemeProps = ThemeProps(
@@ -123,18 +123,18 @@ extension AccessControlExt on AccessControl {
       };
 }
 
-@freezed
-class WindowProps with _$WindowProps {
-  const factory WindowProps({
-    @Default(750) double width,
-    @Default(600) double height,
-    double? top,
-    double? left,
-  }) = _WindowProps;
+// @freezed
+// class WindowProps with _$WindowProps {
+//   const factory WindowProps({
+//     @Default(750) double width,
+//     @Default(600) double height,
+//     double? top,
+//     double? left,
+//   }) = _WindowProps;
 
-  factory WindowProps.fromJson(Map<String, Object?>? json) =>
-      json == null ? const WindowProps() : _$WindowPropsFromJson(json);
-}
+//   factory WindowProps.fromJson(Map<String, Object?>? json) =>
+//       json == null ? const WindowProps() : _$WindowPropsFromJson(json);
+// }
 
 @freezed
 class VpnProps with _$VpnProps {
@@ -213,7 +213,7 @@ class Config with _$Config {
     @Default(defaultVpnProps) VpnProps vpnProps,
     @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
     @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
-    @Default(defaultWindowProps) WindowProps windowProps,
+    // @Default(defaultWindowProps) WindowProps windowProps,
     @Default(defaultClashConfig) ClashConfig patchClashConfig,
   }) = _Config;
 

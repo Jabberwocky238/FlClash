@@ -72,25 +72,25 @@ class _WindowContainerState extends ConsumerState<WindowManager>
   @override
   Future<void> onWindowMoved() async {
     super.onWindowMoved();
-    final offset = await windowManager.getPosition();
-    ref.read(windowSettingProvider.notifier).updateState(
-          (state) => state.copyWith(
-            top: offset.dy,
-            left: offset.dx,
-          ),
-        );
+    // final offset = await windowManager.getPosition();
+    // ref.read(windowSettingProvider.notifier).updateState(
+    //       (state) => state.copyWith(
+    //         top: offset.dy,
+    //         left: offset.dx,
+    //       ),
+    //     );
   }
 
   @override
   Future<void> onWindowResized() async {
     super.onWindowResized();
-    final size = await windowManager.getSize();
-    ref.read(windowSettingProvider.notifier).updateState(
-          (state) => state.copyWith(
-            width: size.width,
-            height: size.height,
-          ),
-        );
+    // final size = await windowManager.getSize();
+    // ref.read(windowSettingProvider.notifier).updateState(
+    //       (state) => state.copyWith(
+    //         width: size.width,
+    //         height: size.height,
+    //       ),
+    //     );
   }
 
   @override

@@ -22,7 +22,8 @@ final baseInfoEdgeInsets = EdgeInsets.symmetric(
   vertical: 16.ap,
   horizontal: 16.ap,
 );
-
+const windowWidth = 600.0;
+const windowHeight = 600.0;
 final systemTextScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
 final defaultTextScaleFactor = systemTextScaleFactor;
 const httpTimeoutDuration = Duration(milliseconds: 5000);

@@ -24,24 +24,24 @@ class AppSetting extends _$AppSetting with AutoDisposeNotifierMixin {
   }
 }
 
-@riverpod
-class WindowSetting extends _$WindowSetting with AutoDisposeNotifierMixin {
-  @override
-  WindowProps build() {
-    return globalState.config.windowProps;
-  }
+// @riverpod
+// class WindowSetting extends _$WindowSetting with AutoDisposeNotifierMixin {
+//   @override
+//   WindowProps build() {
+//     return globalState.config.windowProps;
+//   }
 
-  @override
-  onUpdate(value) {
-    globalState.config = globalState.config.copyWith(
-      windowProps: value,
-    );
-  }
+//   @override
+//   onUpdate(value) {
+//     globalState.config = globalState.config.copyWith(
+//       windowProps: value,
+//     );
+//   }
 
-  updateState(WindowProps Function(WindowProps state) builder) {
-    state = builder(state);
-  }
-}
+//   updateState(WindowProps Function(WindowProps state) builder) {
+//     state = builder(state);
+//   }
+// }
 
 @riverpod
 class VpnSetting extends _$VpnSetting with AutoDisposeNotifierMixin {

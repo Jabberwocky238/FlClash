@@ -952,7 +952,7 @@ class AppController {
           config.currentProfileId;
       // _ref.read(appDAVSettingProvider.notifier).value = config.dav;
       _ref.read(themeSettingProvider.notifier).value = config.themeProps;
-      _ref.read(windowSettingProvider.notifier).value = config.windowProps;
+      // _ref.read(windowSettingProvider.notifier).value = config.windowProps;
       _ref.read(vpnSettingProvider.notifier).value = config.vpnProps;
       _ref.read(proxiesStyleSettingProvider.notifier).value =
           config.proxiesStyle;

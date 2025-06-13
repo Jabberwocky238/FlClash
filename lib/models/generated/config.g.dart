@@ -117,22 +117,6 @@ const _$AccessSortTypeEnumMap = {
   AccessSortType.time: 'time',
 };
 
-_$WindowPropsImpl _$$WindowPropsImplFromJson(Map<String, dynamic> json) =>
-    _$WindowPropsImpl(
-      width: (json['width'] as num?)?.toDouble() ?? 750,
-      height: (json['height'] as num?)?.toDouble() ?? 600,
-      top: (json['top'] as num?)?.toDouble(),
-      left: (json['left'] as num?)?.toDouble(),
-    );
-
-Map<String, dynamic> _$$WindowPropsImplToJson(_$WindowPropsImpl instance) =>
-    <String, dynamic>{
-      'width': instance.width,
-      'height': instance.height,
-      'top': instance.top,
-      'left': instance.left,
-    };
-
 _$VpnPropsImpl _$$VpnPropsImplFromJson(Map<String, dynamic> json) =>
     _$VpnPropsImpl(
       enable: json['enable'] as bool? ?? true,
@@ -300,9 +284,6 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
           ? defaultProxiesStyle
           : ProxiesStyle.fromJson(
               json['proxiesStyle'] as Map<String, dynamic>?),
-      windowProps: json['windowProps'] == null
-          ? defaultWindowProps
-          : WindowProps.fromJson(json['windowProps'] as Map<String, dynamic>?),
       patchClashConfig: json['patchClashConfig'] == null
           ? defaultClashConfig
           : ClashConfig.fromJson(
@@ -320,7 +301,6 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'vpnProps': instance.vpnProps,
       'themeProps': instance.themeProps,
       'proxiesStyle': instance.proxiesStyle,
-      'windowProps': instance.windowProps,
       'patchClashConfig': instance.patchClashConfig,
     };
 
