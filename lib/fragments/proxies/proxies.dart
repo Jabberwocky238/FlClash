@@ -1,7 +1,6 @@
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/fragments/proxies/list.dart';
-import 'package:jw_clash/fragments/proxies/providers.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -20,26 +19,9 @@ class ProxiesFragment extends ConsumerStatefulWidget {
 
 class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     with PageMixin {
-  bool _hasProviders = false;
 
   @override
   get actions => [
-        if (_hasProviders)
-          IconButton(
-            onPressed: () {
-              showExtend(
-                context,
-                builder: (_, type) {
-                  return ProvidersView(
-                    type: type,
-                  );
-                },
-              );
-            },
-            icon: const Icon(
-              Icons.poll_outlined,
-            ),
-          ),
         IconButton(
           onPressed: () async {
             await delayTest(
@@ -112,7 +94,6 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
           return;
         }
         if (next.pageLabel == PageLabel.proxies) {
-          _hasProviders = next.hasProviders;
           initPageState();
           return;
         }
