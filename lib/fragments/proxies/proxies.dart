@@ -132,11 +132,11 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     // });
   }
 
-  double _getListItemHeight(Type type, ProxyCardType proxyCardType) {
+  double _getListItemHeight(Type type) {
     return switch (type) {
       const (SizedBox) => 8,
       const (ListHeader) => listHeaderHeight,
-      Type() => getItemHeight(proxyCardType),
+      Type() => getItemHeight(),
     };
   }
 
@@ -174,8 +174,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
       if (item.runtimeType == ListHeader) {
         headerOffset.add(currentHeight);
       }
-      final itemHeight =
-          _getListItemHeight(item.runtimeType, ProxyCardType.shrink);
+      final itemHeight = _getListItemHeight(item.runtimeType);
       itemHeightList.add(itemHeight);
       currentHeight = currentHeight + itemHeight;
     }

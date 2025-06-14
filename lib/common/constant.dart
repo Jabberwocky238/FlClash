@@ -4,7 +4,6 @@ import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 
@@ -75,13 +74,6 @@ const stringAndStringMapEntryIterableEquality =
     IterableEquality<MapEntry<String, String>>();
 const delayMapEquality = MapEquality<String, Map<String, int?>>();
 const stringSetEquality = SetEquality<String>();
-const keyboardModifierListEquality = SetEquality<KeyboardModifier>();
-
-// const viewModeColumnsMap = {
-//   ViewMode.mobile: [2, 1],
-//   ViewMode.laptop: [3, 2],
-//   ViewMode.desktop: [4, 3],
-// };
 
 const lightBackgroundColor = Color.fromARGB(255, 253, 252, 245);
 const lightBackgroundColorDarker = Color.fromARGB(255, 239, 238, 234);

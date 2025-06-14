@@ -6,6 +6,7 @@
   "proxies": "Proxies",
   "profile": "Profile",
   "profiles": "Profiles",
+   "order": "Order",
   "tools": "Tools",
   "logs": "Logs",
   "logsDesc": "Log capture records",

@@ -1,6 +1,5 @@
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/state.dart';
 
@@ -10,15 +9,9 @@ double get listHeaderHeight {
   // return 0;
 }
 
-double getItemHeight(ProxyCardType proxyCardType) {
+double getItemHeight() {
   final measure = globalState.theme;
-  // final baseHeight = 16 + measure.bodyMediumHeight * 2 + measure.bodySmallHeight + 8 + 4;
   return measure.bodyLargeHeight * 2;
-  // return switch (proxyCardType) {
-  //   ProxyCardType.expand => baseHeight + measure.labelSmallHeight + 6,
-  //   ProxyCardType.shrink => baseHeight,
-  //   ProxyCardType.min => baseHeight - measure.bodyMediumHeight,
-  // };
 }
 
 proxyDelayTest(Proxy proxy, [String? testUrl]) async {

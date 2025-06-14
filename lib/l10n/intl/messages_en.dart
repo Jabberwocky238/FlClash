@@ -451,6 +451,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "When turned on, only statistics proxy traffic",
     ),
     "options": MessageLookupByLibrary.simpleMessage("Options"),
+    "order": MessageLookupByLibrary.simpleMessage("Order"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "otherContributors": MessageLookupByLibrary.simpleMessage(
       "Other contributors",

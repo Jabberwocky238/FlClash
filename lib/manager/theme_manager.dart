@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:jw_clash/common/constant.dart';
 import 'package:jw_clash/common/theme.dart';
 import 'package:jw_clash/state.dart';

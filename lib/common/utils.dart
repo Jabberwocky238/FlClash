@@ -3,7 +3,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/enum/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:lpinyin/lpinyin.dart';
 
@@ -219,15 +218,6 @@ class Utils {
   //   if (viewWidth <= maxLaptopWidth) return ViewMode.laptop;
   //   return ViewMode.desktop;
   // }
-
-  int getProxiesColumns(double viewWidth, ProxiesLayout proxiesLayout) {
-    final columns = max((viewWidth / 300).ceil(), 2);
-    return switch (proxiesLayout) {
-      ProxiesLayout.tight => columns + 1,
-      ProxiesLayout.standard => columns,
-      ProxiesLayout.loose => columns - 1,
-    };
-  }
 
   int getProfilesColumns(double viewWidth) {
     return max((viewWidth / 350).floor(), 1);

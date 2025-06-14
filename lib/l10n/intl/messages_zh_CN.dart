@@ -291,6 +291,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "开启后，将只统计代理流量",
     ),
     "options": MessageLookupByLibrary.simpleMessage("选项"),
+    "order": MessageLookupByLibrary.simpleMessage("套餐"),
     "other": MessageLookupByLibrary.simpleMessage("其他"),
     "otherContributors": MessageLookupByLibrary.simpleMessage("其他贡献者"),
     "outboundMode": MessageLookupByLibrary.simpleMessage("出站模式"),
