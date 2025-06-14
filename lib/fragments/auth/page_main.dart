@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
@@ -184,45 +182,40 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
             "找回密码",
             textAlign: TextAlign.center,
           ),
-          onTap: () async {},
+          onTap: () async {
+            await globalState.showMessage(
+              message: TextSpan(text: "暂未实现"),
+              afterCancel: () {},
+              afterConfirm: () {},
+              cancelable: false,
+            );
+          },
         ),
       ),
     ];
 
-    return switch (Platform.isAndroid || Platform.isIOS) {
-      true => [
-          Row(
-            children: items
-                .sublist(0, 2)
-                .map<Widget>((item) => Flexible(child: item))
-                .fill(items.length ~/ 2,
-                    filler: (_) => const Flexible(child: SizedBox()))
-                .separated(const SizedBox(width: 18))
-                .toList(),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Row(
-            children: items
-                .sublist(2, 4)
-                .map<Widget>((item) => Flexible(child: item))
-                .fill(items.length ~/ 2,
-                    filler: (_) => const Flexible(child: SizedBox()))
-                .separated(const SizedBox(width: 18))
-                .toList(),
-          )
-        ],
-      false => [
-          Row(
-            children: items
-                .map<Widget>((item) => Flexible(child: item))
-                .fill(items.length,
-                    filler: (_) => const Flexible(child: SizedBox()))
-                .separated(const SizedBox(width: 18))
-                .toList(),
-          )
-        ],
-    };
+    return [
+      Row(
+        children: items
+            .sublist(0, 2)
+            .map<Widget>((item) => Flexible(child: item))
+            .fill(items.length ~/ 2,
+                filler: (_) => const Flexible(child: SizedBox()))
+            .separated(const SizedBox(width: 18))
+            .toList(),
+      ),
+      const SizedBox(
+        height: 16,
+      ),
+      Row(
+        children: items
+            .sublist(2, 4)
+            .map<Widget>((item) => Flexible(child: item))
+            .fill(items.length ~/ 2,
+                filler: (_) => const Flexible(child: SizedBox()))
+            .separated(const SizedBox(width: 18))
+            .toList(),
+      )
+    ];
   }
 }

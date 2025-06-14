@@ -36,7 +36,7 @@ class Navigation {
             : [],
       ),
       const NavigationItem(
-        icon: Icon(Icons.article),
+        icon: Icon(Icons.shopping_cart),
         label: PageLabel.order,
         fragment: OrderFragment(
           key: GlobalObjectKey(PageLabel.order),
@@ -51,7 +51,7 @@ class Navigation {
             PageLabel.profiles,
           ),
         ),
-        // modes:],
+        modes:[NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.view_timeline),
@@ -62,7 +62,7 @@ class Navigation {
           ),
         ),
         description: "requestsDesc",
-        modes: [NavigationItemMode.desktop],
+        modes: [NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.ballot),
@@ -73,7 +73,7 @@ class Navigation {
           ),
         ),
         description: "connectionsDesc",
-        modes: [NavigationItemMode.desktop],
+        modes: [NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.storage),
@@ -85,7 +85,7 @@ class Navigation {
             PageLabel.resources,
           ),
         ),
-        modes: [NavigationItemMode.more],
+        modes: [NavigationItemMode.more, NavigationItemMode.invisible],
       ),
       NavigationItem(
         icon: const Icon(Icons.adb),
@@ -96,7 +96,7 @@ class Navigation {
           ),
         ),
         description: "logsDesc",
-        modes: [NavigationItemMode.desktop, NavigationItemMode.more],
+        modes: [NavigationItemMode.desktop, NavigationItemMode.more, NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.construction),
@@ -106,7 +106,7 @@ class Navigation {
             PageLabel.tools,
           ),
         ),
-        modes: [NavigationItemMode.desktop, NavigationItemMode.mobile],
+        modes: [NavigationItemMode.desktop, NavigationItemMode.mobile, NavigationItemMode.invisible],
       ),
             const NavigationItem(
         icon: Icon(Icons.person),
@@ -114,7 +114,7 @@ class Navigation {
         fragment: PageLogin(
           key: GlobalObjectKey(PageLabel.login),
         ),
-        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop],
+        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.person),
@@ -122,16 +122,8 @@ class Navigation {
         fragment: PageRegister(
           key: GlobalObjectKey(PageLabel.register),
         ),
-        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop],
+        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
-      // const NavigationItem(
-      //   icon: Icon(Icons.person),
-      //   label: PageLabel.webView,
-      //   fragment: WebViewFragment(
-      //     key: GlobalObjectKey(PageLabel.webView),
-      //   ),
-      //   modes: [NavigationItemMode.mobile, NavigationItemMode.desktop],
-      // ),  
     ];
   }
 
