@@ -16,6 +16,9 @@ class OrderFragment extends ConsumerStatefulWidget {
 }
 
 class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
+  final _loading = ValueNotifier(false);
+  final _error = ValueNotifier(false);
+
   @override
   void initState() {
     super.initState();
@@ -35,9 +38,16 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
   }
 
   void _initPageState() async {
-    ref.read(orderSelectionProvider.notifier).value = OrderSelectionProps(
-      orders: await _fetchOrders(),
-    );
+    _loading.value = true;
+    _error.value = false;
+    try {
+      ref.read(orderSelectionProvider.notifier).value = OrderSelectionProps(
+        orders: await _fetchOrders(),
+      );
+    } catch (e) {
+      _error.value = true;
+    }
+    _loading.value = false;
   }
 
   @override
@@ -47,21 +57,34 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
 
   @override
   Widget build(BuildContext context) {
-    final orderSelection = ref.watch(orderSelectionProvider);
-    return Consumer(
-      builder: (_, ref, __) {
-        return SingleChildScrollView(
-          padding: baseInfoEdgeInsets,
-          child: Column(
-            children: [
-              ..._buildOrderItems(context, orderSelection.orders),
-              const SizedBox(height: 16),
-              _buildBuyButton(context),
-            ],
-          ),
-        );
-      },
-    );
+    return LayoutBuilder(builder: (_, constraints) {
+      final orderSelection = ref.watch(orderSelectionProvider);
+      return Consumer(
+        builder: (_, ref, child) {
+          return SingleChildScrollView(
+            padding: baseInfoEdgeInsets,
+            child: Column(
+              children: [
+                ..._buildOrderItems(context, orderSelection.orders),
+                const SizedBox(height: 16),
+                child!,
+              ],
+            ),
+          );
+        },
+        child: ValueListenableBuilder<bool>(
+            valueListenable: _loading,
+            builder: (_, loading, __) {
+              if (loading) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return _buildBuyButton(context);
+            },
+        ),
+      );
+    });
   }
 
   List<Widget> _buildOrderItems(
@@ -120,7 +143,8 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
 }
 
 Future<void> _order(OrderCommonProps order, String token) async {
-  final url = "$baseUrl/alipay/create_payment?order_type=${order.orderType}&token=$token";
+  final url =
+      "$baseUrl/alipay/create_payment?order_type=${order.orderType}&token=$token";
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);

@@ -1,5 +1,4 @@
 import 'package:jw_clash/common/constant.dart';
-import 'package:jw_clash/state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
