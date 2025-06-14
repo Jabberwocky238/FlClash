@@ -194,7 +194,7 @@ final dashboardStateProvider = AutoDisposeProvider<DashboardState>.internal(
 // ignore: unused_element
 typedef DashboardStateRef = AutoDisposeProviderRef<DashboardState>;
 String _$proxiesActionsStateHash() =>
-    r'84f8a94706233ff5d4b8a456291a4e66c1381c62';
+    r'cbf0fa403c27d79ba972816da18acd563c102e08';
 
 /// See also [proxiesActionsState].
 @ProviderFor(proxiesActionsState)
@@ -253,7 +253,7 @@ final profilesSelectorStateProvider =
 typedef ProfilesSelectorStateRef
     = AutoDisposeProviderRef<ProfilesSelectorState>;
 String _$proxiesListSelectorStateHash() =>
-    r'd2c1f99ad85ee0fecd08413aaeb659f01e7d8940';
+    r'407f0f862b2e7556f091042ac7bc3a3725ebafda';
 
 /// See also [proxiesListSelectorState].
 @ProviderFor(proxiesListSelectorState)
@@ -325,7 +325,7 @@ final groupNamesStateProvider = AutoDisposeProvider<GroupNamesState>.internal(
 // ignore: unused_element
 typedef GroupNamesStateRef = AutoDisposeProviderRef<GroupNamesState>;
 String _$proxyGroupSelectorStateHash() =>
-    r'44e51fb6a9283d99782532ad69ac406febc3b427';
+    r'7f2168c42e9192e0aac0b10e12750ca523f552ca';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -1829,23 +1829,5 @@ class _GenColorSchemeProviderElement
   @override
   bool get ignoreConfig => (origin as GenColorSchemeProvider).ignoreConfig;
 }
-
-String _$webViewParamsHash() => r'a8408c4abc45d5393a53c49c90b81e3e47faa779';
-
-/// See also [webViewParams].
-@ProviderFor(webViewParams)
-final webViewParamsProvider = AutoDisposeProvider<WebViewParams>.internal(
-  webViewParams,
-  name: r'webViewParamsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$webViewParamsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef WebViewParamsRef = AutoDisposeProviderRef<WebViewParams>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

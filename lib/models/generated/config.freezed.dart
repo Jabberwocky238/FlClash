@@ -38,7 +38,6 @@ mixin _$AppSettingProps {
   bool get hidden => throw _privateConstructorUsedError;
   bool get developerMode => throw _privateConstructorUsedError;
   RecoveryStrategy get recoveryStrategy => throw _privateConstructorUsedError;
-  WebViewParams get webViewParams => throw _privateConstructorUsedError;
 
   /// Serializes this AppSettingProps to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -73,10 +72,7 @@ abstract class $AppSettingPropsCopyWith<$Res> {
       bool minimizeOnExit,
       bool hidden,
       bool developerMode,
-      RecoveryStrategy recoveryStrategy,
-      WebViewParams webViewParams});
-
-  $WebViewParamsCopyWith<$Res> get webViewParams;
+      RecoveryStrategy recoveryStrategy});
 }
 
 /// @nodoc
@@ -110,7 +106,6 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
     Object? hidden = null,
     Object? developerMode = null,
     Object? recoveryStrategy = null,
-    Object? webViewParams = null,
   }) {
     return _then(_value.copyWith(
       locale: freezed == locale
@@ -177,21 +172,7 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
           ? _value.recoveryStrategy
           : recoveryStrategy // ignore: cast_nullable_to_non_nullable
               as RecoveryStrategy,
-      webViewParams: null == webViewParams
-          ? _value.webViewParams
-          : webViewParams // ignore: cast_nullable_to_non_nullable
-              as WebViewParams,
     ) as $Val);
-  }
-
-  /// Create a copy of AppSettingProps
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $WebViewParamsCopyWith<$Res> get webViewParams {
-    return $WebViewParamsCopyWith<$Res>(_value.webViewParams, (value) {
-      return _then(_value.copyWith(webViewParams: value) as $Val);
-    });
   }
 }
 
@@ -220,11 +201,7 @@ abstract class _$$AppSettingPropsImplCopyWith<$Res>
       bool minimizeOnExit,
       bool hidden,
       bool developerMode,
-      RecoveryStrategy recoveryStrategy,
-      WebViewParams webViewParams});
-
-  @override
-  $WebViewParamsCopyWith<$Res> get webViewParams;
+      RecoveryStrategy recoveryStrategy});
 }
 
 /// @nodoc
@@ -256,7 +233,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
     Object? hidden = null,
     Object? developerMode = null,
     Object? recoveryStrategy = null,
-    Object? webViewParams = null,
   }) {
     return _then(_$AppSettingPropsImpl(
       locale: freezed == locale
@@ -323,10 +299,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
           ? _value.recoveryStrategy
           : recoveryStrategy // ignore: cast_nullable_to_non_nullable
               as RecoveryStrategy,
-      webViewParams: null == webViewParams
-          ? _value.webViewParams
-          : webViewParams // ignore: cast_nullable_to_non_nullable
-              as WebViewParams,
     ));
   }
 }
@@ -351,8 +323,7 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       this.minimizeOnExit = true,
       this.hidden = false,
       this.developerMode = true,
-      this.recoveryStrategy = RecoveryStrategy.compatible,
-      this.webViewParams = defaultWebViewParams})
+      this.recoveryStrategy = RecoveryStrategy.compatible})
       : _dashboardWidgets = dashboardWidgets;
 
   factory _$AppSettingPropsImpl.fromJson(Map<String, dynamic> json) =>
@@ -412,13 +383,10 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
   @override
   @JsonKey()
   final RecoveryStrategy recoveryStrategy;
-  @override
-  @JsonKey()
-  final WebViewParams webViewParams;
 
   @override
   String toString() {
-    return 'AppSettingProps(locale: $locale, dashboardWidgets: $dashboardWidgets, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, developerMode: $developerMode, recoveryStrategy: $recoveryStrategy, webViewParams: $webViewParams)';
+    return 'AppSettingProps(locale: $locale, dashboardWidgets: $dashboardWidgets, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, developerMode: $developerMode, recoveryStrategy: $recoveryStrategy)';
   }
 
   @override
@@ -453,9 +421,7 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
             (identical(other.developerMode, developerMode) ||
                 other.developerMode == developerMode) &&
             (identical(other.recoveryStrategy, recoveryStrategy) ||
-                other.recoveryStrategy == recoveryStrategy) &&
-            (identical(other.webViewParams, webViewParams) ||
-                other.webViewParams == webViewParams));
+                other.recoveryStrategy == recoveryStrategy));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -477,8 +443,7 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       minimizeOnExit,
       hidden,
       developerMode,
-      recoveryStrategy,
-      webViewParams);
+      recoveryStrategy);
 
   /// Create a copy of AppSettingProps
   /// with the given fields replaced by the non-null parameter values.
@@ -515,8 +480,7 @@ abstract class _AppSettingProps implements AppSettingProps {
       final bool minimizeOnExit,
       final bool hidden,
       final bool developerMode,
-      final RecoveryStrategy recoveryStrategy,
-      final WebViewParams webViewParams}) = _$AppSettingPropsImpl;
+      final RecoveryStrategy recoveryStrategy}) = _$AppSettingPropsImpl;
 
   factory _AppSettingProps.fromJson(Map<String, dynamic> json) =
       _$AppSettingPropsImpl.fromJson;
@@ -554,8 +518,6 @@ abstract class _AppSettingProps implements AppSettingProps {
   bool get developerMode;
   @override
   RecoveryStrategy get recoveryStrategy;
-  @override
-  WebViewParams get webViewParams;
 
   /// Create a copy of AppSettingProps
   /// with the given fields replaced by the non-null parameter values.
@@ -868,6 +830,213 @@ abstract class _AccessControl implements AccessControl {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AccessControlImplCopyWith<_$AccessControlImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WindowProps _$WindowPropsFromJson(Map<String, dynamic> json) {
+  return _WindowProps.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WindowProps {
+  double get width => throw _privateConstructorUsedError;
+  double get height => throw _privateConstructorUsedError;
+  double? get top => throw _privateConstructorUsedError;
+  double? get left => throw _privateConstructorUsedError;
+
+  /// Serializes this WindowProps to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of WindowProps
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $WindowPropsCopyWith<WindowProps> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WindowPropsCopyWith<$Res> {
+  factory $WindowPropsCopyWith(
+          WindowProps value, $Res Function(WindowProps) then) =
+      _$WindowPropsCopyWithImpl<$Res, WindowProps>;
+  @useResult
+  $Res call({double width, double height, double? top, double? left});
+}
+
+/// @nodoc
+class _$WindowPropsCopyWithImpl<$Res, $Val extends WindowProps>
+    implements $WindowPropsCopyWith<$Res> {
+  _$WindowPropsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of WindowProps
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? width = null,
+    Object? height = null,
+    Object? top = freezed,
+    Object? left = freezed,
+  }) {
+    return _then(_value.copyWith(
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+      top: freezed == top
+          ? _value.top
+          : top // ignore: cast_nullable_to_non_nullable
+              as double?,
+      left: freezed == left
+          ? _value.left
+          : left // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$WindowPropsImplCopyWith<$Res>
+    implements $WindowPropsCopyWith<$Res> {
+  factory _$$WindowPropsImplCopyWith(
+          _$WindowPropsImpl value, $Res Function(_$WindowPropsImpl) then) =
+      __$$WindowPropsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({double width, double height, double? top, double? left});
+}
+
+/// @nodoc
+class __$$WindowPropsImplCopyWithImpl<$Res>
+    extends _$WindowPropsCopyWithImpl<$Res, _$WindowPropsImpl>
+    implements _$$WindowPropsImplCopyWith<$Res> {
+  __$$WindowPropsImplCopyWithImpl(
+      _$WindowPropsImpl _value, $Res Function(_$WindowPropsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of WindowProps
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? width = null,
+    Object? height = null,
+    Object? top = freezed,
+    Object? left = freezed,
+  }) {
+    return _then(_$WindowPropsImpl(
+      width: null == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as double,
+      height: null == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as double,
+      top: freezed == top
+          ? _value.top
+          : top // ignore: cast_nullable_to_non_nullable
+              as double?,
+      left: freezed == left
+          ? _value.left
+          : left // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$WindowPropsImpl implements _WindowProps {
+  const _$WindowPropsImpl(
+      {this.width = windowWidth,
+      this.height = windowHeight,
+      this.top,
+      this.left});
+
+  factory _$WindowPropsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WindowPropsImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final double width;
+  @override
+  @JsonKey()
+  final double height;
+  @override
+  final double? top;
+  @override
+  final double? left;
+
+  @override
+  String toString() {
+    return 'WindowProps(width: $width, height: $height, top: $top, left: $left)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WindowPropsImpl &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
+            (identical(other.top, top) || other.top == top) &&
+            (identical(other.left, left) || other.left == left));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, width, height, top, left);
+
+  /// Create a copy of WindowProps
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WindowPropsImplCopyWith<_$WindowPropsImpl> get copyWith =>
+      __$$WindowPropsImplCopyWithImpl<_$WindowPropsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$WindowPropsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _WindowProps implements WindowProps {
+  const factory _WindowProps(
+      {final double width,
+      final double height,
+      final double? top,
+      final double? left}) = _$WindowPropsImpl;
+
+  factory _WindowProps.fromJson(Map<String, dynamic> json) =
+      _$WindowPropsImpl.fromJson;
+
+  @override
+  double get width;
+  @override
+  double get height;
+  @override
+  double? get top;
+  @override
+  double? get left;
+
+  /// Create a copy of WindowProps
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$WindowPropsImplCopyWith<_$WindowPropsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1328,275 +1497,6 @@ abstract class _NetworkProps implements NetworkProps {
       throw _privateConstructorUsedError;
 }
 
-ProxiesStyle _$ProxiesStyleFromJson(Map<String, dynamic> json) {
-  return _ProxiesStyle.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ProxiesStyle {
-  ProxiesType get type => throw _privateConstructorUsedError;
-  ProxiesSortType get sortType => throw _privateConstructorUsedError;
-  ProxiesLayout get layout => throw _privateConstructorUsedError;
-  ProxiesIconStyle get iconStyle => throw _privateConstructorUsedError;
-  ProxyCardType get cardType => throw _privateConstructorUsedError;
-  Map<String, String> get iconMap => throw _privateConstructorUsedError;
-
-  /// Serializes this ProxiesStyle to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProxiesStyle
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProxiesStyleCopyWith<ProxiesStyle> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProxiesStyleCopyWith<$Res> {
-  factory $ProxiesStyleCopyWith(
-          ProxiesStyle value, $Res Function(ProxiesStyle) then) =
-      _$ProxiesStyleCopyWithImpl<$Res, ProxiesStyle>;
-  @useResult
-  $Res call(
-      {ProxiesType type,
-      ProxiesSortType sortType,
-      ProxiesLayout layout,
-      ProxiesIconStyle iconStyle,
-      ProxyCardType cardType,
-      Map<String, String> iconMap});
-}
-
-/// @nodoc
-class _$ProxiesStyleCopyWithImpl<$Res, $Val extends ProxiesStyle>
-    implements $ProxiesStyleCopyWith<$Res> {
-  _$ProxiesStyleCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProxiesStyle
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? sortType = null,
-    Object? layout = null,
-    Object? iconStyle = null,
-    Object? cardType = null,
-    Object? iconMap = null,
-  }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ProxiesType,
-      sortType: null == sortType
-          ? _value.sortType
-          : sortType // ignore: cast_nullable_to_non_nullable
-              as ProxiesSortType,
-      layout: null == layout
-          ? _value.layout
-          : layout // ignore: cast_nullable_to_non_nullable
-              as ProxiesLayout,
-      iconStyle: null == iconStyle
-          ? _value.iconStyle
-          : iconStyle // ignore: cast_nullable_to_non_nullable
-              as ProxiesIconStyle,
-      cardType: null == cardType
-          ? _value.cardType
-          : cardType // ignore: cast_nullable_to_non_nullable
-              as ProxyCardType,
-      iconMap: null == iconMap
-          ? _value.iconMap
-          : iconMap // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ProxiesStyleImplCopyWith<$Res>
-    implements $ProxiesStyleCopyWith<$Res> {
-  factory _$$ProxiesStyleImplCopyWith(
-          _$ProxiesStyleImpl value, $Res Function(_$ProxiesStyleImpl) then) =
-      __$$ProxiesStyleImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {ProxiesType type,
-      ProxiesSortType sortType,
-      ProxiesLayout layout,
-      ProxiesIconStyle iconStyle,
-      ProxyCardType cardType,
-      Map<String, String> iconMap});
-}
-
-/// @nodoc
-class __$$ProxiesStyleImplCopyWithImpl<$Res>
-    extends _$ProxiesStyleCopyWithImpl<$Res, _$ProxiesStyleImpl>
-    implements _$$ProxiesStyleImplCopyWith<$Res> {
-  __$$ProxiesStyleImplCopyWithImpl(
-      _$ProxiesStyleImpl _value, $Res Function(_$ProxiesStyleImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProxiesStyle
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = null,
-    Object? sortType = null,
-    Object? layout = null,
-    Object? iconStyle = null,
-    Object? cardType = null,
-    Object? iconMap = null,
-  }) {
-    return _then(_$ProxiesStyleImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ProxiesType,
-      sortType: null == sortType
-          ? _value.sortType
-          : sortType // ignore: cast_nullable_to_non_nullable
-              as ProxiesSortType,
-      layout: null == layout
-          ? _value.layout
-          : layout // ignore: cast_nullable_to_non_nullable
-              as ProxiesLayout,
-      iconStyle: null == iconStyle
-          ? _value.iconStyle
-          : iconStyle // ignore: cast_nullable_to_non_nullable
-              as ProxiesIconStyle,
-      cardType: null == cardType
-          ? _value.cardType
-          : cardType // ignore: cast_nullable_to_non_nullable
-              as ProxyCardType,
-      iconMap: null == iconMap
-          ? _value._iconMap
-          : iconMap // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ProxiesStyleImpl implements _ProxiesStyle {
-  const _$ProxiesStyleImpl(
-      {this.type = ProxiesType.tab,
-      this.sortType = ProxiesSortType.none,
-      this.layout = ProxiesLayout.standard,
-      this.iconStyle = ProxiesIconStyle.standard,
-      this.cardType = ProxyCardType.expand,
-      final Map<String, String> iconMap = const {}})
-      : _iconMap = iconMap;
-
-  factory _$ProxiesStyleImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProxiesStyleImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final ProxiesType type;
-  @override
-  @JsonKey()
-  final ProxiesSortType sortType;
-  @override
-  @JsonKey()
-  final ProxiesLayout layout;
-  @override
-  @JsonKey()
-  final ProxiesIconStyle iconStyle;
-  @override
-  @JsonKey()
-  final ProxyCardType cardType;
-  final Map<String, String> _iconMap;
-  @override
-  @JsonKey()
-  Map<String, String> get iconMap {
-    if (_iconMap is EqualUnmodifiableMapView) return _iconMap;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_iconMap);
-  }
-
-  @override
-  String toString() {
-    return 'ProxiesStyle(type: $type, sortType: $sortType, layout: $layout, iconStyle: $iconStyle, cardType: $cardType, iconMap: $iconMap)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProxiesStyleImpl &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.sortType, sortType) ||
-                other.sortType == sortType) &&
-            (identical(other.layout, layout) || other.layout == layout) &&
-            (identical(other.iconStyle, iconStyle) ||
-                other.iconStyle == iconStyle) &&
-            (identical(other.cardType, cardType) ||
-                other.cardType == cardType) &&
-            const DeepCollectionEquality().equals(other._iconMap, _iconMap));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, type, sortType, layout,
-      iconStyle, cardType, const DeepCollectionEquality().hash(_iconMap));
-
-  /// Create a copy of ProxiesStyle
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProxiesStyleImplCopyWith<_$ProxiesStyleImpl> get copyWith =>
-      __$$ProxiesStyleImplCopyWithImpl<_$ProxiesStyleImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProxiesStyleImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ProxiesStyle implements ProxiesStyle {
-  const factory _ProxiesStyle(
-      {final ProxiesType type,
-      final ProxiesSortType sortType,
-      final ProxiesLayout layout,
-      final ProxiesIconStyle iconStyle,
-      final ProxyCardType cardType,
-      final Map<String, String> iconMap}) = _$ProxiesStyleImpl;
-
-  factory _ProxiesStyle.fromJson(Map<String, dynamic> json) =
-      _$ProxiesStyleImpl.fromJson;
-
-  @override
-  ProxiesType get type;
-  @override
-  ProxiesSortType get sortType;
-  @override
-  ProxiesLayout get layout;
-  @override
-  ProxiesIconStyle get iconStyle;
-  @override
-  ProxyCardType get cardType;
-  @override
-  Map<String, String> get iconMap;
-
-  /// Create a copy of ProxiesStyle
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProxiesStyleImplCopyWith<_$ProxiesStyleImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 ThemeProps _$ThemePropsFromJson(Map<String, dynamic> json) {
   return _ThemeProps.fromJson(json);
 }
@@ -1833,9 +1733,9 @@ mixin _$Config {
   NetworkProps get networkProps => throw _privateConstructorUsedError;
   VpnProps get vpnProps => throw _privateConstructorUsedError;
   @JsonKey(fromJson: ThemeProps.safeFromJson)
-  ThemeProps get themeProps => throw _privateConstructorUsedError;
-  ProxiesStyle get proxiesStyle =>
-      throw _privateConstructorUsedError; // @Default(defaultWindowProps) WindowProps windowProps,
+  ThemeProps get themeProps =>
+      throw _privateConstructorUsedError; // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
+  WindowProps get windowProps => throw _privateConstructorUsedError;
   ClashConfig get patchClashConfig => throw _privateConstructorUsedError;
 
   /// Serializes this Config to a JSON map.
@@ -1862,7 +1762,7 @@ abstract class $ConfigCopyWith<$Res> {
       NetworkProps networkProps,
       VpnProps vpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
-      ProxiesStyle proxiesStyle,
+      WindowProps windowProps,
       ClashConfig patchClashConfig});
 
   $AppSettingPropsCopyWith<$Res> get appSetting;
@@ -1870,7 +1770,7 @@ abstract class $ConfigCopyWith<$Res> {
   $NetworkPropsCopyWith<$Res> get networkProps;
   $VpnPropsCopyWith<$Res> get vpnProps;
   $ThemePropsCopyWith<$Res> get themeProps;
-  $ProxiesStyleCopyWith<$Res> get proxiesStyle;
+  $WindowPropsCopyWith<$Res> get windowProps;
   $ClashConfigCopyWith<$Res> get patchClashConfig;
 }
 
@@ -1897,7 +1797,7 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? networkProps = null,
     Object? vpnProps = null,
     Object? themeProps = null,
-    Object? proxiesStyle = null,
+    Object? windowProps = null,
     Object? patchClashConfig = null,
   }) {
     return _then(_value.copyWith(
@@ -1933,10 +1833,10 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.themeProps
           : themeProps // ignore: cast_nullable_to_non_nullable
               as ThemeProps,
-      proxiesStyle: null == proxiesStyle
-          ? _value.proxiesStyle
-          : proxiesStyle // ignore: cast_nullable_to_non_nullable
-              as ProxiesStyle,
+      windowProps: null == windowProps
+          ? _value.windowProps
+          : windowProps // ignore: cast_nullable_to_non_nullable
+              as WindowProps,
       patchClashConfig: null == patchClashConfig
           ? _value.patchClashConfig
           : patchClashConfig // ignore: cast_nullable_to_non_nullable
@@ -1998,9 +1898,9 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProxiesStyleCopyWith<$Res> get proxiesStyle {
-    return $ProxiesStyleCopyWith<$Res>(_value.proxiesStyle, (value) {
-      return _then(_value.copyWith(proxiesStyle: value) as $Val);
+  $WindowPropsCopyWith<$Res> get windowProps {
+    return $WindowPropsCopyWith<$Res>(_value.windowProps, (value) {
+      return _then(_value.copyWith(windowProps: value) as $Val);
     });
   }
 
@@ -2032,7 +1932,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       NetworkProps networkProps,
       VpnProps vpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
-      ProxiesStyle proxiesStyle,
+      WindowProps windowProps,
       ClashConfig patchClashConfig});
 
   @override
@@ -2046,7 +1946,7 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   @override
   $ThemePropsCopyWith<$Res> get themeProps;
   @override
-  $ProxiesStyleCopyWith<$Res> get proxiesStyle;
+  $WindowPropsCopyWith<$Res> get windowProps;
   @override
   $ClashConfigCopyWith<$Res> get patchClashConfig;
 }
@@ -2072,7 +1972,7 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? networkProps = null,
     Object? vpnProps = null,
     Object? themeProps = null,
-    Object? proxiesStyle = null,
+    Object? windowProps = null,
     Object? patchClashConfig = null,
   }) {
     return _then(_$ConfigImpl(
@@ -2108,10 +2008,10 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.themeProps
           : themeProps // ignore: cast_nullable_to_non_nullable
               as ThemeProps,
-      proxiesStyle: null == proxiesStyle
-          ? _value.proxiesStyle
-          : proxiesStyle // ignore: cast_nullable_to_non_nullable
-              as ProxiesStyle,
+      windowProps: null == windowProps
+          ? _value.windowProps
+          : windowProps // ignore: cast_nullable_to_non_nullable
+              as WindowProps,
       patchClashConfig: null == patchClashConfig
           ? _value.patchClashConfig
           : patchClashConfig // ignore: cast_nullable_to_non_nullable
@@ -2133,7 +2033,7 @@ class _$ConfigImpl implements _Config {
       this.networkProps = defaultNetworkProps,
       this.vpnProps = defaultVpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson) required this.themeProps,
-      this.proxiesStyle = defaultProxiesStyle,
+      this.windowProps = defaultWindowProps,
       this.patchClashConfig = defaultClashConfig})
       : _profiles = profiles;
 
@@ -2169,17 +2069,17 @@ class _$ConfigImpl implements _Config {
   @override
   @JsonKey(fromJson: ThemeProps.safeFromJson)
   final ThemeProps themeProps;
+// @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
   @override
   @JsonKey()
-  final ProxiesStyle proxiesStyle;
-// @Default(defaultWindowProps) WindowProps windowProps,
+  final WindowProps windowProps;
   @override
   @JsonKey()
   final ClashConfig patchClashConfig;
 
   @override
   String toString() {
-    return 'Config(appSetting: $appSetting, profiles: $profiles, currentProfileId: $currentProfileId, overrideDns: $overrideDns, authProps: $authProps, networkProps: $networkProps, vpnProps: $vpnProps, themeProps: $themeProps, proxiesStyle: $proxiesStyle, patchClashConfig: $patchClashConfig)';
+    return 'Config(appSetting: $appSetting, profiles: $profiles, currentProfileId: $currentProfileId, overrideDns: $overrideDns, authProps: $authProps, networkProps: $networkProps, vpnProps: $vpnProps, themeProps: $themeProps, windowProps: $windowProps, patchClashConfig: $patchClashConfig)';
   }
 
   @override
@@ -2202,8 +2102,8 @@ class _$ConfigImpl implements _Config {
                 other.vpnProps == vpnProps) &&
             (identical(other.themeProps, themeProps) ||
                 other.themeProps == themeProps) &&
-            (identical(other.proxiesStyle, proxiesStyle) ||
-                other.proxiesStyle == proxiesStyle) &&
+            (identical(other.windowProps, windowProps) ||
+                other.windowProps == windowProps) &&
             (identical(other.patchClashConfig, patchClashConfig) ||
                 other.patchClashConfig == patchClashConfig));
   }
@@ -2220,7 +2120,7 @@ class _$ConfigImpl implements _Config {
       networkProps,
       vpnProps,
       themeProps,
-      proxiesStyle,
+      windowProps,
       patchClashConfig);
 
   /// Create a copy of Config
@@ -2251,7 +2151,7 @@ abstract class _Config implements Config {
       final VpnProps vpnProps,
       @JsonKey(fromJson: ThemeProps.safeFromJson)
       required final ThemeProps themeProps,
-      final ProxiesStyle proxiesStyle,
+      final WindowProps windowProps,
       final ClashConfig patchClashConfig}) = _$ConfigImpl;
 
   factory _Config.fromJson(Map<String, dynamic> json) = _$ConfigImpl.fromJson;
@@ -2273,10 +2173,10 @@ abstract class _Config implements Config {
   VpnProps get vpnProps;
   @override
   @JsonKey(fromJson: ThemeProps.safeFromJson)
-  ThemeProps get themeProps;
+  ThemeProps
+      get themeProps; // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
   @override
-  ProxiesStyle
-      get proxiesStyle; // @Default(defaultWindowProps) WindowProps windowProps,
+  WindowProps get windowProps;
   @override
   ClashConfig get patchClashConfig;
 

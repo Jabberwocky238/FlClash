@@ -177,16 +177,16 @@ DashboardState dashboardState(Ref ref) {
 @riverpod
 ProxiesActionsState proxiesActionsState(Ref ref) {
   final pageLabel = ref.watch(currentPageLabelProvider);
-  final hasProviders = ref.watch(providersProvider.select(
-    (state) => state.isNotEmpty,
-  ));
-  final type = ref.watch(proxiesStyleSettingProvider.select(
-    (state) => state.type,
-  ));
+  // final hasProviders = ref.watch(providersProvider.select(
+  //   (state) => state.isNotEmpty,
+  // ));
+  // final type = ref.watch(proxiesStyleSettingProvider.select(
+  //   (state) => state.type,
+  // ));
   return ProxiesActionsState(
     pageLabel: pageLabel,
-    hasProviders: hasProviders,
-    type: type,
+    // hasProviders: hasProviders,
+    // type: type,
   );
 }
 
@@ -220,13 +220,13 @@ ProxiesListSelectorState proxiesListSelectorState(Ref ref) {
     return state.value.map((e) => e.name).toList();
   }));
   final currentUnfoldSet = ref.watch(unfoldSetProvider);
-  final proxiesStyle = ref.watch(proxiesStyleSettingProvider);
+  // final proxiesStyle = ref.watch(proxiesStyleSettingProvider);
   final sortNum = ref.watch(sortNumProvider);
   // final columns = ref.watch(getProxiesColumnsProvider);
   return ProxiesListSelectorState(
     groupNames: groupNames,
     currentUnfoldSet: currentUnfoldSet,
-    proxiesSortType: proxiesStyle.sortType,
+    // proxiesSortType: proxiesStyle.sortType,
     // proxyCardType: proxiesStyle.cardType,
     sortNum: sortNum,
     // columns: columns,
@@ -279,9 +279,9 @@ GroupNamesState groupNamesState(Ref ref) {
 
 @riverpod
 ProxyGroupSelectorState proxyGroupSelectorState(Ref ref, String groupName) {
-  final proxiesStyle = ref.watch(
-    proxiesStyleSettingProvider,
-  );
+  // final proxiesStyle = ref.watch(
+  //   proxiesStyleSettingProvider,
+  // );
   final group = ref.watch(
     currentGroupsStateProvider.select(
       (state) => state.value.getGroup(groupName),
@@ -291,8 +291,8 @@ ProxyGroupSelectorState proxyGroupSelectorState(Ref ref, String groupName) {
   // final columns = ref.watch(getProxiesColumnsProvider);
   return ProxyGroupSelectorState(
     testUrl: group?.testUrl,
-    proxiesSortType: proxiesStyle.sortType,
-    proxyCardType: proxiesStyle.cardType,
+    // proxiesSortType: proxiesStyle.sortType,
+    // proxyCardType: proxiesStyle.cardType,
     sortNum: sortNum,
     groupType: group?.type ?? GroupType.Selector,
     proxies: group?.all ?? [],
@@ -527,7 +527,4 @@ ColorScheme genColorScheme(
   );
 }
 
-@riverpod
-WebViewParams webViewParams(Ref ref) {
-  return ref.watch(appSettingProvider.select((state) => state.webViewParams));
-}
+

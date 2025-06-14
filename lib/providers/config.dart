@@ -228,25 +228,25 @@ class OverrideDns extends _$OverrideDns with AutoDisposeNotifierMixin {
 }
 
 
-@riverpod
-class ProxiesStyleSetting extends _$ProxiesStyleSetting
-    with AutoDisposeNotifierMixin {
-  @override
-  ProxiesStyle build() {
-    return globalState.config.proxiesStyle;
-  }
+// @riverpod
+// class ProxiesStyleSetting extends _$ProxiesStyleSetting
+//     with AutoDisposeNotifierMixin {
+//   @override
+//   ProxiesStyle build() {
+//     return globalState.config.proxiesStyle;
+//   }
 
-  @override
-  onUpdate(value) {
-    globalState.config = globalState.config.copyWith(
-      proxiesStyle: value,
-    );
-  }
+//   @override
+//   onUpdate(value) {
+//     globalState.config = globalState.config.copyWith(
+//       proxiesStyle: value,
+//     );
+//   }
 
-  updateState(ProxiesStyle Function(ProxiesStyle state) builder) {
-    state = builder(state);
-  }
-}
+//   updateState(ProxiesStyle Function(ProxiesStyle state) builder) {
+//     state = builder(state);
+//   }
+// }
 
 @riverpod
 class PatchClashConfig extends _$PatchClashConfig

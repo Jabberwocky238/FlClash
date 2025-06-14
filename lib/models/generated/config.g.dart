@@ -29,10 +29,6 @@ _$AppSettingPropsImpl _$$AppSettingPropsImplFromJson(
       recoveryStrategy: $enumDecodeNullable(
               _$RecoveryStrategyEnumMap, json['recoveryStrategy']) ??
           RecoveryStrategy.compatible,
-      webViewParams: json['webViewParams'] == null
-          ? defaultWebViewParams
-          : WebViewParams.fromJson(
-              json['webViewParams'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AppSettingPropsImplToJson(
@@ -56,7 +52,6 @@ Map<String, dynamic> _$$AppSettingPropsImplToJson(
       'hidden': instance.hidden,
       'developerMode': instance.developerMode,
       'recoveryStrategy': _$RecoveryStrategyEnumMap[instance.recoveryStrategy]!,
-      'webViewParams': instance.webViewParams,
     };
 
 const _$RecoveryStrategyEnumMap = {
@@ -117,6 +112,22 @@ const _$AccessSortTypeEnumMap = {
   AccessSortType.time: 'time',
 };
 
+_$WindowPropsImpl _$$WindowPropsImplFromJson(Map<String, dynamic> json) =>
+    _$WindowPropsImpl(
+      width: (json['width'] as num?)?.toDouble() ?? windowWidth,
+      height: (json['height'] as num?)?.toDouble() ?? windowHeight,
+      top: (json['top'] as num?)?.toDouble(),
+      left: (json['left'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$WindowPropsImplToJson(_$WindowPropsImpl instance) =>
+    <String, dynamic>{
+      'width': instance.width,
+      'height': instance.height,
+      'top': instance.top,
+      'left': instance.left,
+    };
+
 _$VpnPropsImpl _$$VpnPropsImplFromJson(Map<String, dynamic> json) =>
     _$VpnPropsImpl(
       enable: json['enable'] as bool? ?? true,
@@ -159,65 +170,6 @@ Map<String, dynamic> _$$NetworkPropsImplToJson(_$NetworkPropsImpl instance) =>
 const _$RouteModeEnumMap = {
   RouteMode.bypassPrivate: 'bypassPrivate',
   RouteMode.config: 'config',
-};
-
-_$ProxiesStyleImpl _$$ProxiesStyleImplFromJson(Map<String, dynamic> json) =>
-    _$ProxiesStyleImpl(
-      type: $enumDecodeNullable(_$ProxiesTypeEnumMap, json['type']) ??
-          ProxiesType.tab,
-      sortType:
-          $enumDecodeNullable(_$ProxiesSortTypeEnumMap, json['sortType']) ??
-              ProxiesSortType.none,
-      layout: $enumDecodeNullable(_$ProxiesLayoutEnumMap, json['layout']) ??
-          ProxiesLayout.standard,
-      iconStyle:
-          $enumDecodeNullable(_$ProxiesIconStyleEnumMap, json['iconStyle']) ??
-              ProxiesIconStyle.standard,
-      cardType: $enumDecodeNullable(_$ProxyCardTypeEnumMap, json['cardType']) ??
-          ProxyCardType.expand,
-      iconMap: (json['iconMap'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as String),
-          ) ??
-          const {},
-    );
-
-Map<String, dynamic> _$$ProxiesStyleImplToJson(_$ProxiesStyleImpl instance) =>
-    <String, dynamic>{
-      'type': _$ProxiesTypeEnumMap[instance.type]!,
-      'sortType': _$ProxiesSortTypeEnumMap[instance.sortType]!,
-      'layout': _$ProxiesLayoutEnumMap[instance.layout]!,
-      'iconStyle': _$ProxiesIconStyleEnumMap[instance.iconStyle]!,
-      'cardType': _$ProxyCardTypeEnumMap[instance.cardType]!,
-      'iconMap': instance.iconMap,
-    };
-
-const _$ProxiesTypeEnumMap = {
-  ProxiesType.tab: 'tab',
-  ProxiesType.list: 'list',
-};
-
-const _$ProxiesSortTypeEnumMap = {
-  ProxiesSortType.none: 'none',
-  ProxiesSortType.delay: 'delay',
-  ProxiesSortType.name: 'name',
-};
-
-const _$ProxiesLayoutEnumMap = {
-  ProxiesLayout.loose: 'loose',
-  ProxiesLayout.standard: 'standard',
-  ProxiesLayout.tight: 'tight',
-};
-
-const _$ProxiesIconStyleEnumMap = {
-  ProxiesIconStyle.standard: 'standard',
-  ProxiesIconStyle.none: 'none',
-  ProxiesIconStyle.icon: 'icon',
-};
-
-const _$ProxyCardTypeEnumMap = {
-  ProxyCardType.expand: 'expand',
-  ProxyCardType.shrink: 'shrink',
-  ProxyCardType.min: 'min',
 };
 
 _$ThemePropsImpl _$$ThemePropsImplFromJson(Map<String, dynamic> json) =>
@@ -280,10 +232,9 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
           : VpnProps.fromJson(json['vpnProps'] as Map<String, dynamic>?),
       themeProps:
           ThemeProps.safeFromJson(json['themeProps'] as Map<String, Object?>?),
-      proxiesStyle: json['proxiesStyle'] == null
-          ? defaultProxiesStyle
-          : ProxiesStyle.fromJson(
-              json['proxiesStyle'] as Map<String, dynamic>?),
+      windowProps: json['windowProps'] == null
+          ? defaultWindowProps
+          : WindowProps.fromJson(json['windowProps'] as Map<String, dynamic>?),
       patchClashConfig: json['patchClashConfig'] == null
           ? defaultClashConfig
           : ClashConfig.fromJson(
@@ -300,7 +251,7 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'networkProps': instance.networkProps,
       'vpnProps': instance.vpnProps,
       'themeProps': instance.themeProps,
-      'proxiesStyle': instance.proxiesStyle,
+      'windowProps': instance.windowProps,
       'patchClashConfig': instance.patchClashConfig,
     };
 

@@ -145,23 +145,6 @@ final overrideDnsProvider =
 );
 
 typedef _$OverrideDns = AutoDisposeNotifier<bool>;
-String _$proxiesStyleSettingHash() =>
-    r'162e7320dff8063e7a2deca5071ef5024f4d3d04';
-
-/// See also [ProxiesStyleSetting].
-@ProviderFor(ProxiesStyleSetting)
-final proxiesStyleSettingProvider =
-    AutoDisposeNotifierProvider<ProxiesStyleSetting, ProxiesStyle>.internal(
-  ProxiesStyleSetting.new,
-  name: r'proxiesStyleSettingProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$proxiesStyleSettingHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ProxiesStyleSetting = AutoDisposeNotifier<ProxiesStyle>;
 String _$patchClashConfigHash() => r'52906195d85525d6688aec231da8b38c24364494';
 
 /// See also [PatchClashConfig].

@@ -35,10 +35,10 @@ const defaultAppSettingProps = AppSettingProps();
 const defaultVpnProps = VpnProps();
 const defaultNetworkProps = NetworkProps();
 const defaultAuthProps = AuthProps();
-const defaultProxiesStyle = ProxiesStyle();
-// const defaultWindowProps = WindowProps();
+// const defaultProxiesStyle = ProxiesStyle();
+const defaultWindowProps = WindowProps();
 const defaultAccessControl = AccessControl();
-const defaultWebViewParams = WebViewParams();
+// const defaultWebViewParams = WebViewParams();
 final defaultThemeProps = ThemeProps(
   primaryColor: defaultPrimaryColor,
 );
@@ -88,7 +88,6 @@ class AppSettingProps with _$AppSettingProps {
     @Default(false) bool hidden,
     @Default(true) bool developerMode,
     @Default(RecoveryStrategy.compatible) RecoveryStrategy recoveryStrategy,
-    @Default(defaultWebViewParams) WebViewParams webViewParams,
   }) = _AppSettingProps;
 
   factory AppSettingProps.fromJson(Map<String, Object?> json) =>
@@ -124,18 +123,18 @@ extension AccessControlExt on AccessControl {
       };
 }
 
-// @freezed
-// class WindowProps with _$WindowProps {
-//   const factory WindowProps({
-//     @Default(750) double width,
-//     @Default(600) double height,
-//     double? top,
-//     double? left,
-//   }) = _WindowProps;
+@freezed
+class WindowProps with _$WindowProps {
+  const factory WindowProps({
+    @Default(windowWidth) double width,
+    @Default(windowHeight) double height,
+    double? top,
+    double? left,
+  }) = _WindowProps;
 
-//   factory WindowProps.fromJson(Map<String, Object?>? json) =>
-//       json == null ? const WindowProps() : _$WindowPropsFromJson(json);
-// }
+  factory WindowProps.fromJson(Map<String, Object?>? json) =>
+      json == null ? const WindowProps() : _$WindowPropsFromJson(json);
+}
 
 @freezed
 class VpnProps with _$VpnProps {
@@ -163,20 +162,20 @@ class NetworkProps with _$NetworkProps {
       json == null ? const NetworkProps() : _$NetworkPropsFromJson(json);
 }
 
-@freezed
-class ProxiesStyle with _$ProxiesStyle {
-  const factory ProxiesStyle({
-    @Default(ProxiesType.tab) ProxiesType type,
-    @Default(ProxiesSortType.none) ProxiesSortType sortType,
-    @Default(ProxiesLayout.standard) ProxiesLayout layout,
-    @Default(ProxiesIconStyle.standard) ProxiesIconStyle iconStyle,
-    @Default(ProxyCardType.expand) ProxyCardType cardType,
-    @Default({}) Map<String, String> iconMap,
-  }) = _ProxiesStyle;
+// @freezed
+// class ProxiesStyle with _$ProxiesStyle {
+//   const factory ProxiesStyle({
+//     @Default(ProxiesType.tab) ProxiesType type,
+//     @Default(ProxiesSortType.none) ProxiesSortType sortType,
+//     @Default(ProxiesLayout.standard) ProxiesLayout layout,
+//     @Default(ProxiesIconStyle.standard) ProxiesIconStyle iconStyle,
+//     @Default(ProxyCardType.expand) ProxyCardType cardType,
+//     @Default({}) Map<String, String> iconMap,
+//   }) = _ProxiesStyle;
 
-  factory ProxiesStyle.fromJson(Map<String, Object?>? json) =>
-      json == null ? defaultProxiesStyle : _$ProxiesStyleFromJson(json);
-}
+//   factory ProxiesStyle.fromJson(Map<String, Object?>? json) =>
+//       json == null ? defaultProxiesStyle : _$ProxiesStyleFromJson(json);
+// }
 
 @freezed
 class ThemeProps with _$ThemeProps {
@@ -213,8 +212,8 @@ class Config with _$Config {
     @Default(defaultNetworkProps) NetworkProps networkProps,
     @Default(defaultVpnProps) VpnProps vpnProps,
     @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
-    @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
-    // @Default(defaultWindowProps) WindowProps windowProps,
+    // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
+    @Default(defaultWindowProps) WindowProps windowProps,
     @Default(defaultClashConfig) ClashConfig patchClashConfig,
   }) = _Config;
 

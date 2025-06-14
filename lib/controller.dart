@@ -696,14 +696,15 @@ class AppController {
   }
 
   List<Proxy> getSortProxies(List<Proxy> proxies, [String? url]) {
-    return switch (_ref.read(proxiesStyleSettingProvider).sortType) {
-      ProxiesSortType.none => proxies,
-      ProxiesSortType.delay => _sortOfDelay(
-          proxies: proxies,
-          testUrl: url,
-        ),
-      ProxiesSortType.name => _sortOfName(proxies),
-    };
+    return _sortOfName(proxies);
+    // return switch (_ref.read(proxiesStyleSettingProvider).sortType) {
+    //   ProxiesSortType.none => proxies,
+    //   ProxiesSortType.delay => _sortOfDelay(
+    //       proxies: proxies,
+    //       testUrl: url,
+    //     ),
+    //   ProxiesSortType.name => _sortOfName(proxies),
+    // };
   }
 
   clearEffect(String profileId) async {
@@ -954,8 +955,8 @@ class AppController {
       _ref.read(themeSettingProvider.notifier).value = config.themeProps;
       // _ref.read(windowSettingProvider.notifier).value = config.windowProps;
       _ref.read(vpnSettingProvider.notifier).value = config.vpnProps;
-      _ref.read(proxiesStyleSettingProvider.notifier).value =
-          config.proxiesStyle;
+      // _ref.read(proxiesStyleSettingProvider.notifier).value =
+      //     config.proxiesStyle;
       _ref.read(overrideDnsProvider.notifier).value = config.overrideDns;
       _ref.read(networkSettingProvider.notifier).value = config.networkProps;
       // _ref.read(hotKeyActionsProvider.notifier).value = config.hotKeyActions;

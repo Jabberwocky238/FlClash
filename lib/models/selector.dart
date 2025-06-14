@@ -121,7 +121,7 @@ class ProxiesListSelectorState with _$ProxiesListSelectorState {
   const factory ProxiesListSelectorState({
     required List<String> groupNames,
     required Set<String> currentUnfoldSet,
-    required ProxiesSortType proxiesSortType,
+    // required ProxiesSortType proxiesSortType,
     // required ProxyCardType proxyCardType,
     required num sortNum,
     // required int columns,
@@ -132,8 +132,8 @@ class ProxiesListSelectorState with _$ProxiesListSelectorState {
 class ProxyGroupSelectorState with _$ProxyGroupSelectorState {
   const factory ProxyGroupSelectorState({
     required String? testUrl,
-    required ProxiesSortType proxiesSortType,
-    required ProxyCardType proxyCardType,
+    // required ProxiesSortType proxiesSortType,
+    // required ProxyCardType proxyCardType,
     required num sortNum,
     required GroupType groupType,
     required List<Proxy> proxies,
@@ -207,8 +207,8 @@ class ProxiesListHeaderSelectorState with _$ProxiesListHeaderSelectorState {
 class ProxiesActionsState with _$ProxiesActionsState {
   const factory ProxiesActionsState({
     required PageLabel pageLabel,
-    required ProxiesType type,
-    required bool hasProviders,
+    // required ProxiesType type,
+    // required bool hasProviders,
   }) = _ProxiesActionsState;
 }
 

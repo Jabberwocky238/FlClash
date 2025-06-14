@@ -2,12 +2,13 @@ import 'dart:io';
 
 import 'package:jw_clash/common/common.dart';
 import 'package:flutter/material.dart';
+import 'package:jw_clash/state.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'package:window_manager/window_manager.dart';
 
 class Window {
   init(int version) async {
-    // final props = globalState.config.windowProps;
+    final props = globalState.config.windowProps;
     final acquire = await singleInstanceLock.acquire();
     if (!acquire) {
       exit(0);
@@ -21,22 +22,18 @@ class Window {
     await windowManager.setMaximizable(false);
     await windowManager.setResizable(false);
     WindowOptions windowOptions = WindowOptions(
-      // size: Size(props.width, props.height),
-      size: Size(windowWidth, windowHeight),
-      // minimumSize: const Size(380, 400),
+      size: Size(props.width, props.height),
+      // size: Size(windowWidth, windowHeight),
+      minimumSize: const Size(380, 400),
     );
     if (!Platform.isMacOS || version > 10) {
       await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
     }
     if (!Platform.isMacOS) {
-      // final left = props.left ?? 0;
-      // final top = props.top ?? 0;
-      // final right = left + props.width;
-      // final bottom = top + props.height;
-      final left = 0.0;
-      final top = 0.0;
-      final right = left + windowWidth;
-      final bottom = top + windowHeight;
+      final left = props.left ?? 0;
+      final top = props.top ?? 0;
+      final right = left + props.width;
+      final bottom = top + props.height;
       if (left == 0 && top == 0) {
         await windowManager.setAlignment(Alignment.center);
       } else {
