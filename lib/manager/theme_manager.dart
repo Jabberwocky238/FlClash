@@ -27,7 +27,7 @@ class ThemeManager extends ConsumerWidget {
       minTextScale,
     );
 
-    globalState.theme = CommonTheme.of(context, textScaleFactor);
+    globalState.theme = CommonTheme.of(context);
     final padding = MediaQuery.of(context).padding;
     final height = MediaQuery.of(context).size.height;
     return MediaQuery(

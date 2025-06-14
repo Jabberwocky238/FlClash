@@ -1,3 +1,4 @@
+import 'package:jw_clash/common/constant.dart';
 import 'package:jw_clash/state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ extension NumExt on num {
   }
 
   double get ap {
-    return this * (1 + (globalState.theme.textScaleFactor - 1) * 0.5);
+    return this * (1 + (defaultTextScaleFactor - 1) * 0.5);
   }
 }
 

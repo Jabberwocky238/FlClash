@@ -160,7 +160,9 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
               label: appLocalizations.networkSpeed,
               iconData: Icons.speed_sharp,
             ),
-            onPressed: () {},
+            onPressed: () {
+              commonPrint.log("onPressed");
+            },
             suffix: _buildTrafficInfo(context),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
