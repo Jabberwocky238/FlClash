@@ -7,7 +7,7 @@ import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 
-const appName = "JWClash";
+const appName = "Enzyme VPN";
 const appHelperService = "JWClashHelperService";
 const coreName = "clash.meta";
 const browserUa =
