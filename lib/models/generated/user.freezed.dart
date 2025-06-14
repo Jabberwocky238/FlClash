@@ -873,3 +873,156 @@ abstract class _OrderSelectionProps implements OrderSelectionProps {
   _$$OrderSelectionPropsImplCopyWith<_$OrderSelectionPropsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$OrderSelectionPageState {
+  bool get loading => throw _privateConstructorUsedError;
+  bool get error => throw _privateConstructorUsedError;
+
+  /// Create a copy of OrderSelectionPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $OrderSelectionPageStateCopyWith<OrderSelectionPageState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrderSelectionPageStateCopyWith<$Res> {
+  factory $OrderSelectionPageStateCopyWith(OrderSelectionPageState value,
+          $Res Function(OrderSelectionPageState) then) =
+      _$OrderSelectionPageStateCopyWithImpl<$Res, OrderSelectionPageState>;
+  @useResult
+  $Res call({bool loading, bool error});
+}
+
+/// @nodoc
+class _$OrderSelectionPageStateCopyWithImpl<$Res,
+        $Val extends OrderSelectionPageState>
+    implements $OrderSelectionPageStateCopyWith<$Res> {
+  _$OrderSelectionPageStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of OrderSelectionPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? error = null,
+  }) {
+    return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OrderSelectionPageStateImplCopyWith<$Res>
+    implements $OrderSelectionPageStateCopyWith<$Res> {
+  factory _$$OrderSelectionPageStateImplCopyWith(
+          _$OrderSelectionPageStateImpl value,
+          $Res Function(_$OrderSelectionPageStateImpl) then) =
+      __$$OrderSelectionPageStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool loading, bool error});
+}
+
+/// @nodoc
+class __$$OrderSelectionPageStateImplCopyWithImpl<$Res>
+    extends _$OrderSelectionPageStateCopyWithImpl<$Res,
+        _$OrderSelectionPageStateImpl>
+    implements _$$OrderSelectionPageStateImplCopyWith<$Res> {
+  __$$OrderSelectionPageStateImplCopyWithImpl(
+      _$OrderSelectionPageStateImpl _value,
+      $Res Function(_$OrderSelectionPageStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrderSelectionPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? loading = null,
+    Object? error = null,
+  }) {
+    return _then(_$OrderSelectionPageStateImpl(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrderSelectionPageStateImpl implements _OrderSelectionPageState {
+  const _$OrderSelectionPageStateImpl(
+      {this.loading = true, this.error = false});
+
+  @override
+  @JsonKey()
+  final bool loading;
+  @override
+  @JsonKey()
+  final bool error;
+
+  @override
+  String toString() {
+    return 'OrderSelectionPageState(loading: $loading, error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderSelectionPageStateImpl &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, loading, error);
+
+  /// Create a copy of OrderSelectionPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderSelectionPageStateImplCopyWith<_$OrderSelectionPageStateImpl>
+      get copyWith => __$$OrderSelectionPageStateImplCopyWithImpl<
+          _$OrderSelectionPageStateImpl>(this, _$identity);
+}
+
+abstract class _OrderSelectionPageState implements OrderSelectionPageState {
+  const factory _OrderSelectionPageState(
+      {final bool loading, final bool error}) = _$OrderSelectionPageStateImpl;
+
+  @override
+  bool get loading;
+  @override
+  bool get error;
+
+  /// Create a copy of OrderSelectionPageState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OrderSelectionPageStateImplCopyWith<_$OrderSelectionPageStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

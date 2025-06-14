@@ -76,3 +76,12 @@ class OrderSelectionProps with _$OrderSelectionProps {
   }) = _OrderSelectionProps;
 }
 
+@freezed
+class OrderSelectionPageState with _$OrderSelectionPageState {
+  const factory OrderSelectionPageState({
+    @Default(true) bool loading,
+    @Default(false) bool error,
+  }) = _OrderSelectionPageState;
+}
+
+

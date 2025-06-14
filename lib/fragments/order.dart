@@ -15,9 +15,12 @@ class OrderFragment extends ConsumerStatefulWidget {
   ConsumerState<OrderFragment> createState() => _OrderFragmentState();
 }
 
+
+
 class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
-  final _loading = ValueNotifier(false);
-  final _error = ValueNotifier(false);
+  final ValueNotifier<OrderSelectionPageState> _state = ValueNotifier(
+    const OrderSelectionPageState(),
+  );
 
   @override
   void initState() {
@@ -38,16 +41,15 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
   }
 
   void _initPageState() async {
-    _loading.value = true;
-    _error.value = false;
+    _state.value = _state.value.copyWith(loading: true, error: false);
     try {
       ref.read(orderSelectionProvider.notifier).value = OrderSelectionProps(
         orders: await _fetchOrders(),
       );
     } catch (e) {
-      _error.value = true;
+      _state.value = _state.value.copyWith(error: true);
     }
-    _loading.value = false;
+    _state.value = _state.value.copyWith(loading: false);
   }
 
   @override
@@ -72,12 +74,16 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
             ),
           );
         },
-        child: ValueListenableBuilder<bool>(
-            valueListenable: _loading,
-            builder: (_, loading, __) {
-              if (loading) {
-                return Center(
+        child: ValueListenableBuilder<OrderSelectionPageState>(
+            valueListenable: _state,
+            builder: (_, state, __) {
+              if (state.loading) {
+                return const Center(
                   child: CircularProgressIndicator(),
+                );
+              } else if (state.error) {
+                return const Center(
+                  child: Text("加载失败"),
                 );
               }
               return _buildBuyButton(context);
