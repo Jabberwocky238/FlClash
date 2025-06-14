@@ -1667,7 +1667,7 @@ final layoutChangeProvider = AutoDisposeProvider<VM2?>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef LayoutChangeRef = AutoDisposeProviderRef<VM2?>;
-String _$genColorSchemeHash() => r'b18f15c938a8132ee4ed02cdfc02f3b9f01724e2';
+String _$genColorSchemeHash() => r'469a2e281ec3f4dd23e86701b8a1790949726a05';
 
 /// See also [genColorScheme].
 @ProviderFor(genColorScheme)

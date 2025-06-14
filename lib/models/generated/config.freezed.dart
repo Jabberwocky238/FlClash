@@ -1503,10 +1503,8 @@ ThemeProps _$ThemePropsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ThemeProps {
-  int? get primaryColor => throw _privateConstructorUsedError;
+// int? primaryColor,
   ThemeMode get themeMode => throw _privateConstructorUsedError;
-  DynamicSchemeVariant get schemeVariant => throw _privateConstructorUsedError;
-  bool get pureBlack => throw _privateConstructorUsedError;
 
   /// Serializes this ThemeProps to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1524,11 +1522,7 @@ abstract class $ThemePropsCopyWith<$Res> {
           ThemeProps value, $Res Function(ThemeProps) then) =
       _$ThemePropsCopyWithImpl<$Res, ThemeProps>;
   @useResult
-  $Res call(
-      {int? primaryColor,
-      ThemeMode themeMode,
-      DynamicSchemeVariant schemeVariant,
-      bool pureBlack});
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -1546,28 +1540,13 @@ class _$ThemePropsCopyWithImpl<$Res, $Val extends ThemeProps>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? primaryColor = freezed,
     Object? themeMode = null,
-    Object? schemeVariant = null,
-    Object? pureBlack = null,
   }) {
     return _then(_value.copyWith(
-      primaryColor: freezed == primaryColor
-          ? _value.primaryColor
-          : primaryColor // ignore: cast_nullable_to_non_nullable
-              as int?,
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      schemeVariant: null == schemeVariant
-          ? _value.schemeVariant
-          : schemeVariant // ignore: cast_nullable_to_non_nullable
-              as DynamicSchemeVariant,
-      pureBlack: null == pureBlack
-          ? _value.pureBlack
-          : pureBlack // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -1580,11 +1559,7 @@ abstract class _$$ThemePropsImplCopyWith<$Res>
       __$$ThemePropsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? primaryColor,
-      ThemeMode themeMode,
-      DynamicSchemeVariant schemeVariant,
-      bool pureBlack});
+  $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
@@ -1600,28 +1575,13 @@ class __$$ThemePropsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? primaryColor = freezed,
     Object? themeMode = null,
-    Object? schemeVariant = null,
-    Object? pureBlack = null,
   }) {
     return _then(_$ThemePropsImpl(
-      primaryColor: freezed == primaryColor
-          ? _value.primaryColor
-          : primaryColor // ignore: cast_nullable_to_non_nullable
-              as int?,
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      schemeVariant: null == schemeVariant
-          ? _value.schemeVariant
-          : schemeVariant // ignore: cast_nullable_to_non_nullable
-              as DynamicSchemeVariant,
-      pureBlack: null == pureBlack
-          ? _value.pureBlack
-          : pureBlack // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -1629,30 +1589,19 @@ class __$$ThemePropsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ThemePropsImpl implements _ThemeProps {
-  const _$ThemePropsImpl(
-      {this.primaryColor,
-      this.themeMode = ThemeMode.dark,
-      this.schemeVariant = DynamicSchemeVariant.content,
-      this.pureBlack = false});
+  const _$ThemePropsImpl({this.themeMode = ThemeMode.dark});
 
   factory _$ThemePropsImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemePropsImplFromJson(json);
 
-  @override
-  final int? primaryColor;
+// int? primaryColor,
   @override
   @JsonKey()
   final ThemeMode themeMode;
-  @override
-  @JsonKey()
-  final DynamicSchemeVariant schemeVariant;
-  @override
-  @JsonKey()
-  final bool pureBlack;
 
   @override
   String toString() {
-    return 'ThemeProps(primaryColor: $primaryColor, themeMode: $themeMode, schemeVariant: $schemeVariant, pureBlack: $pureBlack)';
+    return 'ThemeProps(themeMode: $themeMode)';
   }
 
   @override
@@ -1660,20 +1609,13 @@ class _$ThemePropsImpl implements _ThemeProps {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemePropsImpl &&
-            (identical(other.primaryColor, primaryColor) ||
-                other.primaryColor == primaryColor) &&
             (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode) &&
-            (identical(other.schemeVariant, schemeVariant) ||
-                other.schemeVariant == schemeVariant) &&
-            (identical(other.pureBlack, pureBlack) ||
-                other.pureBlack == pureBlack));
+                other.themeMode == themeMode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, primaryColor, themeMode, schemeVariant, pureBlack);
+  int get hashCode => Object.hash(runtimeType, themeMode);
 
   /// Create a copy of ThemeProps
   /// with the given fields replaced by the non-null parameter values.
@@ -1692,23 +1634,14 @@ class _$ThemePropsImpl implements _ThemeProps {
 }
 
 abstract class _ThemeProps implements ThemeProps {
-  const factory _ThemeProps(
-      {final int? primaryColor,
-      final ThemeMode themeMode,
-      final DynamicSchemeVariant schemeVariant,
-      final bool pureBlack}) = _$ThemePropsImpl;
+  const factory _ThemeProps({final ThemeMode themeMode}) = _$ThemePropsImpl;
 
   factory _ThemeProps.fromJson(Map<String, dynamic> json) =
       _$ThemePropsImpl.fromJson;
 
-  @override
-  int? get primaryColor;
+// int? primaryColor,
   @override
   ThemeMode get themeMode;
-  @override
-  DynamicSchemeVariant get schemeVariant;
-  @override
-  bool get pureBlack;
 
   /// Create a copy of ThemeProps
   /// with the given fields replaced by the non-null parameter values.

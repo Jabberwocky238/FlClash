@@ -85,7 +85,7 @@ class CommonCard extends StatelessWidget {
   const CommonCard({
     super.key,
     bool? isSelected,
-    this.type = CommonCardType.plain,
+    this.type = CommonCardType.filled,
     this.onPressed,
     this.selectWidget,
     this.radius = 12,
@@ -134,13 +134,12 @@ class CommonCard extends StatelessWidget {
 
   Color? getBackgroundColor(BuildContext context, Set<WidgetState> states) {
     if (type == CommonCardType.filled) {
-      return context.colorScheme.surfaceContainer;
+      return context.colorScheme.secondaryContainer;
     }
-    final colorScheme = context.colorScheme;
     if (isSelected) {
-      return colorScheme.secondaryContainer;
+      return context.colorScheme.secondaryContainer;
     }
-    return colorScheme.surfaceContainerLow;
+    return context.colorScheme.surfaceContainerLow;
   }
 
   @override
@@ -179,7 +178,7 @@ class CommonCard extends StatelessWidget {
       );
     }
 
-    final card = OutlinedButton(
+    final card = ElevatedButton(
       onLongPress: null,
       clipBehavior: Clip.antiAlias,
       style: ButtonStyle(
@@ -197,6 +196,10 @@ class CommonCard extends StatelessWidget {
         side: WidgetStateProperty.resolveWith(
           (states) => getBorderSide(context, states),
         ),
+        elevation: WidgetStatePropertyAll(1),
+        shadowColor: WidgetStatePropertyAll(
+          context.colorScheme.shadow,
+        ),
       ),
       onPressed: onPressed,
       child: childWidget,
@@ -210,28 +213,6 @@ class CommonCard extends StatelessWidget {
     };
   }
 }
-
-class CommonCardGroup extends StatelessWidget {
-  final List<CommonCard> cards;
-
-  const CommonCardGroup({
-    super.key,
-    required this.cards,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: Axis.horizontal,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      spacing: 8,
-      children: cards,
-    );
-  }
-}
-
 
 class SelectIcon extends StatelessWidget {
   const SelectIcon({super.key});

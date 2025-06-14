@@ -20,18 +20,13 @@ class CustomDrawerHeader extends StatelessWidget {
     final realChildren = [
       Text(
         'JW Clash',
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-            ),
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       ...children,
     ].separated(const SizedBox(height: 8)).toList();
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 150,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -69,9 +64,6 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
                   authSetting.email.isEmpty
                       ? 'Not logged in'
                       : authSetting.email,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
                 );
               },
             ), Consumer(
@@ -80,9 +72,6 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
                   authSetting.expiresAt?.isEmpty ?? true
                       ? 'Free'
                       : "VIP until ${authSetting.expiresAt}",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
                 );
               },
             )],

@@ -361,7 +361,7 @@ enum DashboardWidget {
   ),
   vpnButton(
     GridItem(
-      crossAxisCellCount: 4,
+      crossAxisCellCount: 8,
       child: VpnButton(),
     ),
     platforms: [

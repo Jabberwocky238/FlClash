@@ -26,8 +26,10 @@ const windowHeight = 600.0;
 
 const maxTextScale = 1.4;
 const minTextScale = 0.8;
-final defaultTextScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
-final textScaleFactor = max(min(defaultTextScaleFactor, maxTextScale), minTextScale);
+final defaultTextScaleFactor =
+    WidgetsBinding.instance.platformDispatcher.textScaleFactor;
+final textScaleFactor =
+    max(min(defaultTextScaleFactor, maxTextScale), minTextScale);
 
 const httpTimeoutDuration = Duration(milliseconds: 2000);
 const moreDuration = Duration(milliseconds: 100);
@@ -69,7 +71,8 @@ const groupListEquality = ListEquality<Group>();
 const externalProviderListEquality = ListEquality<ExternalProvider>();
 const packageListEquality = ListEquality<Package>();
 const stringAndStringMapEquality = MapEquality<String, String>();
-const stringAndStringMapEntryIterableEquality = IterableEquality<MapEntry<String, String>>();
+const stringAndStringMapEntryIterableEquality =
+    IterableEquality<MapEntry<String, String>>();
 const delayMapEquality = MapEquality<String, Map<String, int?>>();
 const stringSetEquality = SetEquality<String>();
 const keyboardModifierListEquality = SetEquality<KeyboardModifier>();
@@ -80,7 +83,75 @@ const keyboardModifierListEquality = SetEquality<KeyboardModifier>();
 //   ViewMode.desktop: [4, 3],
 // };
 
-const defaultPrimaryColor = 0XFFD8C0C3;
+const lightBackgroundColor = Color.fromARGB(255, 253, 252, 245);
+const lightBackgroundColorDarker = Color.fromARGB(255, 239, 238, 234);
+const lightBackgroundColorDarkest = Color.fromARGB(255, 221, 221, 221);
+const lightPrimaryColor1 = Color.fromARGB(255, 186, 169, 186);
+const lightPrimaryColor1Darker = Color.fromARGB(255, 155, 141, 155);
+const lightPrimaryColor1Darkest = Color.fromARGB(255, 70, 65, 70);
+const lightPrimaryColor2 = Color.fromARGB(255, 213, 229, 163);
+const lightPrimaryColor2Darker = Color.fromARGB(255, 122, 194, 154);
+const lightPrimaryColor2Darkest = Color.fromARGB(255, 46, 172, 86);
+const lightPrimaryColor3 = Color.fromARGB(255, 184, 216, 216);
+const lightPrimaryColor3Darker = Color.fromARGB(255, 104, 179, 200);
+const lightPrimaryColor3Darkest = Color.fromARGB(255, 114, 163, 163);
+const lightPrimaryColor4 = Color.fromARGB(255, 233, 170, 153);
+const lightPrimaryColor4Darker = Color.fromARGB(255, 255, 143, 94);
+const lightPrimaryColor4Darkest = Color.fromARGB(255, 193, 132, 128);
+
+const defaultColorScheme = ColorScheme(
+  brightness: Brightness.light,
+  primary: lightPrimaryColor2Darker,
+  onPrimary: Colors.black,
+  primaryContainer: lightPrimaryColor2Darkest,
+  onPrimaryContainer: Colors.black,
+  primaryFixed: lightPrimaryColor2Darkest,
+  primaryFixedDim: lightPrimaryColor1Darkest,
+  onPrimaryFixed: Colors.black,
+  onPrimaryFixedVariant: Colors.black,
+  // 次要
+  secondary: lightPrimaryColor3,
+  onSecondary: lightPrimaryColor3Darker,
+  secondaryContainer: lightPrimaryColor3Darker,
+  onSecondaryContainer: lightPrimaryColor3Darkest,
+  // 错误
+  error: lightPrimaryColor4,
+  onError: Colors.black,
+  errorContainer: lightPrimaryColor4Darker,
+  onErrorContainer: Colors.black,
+  // 背景
+  surface: lightBackgroundColor,
+  onSurface: Colors.black,
+  onSurfaceVariant: Colors.black,
+  surfaceDim: lightBackgroundColorDarkest,
+  surfaceContainer: lightBackgroundColorDarkest,
+  surfaceContainerHigh: lightBackgroundColorDarker,
+  surfaceContainerHighest: lightBackgroundColor,
+);
+
+const defaultDarkColorScheme = ColorScheme(
+  brightness: Brightness.dark,
+  primary: Color.fromARGB(255, 152, 179, 130),
+  onPrimary: Colors.white,
+  primaryContainer: Color(defaultPrimaryColor),
+  onPrimaryContainer: Colors.white,
+  secondary: Color(defaultPrimaryColor),
+  onSecondary: Colors.white,
+  secondaryContainer: Color(defaultPrimaryColor),
+  onSecondaryContainer: Colors.white,
+  error: Color(defaultPrimaryColor),
+  onError: Colors.white,
+  errorContainer: Color(defaultPrimaryColor),
+  onErrorContainer: Colors.white,
+  surface: Color(defaultPrimaryColor),
+  onSurface: Colors.white,
+  surfaceContainer: Color(defaultPrimaryColor),
+  surfaceContainerLow: Color(defaultPrimaryColor),
+  surfaceContainerHigh: Color(defaultPrimaryColor),
+  surfaceContainerLowest: Color(defaultPrimaryColor),
+  surfaceBright: Color(defaultPrimaryColor),
+  surfaceDim: Color(defaultPrimaryColor),
+);
 
 double getWidgetHeight(num lines) {
   return max(lines * 84 + (lines - 1) * 16, 0).ap;
@@ -98,9 +169,10 @@ final serviceIsolate = "JWClashServiceIsolate";
 //   0xFFFFFF00,
 //   0XFFBBC9CC,
 //   0XFFABD397,
-//   defaultPrimaryColor,
+//   0XFFD8C0C3,
 //   0XFF665390,
 // ];
+const defaultPrimaryColor = 0xFFb8d8d8;
 
 const baseUrl = "https://jwclash.jw238.site";
 // const baseUrl = "http://127.0.0.1:8877";

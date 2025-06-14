@@ -191,6 +191,7 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
     final isLoading = state.isLoading;
     final textStyle = context.textTheme.bodyLarge?.toLight.adjustSize(16);
     return Container(
+      
       padding: baseInfoEdgeInsets.copyWith(
         left: 12,
       ),

@@ -39,9 +39,7 @@ const defaultAuthProps = AuthProps();
 const defaultWindowProps = WindowProps();
 const defaultAccessControl = AccessControl();
 // const defaultWebViewParams = WebViewParams();
-final defaultThemeProps = ThemeProps(
-  primaryColor: defaultPrimaryColor,
-);
+final defaultThemeProps = ThemeProps();
 
 const List<DashboardWidget> defaultDashboardWidgets = [
   DashboardWidget.jwDashboard,
@@ -180,10 +178,10 @@ class NetworkProps with _$NetworkProps {
 @freezed
 class ThemeProps with _$ThemeProps {
   const factory ThemeProps({
-    int? primaryColor,
+    // int? primaryColor,
     @Default(ThemeMode.dark) ThemeMode themeMode,
-    @Default(DynamicSchemeVariant.content) DynamicSchemeVariant schemeVariant,
-    @Default(false) bool pureBlack,
+    // @Default(DynamicSchemeVariant.vibrant) DynamicSchemeVariant schemeVariant,
+    // @Default(false) bool pureBlack,
   }) = _ThemeProps;
 
   factory ThemeProps.fromJson(Map<String, Object?> json) =>

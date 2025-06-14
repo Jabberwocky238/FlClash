@@ -40,7 +40,6 @@ class ApplicationState extends ConsumerState<Application> {
 
   ColorScheme _getAppColorScheme({
     required Brightness brightness,
-    int? primaryColor,
   }) {
     return ref.read(genColorSchemeProvider(brightness));
   }
@@ -166,7 +165,6 @@ class ApplicationState extends ConsumerState<Application> {
                 pageTransitionsTheme: _pageTransitionsTheme,
                 colorScheme: _getAppColorScheme(
                   brightness: Brightness.light,
-                  primaryColor: themeProps.primaryColor,
                 ),
               ),
               darkTheme: ThemeData(
@@ -174,8 +172,8 @@ class ApplicationState extends ConsumerState<Application> {
                 pageTransitionsTheme: _pageTransitionsTheme,
                 colorScheme: _getAppColorScheme(
                   brightness: Brightness.dark,
-                  primaryColor: themeProps.primaryColor,
-                ).toPureBlack(themeProps.pureBlack),
+                )
+                // .toPureBlack(themeProps.pureBlack),
               ),
               home: child,
             );
