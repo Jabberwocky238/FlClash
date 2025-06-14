@@ -2,7 +2,7 @@ import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/fade_box.dart';
-import 'package:jw_clash/widgets/pop_scope.dart';
+// import 'package:jw_clash/widgets/pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,7 +17,7 @@ class CommonScaffold extends StatefulWidget {
   final List<Widget>? actions;
   final bool automaticallyImplyLeading;
   final bool? centerTitle;
-  final AppBarEditState? appBarEditState;
+  // final AppBarEditState? appBarEditState;
   final bool isDrawerOpen;
 
   const CommonScaffold({
@@ -31,7 +31,7 @@ class CommonScaffold extends StatefulWidget {
     this.actions,
     this.automaticallyImplyLeading = true,
     this.centerTitle,
-    this.appBarEditState,
+    // this.appBarEditState,
     this.isDrawerOpen = false,
   });
 
@@ -75,9 +75,9 @@ class CommonScaffoldState extends State<CommonScaffold> {
     _appBarState.value = _appBarState.value.copyWith(actions: actions);
   }
 
-  bool get _isEdit {
-    return _appBarState.value.editState?.isEdit == true;
-  }
+  // bool get _isEdit {
+  //   return _appBarState.value.editState?.isEdit == true;
+  // }
 
   set onKeywordsUpdate(Function(List<String>)? onKeywordsUpdate) {
     _onKeywordsUpdate = onKeywordsUpdate;
@@ -90,20 +90,20 @@ class CommonScaffoldState extends State<CommonScaffold> {
     super.initState();
     _appBarState = ValueNotifier(
       AppBarState(
-        editState: widget.appBarEditState,
+        // editState: widget.appBarEditState,
       ),
     );
   }
 
-  updateEditState(
-    AppBarEditState? Function(AppBarEditState? state) builder,
-  ) {
-    _appBarState.value = _appBarState.value.copyWith(
-      editState: builder(
-        _appBarState.value.editState,
-      ),
-    );
-  }
+  // updateEditState(
+  //   AppBarEditState? Function(AppBarEditState? state) builder,
+  // ) {
+  //   _appBarState.value = _appBarState.value.copyWith(
+  //     editState: builder(
+  //       _appBarState.value.editState,
+  //     ),
+  //   );
+  // }
 
   set floatingActionButton(Widget? floatingActionButton) {
     if (_floatingActionButton.value != floatingActionButton) {
@@ -194,11 +194,12 @@ class CommonScaffoldState extends State<CommonScaffold> {
       _textController.text = "";
       _keywordsNotifier.value = [];
       _onKeywordsUpdate = null;
-    } else if (oldWidget.appBarEditState != widget.appBarEditState) {
-      _appBarState.value = _appBarState.value.copyWith(
-        editState: widget.appBarEditState,
-      );
-    }
+    } 
+    // else if (oldWidget.appBarEditState != widget.appBarEditState) {
+    //   _appBarState.value = _appBarState.value.copyWith(
+    //     editState: widget.appBarEditState,
+    //   );
+    // }
   }
 
   addKeyword(String keyword) {
@@ -217,12 +218,12 @@ class CommonScaffoldState extends State<CommonScaffold> {
   }
 
   Widget? _buildLeading() {
-    if (_isEdit) {
-      return IconButton(
-        onPressed: _appBarState.value.editState?.onExit,
-        icon: Icon(Icons.close),
-      );
-    }
+    // if (_isEdit) {
+    //   return IconButton(
+    //     onPressed: _appBarState.value.editState?.onExit,
+    //     icon: Icon(Icons.close),
+    //   );
+    // }
     return widget.leading;
     // return _isSearch
     //     ? IconButton(
@@ -233,13 +234,14 @@ class CommonScaffoldState extends State<CommonScaffold> {
   }
 
   Widget _buildTitle() {
-    return Text(
-            !_isEdit
-                ? widget.title!
-                : appLocalizations.selectedCountTitle(
-                    "${_appBarState.value.editState?.editCount ?? 0}",
-                  ),
-          );
+    // return Text(
+    //         !_isEdit
+    //             ? widget.title!
+    //             : appLocalizations.selectedCountTitle(
+    //                 "${_appBarState.value.editState?.editCount ?? 0}",
+    //               ),
+    //       );
+    return Text(widget.title!);
   }
 
   List<Widget> _buildActions(
@@ -254,18 +256,18 @@ class CommonScaffoldState extends State<CommonScaffold> {
   }
 
   Widget _buildAppBarWrap(Widget appBar) {
-    if (_isEdit) {
-      return CommonPopScope(
-        onPop: () {
-          if (_isEdit) {
-            _appBarState.value.editState?.onExit();
-            return false;
-          }
-          return true;
-        },
-        child: appBar,
-      );
-    }
+    // if (_isEdit) {
+    //   return CommonPopScope(
+    //     onPop: () {
+    //       if (_isEdit) {
+    //         _appBarState.value.editState?.onExit();
+    //         return false;
+    //       }
+    //       return true;
+    //     },
+    //     child: appBar,
+    //   );
+    // }
     return appBar;
   }
 

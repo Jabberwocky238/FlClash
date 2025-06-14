@@ -265,18 +265,18 @@ class _OverrideProfileState extends State<OverrideProfile> {
                     ),
                   )
               ],
-              appBarEditState: AppBarEditState(
-                isEdit: isEdit,
-                editCount: editCount,
-                onExit: () {
-                  ref.read(profileOverrideStateProvider.notifier).updateState(
-                        (state) => state.copyWith(
-                          isEdit: false,
-                          selectedRules: {},
-                        ),
-                      );
-                },
-              ),
+              // appBarEditState: AppBarEditState(
+              //   isEdit: isEdit,
+              //   editCount: editCount,
+              //   onExit: () {
+              //     ref.read(profileOverrideStateProvider.notifier).updateState(
+              //           (state) => state.copyWith(
+              //             isEdit: false,
+              //             selectedRules: {},
+              //           ),
+              //         );
+              //   },
+              // ),
             );
           },
         ),

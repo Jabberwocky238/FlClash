@@ -24,7 +24,7 @@ class AppBarState with _$AppBarState {
   const factory AppBarState({
     @Default([]) List<Widget> actions,
     // AppBarSearchState? searchState,
-    AppBarEditState? editState,
+    // AppBarEditState? editState,
   }) = _AppBarState;
 }
 
@@ -36,13 +36,13 @@ class AppBarState with _$AppBarState {
 //   }) = _AppBarSearchState;
 // }
 
-@freezed
-class AppBarEditState with _$AppBarEditState {
-  const factory AppBarEditState({
-    @Default(0) editCount,
-    @Default(false) bool isEdit,
-    required Function() onExit,
-  }) = _AppBarEditState;
-}
+// @freezed
+// class AppBarEditState with _$AppBarEditState {
+//   const factory AppBarEditState({
+//     @Default(0) editCount,
+//     @Default(false) bool isEdit,
+//     required Function() onExit,
+//   }) = _AppBarEditState;
+// }
 
 

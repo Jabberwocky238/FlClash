@@ -16,15 +16,19 @@ const browserUa =
 const packageName = "com.enzyme";
 final unixSocketPath = "/tmp/JWClashSocket_${Random().nextInt(10000)}.sock";
 const helperPort = 47890;
-const maxTextScale = 1.4;
-const minTextScale = 0.8;
+
 final baseInfoEdgeInsets = EdgeInsets.symmetric(
   vertical: 16.ap,
   horizontal: 16.ap,
 );
 const windowWidth = 600.0;
 const windowHeight = 600.0;
+
+const maxTextScale = 1.4;
+const minTextScale = 0.8;
 final defaultTextScaleFactor = WidgetsBinding.instance.platformDispatcher.textScaleFactor;
+final textScaleFactor = max(min(defaultTextScaleFactor, maxTextScale), minTextScale);
+
 const httpTimeoutDuration = Duration(milliseconds: 2000);
 const moreDuration = Duration(milliseconds: 100);
 const animateDuration = Duration(milliseconds: 100);

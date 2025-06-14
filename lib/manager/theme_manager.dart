@@ -15,18 +15,6 @@ class ThemeManager extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    // final textScale = ref.read(
-    //   themeSettingProvider.select((state) => state.textScale),
-    // );
-    final double textScaleFactor = max(
-      min(
-        // textScale.enable ? textScale.scale : defaultTextScaleFactor,
-        defaultTextScaleFactor,
-        maxTextScale,
-      ),
-      minTextScale,
-    );
-
     globalState.theme = CommonTheme.of(context);
     final padding = MediaQuery.of(context).padding;
     final height = MediaQuery.of(context).size.height;

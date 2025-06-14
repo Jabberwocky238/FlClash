@@ -16,7 +16,7 @@ extension NumExt on num {
   }
 
   double get ap {
-    return this * (1 + (defaultTextScaleFactor - 1) * 0.5);
+    return this * (1 + (textScaleFactor - 1) * 0.5);
   }
 }
 

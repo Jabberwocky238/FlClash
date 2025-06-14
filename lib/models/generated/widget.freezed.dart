@@ -313,9 +313,7 @@ abstract class _CommonMessage implements CommonMessage {
 
 /// @nodoc
 mixin _$AppBarState {
-  List<Widget> get actions =>
-      throw _privateConstructorUsedError; // AppBarSearchState? searchState,
-  AppBarEditState? get editState => throw _privateConstructorUsedError;
+  List<Widget> get actions => throw _privateConstructorUsedError;
 
   /// Create a copy of AppBarState
   /// with the given fields replaced by the non-null parameter values.
@@ -330,9 +328,7 @@ abstract class $AppBarStateCopyWith<$Res> {
           AppBarState value, $Res Function(AppBarState) then) =
       _$AppBarStateCopyWithImpl<$Res, AppBarState>;
   @useResult
-  $Res call({List<Widget> actions, AppBarEditState? editState});
-
-  $AppBarEditStateCopyWith<$Res>? get editState;
+  $Res call({List<Widget> actions});
 }
 
 /// @nodoc
@@ -351,32 +347,13 @@ class _$AppBarStateCopyWithImpl<$Res, $Val extends AppBarState>
   @override
   $Res call({
     Object? actions = null,
-    Object? editState = freezed,
   }) {
     return _then(_value.copyWith(
       actions: null == actions
           ? _value.actions
           : actions // ignore: cast_nullable_to_non_nullable
               as List<Widget>,
-      editState: freezed == editState
-          ? _value.editState
-          : editState // ignore: cast_nullable_to_non_nullable
-              as AppBarEditState?,
     ) as $Val);
-  }
-
-  /// Create a copy of AppBarState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $AppBarEditStateCopyWith<$Res>? get editState {
-    if (_value.editState == null) {
-      return null;
-    }
-
-    return $AppBarEditStateCopyWith<$Res>(_value.editState!, (value) {
-      return _then(_value.copyWith(editState: value) as $Val);
-    });
   }
 }
 
@@ -388,10 +365,7 @@ abstract class _$$AppBarStateImplCopyWith<$Res>
       __$$AppBarStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Widget> actions, AppBarEditState? editState});
-
-  @override
-  $AppBarEditStateCopyWith<$Res>? get editState;
+  $Res call({List<Widget> actions});
 }
 
 /// @nodoc
@@ -408,17 +382,12 @@ class __$$AppBarStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? actions = null,
-    Object? editState = freezed,
   }) {
     return _then(_$AppBarStateImpl(
       actions: null == actions
           ? _value._actions
           : actions // ignore: cast_nullable_to_non_nullable
               as List<Widget>,
-      editState: freezed == editState
-          ? _value.editState
-          : editState // ignore: cast_nullable_to_non_nullable
-              as AppBarEditState?,
     ));
   }
 }
@@ -426,8 +395,7 @@ class __$$AppBarStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppBarStateImpl implements _AppBarState {
-  const _$AppBarStateImpl(
-      {final List<Widget> actions = const [], this.editState})
+  const _$AppBarStateImpl({final List<Widget> actions = const []})
       : _actions = actions;
 
   final List<Widget> _actions;
@@ -439,13 +407,9 @@ class _$AppBarStateImpl implements _AppBarState {
     return EqualUnmodifiableListView(_actions);
   }
 
-// AppBarSearchState? searchState,
-  @override
-  final AppBarEditState? editState;
-
   @override
   String toString() {
-    return 'AppBarState(actions: $actions, editState: $editState)';
+    return 'AppBarState(actions: $actions)';
   }
 
   @override
@@ -453,14 +417,12 @@ class _$AppBarStateImpl implements _AppBarState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppBarStateImpl &&
-            const DeepCollectionEquality().equals(other._actions, _actions) &&
-            (identical(other.editState, editState) ||
-                other.editState == editState));
+            const DeepCollectionEquality().equals(other._actions, _actions));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_actions), editState);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_actions));
 
   /// Create a copy of AppBarState
   /// with the given fields replaced by the non-null parameter values.
@@ -472,184 +434,15 @@ class _$AppBarStateImpl implements _AppBarState {
 }
 
 abstract class _AppBarState implements AppBarState {
-  const factory _AppBarState(
-      {final List<Widget> actions,
-      final AppBarEditState? editState}) = _$AppBarStateImpl;
+  const factory _AppBarState({final List<Widget> actions}) = _$AppBarStateImpl;
 
   @override
-  List<Widget> get actions; // AppBarSearchState? searchState,
-  @override
-  AppBarEditState? get editState;
+  List<Widget> get actions;
 
   /// Create a copy of AppBarState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppBarStateImplCopyWith<_$AppBarStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$AppBarEditState {
-  dynamic get editCount => throw _privateConstructorUsedError;
-  bool get isEdit => throw _privateConstructorUsedError;
-  dynamic Function() get onExit => throw _privateConstructorUsedError;
-
-  /// Create a copy of AppBarEditState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AppBarEditStateCopyWith<AppBarEditState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AppBarEditStateCopyWith<$Res> {
-  factory $AppBarEditStateCopyWith(
-          AppBarEditState value, $Res Function(AppBarEditState) then) =
-      _$AppBarEditStateCopyWithImpl<$Res, AppBarEditState>;
-  @useResult
-  $Res call({dynamic editCount, bool isEdit, dynamic Function() onExit});
-}
-
-/// @nodoc
-class _$AppBarEditStateCopyWithImpl<$Res, $Val extends AppBarEditState>
-    implements $AppBarEditStateCopyWith<$Res> {
-  _$AppBarEditStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AppBarEditState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? editCount = freezed,
-    Object? isEdit = null,
-    Object? onExit = null,
-  }) {
-    return _then(_value.copyWith(
-      editCount: freezed == editCount
-          ? _value.editCount
-          : editCount // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isEdit: null == isEdit
-          ? _value.isEdit
-          : isEdit // ignore: cast_nullable_to_non_nullable
-              as bool,
-      onExit: null == onExit
-          ? _value.onExit
-          : onExit // ignore: cast_nullable_to_non_nullable
-              as dynamic Function(),
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$AppBarEditStateImplCopyWith<$Res>
-    implements $AppBarEditStateCopyWith<$Res> {
-  factory _$$AppBarEditStateImplCopyWith(_$AppBarEditStateImpl value,
-          $Res Function(_$AppBarEditStateImpl) then) =
-      __$$AppBarEditStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({dynamic editCount, bool isEdit, dynamic Function() onExit});
-}
-
-/// @nodoc
-class __$$AppBarEditStateImplCopyWithImpl<$Res>
-    extends _$AppBarEditStateCopyWithImpl<$Res, _$AppBarEditStateImpl>
-    implements _$$AppBarEditStateImplCopyWith<$Res> {
-  __$$AppBarEditStateImplCopyWithImpl(
-      _$AppBarEditStateImpl _value, $Res Function(_$AppBarEditStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AppBarEditState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? editCount = freezed,
-    Object? isEdit = null,
-    Object? onExit = null,
-  }) {
-    return _then(_$AppBarEditStateImpl(
-      editCount: freezed == editCount ? _value.editCount! : editCount,
-      isEdit: null == isEdit
-          ? _value.isEdit
-          : isEdit // ignore: cast_nullable_to_non_nullable
-              as bool,
-      onExit: null == onExit
-          ? _value.onExit
-          : onExit // ignore: cast_nullable_to_non_nullable
-              as dynamic Function(),
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AppBarEditStateImpl implements _AppBarEditState {
-  const _$AppBarEditStateImpl(
-      {this.editCount = 0, this.isEdit = false, required this.onExit});
-
-  @override
-  @JsonKey()
-  final dynamic editCount;
-  @override
-  @JsonKey()
-  final bool isEdit;
-  @override
-  final dynamic Function() onExit;
-
-  @override
-  String toString() {
-    return 'AppBarEditState(editCount: $editCount, isEdit: $isEdit, onExit: $onExit)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AppBarEditStateImpl &&
-            const DeepCollectionEquality().equals(other.editCount, editCount) &&
-            (identical(other.isEdit, isEdit) || other.isEdit == isEdit) &&
-            (identical(other.onExit, onExit) || other.onExit == onExit));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(editCount), isEdit, onExit);
-
-  /// Create a copy of AppBarEditState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AppBarEditStateImplCopyWith<_$AppBarEditStateImpl> get copyWith =>
-      __$$AppBarEditStateImplCopyWithImpl<_$AppBarEditStateImpl>(
-          this, _$identity);
-}
-
-abstract class _AppBarEditState implements AppBarEditState {
-  const factory _AppBarEditState(
-      {final dynamic editCount,
-      final bool isEdit,
-      required final dynamic Function() onExit}) = _$AppBarEditStateImpl;
-
-  @override
-  dynamic get editCount;
-  @override
-  bool get isEdit;
-  @override
-  dynamic Function() get onExit;
-
-  /// Create a copy of AppBarEditState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AppBarEditStateImplCopyWith<_$AppBarEditStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
