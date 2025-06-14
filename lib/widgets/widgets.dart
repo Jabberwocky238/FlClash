@@ -7,7 +7,6 @@ export 'disabled_mask.dart';
 export 'fade_box.dart';
 export 'float_layout.dart';
 export 'grid.dart';
-export 'icon.dart';
 export 'input.dart';
 export 'keep_scope.dart';
 export 'line_chart.dart';

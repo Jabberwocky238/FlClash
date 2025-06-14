@@ -7,7 +7,6 @@ export 'datetime.dart';
 export 'function.dart';
 export 'future.dart';
 export 'http.dart';
-export 'icons.dart';
 export 'iterable.dart';
 export 'launch.dart';
 export 'link.dart';
