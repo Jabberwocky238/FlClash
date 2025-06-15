@@ -16,7 +16,7 @@ class Window {
     if (Platform.isWindows) {
       protocol.register("clash");
       protocol.register("clashmeta");
-      protocol.register("jwclash");
+      protocol.register("enzyme");
     }
     await windowManager.ensureInitialized();
     await windowManager.setMaximizable(false);
