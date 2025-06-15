@@ -22,7 +22,7 @@ class Window {
     await windowManager.setMaximizable(false);
     await windowManager.setResizable(false);
     WindowOptions windowOptions = WindowOptions(
-      size: Size(props.width, props.height),
+      size: Size(windowWidth, windowHeight),
       // size: Size(windowWidth, windowHeight),
       minimumSize: const Size(380, 400),
     );
@@ -32,8 +32,8 @@ class Window {
     if (!Platform.isMacOS) {
       final left = props.left ?? 0;
       final top = props.top ?? 0;
-      final right = left + props.width;
-      final bottom = top + props.height;
+      final right = left + windowWidth;
+      final bottom = top + windowHeight;
       if (left == 0 && top == 0) {
         await windowManager.setAlignment(Alignment.center);
       } else {

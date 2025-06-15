@@ -114,16 +114,12 @@ const _$AccessSortTypeEnumMap = {
 
 _$WindowPropsImpl _$$WindowPropsImplFromJson(Map<String, dynamic> json) =>
     _$WindowPropsImpl(
-      width: (json['width'] as num?)?.toDouble() ?? windowWidth,
-      height: (json['height'] as num?)?.toDouble() ?? windowHeight,
       top: (json['top'] as num?)?.toDouble(),
       left: (json['left'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$WindowPropsImplToJson(_$WindowPropsImpl instance) =>
     <String, dynamic>{
-      'width': instance.width,
-      'height': instance.height,
       'top': instance.top,
       'left': instance.left,
     };

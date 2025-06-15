@@ -839,8 +839,8 @@ WindowProps _$WindowPropsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WindowProps {
-  double get width => throw _privateConstructorUsedError;
-  double get height => throw _privateConstructorUsedError;
+// @Default(windowWidth) double width,
+// @Default(windowHeight) double height,
   double? get top => throw _privateConstructorUsedError;
   double? get left => throw _privateConstructorUsedError;
 
@@ -860,7 +860,7 @@ abstract class $WindowPropsCopyWith<$Res> {
           WindowProps value, $Res Function(WindowProps) then) =
       _$WindowPropsCopyWithImpl<$Res, WindowProps>;
   @useResult
-  $Res call({double width, double height, double? top, double? left});
+  $Res call({double? top, double? left});
 }
 
 /// @nodoc
@@ -878,20 +878,10 @@ class _$WindowPropsCopyWithImpl<$Res, $Val extends WindowProps>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? width = null,
-    Object? height = null,
     Object? top = freezed,
     Object? left = freezed,
   }) {
     return _then(_value.copyWith(
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double,
       top: freezed == top
           ? _value.top
           : top // ignore: cast_nullable_to_non_nullable
@@ -912,7 +902,7 @@ abstract class _$$WindowPropsImplCopyWith<$Res>
       __$$WindowPropsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double width, double height, double? top, double? left});
+  $Res call({double? top, double? left});
 }
 
 /// @nodoc
@@ -928,20 +918,10 @@ class __$$WindowPropsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? width = null,
-    Object? height = null,
     Object? top = freezed,
     Object? left = freezed,
   }) {
     return _then(_$WindowPropsImpl(
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as double,
-      height: null == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as double,
       top: freezed == top
           ? _value.top
           : top // ignore: cast_nullable_to_non_nullable
@@ -957,21 +937,13 @@ class __$$WindowPropsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WindowPropsImpl implements _WindowProps {
-  const _$WindowPropsImpl(
-      {this.width = windowWidth,
-      this.height = windowHeight,
-      this.top,
-      this.left});
+  const _$WindowPropsImpl({this.top, this.left});
 
   factory _$WindowPropsImpl.fromJson(Map<String, dynamic> json) =>
       _$$WindowPropsImplFromJson(json);
 
-  @override
-  @JsonKey()
-  final double width;
-  @override
-  @JsonKey()
-  final double height;
+// @Default(windowWidth) double width,
+// @Default(windowHeight) double height,
   @override
   final double? top;
   @override
@@ -979,7 +951,7 @@ class _$WindowPropsImpl implements _WindowProps {
 
   @override
   String toString() {
-    return 'WindowProps(width: $width, height: $height, top: $top, left: $left)';
+    return 'WindowProps(top: $top, left: $left)';
   }
 
   @override
@@ -987,15 +959,13 @@ class _$WindowPropsImpl implements _WindowProps {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WindowPropsImpl &&
-            (identical(other.width, width) || other.width == width) &&
-            (identical(other.height, height) || other.height == height) &&
             (identical(other.top, top) || other.top == top) &&
             (identical(other.left, left) || other.left == left));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, width, height, top, left);
+  int get hashCode => Object.hash(runtimeType, top, left);
 
   /// Create a copy of WindowProps
   /// with the given fields replaced by the non-null parameter values.
@@ -1014,19 +984,14 @@ class _$WindowPropsImpl implements _WindowProps {
 }
 
 abstract class _WindowProps implements WindowProps {
-  const factory _WindowProps(
-      {final double width,
-      final double height,
-      final double? top,
-      final double? left}) = _$WindowPropsImpl;
+  const factory _WindowProps({final double? top, final double? left}) =
+      _$WindowPropsImpl;
 
   factory _WindowProps.fromJson(Map<String, dynamic> json) =
       _$WindowPropsImpl.fromJson;
 
-  @override
-  double get width;
-  @override
-  double get height;
+// @Default(windowWidth) double width,
+// @Default(windowHeight) double height,
   @override
   double? get top;
   @override
