@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/models/models.dart';
+// import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/navigation_drawer.dart';
@@ -41,9 +41,11 @@ class HomePage extends StatelessWidget {
           );
           return CommonScaffold(
             key: globalState.homeScaffoldKey,
-            title: Intl.message(
-              pageLabel.name,
-            ),
+            title: pageLabel == PageLabel.dashboard
+                ? "Enzyme"
+                : Intl.message(
+                    "navigation_${pageLabel.name}",
+                  ),
             navigationBar: navigationBar,
             body: child!,
           );
@@ -152,96 +154,96 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
   }
 }
 
-class CommonNavigationBar extends ConsumerWidget {
-  // final ViewMode viewMode;
-  final List<NavigationItem> navigationItems;
-  final int currentIndex;
+// class CommonNavigationBar extends ConsumerWidget {
+//   // final ViewMode viewMode;
+//   final List<NavigationItem> navigationItems;
+//   final int currentIndex;
 
-  const CommonNavigationBar({
-    super.key,
-    // required this.viewMode,
-    required this.navigationItems,
-    required this.currentIndex,
-  });
+//   const CommonNavigationBar({
+//     super.key,
+//     // required this.viewMode,
+//     required this.navigationItems,
+//     required this.currentIndex,
+//   });
 
-  @override
-  Widget build(BuildContext context, ref) {
-    return Material(
-      color: context.colorScheme.surfaceContainer,
-      child: SizedBox(
-        width: 200,
-        child: Column(
-          children: [
-            Expanded(
-              child: ScrollConfiguration(
-                behavior: HiddenBarScrollBehavior(),
-              child: SingleChildScrollView(
-                child: IntrinsicHeight(
-                  child: NavigationRail(
-                    backgroundColor: context.colorScheme.surfaceContainer,
-                    selectedIconTheme: IconThemeData(
-                      color: context.colorScheme.onSurfaceVariant,
-                    ),
-                    unselectedIconTheme: IconThemeData(
-                      color: context.colorScheme.onSurfaceVariant,
-                    ),
-                    selectedLabelTextStyle:
-                        context.textTheme.labelLarge!.copyWith(
-                      color: context.colorScheme.onSurface,
-                    ),
-                    unselectedLabelTextStyle:
-                        context.textTheme.labelLarge!.copyWith(
-                      color: context.colorScheme.onSurface,
-                    ),
-                    destinations: navigationItems
-                        .where((e) => !e.modes.contains(NavigationItemMode.invisible))
-                        .map(
-                          (e) => NavigationRailDestination(
-                            icon: e.icon,
-                            label: Text(
-                              Intl.message(e.label.name),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    onDestinationSelected: (index) {
-                      globalState.appController
-                          .toPage(navigationItems[index].label);
-                    },
-                    extended: true,
-                    // extended: false,
-                    selectedIndex: currentIndex,
-                    labelType: NavigationRailLabelType.none
-                    // labelType: showLabel
-                    //     ? NavigationRailLabelType.all
-                    //     : NavigationRailLabelType.none,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // const SizedBox(
-          //   height: 16,
-          // ),
-          // IconButton(
-          //   onPressed: () {
-          //     ref.read(appSettingProvider.notifier).updateState(
-          //           (state) => state.copyWith(
-          //             showLabel: !state.showLabel,
-          //           ),
-          //         );
-          //   },
-          //   icon: const Icon(Icons.menu),
-          // ),
-          // const SizedBox(
-          //   height: 16,
-          // ),
-        ],
-      ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context, ref) {
+//     return Material(
+//       color: context.colorScheme.surfaceContainer,
+//       child: SizedBox(
+//         width: 200,
+//         child: Column(
+//           children: [
+//             Expanded(
+//               child: ScrollConfiguration(
+//                 behavior: HiddenBarScrollBehavior(),
+//               child: SingleChildScrollView(
+//                 child: IntrinsicHeight(
+//                   child: NavigationRail(
+//                     backgroundColor: context.colorScheme.surfaceContainer,
+//                     selectedIconTheme: IconThemeData(
+//                       color: context.colorScheme.onSurfaceVariant,
+//                     ),
+//                     unselectedIconTheme: IconThemeData(
+//                       color: context.colorScheme.onSurfaceVariant,
+//                     ),
+//                     selectedLabelTextStyle:
+//                         context.textTheme.labelLarge!.copyWith(
+//                       color: context.colorScheme.onSurface,
+//                     ),
+//                     unselectedLabelTextStyle:
+//                         context.textTheme.labelLarge!.copyWith(
+//                       color: context.colorScheme.onSurface,
+//                     ),
+//                     destinations: navigationItems
+//                         .where((e) => !e.modes.contains(NavigationItemMode.invisible))
+//                         .map(
+//                           (e) => NavigationRailDestination(
+//                             icon: e.icon,
+//                             label: Text(
+//                               e.label.navigationName,
+//                             ),
+//                           ),
+//                         )
+//                         .toList(),
+//                     onDestinationSelected: (index) {
+//                       globalState.appController
+//                           .toPage(navigationItems[index].label);
+//                     },
+//                     extended: true,
+//                     // extended: false,
+//                     selectedIndex: currentIndex,
+//                     labelType: NavigationRailLabelType.none
+//                     // labelType: showLabel
+//                     //     ? NavigationRailLabelType.all
+//                     //     : NavigationRailLabelType.none,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+//           // const SizedBox(
+//           //   height: 16,
+//           // ),
+//           // IconButton(
+//           //   onPressed: () {
+//           //     ref.read(appSettingProvider.notifier).updateState(
+//           //           (state) => state.copyWith(
+//           //             showLabel: !state.showLabel,
+//           //           ),
+//           //         );
+//           //   },
+//           //   icon: const Icon(Icons.menu),
+//           // ),
+//           // const SizedBox(
+//           //   height: 16,
+//           // ),
+//         ],
+//       ),
+//       ),
+//     );
+//   }
+// }
 
 class HomeBackScope extends StatelessWidget {
   final Widget child;

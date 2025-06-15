@@ -133,7 +133,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "create": MessageLookupByLibrary.simpleMessage("作成"),
     "cut": MessageLookupByLibrary.simpleMessage("切り取り"),
     "dark": MessageLookupByLibrary.simpleMessage("ダーク"),
-    "dashboard": MessageLookupByLibrary.simpleMessage("ダッシュボード"),
     "days": MessageLookupByLibrary.simpleMessage("日"),
     "defaultNameserver": MessageLookupByLibrary.simpleMessage("デフォルトネームサーバー"),
     "defaultNameserverDesc": MessageLookupByLibrary.simpleMessage(
@@ -260,7 +259,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "logLevel": MessageLookupByLibrary.simpleMessage("ログレベル"),
     "logcat": MessageLookupByLibrary.simpleMessage("ログキャット"),
     "logcatDesc": MessageLookupByLibrary.simpleMessage("無効化するとログエントリを非表示"),
-    "logs": MessageLookupByLibrary.simpleMessage("ログ"),
     "logsDesc": MessageLookupByLibrary.simpleMessage("ログキャプチャ記録"),
     "logsTest": MessageLookupByLibrary.simpleMessage("ログテスト"),
     "loopback": MessageLookupByLibrary.simpleMessage("ループバック解除ツール"),
@@ -375,11 +373,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileUrlNullValidationDesc": MessageLookupByLibrary.simpleMessage(
       "プロファイルURLを入力してください",
     ),
-    "profiles": MessageLookupByLibrary.simpleMessage("プロファイル一覧"),
     "profilesSort": MessageLookupByLibrary.simpleMessage("プロファイルの並び替え"),
     "project": MessageLookupByLibrary.simpleMessage("プロジェクト"),
     "providers": MessageLookupByLibrary.simpleMessage("プロバイダー"),
-    "proxies": MessageLookupByLibrary.simpleMessage("プロキシ"),
     "proxiesSetting": MessageLookupByLibrary.simpleMessage("プロキシ設定"),
     "proxyGroup": MessageLookupByLibrary.simpleMessage("プロキシグループ"),
     "proxyNameserver": MessageLookupByLibrary.simpleMessage("プロキシネームサーバー"),
@@ -416,7 +412,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "requestsDesc": MessageLookupByLibrary.simpleMessage("最近のリクエスト記録を表示"),
     "reset": MessageLookupByLibrary.simpleMessage("リセット"),
     "resetTip": MessageLookupByLibrary.simpleMessage("リセットを確定"),
-    "resources": MessageLookupByLibrary.simpleMessage("リソース"),
     "resourcesDesc": MessageLookupByLibrary.simpleMessage("外部リソース関連情報"),
     "respectRules": MessageLookupByLibrary.simpleMessage("ルール尊重"),
     "respectRulesDesc": MessageLookupByLibrary.simpleMessage(
@@ -492,7 +487,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "tip": MessageLookupByLibrary.simpleMessage("ヒント"),
     "toggle": MessageLookupByLibrary.simpleMessage("トグル"),
     "tonalSpotScheme": MessageLookupByLibrary.simpleMessage("トーンスポット"),
-    "tools": MessageLookupByLibrary.simpleMessage("ツール"),
     "trafficUsage": MessageLookupByLibrary.simpleMessage("トラフィック使用量"),
     "tun": MessageLookupByLibrary.simpleMessage("TUN"),
     "tunDesc": MessageLookupByLibrary.simpleMessage("管理者モードでのみ有効"),

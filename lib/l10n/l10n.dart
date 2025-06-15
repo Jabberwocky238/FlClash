@@ -70,38 +70,83 @@ class AppLocalizations {
   }
 
   /// `Dashboard`
-  String get dashboard {
-    return Intl.message('Dashboard', name: 'dashboard', desc: '', args: []);
+  String get navigation_dashboard {
+    return Intl.message(
+      'Dashboard',
+      name: 'navigation_dashboard',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Proxies`
-  String get proxies {
-    return Intl.message('Proxies', name: 'proxies', desc: '', args: []);
+  String get navigation_proxies {
+    return Intl.message(
+      'Proxies',
+      name: 'navigation_proxies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auth`
+  String get navigation_auth {
+    return Intl.message('Auth', name: 'navigation_auth', desc: '', args: []);
+  }
+
+  /// `Profiles`
+  String get navigation_profiles {
+    return Intl.message(
+      'Profiles',
+      name: 'navigation_profiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order`
+  String get navigation_order {
+    return Intl.message('Order', name: 'navigation_order', desc: '', args: []);
+  }
+
+  /// `Tools`
+  String get navigation_tools {
+    return Intl.message('Tools', name: 'navigation_tools', desc: '', args: []);
+  }
+
+  /// `Logs`
+  String get navigation_logs {
+    return Intl.message('Logs', name: 'navigation_logs', desc: '', args: []);
+  }
+
+  /// `Resources`
+  String get navigation_resources {
+    return Intl.message(
+      'Resources',
+      name: 'navigation_resources',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get navigation_login {
+    return Intl.message('Login', name: 'navigation_login', desc: '', args: []);
+  }
+
+  /// `register`
+  String get navigation_register {
+    return Intl.message(
+      'register',
+      name: 'navigation_register',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Profile`
   String get profile {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
-  }
-
-  /// `Profiles`
-  String get profiles {
-    return Intl.message('Profiles', name: 'profiles', desc: '', args: []);
-  }
-
-  /// `Order`
-  String get order {
-    return Intl.message('Order', name: 'order', desc: '', args: []);
-  }
-
-  /// `Tools`
-  String get tools {
-    return Intl.message('Tools', name: 'tools', desc: '', args: []);
-  }
-
-  /// `Logs`
-  String get logs {
-    return Intl.message('Logs', name: 'logs', desc: '', args: []);
   }
 
   /// `Log capture records`
@@ -112,11 +157,6 @@ class AppLocalizations {
       desc: '',
       args: [],
     );
-  }
-
-  /// `Resources`
-  String get resources {
-    return Intl.message('Resources', name: 'resources', desc: '', args: []);
   }
 
   /// `External resource related info`
@@ -3124,11 +3164,6 @@ class AppLocalizations {
     return Intl.message('Logs test', name: 'logsTest', desc: '', args: []);
   }
 
-  /// `Auth`
-  String get auth {
-    return Intl.message('Auth', name: 'auth', desc: '', args: []);
-  }
-
   /// `Email`
   String get userEmail {
     return Intl.message('Email', name: 'userEmail', desc: '', args: []);
@@ -3139,19 +3174,9 @@ class AppLocalizations {
     return Intl.message('Password', name: 'userPassword', desc: '', args: []);
   }
 
-  /// `Login`
-  String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
-  }
-
   /// `logout`
   String get logout {
     return Intl.message('logout', name: 'logout', desc: '', args: []);
-  }
-
-  /// `register`
-  String get register {
-    return Intl.message('register', name: 'register', desc: '', args: []);
   }
 
   /// `registerFailed`

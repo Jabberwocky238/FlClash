@@ -116,7 +116,7 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
       radius: 18,
       child: ListItem(
         title: Text(
-          appLocalizations.login,
+          appLocalizations.navigation_login,
           textAlign: TextAlign.center,
         ),
         onTap: () async {

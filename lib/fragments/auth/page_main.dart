@@ -133,7 +133,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         child: ListItem(
           leading: const Icon(Icons.login),
           title: Text(
-            appLocalizations.login,
+            appLocalizations.navigation_login,
             textAlign: TextAlign.center,
           ),
           // delegate: NextDelegate(
@@ -151,7 +151,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         child: ListItem(
           leading: const Icon(Icons.person_add),
           title: Text(
-            appLocalizations.register,
+            appLocalizations.navigation_register,
             textAlign: TextAlign.center,
           ),
           // delegate: OpenDelegate(

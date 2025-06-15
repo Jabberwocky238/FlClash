@@ -88,7 +88,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "applicationDesc": MessageLookupByLibrary.simpleMessage(
       "Modify application related settings",
     ),
-    "auth": MessageLookupByLibrary.simpleMessage("Auth"),
     "auto": MessageLookupByLibrary.simpleMessage("Auto"),
     "autoCheckUpdate": MessageLookupByLibrary.simpleMessage(
       "Auto check updates",
@@ -185,7 +184,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "create": MessageLookupByLibrary.simpleMessage("Create"),
     "cut": MessageLookupByLibrary.simpleMessage("Cut"),
     "dark": MessageLookupByLibrary.simpleMessage("Dark"),
-    "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
     "days": MessageLookupByLibrary.simpleMessage("Days"),
     "defaultNameserver": MessageLookupByLibrary.simpleMessage(
       "Default nameserver",
@@ -364,9 +362,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "logcatDesc": MessageLookupByLibrary.simpleMessage(
       "Disabling will hide the log entry",
     ),
-    "login": MessageLookupByLibrary.simpleMessage("Login"),
     "logout": MessageLookupByLibrary.simpleMessage("logout"),
-    "logs": MessageLookupByLibrary.simpleMessage("Logs"),
     "logsDesc": MessageLookupByLibrary.simpleMessage("Log capture records"),
     "logsTest": MessageLookupByLibrary.simpleMessage("Logs test"),
     "loopback": MessageLookupByLibrary.simpleMessage("Loopback unlock tool"),
@@ -401,6 +397,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "nameserverPolicyDesc": MessageLookupByLibrary.simpleMessage(
       "Specify the corresponding nameserver policy",
     ),
+    "navigation_auth": MessageLookupByLibrary.simpleMessage("Auth"),
+    "navigation_dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
+    "navigation_login": MessageLookupByLibrary.simpleMessage("Login"),
+    "navigation_logs": MessageLookupByLibrary.simpleMessage("Logs"),
+    "navigation_order": MessageLookupByLibrary.simpleMessage("Order"),
+    "navigation_profiles": MessageLookupByLibrary.simpleMessage("Profiles"),
+    "navigation_proxies": MessageLookupByLibrary.simpleMessage("Proxies"),
+    "navigation_register": MessageLookupByLibrary.simpleMessage("register"),
+    "navigation_resources": MessageLookupByLibrary.simpleMessage("Resources"),
+    "navigation_tools": MessageLookupByLibrary.simpleMessage("Tools"),
     "network": MessageLookupByLibrary.simpleMessage("Network"),
     "networkDesc": MessageLookupByLibrary.simpleMessage(
       "Modify network-related settings",
@@ -451,7 +457,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "When turned on, only statistics proxy traffic",
     ),
     "options": MessageLookupByLibrary.simpleMessage("Options"),
-    "order": MessageLookupByLibrary.simpleMessage("Order"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "otherContributors": MessageLookupByLibrary.simpleMessage(
       "Other contributors",
@@ -521,11 +526,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileUrlNullValidationDesc": MessageLookupByLibrary.simpleMessage(
       "Please input the profile URL",
     ),
-    "profiles": MessageLookupByLibrary.simpleMessage("Profiles"),
     "profilesSort": MessageLookupByLibrary.simpleMessage("Profiles sort"),
     "project": MessageLookupByLibrary.simpleMessage("Project"),
     "providers": MessageLookupByLibrary.simpleMessage("Providers"),
-    "proxies": MessageLookupByLibrary.simpleMessage("Proxies"),
     "proxiesSetting": MessageLookupByLibrary.simpleMessage("Proxies setting"),
     "proxyGroup": MessageLookupByLibrary.simpleMessage("Proxy group"),
     "proxyNameserver": MessageLookupByLibrary.simpleMessage("Proxy nameserver"),
@@ -560,7 +563,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "recoverySuccess": MessageLookupByLibrary.simpleMessage("Recovery success"),
     "redo": MessageLookupByLibrary.simpleMessage("redo"),
     "regExp": MessageLookupByLibrary.simpleMessage("RegExp"),
-    "register": MessageLookupByLibrary.simpleMessage("register"),
     "registerEmailExists": MessageLookupByLibrary.simpleMessage(
       "registerEmailExists",
     ),
@@ -580,7 +582,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "resetTip": MessageLookupByLibrary.simpleMessage("Make sure to reset"),
-    "resources": MessageLookupByLibrary.simpleMessage("Resources"),
     "resourcesDesc": MessageLookupByLibrary.simpleMessage(
       "External resource related info",
     ),
@@ -678,7 +679,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "tip": MessageLookupByLibrary.simpleMessage("tip"),
     "toggle": MessageLookupByLibrary.simpleMessage("Toggle"),
     "tonalSpotScheme": MessageLookupByLibrary.simpleMessage("TonalSpot"),
-    "tools": MessageLookupByLibrary.simpleMessage("Tools"),
     "trafficUsage": MessageLookupByLibrary.simpleMessage("Traffic usage"),
     "tun": MessageLookupByLibrary.simpleMessage("TUN"),
     "tunDesc": MessageLookupByLibrary.simpleMessage(

@@ -84,7 +84,7 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
                   .map(
                     (e) => ListTile(
                       leading: e.icon,
-                      title: Text(Intl.message(e.label.name)),
+                      title: Text(Intl.message("navigation_${e.label.name}")),
                       selected: ref.watch(currentPageLabelProvider) == e.label,
                       onTap: () {
                         globalState.appController.toPage(e.label);

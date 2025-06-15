@@ -189,7 +189,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "create": MessageLookupByLibrary.simpleMessage("Создать"),
     "cut": MessageLookupByLibrary.simpleMessage("Вырезать"),
     "dark": MessageLookupByLibrary.simpleMessage("Темный"),
-    "dashboard": MessageLookupByLibrary.simpleMessage("Панель управления"),
     "days": MessageLookupByLibrary.simpleMessage("Дней"),
     "defaultNameserver": MessageLookupByLibrary.simpleMessage(
       "Сервер имен по умолчанию",
@@ -384,7 +383,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "logcatDesc": MessageLookupByLibrary.simpleMessage(
       "Отключение скроет запись логов",
     ),
-    "logs": MessageLookupByLibrary.simpleMessage("Логи"),
     "logsDesc": MessageLookupByLibrary.simpleMessage("Записи захвата логов"),
     "logsTest": MessageLookupByLibrary.simpleMessage("Тест журналов"),
     "loopback": MessageLookupByLibrary.simpleMessage(
@@ -543,11 +541,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileUrlNullValidationDesc": MessageLookupByLibrary.simpleMessage(
       "Пожалуйста, введите URL профиля",
     ),
-    "profiles": MessageLookupByLibrary.simpleMessage("Профили"),
     "profilesSort": MessageLookupByLibrary.simpleMessage("Сортировка профилей"),
     "project": MessageLookupByLibrary.simpleMessage("Проект"),
     "providers": MessageLookupByLibrary.simpleMessage("Провайдеры"),
-    "proxies": MessageLookupByLibrary.simpleMessage("Прокси"),
     "proxiesSetting": MessageLookupByLibrary.simpleMessage("Настройка прокси"),
     "proxyGroup": MessageLookupByLibrary.simpleMessage("Группа прокси"),
     "proxyNameserver": MessageLookupByLibrary.simpleMessage(
@@ -604,7 +600,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "resetTip": MessageLookupByLibrary.simpleMessage(
       "Убедитесь, что хотите сбросить",
     ),
-    "resources": MessageLookupByLibrary.simpleMessage("Ресурсы"),
     "resourcesDesc": MessageLookupByLibrary.simpleMessage(
       "Информация, связанная с внешними ресурсами",
     ),
@@ -702,7 +697,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "tip": MessageLookupByLibrary.simpleMessage("подсказка"),
     "toggle": MessageLookupByLibrary.simpleMessage("Переключить"),
     "tonalSpotScheme": MessageLookupByLibrary.simpleMessage("Тональный акцент"),
-    "tools": MessageLookupByLibrary.simpleMessage("Инструменты"),
     "trafficUsage": MessageLookupByLibrary.simpleMessage(
       "Использование трафика",
     ),

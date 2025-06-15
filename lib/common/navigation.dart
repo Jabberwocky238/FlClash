@@ -25,6 +25,7 @@ class Navigation {
         ),
         modes: [NavigationItemMode.mobile, NavigationItemMode.desktop],
       ),
+      // ###############################################
       NavigationItem(
         icon: const Icon(Icons.article),
         label: PageLabel.proxies,
@@ -33,7 +34,7 @@ class Navigation {
         ),
         modes: hasProxies
             ? [NavigationItemMode.mobile, NavigationItemMode.desktop]
-            : [],
+            : [NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.shopping_cart),
@@ -41,8 +42,8 @@ class Navigation {
         fragment: OrderFragment(
           key: GlobalObjectKey(PageLabel.order),
         ),
+        modes: [NavigationItemMode.invisible],
       ),
-      // ###############################################
       const NavigationItem(
         icon: Icon(Icons.folder),
         label: PageLabel.profiles,

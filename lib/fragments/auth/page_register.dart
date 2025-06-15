@@ -153,7 +153,7 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
       radius: 18,
       child: ListItem(
         title: Text(
-          appLocalizations.register,
+          appLocalizations.navigation_register,
           textAlign: TextAlign.center,
         ),
         onTap: () async {
