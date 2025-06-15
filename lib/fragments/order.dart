@@ -15,8 +15,6 @@ class OrderFragment extends ConsumerStatefulWidget {
   ConsumerState<OrderFragment> createState() => _OrderFragmentState();
 }
 
-
-
 class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
   final ValueNotifier<OrderSelectionPageState> _state = ValueNotifier(
     const OrderSelectionPageState(),
@@ -44,7 +42,9 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
     _state.value = _state.value.copyWith(loading: true, error: false);
     try {
       ref.read(orderSelectionProvider.notifier).value = OrderSelectionProps(
-        orders: await _fetchOrders(),
+        orders: await apiController.useLoadingPage(() async {
+          return await apiController.fetchOrders();
+        }),
       );
     } catch (e) {
       _state.value = _state.value.copyWith(error: true);
@@ -59,38 +59,31 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_, constraints) {
-      final orderSelection = ref.watch(orderSelectionProvider);
-      return Consumer(
-        builder: (_, ref, child) {
-          return SingleChildScrollView(
-            padding: baseInfoEdgeInsets,
-            child: Column(
-              children: [
-                ..._buildOrderItems(context, orderSelection.orders),
-                const SizedBox(height: 16),
-                child!,
-              ],
-            ),
+    final orderSelection = ref.watch(orderSelectionProvider);
+    return ValueListenableBuilder<OrderSelectionPageState>(
+      valueListenable: _state,
+      builder: (_, state, __) {
+        if (state.loading) {
+          return const Center(
+            child: CircularProgressIndicator(),
           );
-        },
-        child: ValueListenableBuilder<OrderSelectionPageState>(
-            valueListenable: _state,
-            builder: (_, state, __) {
-              if (state.loading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state.error) {
-                return const Center(
-                  child: Text("加载失败"),
-                );
-              }
-              return _buildBuyButton(context);
-            },
-        ),
-      );
-    });
+        } else if (state.error) {
+          return const Center(
+            child: Text("加载失败"),
+          );
+        }
+        return SingleChildScrollView(
+          padding: baseInfoEdgeInsets,
+          child: Column(
+            children: [
+              ..._buildOrderItems(context, orderSelection.orders),
+              const SizedBox(height: 16),
+              _buildBuyButton(context),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   List<Widget> _buildOrderItems(
@@ -156,24 +149,5 @@ Future<void> _order(OrderCommonProps order, String token) async {
     await launchUrl(uri);
   } else {
     throw '无法打开 URL: $url';
-  }
-}
-
-Future<List<OrderCommonProps>> _fetchOrders() async {
-  try {
-    final url = "$baseUrl/fetch_all_orders";
-    final response = await request.get(url);
-    // commonPrint.log("[OrderFragment] _fetchOrders response: ${response.data}");
-    final orders = <OrderCommonProps>[
-      ...response.data.map((e) => OrderCommonProps(
-            orderType: e["order_type"],
-            name: e["name"],
-            price: "${e["price"]}",
-          ))
-    ];
-    return orders;
-  } catch (e) {
-    commonPrint.log("[OrderFragment] _fetchOrders error: $e");
-    return [];
   }
 }

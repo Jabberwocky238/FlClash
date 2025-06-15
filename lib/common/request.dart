@@ -43,7 +43,7 @@ class Request {
     return response;
   }
 
-  Future<Response> get(String url, {Map<String, dynamic>? queryParameters}) async {
+  Future<Response> get(String url, Map<String, dynamic> params, {Map<String, dynamic>? queryParameters}) async {
     final response = await _clashDio.get(
       url,
       queryParameters: queryParameters,

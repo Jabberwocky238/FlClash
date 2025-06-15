@@ -33,7 +33,7 @@ class AuthController {
       if (authProps.code == null || authProps.code!.isEmpty) {
         return (success: false, message: "验证码不能为空");
       }
-      await _register(authProps.email!, authProps.password!, authProps.code!);
+      await apiController.register(authProps.email!, authProps.password!, authProps.code!);
       return (success: true, message: "注册成功");
     } on DioException catch (err, _) {
       if (err.response?.statusCode == 450) {
@@ -57,9 +57,9 @@ class AuthController {
       if (authProps.password == null || authProps.password!.isEmpty) {
         return (success: false, message: "密码不能为空");
       }
-      final (token, expiresAt) = await _login(authProps.email!, authProps.password!);
+      final token = await apiController.login(authProps.email!, authProps.password!);
       if (token != null) {
-        commonPrint.log("[AuthController] login success: $token, $expiresAt");
+        commonPrint.log("[AuthController] login success: $token");
         await _saveAuthState(AuthProps(
           email: authProps.email!,
           password: authProps.password!,
@@ -83,9 +83,8 @@ class AuthController {
 
   Future<AuthResult> logout() async {
     try {
-      await _saveAuthState(const AuthProps(email: '', password: '', token: ''));
       await _switchToVVPPNNProfile(null);
-      // await globalState.appController.autoUpdateProfiles();
+      await _saveAuthState(const AuthProps(email: '', password: '', token: ''));
       return (success: true, message: "退出成功");
     } on DioException catch (err, _) {
       return (success: false, message: "退出失败");
@@ -100,7 +99,7 @@ class AuthController {
       if (!email.isEmail) {
         return (success: false, message: "邮箱格式不正确");
       }
-      await _sendCode(email);
+      await apiController.sendCode(email);
       return (success: true, message: "验证码已发送");
     } on DioException catch (err, _) {
       return (success: false, message: "邮箱 $email 发送验证码失败");
@@ -130,42 +129,10 @@ class AuthController {
     await globalState.appController.setProfileAndAutoApply(profile);
     _ref.read(currentProfileIdProvider.notifier).value = profile.id;
     //  设置组
-    final firstGroup = _ref.read(currentGroupsStateProvider.select((state) => state.value)).first;
-    globalState.appController.updateCurrentUnfoldSet(
-      {firstGroup.name},
-    );
+    // final firstGroup = _ref.read(currentGroupsStateProvider.select((state) => state.value)).first;
+    // globalState.appController.updateCurrentUnfoldSet(
+    //   {firstGroup.name},
+    // );
     printMessage("switch to ${profile.url}");
   }
-}
-
-Future<Response<dynamic>> _sendCode(String email) async {
-  if (email.isEmpty) {
-    throw Exception("email cannot be empty");
-  }
-  return await request.post(
-    "$baseUrl/auth/sendcode",
-    {"email": email},
-  );
-}
-
-Future<Response<dynamic>> _register(
-    String email, String password, String code) async {
-  if (email.isEmpty || password.isEmpty || code.isEmpty) {
-    throw Exception("email, password, code cannot be empty");
-  }
-  return await request.post(
-    "$baseUrl/auth/register",
-    {"email": email, "password": password, "code": code},
-  );
-}
-
-Future<(String?, String?)> _login(String email, String password) async {
-  if (email.isEmpty || password.isEmpty) {
-    throw Exception("email, password cannot be empty");
-  }
-  final response = await request.post(
-    "$baseUrl/auth/token",
-    {"email": email, "password": password},
-  );
-  return (response.data['token'] as String?, response.data['vip_expired_at'] as String?);
 }

@@ -120,9 +120,7 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
           textAlign: TextAlign.center,
         ),
         onTap: () async {
-          final commonScaffoldState = globalState.homeScaffoldKey.currentState;
-          if (commonScaffoldState?.mounted != true) return;
-          await commonScaffoldState?.loadingRun(() async {
+          await apiController.useLoadingPage(() async {
             final result = await globalState.authController
                 .login(_authStateNotifier.value);
             go() => result.success

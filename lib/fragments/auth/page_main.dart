@@ -136,10 +136,6 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
             appLocalizations.navigation_login,
             textAlign: TextAlign.center,
           ),
-          // delegate: NextDelegate(
-          //   title: appLocalizations.login,
-          //   widget: PageLogin(),
-          // ),
           onTap: () {
             globalState.appController.toPage(PageLabel.login);
           },
@@ -154,10 +150,6 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
             appLocalizations.navigation_register,
             textAlign: TextAlign.center,
           ),
-          // delegate: OpenDelegate(
-          //   title: appLocalizations.register,
-          //   widget: PageRegister(),
-          // ),
           onTap: () {
             globalState.appController.toPage(PageLabel.register);
           },
@@ -179,7 +171,6 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
               afterCancel: () {},
               afterConfirm: () async {
                 await globalState.authController.logout();
-                commonPrint.log("logout");
               },
             );
           },
