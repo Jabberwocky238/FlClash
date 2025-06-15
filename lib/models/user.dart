@@ -27,7 +27,6 @@ class AuthProps with _$AuthProps {
     @Default('') String email,
     @Default('') String password,
     String? token,
-    String? expiresAt,
   }) = _AuthProps;
 
   factory AuthProps.fromJson(Map<String, dynamic> json) =>

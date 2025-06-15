@@ -7,27 +7,78 @@ import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:intl/intl.dart';
 
-class CustomDrawerHeader extends StatelessWidget {
-  final List<Widget> children;
+class CustomDrawerHeader extends ConsumerStatefulWidget {
+  const CustomDrawerHeader({super.key});
 
-  const CustomDrawerHeader({
-    super.key,
-    required this.children,
-  });
+  @override
+  ConsumerState<CustomDrawerHeader> createState() => _CustomDrawerHeaderState();
+}
+
+class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
+
+  Widget _buildSubscriptionInfo(BuildContext context, SubscriptionInfo subscriptionInfo) {
+    final use = subscriptionInfo.upload + subscriptionInfo.download;
+    final total = subscriptionInfo.total;
+    final progress = use / total;
+
+    final useShow = TrafficValue(value: use).show;
+    final totalShow = TrafficValue(value: total).show;
+    final expireShow = subscriptionInfo.expire != 0
+        ? DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire * 1000)
+            .show
+        : appLocalizations.infiniteTime;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LinearProgressIndicator(
+          minHeight: 6,
+          value: progress,
+          backgroundColor: context.colorScheme.primary.opacity15,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          "$useShow / $totalShow · $expireShow",
+          style: context.textTheme.labelMedium?.toLight,
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _buildProfileInfo(BuildContext context) {
+    final profile = ref.watch(currentProfileProvider);
+    final subscriptionInfo = profile?.subscriptionInfo;
+    
+    return [
+      const SizedBox(
+        height: 8,
+      ),
+      if (subscriptionInfo != null)
+        _buildSubscriptionInfo(context, subscriptionInfo),
+      // Text(
+      //   profile?.lastUpdateDate?.lastUpdateTimeDesc ?? "",
+      //   style: context.textTheme.labelMedium?.toLight,
+      // ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    final realChildren = [
+    final authSetting = ref.watch(authSettingProvider);
+    // final currentProfile = ref.watch(currentProfileProvider);
+    final realChildren = <Widget>[
       Text(
-        'JW Clash',
-        style: Theme.of(context).textTheme.titleLarge,
+        authSetting.email.isEmpty ? '请先登录' : authSetting.email,
+        style: context.textTheme.labelLarge?.toLight,
       ),
-      ...children,
+      ..._buildProfileInfo(context),
     ].separated(const SizedBox(height: 8)).toList();
     return SizedBox(
       width: double.infinity,
-      height: 150,
-      child: Center(
+      height: 130,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,30 +103,11 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screenWidth = MediaQuery.of(context).size.width;
     final drawerWidth = screenWidth * 0.7 < 300 ? screenWidth * 0.7 : 300.0;
-    final authSetting = ref.watch(authSettingProvider);
     return Drawer(
       width: drawerWidth,
       child: Column(
         children: [
-          CustomDrawerHeader(
-            children: [Consumer(
-              builder: (context, ref, _) {
-                return Text(
-                  authSetting.email.isEmpty
-                      ? 'Not logged in'
-                      : authSetting.email,
-                );
-              },
-            ), Consumer(
-              builder: (context, ref, _) {
-                return Text(
-                  authSetting.expiresAt?.isEmpty ?? true
-                      ? 'Free'
-                      : "VIP until ${authSetting.expiresAt}",
-                );
-              },
-            )],
-          ),
+          CustomDrawerHeader(),
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -100,3 +132,4 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
     );
   }
 }
+

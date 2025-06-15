@@ -64,10 +64,8 @@ class AuthController {
           email: authProps.email!,
           password: authProps.password!,
           token: token,
-          expiresAt: expiresAt,
         ));
         await _switchToVVPPNNProfile(token);
-        // await globalState.appController.autoUpdateProfiles();
         return (success: true, message: "登录成功 token: $token");
       } else {
         return (success: false, message: "登录失败");
@@ -85,7 +83,7 @@ class AuthController {
 
   Future<AuthResult> logout() async {
     try {
-      await _saveAuthState(const AuthProps(email: '', password: '', token: '', expiresAt: ''));
+      await _saveAuthState(const AuthProps(email: '', password: '', token: ''));
       await _switchToVVPPNNProfile(null);
       // await globalState.appController.autoUpdateProfiles();
       return (success: true, message: "退出成功");
