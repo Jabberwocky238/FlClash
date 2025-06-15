@@ -132,9 +132,11 @@ class Build {
         ),
       ];
 
-  static String get appName => "JWClash";
+  static String get appName => "Enzyme";
 
-  static String get coreName => "JWClashCore";
+  static String get coreName => "EnzymeCore";
+
+  static String get appHelperService => "EnzymeHelperService";
 
   static String get libName => "libclash";
 
@@ -299,7 +301,7 @@ class Build {
     final targetPath = join(
       outDir,
       target.name,
-      "JWClashHelperService${target.executableExtensionName}",
+      "$appHelperService${target.executableExtensionName}",
     );
     await File(outPath).copy(targetPath);
   }

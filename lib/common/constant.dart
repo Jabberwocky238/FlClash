@@ -81,9 +81,9 @@ double getWidgetHeight(num lines) {
 
 const maxLength = 150;
 
-final mainIsolate = "JWClashMainIsolate";
+final mainIsolate = "EnzymeMainIsolate";
 
-final serviceIsolate = "JWClashServiceIsolate";
+// final serviceIsolate = "JWClashServiceIsolate";
 
 // const defaultPrimaryColors = [
 //   0xFF795548,
