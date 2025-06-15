@@ -1,11 +1,11 @@
 script_template: inno_setup.iss
 app_id: 228B3532-C74B-4870-9068-BE70FE12A3E6
-app_name: EnzymeVPN
+app_name: JWClash
 publisher: chen08209
 publisher_url: https://github.com/chen08209/JWClash
-display_name: EnzymeVPN
-executable_name: EnzymeVPN.exe
-output_base_file_name: EnzymeVPN.exe
+display_name: JWClash
+executable_name: JWClash.exe
+output_base_file_name: JWClash.exe
 setup_icon_file: ..\windows\runner\resources\app_icon.ico
 locales:
   - lang: zh
