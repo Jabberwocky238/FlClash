@@ -7,14 +7,13 @@ import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 
-const appName = "Enzyme";
-const appHelperService = "EnzymeHelperService";
-const appCore = "EnzymeCore";
-const coreName = "clash.meta";
+const appName = "JWClash";
+const appHelperService = "JWClashHelperService";
+const coreName = "JWClashCore";
 const browserUa =
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
-const packageName = "com.enzyme";
-final unixSocketPath = "/tmp/EnzymeSocket_${Random().nextInt(10000)}.sock";
+const packageName = "com.jwclash";
+final unixSocketPath = "/tmp/JWClashSocket_${Random().nextInt(10000)}.sock";
 const helperPort = 47890;
 
 final baseInfoEdgeInsets = EdgeInsets.symmetric(

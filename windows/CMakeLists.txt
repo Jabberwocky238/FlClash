@@ -90,10 +90,17 @@ set(CLASH_DIR "../libclash/windows")
 #   set(CLASH_DIR "../libclash/windows/x86")
 # endif()
 
+<<<<<<< HEAD
 install(PROGRAMS "${CLASH_DIR}/EnzymeCore.exe" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
 install(PROGRAMS "${CLASH_DIR}/EnzymeHelperService.exe" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+=======
+install(PROGRAMS "${CLASH_DIR}/JWClashCore.exe" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+  COMPONENT Runtime)
+
+install(PROGRAMS "${CLASH_DIR}/JWClashHelperService.exe" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+>>>>>>> temp-branch
   COMPONENT Runtime)
 
 install(FILES "EnableLoopback.exe" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"

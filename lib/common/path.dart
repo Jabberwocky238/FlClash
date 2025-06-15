@@ -41,7 +41,7 @@ class AppPath {
   }
 
   String get corePath {
-    return join(executableDirPath, "$appCore$executableExtension");
+    return join(executableDirPath, "$coreName$executableExtension");
   }
 
   String get helperPath {
