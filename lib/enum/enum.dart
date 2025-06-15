@@ -137,7 +137,7 @@ enum RecoveryOption {
   onlyProfiles,
 }
 
-enum CommonCardType { plain, filled }
+enum CommonCardType { plain, filled, transparent }
 
 enum DnsMode {
   normal,

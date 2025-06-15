@@ -4,9 +4,10 @@ import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/state.dart';
 
 double get listHeaderHeight {
+  // final measure = globalState.theme;
+  // return 28 + measure.titleMediumHeight + 4 + measure.bodyMediumHeight;
   final measure = globalState.theme;
-  return 28 + measure.titleMediumHeight + 4 + measure.bodyMediumHeight;
-  // return 0;
+  return measure.bodyLargeHeight * 2;
 }
 
 double getItemHeight() {

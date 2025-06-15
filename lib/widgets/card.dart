@@ -91,7 +91,7 @@ class CommonCard extends StatelessWidget {
     this.radius = 12,
     required this.child,
     this.padding,
-    this.enterAnimated = false,
+    this.enterAnimated = true,
     this.info,
     this.suffix,
   }) : isSelected = isSelected ?? false;
@@ -113,6 +113,9 @@ class CommonCard extends StatelessWidget {
   BorderSide getBorderSide(BuildContext context, Set<WidgetState> states) {
     final colorScheme = context.colorScheme;
     if (type == CommonCardType.filled) {
+      return BorderSide.none;
+    }
+    if (type == CommonCardType.transparent) {
       return BorderSide.none;
     }
     final hoverColor = isSelected

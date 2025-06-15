@@ -151,14 +151,13 @@ class ProxyCard extends StatelessWidget {
                       const SizedBox(
                         width: 6,
                       ),
-                      delayText
+                      delayText,
+                      const SizedBox(
+                        width: 30,
+                      ),
                     ],
                   ),
                 ),
-                // const SizedBox(
-                //   width: 6,
-                // ),
-                // delayText,
               ],
             ),
           ),

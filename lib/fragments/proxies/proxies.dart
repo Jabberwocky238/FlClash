@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/list.dart';
 import 'package:jw_clash/widgets/null_status.dart';
+import 'package:jw_clash/widgets/widgets.dart';
 
 import 'card.dart';
 import 'common.dart';
@@ -24,24 +25,24 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     with PageMixin {
   @override
   get actions => [
-    ElevatedButton(
-      onPressed: () {
-        debouncer.call(commonDuration, () {
-          delayTest(
-            ref.watch(proxiesStateProvider),
-            ref.watch(appSettingProvider.select((state) => state.testUrl)),
-          );
-        });
-      },
-      child: Row(
-        children: [
-          const Icon(Icons.speed_outlined),
-          const SizedBox(width: 4),
-          const Text("测速"),
-        ],
-      ),
-    ),
-  ];
+        ElevatedButton(
+          onPressed: () {
+            debouncer.call(commonDuration, () {
+              delayTest(
+                ref.watch(proxiesStateProvider),
+                ref.watch(appSettingProvider.select((state) => state.testUrl)),
+              );
+            });
+          },
+          child: Row(
+            children: [
+              const Icon(Icons.speed_outlined),
+              const SizedBox(width: 4),
+              const Text("测速"),
+            ],
+          ),
+        ),
+      ];
 
   @override
   get floatingActionButton => null;
@@ -150,11 +151,18 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     for (final groupName in groupNames) {
       final group =
           ref.read(groupsProvider.select((state) => state.getGroup(groupName)));
-      commonPrint.log(
-          "[ProxiesFragment] _buildItems, groupName: $groupName, group: $group");
       if (group == null) {
         continue;
       }
+      items.addAll([
+        ListHeader(
+          key: Key(groupName),
+          group: group,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+      ]);
       // final isExpand = currentUnfoldSet.contains(groupName);
       final isExpand = true;
       if (isExpand) {
@@ -219,6 +227,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
         label: appLocalizations.nullProxies,
       );
     }
+
     final items = _buildItems(
       state.groupNames,
       state.currentUnfoldSet,
@@ -235,6 +244,41 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
       itemBuilder: (_, index) {
         return items[index];
       },
+    );
+  }
+}
+
+class ListHeader extends StatefulWidget {
+  final Group group;
+
+  const ListHeader({
+    super.key,
+    required this.group,
+  });
+
+  @override
+  State<ListHeader> createState() => _ListHeaderState();
+}
+
+class _ListHeaderState extends State<ListHeader> {
+  String get groupName => widget.group.name;
+
+  String get groupType => widget.group.type.name;
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonCard(
+      radius: 14,
+      type: CommonCardType.transparent,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            groupName,
+            style: context.textTheme.titleMedium,
+          ),
+        ],
+      ),
     );
   }
 }
