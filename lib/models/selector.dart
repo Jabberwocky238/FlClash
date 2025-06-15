@@ -120,7 +120,7 @@ class NavigationItemsState with _$NavigationItemsState {
 class ProxiesListSelectorState with _$ProxiesListSelectorState {
   const factory ProxiesListSelectorState({
     required List<String> groupNames,
-    required Set<String> currentUnfoldSet,
+    // required Set<String> currentUnfoldSet,
     // required ProxiesSortType proxiesSortType,
     // required ProxyCardType proxyCardType,
     required num sortNum,

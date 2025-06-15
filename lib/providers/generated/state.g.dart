@@ -253,7 +253,7 @@ final profilesSelectorStateProvider =
 typedef ProfilesSelectorStateRef
     = AutoDisposeProviderRef<ProfilesSelectorState>;
 String _$proxiesListSelectorStateHash() =>
-    r'407f0f862b2e7556f091042ac7bc3a3725ebafda';
+    r'75c1cac76828cb32aa86cb728e74308844ec5650';
 
 /// See also [proxiesListSelectorState].
 @ProviderFor(proxiesListSelectorState)
@@ -961,22 +961,6 @@ final selectedMapProvider = AutoDisposeProvider<SelectedMap>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef SelectedMapRef = AutoDisposeProviderRef<SelectedMap>;
-String _$unfoldSetHash() => r'59a5b417611533069462ddf31eca080ab2f74ac9';
-
-/// See also [unfoldSet].
-@ProviderFor(unfoldSet)
-final unfoldSetProvider = AutoDisposeProvider<Set<String>>.internal(
-  unfoldSet,
-  name: r'unfoldSetProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$unfoldSetHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef UnfoldSetRef = AutoDisposeProviderRef<Set<String>>;
 String _$currentProfileHash() => r'55f3cb9570a0aa6b9e0b83a36693b69d52e753ab';
 
 /// See also [currentProfile].

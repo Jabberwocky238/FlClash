@@ -2084,9 +2084,9 @@ abstract class _NavigationItemsState implements NavigationItemsState {
 
 /// @nodoc
 mixin _$ProxiesListSelectorState {
-  List<String> get groupNames => throw _privateConstructorUsedError;
-  Set<String> get currentUnfoldSet =>
-      throw _privateConstructorUsedError; // required ProxiesSortType proxiesSortType,
+  List<String> get groupNames =>
+      throw _privateConstructorUsedError; // required Set<String> currentUnfoldSet,
+// required ProxiesSortType proxiesSortType,
 // required ProxyCardType proxyCardType,
   num get sortNum => throw _privateConstructorUsedError;
 
@@ -2103,8 +2103,7 @@ abstract class $ProxiesListSelectorStateCopyWith<$Res> {
           $Res Function(ProxiesListSelectorState) then) =
       _$ProxiesListSelectorStateCopyWithImpl<$Res, ProxiesListSelectorState>;
   @useResult
-  $Res call(
-      {List<String> groupNames, Set<String> currentUnfoldSet, num sortNum});
+  $Res call({List<String> groupNames, num sortNum});
 }
 
 /// @nodoc
@@ -2124,7 +2123,6 @@ class _$ProxiesListSelectorStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? groupNames = null,
-    Object? currentUnfoldSet = null,
     Object? sortNum = null,
   }) {
     return _then(_value.copyWith(
@@ -2132,10 +2130,6 @@ class _$ProxiesListSelectorStateCopyWithImpl<$Res,
           ? _value.groupNames
           : groupNames // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      currentUnfoldSet: null == currentUnfoldSet
-          ? _value.currentUnfoldSet
-          : currentUnfoldSet // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
       sortNum: null == sortNum
           ? _value.sortNum
           : sortNum // ignore: cast_nullable_to_non_nullable
@@ -2153,8 +2147,7 @@ abstract class _$$ProxiesListSelectorStateImplCopyWith<$Res>
       __$$ProxiesListSelectorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<String> groupNames, Set<String> currentUnfoldSet, num sortNum});
+  $Res call({List<String> groupNames, num sortNum});
 }
 
 /// @nodoc
@@ -2173,7 +2166,6 @@ class __$$ProxiesListSelectorStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groupNames = null,
-    Object? currentUnfoldSet = null,
     Object? sortNum = null,
   }) {
     return _then(_$ProxiesListSelectorStateImpl(
@@ -2181,10 +2173,6 @@ class __$$ProxiesListSelectorStateImplCopyWithImpl<$Res>
           ? _value._groupNames
           : groupNames // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      currentUnfoldSet: null == currentUnfoldSet
-          ? _value._currentUnfoldSet
-          : currentUnfoldSet // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
       sortNum: null == sortNum
           ? _value.sortNum
           : sortNum // ignore: cast_nullable_to_non_nullable
@@ -2197,11 +2185,8 @@ class __$$ProxiesListSelectorStateImplCopyWithImpl<$Res>
 
 class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
   const _$ProxiesListSelectorStateImpl(
-      {required final List<String> groupNames,
-      required final Set<String> currentUnfoldSet,
-      required this.sortNum})
-      : _groupNames = groupNames,
-        _currentUnfoldSet = currentUnfoldSet;
+      {required final List<String> groupNames, required this.sortNum})
+      : _groupNames = groupNames;
 
   final List<String> _groupNames;
   @override
@@ -2211,14 +2196,7 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
     return EqualUnmodifiableListView(_groupNames);
   }
 
-  final Set<String> _currentUnfoldSet;
-  @override
-  Set<String> get currentUnfoldSet {
-    if (_currentUnfoldSet is EqualUnmodifiableSetView) return _currentUnfoldSet;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_currentUnfoldSet);
-  }
-
+// required Set<String> currentUnfoldSet,
 // required ProxiesSortType proxiesSortType,
 // required ProxyCardType proxyCardType,
   @override
@@ -2226,7 +2204,7 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
 
   @override
   String toString() {
-    return 'ProxiesListSelectorState(groupNames: $groupNames, currentUnfoldSet: $currentUnfoldSet, sortNum: $sortNum)';
+    return 'ProxiesListSelectorState(groupNames: $groupNames, sortNum: $sortNum)';
   }
 
   @override
@@ -2236,17 +2214,12 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
             other is _$ProxiesListSelectorStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._groupNames, _groupNames) &&
-            const DeepCollectionEquality()
-                .equals(other._currentUnfoldSet, _currentUnfoldSet) &&
             (identical(other.sortNum, sortNum) || other.sortNum == sortNum));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_groupNames),
-      const DeepCollectionEquality().hash(_currentUnfoldSet),
-      sortNum);
+      runtimeType, const DeepCollectionEquality().hash(_groupNames), sortNum);
 
   /// Create a copy of ProxiesListSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -2261,13 +2234,11 @@ class _$ProxiesListSelectorStateImpl implements _ProxiesListSelectorState {
 abstract class _ProxiesListSelectorState implements ProxiesListSelectorState {
   const factory _ProxiesListSelectorState(
       {required final List<String> groupNames,
-      required final Set<String> currentUnfoldSet,
       required final num sortNum}) = _$ProxiesListSelectorStateImpl;
 
   @override
-  List<String> get groupNames;
-  @override
-  Set<String> get currentUnfoldSet; // required ProxiesSortType proxiesSortType,
+  List<String> get groupNames; // required Set<String> currentUnfoldSet,
+// required ProxiesSortType proxiesSortType,
 // required ProxyCardType proxyCardType,
   @override
   num get sortNum;

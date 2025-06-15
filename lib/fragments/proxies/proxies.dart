@@ -141,7 +141,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
 
   List<Widget> _buildItems(
     List<String> groupNames,
-    Set<String> currentUnfoldSet,
+    // Set<String> currentUnfoldSet,
   ) {
     final columns = 1;
     final items = <Widget>[];
@@ -228,7 +228,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
 
     final items = _buildItems(
       state.groupNames,
-      state.currentUnfoldSet,
+      // state.currentUnfoldSet,
     );
     final itemsOffset = _getItemHeightList(items);
     return ListView.builder(

@@ -217,13 +217,13 @@ ProxiesListSelectorState proxiesListSelectorState(Ref ref) {
   final groupNames = ref.watch(currentGroupsStateProvider.select((state) {
     return state.value.map((e) => e.name).toList();
   }));
-  final currentUnfoldSet = ref.watch(unfoldSetProvider);
+  // final currentUnfoldSet = ref.watch(unfoldSetProvider);
   // final proxiesStyle = ref.watch(proxiesStyleSettingProvider);
   final sortNum = ref.watch(sortNumProvider);
   // final columns = ref.watch(getProxiesColumnsProvider);
   return ProxiesListSelectorState(
     groupNames: groupNames,
-    currentUnfoldSet: currentUnfoldSet,
+    // currentUnfoldSet: currentUnfoldSet,
     // proxiesSortType: proxiesStyle.sortType,
     // proxyCardType: proxiesStyle.cardType,
     sortNum: sortNum,
@@ -382,13 +382,13 @@ SelectedMap selectedMap(Ref ref) {
   return selectedMap;
 }
 
-@riverpod
-Set<String> unfoldSet(Ref ref) {
-  final unfoldSet = ref.watch(
-    currentProfileProvider.select((state) => state?.unfoldSet ?? {}),
-  );
-  return unfoldSet;
-}
+// @riverpod
+// Set<String> unfoldSet(Ref ref) {
+//   final unfoldSet = ref.watch(
+//     currentProfileProvider.select((state) => state?.unfoldSet ?? {}),
+//   );
+//   return unfoldSet;
+// }
 
 @riverpod
 Profile? currentProfile(Ref ref) {
