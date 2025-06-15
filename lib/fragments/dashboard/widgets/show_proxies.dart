@@ -6,14 +6,14 @@ import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ShowProxies extends StatefulWidget {
+class ShowProxies extends ConsumerStatefulWidget {
   const ShowProxies({super.key});
 
   @override
-  State<ShowProxies> createState() => _ShowProxiesState();
+  ConsumerState<ShowProxies> createState() => _ShowProxiesState();
 }
 
-class _ShowProxiesState extends State<ShowProxies> {
+class _ShowProxiesState extends ConsumerState<ShowProxies> {
   @override
   void initState() {
     super.initState();
@@ -24,14 +24,34 @@ class _ShowProxiesState extends State<ShowProxies> {
     super.dispose();
   }
 
+  Widget _currentProxyInfo() {
+    final currentGroupName = ref.watch(proxiesSelectorStateProvider.select((state) => state.currentGroupName));
+    final proxyName = ref.watch(getProxyNameProvider(currentGroupName!));
+    if (proxyName == null || proxyName.isEmpty) {
+      commonPrint.log("[ShowProxies] currentGroup is $currentGroupName");
+      return const SizedBox.shrink();
+    }
+    commonPrint.log("[ShowProxies] proxyName: $proxyName");
+    return Text(
+      "当前节点: $proxyName",
+      style: context.textTheme.bodySmall?.toLight,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final proxies = ref.watch(proxiesStateProvider);
     return SizedBox(
       height: getWidgetHeight(1),
       child: CommonCard(
         info: Info(
           iconData: Icons.settings,
           label: "选择节点",
+        ),
+        suffix: Row(
+          children: [
+            _currentProxyInfo(),
+          ],
         ),
         onPressed: () {
           globalState.appController.toPage(PageLabel.proxies);
@@ -47,26 +67,21 @@ class _ShowProxiesState extends State<ShowProxies> {
             children: [
               SizedBox(
                 height: globalState.theme.bodyMediumHeight + 2,
-                child: Consumer(builder: (_, ref, __) {
-                  final proxies = ref.watch(proxiesStateProvider);
-                  return Row(
-                    children: [
-                      Text(
-                        "当前可用节点数:",
-                        style:
-                            context.textTheme.bodyMedium?.toLight.adjustSize(1),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        proxies.length.toString(),
-                        style:
-                            context.textTheme.bodyMedium?.toLight.adjustSize(1),
-                      ),
-                    ],
-                  );
-                }),
+                child: Row(
+                  children: [
+                    Text(
+                      "当前可用节点数:",
+                      style: context.textTheme.bodySmall?.toLight,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      proxies.length.toString(),
+                      style: context.textTheme.bodySmall?.toLight,
+                    ),
+                  ],
+                )
               ),
             ],
           ),

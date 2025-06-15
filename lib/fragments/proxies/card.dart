@@ -87,12 +87,14 @@ class ProxyCard extends StatelessWidget {
   _changeProxy(WidgetRef ref) async {
     final isComputedSelected = groupType.isComputedSelected;
     final isSelector = groupType == GroupType.Selector;
+    commonPrint.log("[ProxyCard] _changeProxy, groupName: $groupName, isComputedSelected: $isComputedSelected, isSelector: $isSelector");
     if (isComputedSelected || isSelector) {
       final currentProxyName = ref.read(getProxyNameProvider(groupName));
       final nextProxyName = switch (isComputedSelected) {
         true => currentProxyName == proxy.name ? "" : proxy.name,
         false => proxy.name,
       };
+      commonPrint.log("[ProxyCard] _changeProxy, groupName: $groupName, nextProxyName: $nextProxyName");
       final appController = globalState.appController;
       appController.updateCurrentSelectedMap(
         groupName,

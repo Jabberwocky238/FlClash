@@ -748,16 +748,19 @@ class AppController {
 
   updateCurrentSelectedMap(String groupName, String proxyName) {
     final currentProfile = _ref.read(currentProfileProvider);
-    if (currentProfile != null &&
-        currentProfile.selectedMap[groupName] != proxyName) {
+    if (currentProfile != null && currentProfile.selectedMap[groupName] != proxyName) {
       final SelectedMap selectedMap = Map.from(
         currentProfile.selectedMap,
       )..[groupName] = proxyName;
       _ref.read(profilesProvider.notifier).setProfile(
-            currentProfile.copyWith(
-              selectedMap: selectedMap,
-            ),
-          );
+        currentProfile.copyWith(
+          selectedMap: selectedMap,
+        ),
+      );
+      final currentGroupName = _ref.read(proxiesSelectorStateProvider.select((state) => state.currentGroupName));
+      if (currentGroupName == null || currentGroupName.isEmpty || currentGroupName != groupName) {
+        updateCurrentGroupName(groupName);
+      }
     }
   }
 

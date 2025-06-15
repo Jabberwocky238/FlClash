@@ -5,8 +5,6 @@ import 'package:jw_clash/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/state.dart';
-import 'package:jw_clash/widgets/list.dart';
-import 'package:jw_clash/widgets/null_status.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 
 import 'card.dart';
@@ -77,14 +75,14 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
   void didUpdateWidget(ProxiesFragment oldWidget) {
     super.didUpdateWidget(oldWidget);
     // 找到第一个group
-
-    commonPrint.log("[ProxiesListFragment] didUpdateWidget");
-    final groupName = globalState.appController.getCurrentGroups().first.name;
-    final currentUnfoldSet = <String>{groupName};
-    _handleChange(
-      currentUnfoldSet,
-      groupName,
-    );
+    final currentProfile = ref.watch(currentProfileProvider);
+    final currentGroupName = currentProfile?.currentGroupName;
+    if (currentGroupName == null || currentGroupName.isEmpty) {
+      commonPrint.log("[ProxiesListFragment] didUpdateWidget, currentGroupName is $currentGroupName");
+      final groupName = globalState.appController.getCurrentGroups().first.name;
+      final currentUnfoldSet = <String>{groupName};
+      _handleChange(currentUnfoldSet, groupName);
+    }
 
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   _adjustHeader();
@@ -108,12 +106,12 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
   }
 
   _handleChange(Set<String> currentUnfoldSet, String groupName) {
-    final tempUnfoldSet = Set<String>.from(currentUnfoldSet);
-    if (tempUnfoldSet.contains(groupName)) {
-      tempUnfoldSet.remove(groupName);
-    } else {
-      tempUnfoldSet.add(groupName);
-    }
+    final tempUnfoldSet = <String>{groupName};
+    // if (tempUnfoldSet.contains(groupName)) {
+    //   tempUnfoldSet.remove(groupName);
+    // } else {
+    //   tempUnfoldSet.add(groupName);
+    // }
     globalState.appController.updateCurrentUnfoldSet(
       tempUnfoldSet,
     );

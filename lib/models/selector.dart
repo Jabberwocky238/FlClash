@@ -207,8 +207,6 @@ class ProxiesListHeaderSelectorState with _$ProxiesListHeaderSelectorState {
 class ProxiesActionsState with _$ProxiesActionsState {
   const factory ProxiesActionsState({
     required PageLabel pageLabel,
-    // required ProxiesType type,
-    // required bool hasProviders,
   }) = _ProxiesActionsState;
 }
 
