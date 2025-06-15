@@ -24,67 +24,25 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     with PageMixin {
   @override
   get actions => [
-        IconButton(
-          onPressed: () {
-            debouncer.call(commonDuration, () {
-              delayTest(
-                ref.watch(proxiesStateProvider),
-                ref.watch(appSettingProvider.select((state) => state.testUrl)),
-              );
-            });
-          },
-          icon: const Icon(
-            Icons.speed_outlined,
-          ),
-        ),
-        // IconButton(
-        //   onPressed: () {
-        //     showExtend(
-        //       context,
-        //       builder: (_, type) {
-        //         return AdaptiveSheetScaffold(
-        //           type: type,
-        //           body: const _IconConfigView(),
-        //           title: appLocalizations.iconConfiguration,
-        //         );
-        //       },
-        //     );
-        //   },
-        //   icon: const Icon(
-        //     Icons.style_outlined,
-        //   ),
-        // ),
-        //   IconButton(
-        //     onPressed: () {
-        //       showSheet(
-        //         context: context,
-        //         props: SheetProps(
-        //           isScrollControlled: true,
-        //         ),
-        //         builder: (_, type) {
-        //           return AdaptiveSheetScaffold(
-        //             type: type,
-        //             body: const ProxiesSetting(),
-        //             title: appLocalizations.settings,
-        //           );
-        //         },
-        //       );
-        //     },
-        //     icon: const Icon(
-        //       Icons.tune,
-        //     ),
-        //   )
-      ];
+    ElevatedButton(
+      onPressed: () {
+        debouncer.call(commonDuration, () {
+          delayTest(
+            ref.watch(proxiesStateProvider),
+            ref.watch(appSettingProvider.select((state) => state.testUrl)),
+          );
+        });
+      },
+      child: Row(
+        children: [
+          const Icon(Icons.speed_outlined),
+          const SizedBox(width: 4),
+          const Text("测速"),
+        ],
+      ),
+    ),
+  ];
 
-  // @override
-  // get floatingActionButton => DelayTestButton(
-  //   onClick: () async {
-  //     await delayTest(
-  //       currentTabProxies,
-  //       currentTabTestUrl,
-  //     );
-  //   },
-  // );
   @override
   get floatingActionButton => null;
 
@@ -192,7 +150,8 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     for (final groupName in groupNames) {
       final group =
           ref.read(groupsProvider.select((state) => state.getGroup(groupName)));
-      commonPrint.log("[ProxiesFragment] _buildItems, groupName: $groupName, group: $group");
+      commonPrint.log(
+          "[ProxiesFragment] _buildItems, groupName: $groupName, group: $group");
       if (group == null) {
         continue;
       }

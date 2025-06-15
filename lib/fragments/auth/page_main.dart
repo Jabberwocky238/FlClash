@@ -22,6 +22,18 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
 
   @override
   get actions => [
+        ElevatedButton(
+          onPressed: () {
+            globalState.appController.toPage(PageLabel.order);
+          },
+          child: Row(
+            children: [
+              const Icon(Icons.add_shopping_cart),
+              const SizedBox(width: 4),
+              const Text("充值"),
+            ],
+          ),
+        ),
         IconButton(
           onPressed: () {
             debouncer.call(commonDuration, () async {
