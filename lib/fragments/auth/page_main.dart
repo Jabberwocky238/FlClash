@@ -87,6 +87,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
               const SizedBox(
                 height: 16,
               ),
+              _getUserSubscriptionItem(context),
+              const SizedBox(
+                height: 16,
+              ),
               _getUserDebugItem(context),
               const SizedBox(
                 height: 16,
@@ -108,6 +112,20 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
       child: ListItem(
         title: Text(appLocalizations.userEmail),
         subtitle: Text(currentEmail),
+      ),
+    );
+  }
+
+  Widget _getUserSubscriptionItem(BuildContext context) {
+    final authSetting = ref.watch(authSettingProvider);
+    return CommonCard(
+      type: CommonCardType.filled,
+      radius: 18,
+      child: ListItem(
+        title: Text("套餐类型"),
+        subtitle: Text(authSetting.isExpired
+            ? "免费"
+            : "专业版 至 ${authSetting.expiresAt?.toLocal().toString()}"),
       ),
     );
   }

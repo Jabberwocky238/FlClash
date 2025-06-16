@@ -49,6 +49,7 @@ class ApiController {
       "$baseUrl/auth/token",
       {"email": email, "password": password},
     );
+    commonPrint.log("[ApiController] login response: ${response.data}");
     final token = response.data['token'] as String?;
     final expiresAt = response.data['expired_at'] as String?;
     final expiresAtDate = DateTime.parse(expiresAt!);
@@ -63,8 +64,8 @@ class ApiController {
       password: password,
       token: token,
       expiresAt: expiresAtDate,
-      usageAmount: usageAmount,
-      totalAmount: totalAmount,
+      usageAmount: usageAmount?.toInt(),
+      totalAmount: totalAmount?.toInt(),
     );
   }
 

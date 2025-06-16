@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
@@ -33,7 +34,8 @@ class AuthController {
       if (authProps.code == null || authProps.code!.isEmpty) {
         return (success: false, message: "验证码不能为空");
       }
-      await apiController.register(authProps.email!, authProps.password!, authProps.code!);
+      await apiController.register(
+          authProps.email!, authProps.password!, authProps.code!);
       return (success: true, message: "注册成功");
     } on DioException catch (err, _) {
       if (err.response?.statusCode == 450) {
@@ -57,7 +59,8 @@ class AuthController {
       if (authProps.password == null || authProps.password!.isEmpty) {
         return (success: false, message: "密码不能为空");
       }
-      final authData = await apiController.login(authProps.email!, authProps.password!);
+      final authData =
+          await apiController.login(authProps.email!, authProps.password!);
       if (authData != null) {
         commonPrint.log("[AuthController] login success: $authData");
         await _saveAuthState(authData);
@@ -102,10 +105,26 @@ class AuthController {
     }
   }
 
+  Future<void> refreshLoginState() async {
+    final authSetting = _ref.read(authSettingProvider);
+    final result = await login(UserLoginProps(
+        email: authSetting.email, password: authSetting.password));
+    if (!result.success) {
+      globalState.showMessage(
+        cancelable: false,
+        message: TextSpan(text: result.message),
+        afterConfirm: () {
+          logout();
+        },
+      );
+      return;
+    }
+  }
+
   Future<void> _saveAuthState(AuthProps authState) async {
     _ref.read(authSettingProvider.notifier).updateState(
-      (state) => authState,
-    );
+          (state) => authState,
+        );
   }
 
   Future<void> _switchToVVPPNNProfile(String? token) async {
@@ -113,7 +132,8 @@ class AuthController {
     if (config == null) {
       return;
     }
-    final url = "$baseUrl/fetch_config${token == null || token.isEmpty ? "" : "?token=$token"}";
+    final url =
+        "$baseUrl/fetch_config${token == null || token.isEmpty ? "" : "?token=$token"}";
     var profile = config.profiles
         .firstWhereOrNull((profile) => profile.id == defaultJWClashProfileId);
     if (profile == null) {

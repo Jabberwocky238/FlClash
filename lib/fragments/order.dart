@@ -148,6 +148,15 @@ Future<void> _order(OrderCommonProps order, String token) async {
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
+    await globalState.showMessage(
+      message: TextSpan(text: "支付成功，点击立即刷新状态"),
+      confirmText: "刷新",
+      afterCancel: () {},
+      afterConfirm: () async {
+        await globalState.authController.refreshLoginState();
+        globalState.appController.toPage(PageLabel.auth);
+      },
+    );
   } else {
     throw '无法打开 URL: $url';
   }
