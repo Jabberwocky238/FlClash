@@ -78,7 +78,8 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     final currentProfile = ref.watch(currentProfileProvider);
     final currentGroupName = currentProfile?.currentGroupName;
     if (currentGroupName == null || currentGroupName.isEmpty) {
-      commonPrint.log("[ProxiesListFragment] didUpdateWidget, currentGroupName is $currentGroupName");
+      commonPrint.log(
+          "[ProxiesListFragment] didUpdateWidget, currentGroupName is $currentGroupName");
       final groupName = globalState.appController.getCurrentGroups().first.name;
       final currentUnfoldSet = <String>{groupName};
       _handleChange(currentUnfoldSet, groupName);
@@ -146,11 +147,18 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
     final columns = 1;
     final items = <Widget>[];
     final GroupNameProxiesMap groupNameProxiesMap = {};
-    assert(groupNames.contains(freeSubscriptionGroupName), "groupNames must contain $freeSubscriptionGroupName");
-    assert(groupNames.contains(proSubscriptionProxyName), "groupNames must contain $proSubscriptionProxyName");
+    assert(groupNames.contains(freeSubscriptionGroupName),
+        "groupNames must contain $freeSubscriptionGroupName");
+    assert(groupNames.contains(proSubscriptionProxyName),
+        "groupNames must contain $proSubscriptionProxyName");
     final authSetting = ref.watch(authSettingProvider);
-    final isFree = authSetting.isExpired;
-    groupNames = isFree ? [freeSubscriptionGroupName, proSubscriptionProxyName] : [proSubscriptionProxyName];
+    final isFree = authSetting.isExpired || !authSetting.isLogin;
+    groupNames = isFree
+        ? [
+            freeSubscriptionGroupName,
+            proSubscriptionProxyName,
+          ]
+        : [proSubscriptionProxyName, freeSubscriptionGroupName];
     for (final groupName in groupNames) {
       final group =
           ref.read(groupsProvider.select((state) => state.getGroup(groupName)));

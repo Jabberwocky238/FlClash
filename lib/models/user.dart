@@ -34,6 +34,15 @@ class AuthProps with _$AuthProps {
     int? totalAmount,
   }) = _AuthProps;
 
+  factory AuthProps.anonymous() => const AuthProps(
+    email: '',
+    password: '',
+    token: null,
+    expiresAt: null,
+    usageAmount: null,
+    totalAmount: null,
+  );
+
   factory AuthProps.fromJson(Map<String, dynamic> json) =>
       _$AuthPropsFromJson(json);
 
@@ -49,11 +58,13 @@ class AuthProps with _$AuthProps {
 extension AuthPropsExt on AuthProps {
   bool get isExpired => expiresAt != null && expiresAt!.isBefore(DateTime.now());
 
+  bool get isLogin => email.isNotEmpty && password.isNotEmpty && token != null && token!.isNotEmpty;
+
   SubscriptionInfo get subscriptionInfo {
     return SubscriptionInfo(
       download: usageAmount?.toInt() ?? 0,
       upload: usageAmount?.toInt() ?? 0,
-      total: totalAmount?.toInt() ?? 0,
+      total: totalAmount?.toInt() ?? 1000 * 1024 * 1024,
       expire: expiresAt?.millisecondsSinceEpoch ?? 0,
     );
   }

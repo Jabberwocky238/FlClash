@@ -125,16 +125,17 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
         onTap: () {
           // _launchUrl("https://www.baidu.com");
           final selectedOrder = ref.watch(orderSelectionProvider).selectedOrder;
-          final token = ref.watch(authSettingProvider).token;
+          final authSetting = ref.watch(authSettingProvider);
           if (selectedOrder == null) {
             globalState.showMessage(message: const TextSpan(text: "请选择订单"));
             return;
           }
-          if (token == null) {
+          if (!authSetting.isLogin) {
             globalState.showMessage(message: const TextSpan(text: "请先登录"));
+            globalState.appController.toPage(PageLabel.auth);
             return;
           }
-          _order(selectedOrder, token);
+          _order(selectedOrder, authSetting.token!);
         },
       ),
     );

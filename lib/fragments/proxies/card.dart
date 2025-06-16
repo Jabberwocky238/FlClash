@@ -87,14 +87,16 @@ class ProxyCard extends StatelessWidget {
   _changeProxy(WidgetRef ref) async {
     final isComputedSelected = groupType.isComputedSelected;
     final isSelector = groupType == GroupType.Selector;
-    commonPrint.log("[ProxyCard] _changeProxy, groupName: $groupName, isComputedSelected: $isComputedSelected, isSelector: $isSelector");
+    commonPrint.log(
+        "[ProxyCard] _changeProxy, groupName: $groupName, isComputedSelected: $isComputedSelected, isSelector: $isSelector");
     if (isComputedSelected || isSelector) {
       final currentProxyName = ref.read(getProxyNameProvider(groupName));
       final nextProxyName = switch (isComputedSelected) {
         true => currentProxyName == proxy.name ? "" : proxy.name,
         false => proxy.name,
       };
-      commonPrint.log("[ProxyCard] _changeProxy, groupName: $groupName, nextProxyName: $nextProxyName");
+      commonPrint.log(
+          "[ProxyCard] _changeProxy, groupName: $groupName, nextProxyName: $nextProxyName");
       final appController = globalState.appController;
       appController.updateCurrentSelectedMap(
         groupName,
@@ -108,6 +110,15 @@ class ProxyCard extends StatelessWidget {
     );
   }
 
+  _reportNeedBuyPro(WidgetRef ref) {
+    globalState.showMessage(
+        message: TextSpan(text: "需购买专业版套餐才可使用"),
+        cancelable: false,
+        afterConfirm: () {
+          globalState.appController.toPage(PageLabel.order);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     // final measure = globalState.measure;
@@ -119,10 +130,17 @@ class ProxyCard extends StatelessWidget {
           builder: (_, ref, child) {
             final selectedProxyName =
                 ref.watch(getSelectedProxyNameProvider(groupName));
+            final authSetting = ref.watch(authSettingProvider);
             return CommonCard(
               key: key,
               enterAnimated: true,
               onPressed: () {
+                if (groupName == proSubscriptionProxyName) {
+                  if (authSetting.isExpired || !authSetting.isLogin) {
+                    _reportNeedBuyPro(ref);
+                    return;
+                  }
+                }
                 _changeProxy(ref);
                 globalState.appController.toPage(PageLabel.dashboard);
               },
