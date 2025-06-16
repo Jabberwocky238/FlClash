@@ -79,16 +79,16 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment>
   //       ),
   //     ];
 
-  _handleSave(List<GridItem> girdItems, WidgetRef ref) {
-    final dashboardWidgets = girdItems
-        .map(
-          (item) => DashboardWidget.getDashboardWidget(item),
-        )
-        .toList();
-    ref.read(appSettingProvider.notifier).updateState(
-          (state) => state.copyWith(dashboardWidgets: dashboardWidgets),
-        );
-  }
+  // _handleSave(List<GridItem> girdItems, WidgetRef ref) {
+  //   final dashboardWidgets = girdItems
+  //       .map(
+  //         (item) => DashboardWidget.getDashboardWidget(item),
+  //       )
+  //       .toList();
+  //   ref.read(appSettingProvider.notifier).updateState(
+  //         (state) => state.copyWith(dashboardWidgets: dashboardWidgets),
+  //       );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment>
                 ),
           ],
           onSave: (girdItems) {
-            _handleSave(girdItems, ref);
+            // _handleSave(girdItems, ref);
           },
           addedItemsBuilder: (girdItems) {
             return DashboardWidget.values

@@ -263,7 +263,7 @@ enum DashboardWidget {
   ),
   showProxies(
     GridItem(
-      crossAxisCellCount: 8,
+      crossAxisCellCount: 4,
       child: ShowProxies(),
     ),
   ),
@@ -306,7 +306,7 @@ enum DashboardWidget {
   ),
   vpnButton(
     GridItem(
-      crossAxisCellCount: 8,
+      crossAxisCellCount: 4,
       child: VpnButton(),
     ),
     platforms: [

@@ -6,14 +6,14 @@ import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ShowProxies extends ConsumerStatefulWidget {
+class ShowProxies extends StatefulWidget {
   const ShowProxies({super.key});
 
   @override
-  ConsumerState<ShowProxies> createState() => _ShowProxiesState();
+  State<ShowProxies> createState() => _ShowProxiesState();
 }
 
-class _ShowProxiesState extends ConsumerState<ShowProxies> {
+class _ShowProxiesState extends State<ShowProxies> {
   @override
   void initState() {
     super.initState();
@@ -24,23 +24,56 @@ class _ShowProxiesState extends ConsumerState<ShowProxies> {
     super.dispose();
   }
 
-  Widget _currentProxyInfo() {
-    final currentGroupName = ref.watch(proxiesSelectorStateProvider.select((state) => state.currentGroupName));
-    final proxyName = ref.watch(getProxyNameProvider(currentGroupName!));
-    if (proxyName == null || proxyName.isEmpty) {
-      commonPrint.log("[ShowProxies] currentGroup is $currentGroupName");
-      return const SizedBox.shrink();
-    }
-    commonPrint.log("[ShowProxies] proxyName: $proxyName");
-    return Text(
-      "当前节点: $proxyName",
-      style: context.textTheme.bodySmall?.toLight,
+  Widget _currentProxyInfo(BuildContext context, String proxyName) {
+    return Row(
+      children: [
+        Text(
+          "当前节点: $proxyName",
+          style: context.textTheme.bodySmall?.toLight,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSystemProxyInfo(BuildContext context, int proxyLength) {
+    return Row(
+      children: [
+        Text(
+          "当前可用节点数:",
+          style: context.textTheme.bodySmall?.toLight,
+        ),
+        SizedBox(
+          width: 8,
+        ),
+        Text(
+          proxyLength.toString(),
+          style: context.textTheme.bodySmall?.toLight,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWarpper(BuildContext context, Widget child) {
+    return Container(
+      padding: baseInfoEdgeInsets.copyWith(
+        top: 0,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: globalState.theme.bodyMediumHeight + 2,
+            child: child,
+          ),
+        ],
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final proxies = ref.watch(proxiesStateProvider);
     return SizedBox(
       height: getWidgetHeight(1),
       child: CommonCard(
@@ -48,43 +81,27 @@ class _ShowProxiesState extends ConsumerState<ShowProxies> {
           iconData: Icons.settings,
           label: "选择节点",
         ),
-        suffix: Row(
-          children: [
-            _currentProxyInfo(),
-          ],
-        ),
         onPressed: () {
           globalState.appController.toPage(PageLabel.proxies);
         },
-        child: Container(
-          padding: baseInfoEdgeInsets.copyWith(
-            top: 0,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: globalState.theme.bodyMediumHeight + 2,
-                child: Row(
-                  children: [
-                    Text(
-                      "当前可用节点数:",
-                      style: context.textTheme.bodySmall?.toLight,
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      proxies.length.toString(),
-                      style: context.textTheme.bodySmall?.toLight,
-                    ),
-                  ],
-                )
-              ),
-            ],
-          ),
+        child: Consumer(
+          builder: (_, ref, child) {
+            final proxies = ref.watch(proxiesStateProvider);
+            final currentGroupName = ref.watch(proxiesSelectorStateProvider
+                .select((state) => state.currentGroupName));
+            if (currentGroupName == null || currentGroupName.isEmpty) {
+              return _buildWarpper(
+                  context, _buildSystemProxyInfo(context, proxies.length));
+            }
+            final proxyName = ref.watch(getProxyNameProvider(currentGroupName));
+            if (proxyName == null || proxyName.isEmpty) {
+              return _buildWarpper(
+                  context, _buildSystemProxyInfo(context, proxies.length));
+            }
+            commonPrint.log("[ShowProxies] proxyName: $proxyName");
+            return _buildWarpper(
+                context, _currentProxyInfo(context, proxyName));
+          },
         ),
       ),
     );

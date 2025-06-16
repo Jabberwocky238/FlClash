@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jw_clash/models/config.dart';
 
+import 'profile.dart';
+
 part 'generated/user.freezed.dart';
 
 part 'generated/user.g.dart';
@@ -27,6 +29,9 @@ class AuthProps with _$AuthProps {
     @Default('') String email,
     @Default('') String password,
     String? token,
+    DateTime? expiresAt,
+    int? usageAmount,
+    int? totalAmount,
   }) = _AuthProps;
 
   factory AuthProps.fromJson(Map<String, dynamic> json) =>
@@ -38,6 +43,19 @@ class AuthProps with _$AuthProps {
     } catch (_) {
       return defaultAuthProps;
     }
+  }
+}
+
+extension AuthPropsExt on AuthProps {
+  bool get isExpired => expiresAt != null && expiresAt!.isBefore(DateTime.now());
+
+  SubscriptionInfo get subscriptionInfo {
+    return SubscriptionInfo(
+      download: usageAmount?.toInt() ?? 0,
+      upload: usageAmount?.toInt() ?? 0,
+      total: totalAmount?.toInt() ?? 0,
+      expire: expiresAt?.millisecondsSinceEpoch ?? 0,
+    );
   }
 }
 

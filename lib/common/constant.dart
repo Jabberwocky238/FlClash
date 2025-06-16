@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,22 @@ final defaultTextScaleFactor =
 final textScaleFactor =
     max(min(defaultTextScaleFactor, maxTextScale), minTextScale);
 
+const List<DashboardWidget> defaultDashboardWidgets = [
+  DashboardWidget.jwDashboard,
+  DashboardWidget.showProxies,
+  // DashboardWidget.networkSpeed,
+  // DashboardWidget.systemProxyButton,
+  DashboardWidget.tunButton,
+  DashboardWidget.vpnButton,
+  // DashboardWidget.outboundMode,
+  // DashboardWidget.networkDetection,
+  // DashboardWidget.trafficUsage,
+  // DashboardWidget.intranetIp,
+];
+
+const freeSubscriptionGroupName = "PROXY-FREE";
+const proSubscriptionProxyName = "PROXY-PRO";
+
 const httpTimeoutDuration = Duration(milliseconds: 2000);
 const moreDuration = Duration(milliseconds: 100);
 const animateDuration = Duration(milliseconds: 100);
@@ -54,13 +71,9 @@ const defaultExternalController = "127.0.0.1:9090";
 const maxMobileWidth = 600;
 const maxLaptopWidth = 840;
 const defaultTestUrl = "https://www.gstatic.com/generate_204";
-final commonFilter = ImageFilter.blur(
-  sigmaX: 5,
-  sigmaY: 5,
-  tileMode: TileMode.mirror,
-);
-const defaultJWClashProfileId = "JWCLash-VVPPNN";
-const defaultJWClashProfileLabel = "JWCLash-VVPPNN";
+final commonFilter = ImageFilter.blur(sigmaX: 5, sigmaY: 5, tileMode: TileMode.mirror);
+const defaultJWClashProfileId = "Enzyme-VPN";
+const defaultJWClashProfileLabel = "Enzyme-VPN";
 const navigationItemListEquality = ListEquality<NavigationItem>();
 const connectionListEquality = ListEquality<Connection>();
 const stringListEquality = ListEquality<String>();

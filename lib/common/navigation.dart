@@ -34,7 +34,7 @@ class Navigation {
         ),
         modes: hasProxies
             ? [NavigationItemMode.mobile, NavigationItemMode.desktop]
-            : [NavigationItemMode.invisible],
+            : [],
       ),
       const NavigationItem(
         icon: Icon(Icons.shopping_cart),
@@ -42,7 +42,7 @@ class Navigation {
         fragment: OrderFragment(
           key: GlobalObjectKey(PageLabel.order),
         ),
-        modes: [NavigationItemMode.invisible],
+        modes: [],
       ),
       const NavigationItem(
         icon: Icon(Icons.folder),

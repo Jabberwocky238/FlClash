@@ -15,18 +15,16 @@ class CustomDrawerHeader extends ConsumerStatefulWidget {
 }
 
 class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
-
-  Widget _buildSubscriptionInfo(BuildContext context, SubscriptionInfo subscriptionInfo) {
+  Widget _buildSubscriptionInfo(
+      BuildContext context, SubscriptionInfo subscriptionInfo) {
     final use = subscriptionInfo.upload + subscriptionInfo.download;
     final total = subscriptionInfo.total;
     final progress = use / total;
 
     final useShow = TrafficValue(value: use).show;
     final totalShow = TrafficValue(value: total).show;
-    final expireShow = subscriptionInfo.expire != 0
-        ? DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire * 1000)
-            .show
-        : appLocalizations.infiniteTime;
+    final expireDate = DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire);
+    final expireShow = expireDate.isAfter(DateTime.now()) ? expireDate.show : "免费版";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -47,15 +45,17 @@ class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
   }
 
   List<Widget> _buildProfileInfo(BuildContext context) {
-    final profile = ref.watch(currentProfileProvider);
-    final subscriptionInfo = profile?.subscriptionInfo;
-    
+    // final profile = ref.watch(currentProfileProvider);
+    // final subscriptionInfo = profile?.subscriptionInfo;
+    final authSetting = ref.watch(authSettingProvider);
+    final subscriptionInfo = authSetting.subscriptionInfo;
+    commonPrint.log("[NavigationDrawer] subscriptionInfo: $subscriptionInfo");
     return [
       const SizedBox(
         height: 8,
       ),
-      if (subscriptionInfo != null)
-        _buildSubscriptionInfo(context, subscriptionInfo),
+      // if (subscriptionInfo != null)
+      _buildSubscriptionInfo(context, subscriptionInfo),
       // Text(
       //   profile?.lastUpdateDate?.lastUpdateTimeDesc ?? "",
       //   style: context.textTheme.labelMedium?.toLight,
@@ -132,4 +132,3 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
     );
   }
 }
-

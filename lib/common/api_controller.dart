@@ -41,7 +41,7 @@ class ApiController {
     );
   }
 
-  login(String email, String password, {bool useLoadingPage = true}) async {
+  Future<AuthProps?> login(String email, String password, {bool useLoadingPage = true}) async {
     if (email.isEmpty || password.isEmpty) {
       throw Exception("email, password cannot be empty");
     }
@@ -50,10 +50,22 @@ class ApiController {
       {"email": email, "password": password},
     );
     final token = response.data['token'] as String?;
+    final expiresAt = response.data['expired_at'] as String?;
+    final expiresAtDate = DateTime.parse(expiresAt!);
+    final usageAmount = response.data['usage_amount'] as int?;
+    final totalAmount = response.data['total_amount'] as int?;
     if (token == null || token.isEmpty) {
       throw Exception("login failed");
     }
-    return token;
+    // commonPrint.log("[ApiController] login success: $expiresAt");
+    return AuthProps(
+      email: email,
+      password: password,
+      token: token,
+      expiresAt: expiresAtDate,
+      usageAmount: usageAmount,
+      totalAmount: totalAmount,
+    );
   }
 
   Future<List<OrderCommonProps>> fetchOrders() async {

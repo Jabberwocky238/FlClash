@@ -23,6 +23,9 @@ mixin _$AuthProps {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
+  DateTime? get expiresAt => throw _privateConstructorUsedError;
+  int? get usageAmount => throw _privateConstructorUsedError;
+  int? get totalAmount => throw _privateConstructorUsedError;
 
   /// Serializes this AuthProps to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +42,13 @@ abstract class $AuthPropsCopyWith<$Res> {
   factory $AuthPropsCopyWith(AuthProps value, $Res Function(AuthProps) then) =
       _$AuthPropsCopyWithImpl<$Res, AuthProps>;
   @useResult
-  $Res call({String email, String password, String? token});
+  $Res call(
+      {String email,
+      String password,
+      String? token,
+      DateTime? expiresAt,
+      int? usageAmount,
+      int? totalAmount});
 }
 
 /// @nodoc
@@ -60,6 +69,9 @@ class _$AuthPropsCopyWithImpl<$Res, $Val extends AuthProps>
     Object? email = null,
     Object? password = null,
     Object? token = freezed,
+    Object? expiresAt = freezed,
+    Object? usageAmount = freezed,
+    Object? totalAmount = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -74,6 +86,18 @@ class _$AuthPropsCopyWithImpl<$Res, $Val extends AuthProps>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
+      expiresAt: freezed == expiresAt
+          ? _value.expiresAt
+          : expiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      usageAmount: freezed == usageAmount
+          ? _value.usageAmount
+          : usageAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -86,7 +110,13 @@ abstract class _$$AuthPropsImplCopyWith<$Res>
       __$$AuthPropsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, String? token});
+  $Res call(
+      {String email,
+      String password,
+      String? token,
+      DateTime? expiresAt,
+      int? usageAmount,
+      int? totalAmount});
 }
 
 /// @nodoc
@@ -105,6 +135,9 @@ class __$$AuthPropsImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? token = freezed,
+    Object? expiresAt = freezed,
+    Object? usageAmount = freezed,
+    Object? totalAmount = freezed,
   }) {
     return _then(_$AuthPropsImpl(
       email: null == email
@@ -119,6 +152,18 @@ class __$$AuthPropsImplCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String?,
+      expiresAt: freezed == expiresAt
+          ? _value.expiresAt
+          : expiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      usageAmount: freezed == usageAmount
+          ? _value.usageAmount
+          : usageAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalAmount: freezed == totalAmount
+          ? _value.totalAmount
+          : totalAmount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -126,7 +171,13 @@ class __$$AuthPropsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthPropsImpl implements _AuthProps {
-  const _$AuthPropsImpl({this.email = '', this.password = '', this.token});
+  const _$AuthPropsImpl(
+      {this.email = '',
+      this.password = '',
+      this.token,
+      this.expiresAt,
+      this.usageAmount,
+      this.totalAmount});
 
   factory _$AuthPropsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthPropsImplFromJson(json);
@@ -139,10 +190,16 @@ class _$AuthPropsImpl implements _AuthProps {
   final String password;
   @override
   final String? token;
+  @override
+  final DateTime? expiresAt;
+  @override
+  final int? usageAmount;
+  @override
+  final int? totalAmount;
 
   @override
   String toString() {
-    return 'AuthProps(email: $email, password: $password, token: $token)';
+    return 'AuthProps(email: $email, password: $password, token: $token, expiresAt: $expiresAt, usageAmount: $usageAmount, totalAmount: $totalAmount)';
   }
 
   @override
@@ -153,12 +210,19 @@ class _$AuthPropsImpl implements _AuthProps {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt) &&
+            (identical(other.usageAmount, usageAmount) ||
+                other.usageAmount == usageAmount) &&
+            (identical(other.totalAmount, totalAmount) ||
+                other.totalAmount == totalAmount));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, token);
+  int get hashCode => Object.hash(
+      runtimeType, email, password, token, expiresAt, usageAmount, totalAmount);
 
   /// Create a copy of AuthProps
   /// with the given fields replaced by the non-null parameter values.
@@ -180,7 +244,10 @@ abstract class _AuthProps implements AuthProps {
   const factory _AuthProps(
       {final String email,
       final String password,
-      final String? token}) = _$AuthPropsImpl;
+      final String? token,
+      final DateTime? expiresAt,
+      final int? usageAmount,
+      final int? totalAmount}) = _$AuthPropsImpl;
 
   factory _AuthProps.fromJson(Map<String, dynamic> json) =
       _$AuthPropsImpl.fromJson;
@@ -191,6 +258,12 @@ abstract class _AuthProps implements AuthProps {
   String get password;
   @override
   String? get token;
+  @override
+  DateTime? get expiresAt;
+  @override
+  int? get usageAmount;
+  @override
+  int? get totalAmount;
 
   /// Create a copy of AuthProps
   /// with the given fields replaced by the non-null parameter values.

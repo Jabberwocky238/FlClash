@@ -57,16 +57,12 @@ class AuthController {
       if (authProps.password == null || authProps.password!.isEmpty) {
         return (success: false, message: "密码不能为空");
       }
-      final token = await apiController.login(authProps.email!, authProps.password!);
-      if (token != null) {
-        commonPrint.log("[AuthController] login success: $token");
-        await _saveAuthState(AuthProps(
-          email: authProps.email!,
-          password: authProps.password!,
-          token: token,
-        ));
-        await _switchToVVPPNNProfile(token);
-        return (success: true, message: "登录成功 token: $token");
+      final authData = await apiController.login(authProps.email!, authProps.password!);
+      if (authData != null) {
+        commonPrint.log("[AuthController] login success: $authData");
+        await _saveAuthState(authData);
+        await _switchToVVPPNNProfile(authData.token);
+        return (success: true, message: "登录成功 token: ${authData.token}");
       } else {
         return (success: false, message: "登录失败");
       }

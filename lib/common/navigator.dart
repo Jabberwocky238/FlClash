@@ -9,6 +9,10 @@ class BaseNavigator {
       ),
     );
   }
+
+  static void pop<T>(BuildContext context) {
+    Navigator.of(context).pop<T>();
+  }
 }
 
 class CommonRoute<T> extends MaterialPageRoute<T> {
