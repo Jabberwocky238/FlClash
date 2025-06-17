@@ -77,11 +77,12 @@ class DeveloperView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final enable = ref.watch(
-      appSettingProvider.select(
-        (state) => state.developerMode,
-      ),
-    );
+    // final enable = ref.watch(
+    //   appSettingProvider.select(
+    //     (state) => state.developerMode,
+    //   ),
+    // );
+    final enable = false;
     return SingleChildScrollView(
       padding: baseInfoEdgeInsets,
       child: Column(
@@ -100,11 +101,11 @@ class DeveloperView extends ConsumerWidget {
               delegate: SwitchDelegate(
                 value: enable,
                 onChanged: (value) {
-                  ref.read(appSettingProvider.notifier).updateState(
-                        (state) => state.copyWith(
-                          developerMode: value,
-                        ),
-                      );
+                  // ref.read(appSettingProvider.notifier).updateState(
+                  //       (state) => state.copyWith(
+                  //         developerMode: value,
+                  //       ),
+                  //     );
                 },
               ),
             ),

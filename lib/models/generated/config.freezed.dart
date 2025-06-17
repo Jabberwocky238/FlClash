@@ -32,8 +32,8 @@ mixin _$AppSettingProps {
   bool get showLabel => throw _privateConstructorUsedError;
   bool get disclaimerAccepted => throw _privateConstructorUsedError;
   bool get minimizeOnExit => throw _privateConstructorUsedError;
-  bool get hidden => throw _privateConstructorUsedError;
-  bool get developerMode => throw _privateConstructorUsedError;
+  bool get hidden =>
+      throw _privateConstructorUsedError; // @Default(true) bool developerMode,
   RecoveryStrategy get recoveryStrategy => throw _privateConstructorUsedError;
 
   /// Serializes this AppSettingProps to a JSON map.
@@ -66,7 +66,6 @@ abstract class $AppSettingPropsCopyWith<$Res> {
       bool disclaimerAccepted,
       bool minimizeOnExit,
       bool hidden,
-      bool developerMode,
       RecoveryStrategy recoveryStrategy});
 }
 
@@ -98,7 +97,6 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
     Object? disclaimerAccepted = null,
     Object? minimizeOnExit = null,
     Object? hidden = null,
-    Object? developerMode = null,
     Object? recoveryStrategy = null,
   }) {
     return _then(_value.copyWith(
@@ -154,10 +152,6 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
           ? _value.hidden
           : hidden // ignore: cast_nullable_to_non_nullable
               as bool,
-      developerMode: null == developerMode
-          ? _value.developerMode
-          : developerMode // ignore: cast_nullable_to_non_nullable
-              as bool,
       recoveryStrategy: null == recoveryStrategy
           ? _value.recoveryStrategy
           : recoveryStrategy // ignore: cast_nullable_to_non_nullable
@@ -188,7 +182,6 @@ abstract class _$$AppSettingPropsImplCopyWith<$Res>
       bool disclaimerAccepted,
       bool minimizeOnExit,
       bool hidden,
-      bool developerMode,
       RecoveryStrategy recoveryStrategy});
 }
 
@@ -218,7 +211,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
     Object? disclaimerAccepted = null,
     Object? minimizeOnExit = null,
     Object? hidden = null,
-    Object? developerMode = null,
     Object? recoveryStrategy = null,
   }) {
     return _then(_$AppSettingPropsImpl(
@@ -274,10 +266,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
           ? _value.hidden
           : hidden // ignore: cast_nullable_to_non_nullable
               as bool,
-      developerMode: null == developerMode
-          ? _value.developerMode
-          : developerMode // ignore: cast_nullable_to_non_nullable
-              as bool,
       recoveryStrategy: null == recoveryStrategy
           ? _value.recoveryStrategy
           : recoveryStrategy // ignore: cast_nullable_to_non_nullable
@@ -303,7 +291,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       this.disclaimerAccepted = false,
       this.minimizeOnExit = true,
       this.hidden = false,
-      this.developerMode = true,
       this.recoveryStrategy = RecoveryStrategy.compatible});
 
   factory _$AppSettingPropsImpl.fromJson(Map<String, dynamic> json) =>
@@ -347,16 +334,14 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
   @override
   @JsonKey()
   final bool hidden;
-  @override
-  @JsonKey()
-  final bool developerMode;
+// @Default(true) bool developerMode,
   @override
   @JsonKey()
   final RecoveryStrategy recoveryStrategy;
 
   @override
   String toString() {
-    return 'AppSettingProps(locale: $locale, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, developerMode: $developerMode, recoveryStrategy: $recoveryStrategy)';
+    return 'AppSettingProps(locale: $locale, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, recoveryStrategy: $recoveryStrategy)';
   }
 
   @override
@@ -386,8 +371,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
             (identical(other.minimizeOnExit, minimizeOnExit) ||
                 other.minimizeOnExit == minimizeOnExit) &&
             (identical(other.hidden, hidden) || other.hidden == hidden) &&
-            (identical(other.developerMode, developerMode) ||
-                other.developerMode == developerMode) &&
             (identical(other.recoveryStrategy, recoveryStrategy) ||
                 other.recoveryStrategy == recoveryStrategy));
   }
@@ -409,7 +392,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       disclaimerAccepted,
       minimizeOnExit,
       hidden,
-      developerMode,
       recoveryStrategy);
 
   /// Create a copy of AppSettingProps
@@ -444,7 +426,6 @@ abstract class _AppSettingProps implements AppSettingProps {
       final bool disclaimerAccepted,
       final bool minimizeOnExit,
       final bool hidden,
-      final bool developerMode,
       final RecoveryStrategy recoveryStrategy}) = _$AppSettingPropsImpl;
 
   factory _AppSettingProps.fromJson(Map<String, dynamic> json) =
@@ -475,9 +456,7 @@ abstract class _AppSettingProps implements AppSettingProps {
   @override
   bool get minimizeOnExit;
   @override
-  bool get hidden;
-  @override
-  bool get developerMode;
+  bool get hidden; // @Default(true) bool developerMode,
   @override
   RecoveryStrategy get recoveryStrategy;
 

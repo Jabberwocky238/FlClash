@@ -28,6 +28,7 @@ class _UserManagerState extends ConsumerState<UserManager> {
       (prev, next) {
         if (prev != next) {
           _fetchProfile();
+          globalState.appController.savePreferences();
         }
       },
       // fireImmediately: true,

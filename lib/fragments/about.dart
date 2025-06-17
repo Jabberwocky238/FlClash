@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/providers/config.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/list.dart';
 import 'package:flutter/material.dart';
@@ -159,9 +158,9 @@ class AboutFragment extends StatelessWidget {
                   ],
                 ),
                 onEnterDeveloperMode: () {
-                  ref.read(appSettingProvider.notifier).updateState(
-                        (state) => state.copyWith(developerMode: true),
-                      );
+                  // ref.read(appSettingProvider.notifier).updateState(
+                  //       (state) => state.copyWith(developerMode: true),
+                  //     );
                   context.showNotifier(appLocalizations.developerModeEnableTip);
                 },
               );
