@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/providers/providers.dart';

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:animations/animations.dart';
-import 'package:dynamic_color/dynamic_color.dart';
+// import 'package:dynamic_color/dynamic_color.dart';
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/theme.dart';
 import 'package:jw_clash/enum/enum.dart';
@@ -83,9 +83,7 @@ class GlobalState {
   init() async {
     packageInfo = await PackageInfo.fromPlatform();
     config = await preferences.getConfig() ??
-        Config(
-          themeProps: defaultThemeProps,
-        );
+        Config(themeProps: defaultThemeProps);
     await globalState.migrateOldData(config);
     await AppLocalizations.load(
       utils.getLocaleForString(config.appSetting.locale) ??

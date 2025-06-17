@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
@@ -119,8 +118,6 @@ class AuthController {
   }
 
   Future<void> _saveAuthState(AuthProps authState) async {
-    _ref.read(authSettingProvider.notifier).updateState(
-      (state) => authState,
-    );
+    _ref.read(authSettingProvider.notifier).value = authState;
   }
 }

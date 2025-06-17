@@ -212,15 +212,3 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'windowProps': instance.windowProps,
       'patchClashConfig': instance.patchClashConfig,
     };
-
-_$WebViewParamsImpl _$$WebViewParamsImplFromJson(Map<String, dynamic> json) =>
-    _$WebViewParamsImpl(
-      url: json['url'] as String? ?? "https://www.baidu.com",
-      title: json['title'] as String? ?? "百度",
-    );
-
-Map<String, dynamic> _$$WebViewParamsImplToJson(_$WebViewParamsImpl instance) =>
-    <String, dynamic>{
-      'url': instance.url,
-      'title': instance.title,
-    };

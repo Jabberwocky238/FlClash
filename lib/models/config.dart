@@ -211,15 +211,5 @@ extension ConfigExt on Config {
   }
 }
 
-@freezed
-class WebViewParams with _$WebViewParams {
-  const factory WebViewParams({
-    @Default("https://www.baidu.com") String url,
-    @Default("百度") String title,
-  }) = _WebViewParams;
-
-  factory WebViewParams.fromJson(Map<String, Object?> json) =>
-      _$WebViewParamsFromJson(json);
-}
 
 

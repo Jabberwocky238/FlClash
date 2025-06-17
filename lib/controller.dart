@@ -145,10 +145,10 @@ class AppController {
     }
   }
 
-  updateProviders() async {
-    _ref.read(providersProvider.notifier).value =
-        await clashCore.getExternalProviders();
-  }
+  // updateProviders() async {
+  //   _ref.read(providersProvider.notifier).value =
+  //       await clashCore.getExternalProviders();
+  // }
 
   updateLocalIp() async {
     _ref.read(localIpProvider.notifier).value = null;
@@ -261,7 +261,6 @@ class AppController {
     // } else {
     //   clashCore.stopLog();
     // }
-    clashCore.startLog();
     
     final res = await clashCore.updateConfig(
       globalState.getUpdateConfigParams(isPatch),
@@ -278,7 +277,7 @@ class AppController {
     await clashCore.requestGc();
     await updateClashConfig();
     await updateGroups();
-    await updateProviders();
+    // await updateProviders();
   }
 
   Future applyProfile({bool silence = false}) async {
@@ -309,6 +308,8 @@ class AppController {
 
   autoUpdateProfiles() async {
     for (final profile in _ref.read(profilesProvider)) {
+      // 不更新除了JWClashProfile以外的profile
+      if (profile.label != defaultJWClashProfileLabel) continue;
       if (!profile.autoUpdate) continue;
       final isNotNeedUpdate = profile.lastUpdateDate
           ?.add(
@@ -660,43 +661,43 @@ class AppController {
     _ref.read(providersProvider.notifier).setProvider(provider);
   }
 
-  List<Proxy> _sortOfName(List<Proxy> proxies) {
-    return List.of(proxies)
-      ..sort(
-        (a, b) => utils.sortByChar(
-          utils.getPinyin(a.name),
-          utils.getPinyin(b.name),
-        ),
-      );
-  }
+  // List<Proxy> _sortOfName(List<Proxy> proxies) {
+  //   return List.of(proxies)
+  //     ..sort(
+  //       (a, b) => utils.sortByChar(
+  //         utils.getPinyin(a.name),
+  //         utils.getPinyin(b.name),
+  //       ),
+  //     );
+  // }
 
-  List<Proxy> _sortOfDelay({
-    required List<Proxy> proxies,
-    String? testUrl,
-  }) {
-    return List.of(proxies)
-      ..sort(
-        (a, b) {
-          final aDelay =
-              _ref.read(getDelayProvider(proxyName: a.name, testUrl: testUrl));
-          final bDelay =
-              _ref.read(getDelayProvider(proxyName: b.name, testUrl: testUrl));
-          if (aDelay == null && bDelay == null) {
-            return 0;
-          }
-          if (aDelay == null || aDelay == -1) {
-            return 1;
-          }
-          if (bDelay == null || bDelay == -1) {
-            return -1;
-          }
-          return aDelay.compareTo(bDelay);
-        },
-      );
-  }
+  // List<Proxy> _sortOfDelay({
+  //   required List<Proxy> proxies,
+  //   String? testUrl,
+  // }) {
+  //   return List.of(proxies)
+  //     ..sort(
+  //       (a, b) {
+  //         final aDelay =
+  //             _ref.read(getDelayProvider(proxyName: a.name, testUrl: testUrl));
+  //         final bDelay =
+  //             _ref.read(getDelayProvider(proxyName: b.name, testUrl: testUrl));
+  //         if (aDelay == null && bDelay == null) {
+  //           return 0;
+  //         }
+  //         if (aDelay == null || aDelay == -1) {
+  //           return 1;
+  //         }
+  //         if (bDelay == null || bDelay == -1) {
+  //           return -1;
+  //         }
+  //         return aDelay.compareTo(bDelay);
+  //       },
+  //     );
+  // }
 
   List<Proxy> getSortProxies(List<Proxy> proxies, [String? url]) {
-    return _sortOfName(proxies);
+    return proxies;
     // return switch (_ref.read(proxiesStyleSettingProvider).sortType) {
     //   ProxiesSortType.none => proxies,
     //   ProxiesSortType.delay => _sortOfDelay(
@@ -730,16 +731,16 @@ class AppController {
 
   updateTun() {
     _ref.read(patchClashConfigProvider.notifier).updateState(
-          (state) => state.copyWith.tun(enable: !state.tun.enable),
-        );
+      (state) => state.copyWith.tun(enable: !state.tun.enable),
+    );
   }
 
   updateSystemProxy() {
     _ref.read(networkSettingProvider.notifier).updateState(
-          (state) => state.copyWith(
-            systemProxy: !state.systemProxy,
-          ),
-        );
+      (state) => state.copyWith(
+        systemProxy: !state.systemProxy,
+      ),
+    );
   }
 
   updateStart() {
