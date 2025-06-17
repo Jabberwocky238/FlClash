@@ -98,13 +98,15 @@ class ApplicationState extends ConsumerState<Application> {
 
   _buildState(Widget child) {
     return AppStateManager(
-      child: ClashManager(
-        child: ConnectivityManager(
-          onConnectivityChanged: () {
-            globalState.appController.updateLocalIp();
-            globalState.appController.addCheckIpNumDebounce();
-          },
-          child: child,
+      child: UserManager(
+        child: ClashManager(
+          child: ConnectivityManager(
+            onConnectivityChanged: () {
+              globalState.appController.updateLocalIp();
+              globalState.appController.addCheckIpNumDebounce();
+            },
+            child: child,
+          ),
         ),
       ),
     );
@@ -168,13 +170,13 @@ class ApplicationState extends ConsumerState<Application> {
                 ),
               ),
               darkTheme: ThemeData(
-                useMaterial3: true,
-                pageTransitionsTheme: _pageTransitionsTheme,
-                colorScheme: _getAppColorScheme(
-                  brightness: Brightness.dark,
-                )
-                // .toPureBlack(themeProps.pureBlack),
-              ),
+                  useMaterial3: true,
+                  pageTransitionsTheme: _pageTransitionsTheme,
+                  colorScheme: _getAppColorScheme(
+                    brightness: Brightness.dark,
+                  )
+                  // .toPureBlack(themeProps.pureBlack),
+                  ),
               home: child,
             );
           },

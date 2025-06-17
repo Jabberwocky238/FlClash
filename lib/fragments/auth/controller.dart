@@ -63,7 +63,6 @@ class AuthController {
       if (authData != null) {
         commonPrint.log("[AuthController] login success: $authData");
         await _saveAuthState(authData);
-        await _switchToVVPPNNProfile(authData.token);
         return (success: true, message: "登录成功 token: ${authData.token}");
       } else {
         return (success: false, message: "登录失败");
@@ -81,8 +80,7 @@ class AuthController {
 
   Future<AuthResult> logout() async {
     try {
-      await _switchToVVPPNNProfile(null);
-      await _saveAuthState(const AuthProps(email: '', password: '', token: ''));
+      await _saveAuthState(defaultAuthProps);
       return (success: true, message: "退出成功");
     } on DioException catch (err, _) {
       return (success: false, message: "退出失败");
@@ -122,32 +120,7 @@ class AuthController {
 
   Future<void> _saveAuthState(AuthProps authState) async {
     _ref.read(authSettingProvider.notifier).updateState(
-          (state) => authState,
-        );
-  }
-
-  Future<void> _switchToVVPPNNProfile(String? token) async {
-    final config = await preferences.getConfig();
-    if (config == null) {
-      return;
-    }
-    final url =
-        "$baseUrl/fetch_config${token == null || token.isEmpty ? "" : "?token=$token"}";
-    var profile = config.profiles
-        .firstWhereOrNull((profile) => profile.id == defaultJWClashProfileId);
-    if (profile == null) {
-      profile = await Profile.fromJWCLash(url: url).update();
-    } else {
-      profile = await profile.copyWith(url: url).update();
-    }
-    // printMessage("profile: $profile");
-    await globalState.appController.setProfileAndAutoApply(profile);
-    _ref.read(currentProfileIdProvider.notifier).value = profile.id;
-    //  设置组
-    // final firstGroup = _ref.read(currentGroupsStateProvider.select((state) => state.value)).first;
-    // globalState.appController.updateCurrentUnfoldSet(
-    //   {firstGroup.name},
-    // );
-    printMessage("switch to ${profile.url}");
+      (state) => authState,
+    );
   }
 }

@@ -68,17 +68,17 @@ class GlobalState {
       totalTraffic: Traffic(),
       deviceSerialNumber: deviceSerialNumber,
     );
-    await _initDynamicColor();
+    // await _initDynamicColor();
     await init();
   }
 
-  _initDynamicColor() async {
-    try {
-      corePalette = await DynamicColorPlugin.getCorePalette();
-      accentColor = await DynamicColorPlugin.getAccentColor() ??
-          Color(defaultPrimaryColor);
-    } catch (_) {}
-  }
+  // _initDynamicColor() async {
+  //   try {
+  //     corePalette = await DynamicColorPlugin.getCorePalette();
+  //     accentColor = await DynamicColorPlugin.getAccentColor() ??
+  //         Color(defaultPrimaryColor);
+  //   } catch (_) {}
+  // }
 
   init() async {
     packageInfo = await PackageInfo.fromPlatform();
@@ -91,14 +91,6 @@ class GlobalState {
       utils.getLocaleForString(config.appSetting.locale) ??
           WidgetsBinding.instance.platformDispatcher.locale,
     );
-    // // 设置 WebView 平台实例
-    // if (WebViewPlatform.instance == null) {
-    //   if (Platform.isIOS) {
-    //     WebViewPlatform.instance = WebKitWebViewPlatform();
-    //   } else {
-    //     WebViewPlatform.instance = AndroidWebViewPlatform();
-    //   }
-    // }
   }
 
   String get ua => config.patchClashConfig.globalUa ?? packageInfo.ua;

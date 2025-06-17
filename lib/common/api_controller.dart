@@ -86,6 +86,20 @@ class ApiController {
     }
     throw Exception("fetch orders failed");
   }
+
+  Future<Profile> fetchProfile(String? token) async {
+    final url = "$baseUrl/fetch_config${token == null || token.isEmpty ? "" : "?token=$token"}";
+    final response = await request.getFileResponseForUrl(url);
+    // final disposition = response.headers.value("content-disposition");
+    final userinfo = response.headers.value('subscription-userinfo');
+    return await Profile(
+      label: defaultJWClashProfileLabel,
+      url: url,
+      id: defaultJWClashProfileId,
+      autoUpdateDuration: defaultUpdateDuration,
+      subscriptionInfo: SubscriptionInfo.formHString(userinfo),
+    ).saveFile(response.data);
+  }
 }
 
 final apiController = ApiController();

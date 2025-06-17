@@ -67,16 +67,16 @@ class Profile with _$Profile {
   factory Profile.fromJson(Map<String, Object?> json) =>
       _$ProfileFromJson(json);
 
-  factory Profile.fromJWCLash({
-    required String url,
-  }) {
-    return Profile(
-      label: defaultJWClashProfileLabel,
-      url: url,
-      id: defaultJWClashProfileId,
-      autoUpdateDuration: defaultUpdateDuration,
-    );
-  }
+  // factory Profile.fromJWCLash({
+  //   required String url,
+  // }) {
+  //   return Profile(
+  //     label: defaultJWClashProfileLabel,
+  //     url: url,
+  //     id: defaultJWClashProfileId,
+  //     autoUpdateDuration: defaultUpdateDuration,
+  //   );
+  // }
 
   factory Profile.normal({
     String? label,
@@ -88,52 +88,6 @@ class Profile with _$Profile {
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       autoUpdateDuration: defaultUpdateDuration,
     );
-  }
-}
-
-@freezed
-class OverrideData with _$OverrideData {
-  const factory OverrideData({
-    @Default(false) bool enable,
-    @Default(OverrideRule()) OverrideRule rule,
-  }) = _OverrideData;
-
-  factory OverrideData.fromJson(Map<String, Object?> json) =>
-      _$OverrideDataFromJson(json);
-}
-
-extension OverrideDataExt on OverrideData {
-  List<String> get runningRule {
-    if (!enable) {
-      return [];
-    }
-    return rule.rules.map((item) => item.value).toList();
-  }
-}
-
-@freezed
-class OverrideRule with _$OverrideRule {
-  const factory OverrideRule({
-    @Default(OverrideRuleType.added) OverrideRuleType type,
-    @Default([]) List<Rule> overrideRules,
-    @Default([]) List<Rule> addedRules,
-  }) = _OverrideRule;
-
-  factory OverrideRule.fromJson(Map<String, Object?> json) =>
-      _$OverrideRuleFromJson(json);
-}
-
-extension OverrideRuleExt on OverrideRule {
-  List<Rule> get rules => switch (type == OverrideRuleType.override) {
-        true => overrideRules,
-        false => addedRules,
-      };
-
-  OverrideRule updateRules(List<Rule> Function(List<Rule> rules) builder) {
-    if (type == OverrideRuleType.added) {
-      return copyWith(addedRules: builder(addedRules));
-    }
-    return copyWith(overrideRules: builder(overrideRules));
   }
 }
 
@@ -209,3 +163,51 @@ extension ProfileExtension on Profile {
     return copyWith(lastUpdateDate: DateTime.now());
   }
 }
+
+
+@freezed
+class OverrideData with _$OverrideData {
+  const factory OverrideData({
+    @Default(false) bool enable,
+    @Default(OverrideRule()) OverrideRule rule,
+  }) = _OverrideData;
+
+  factory OverrideData.fromJson(Map<String, Object?> json) =>
+      _$OverrideDataFromJson(json);
+}
+
+extension OverrideDataExt on OverrideData {
+  List<String> get runningRule {
+    if (!enable) {
+      return [];
+    }
+    return rule.rules.map((item) => item.value).toList();
+  }
+}
+
+@freezed
+class OverrideRule with _$OverrideRule {
+  const factory OverrideRule({
+    @Default(OverrideRuleType.added) OverrideRuleType type,
+    @Default([]) List<Rule> overrideRules,
+    @Default([]) List<Rule> addedRules,
+  }) = _OverrideRule;
+
+  factory OverrideRule.fromJson(Map<String, Object?> json) =>
+      _$OverrideRuleFromJson(json);
+}
+
+extension OverrideRuleExt on OverrideRule {
+  List<Rule> get rules => switch (type == OverrideRuleType.override) {
+        true => overrideRules,
+        false => addedRules,
+      };
+
+  OverrideRule updateRules(List<Rule> Function(List<Rule> rules) builder) {
+    if (type == OverrideRuleType.added) {
+      return copyWith(addedRules: builder(addedRules));
+    }
+    return copyWith(overrideRules: builder(overrideRules));
+  }
+}
+
