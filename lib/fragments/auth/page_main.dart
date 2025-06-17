@@ -95,6 +95,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
               const SizedBox(
                 height: 16,
               ),
+              _getDeviceInfoItem(context),
+              const SizedBox(
+                height: 16,
+              ),
               ..._getButtonGroup(context),
             ],
           ),
@@ -139,6 +143,18 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
       child: ListItem(
         title: Text("Token"),
         subtitle: Text(currentToken ?? ""),
+      ),
+    );
+  }
+
+  Widget _getDeviceInfoItem(BuildContext context) {
+    final deviceSerialNumber = ref.watch(deviceSerialNumberProvider);
+    return CommonCard(
+      type: CommonCardType.filled,
+      radius: 18,
+      child: ListItem(
+        title: Text("Token"),
+        subtitle: Text(deviceSerialNumber),
       ),
     );
   }

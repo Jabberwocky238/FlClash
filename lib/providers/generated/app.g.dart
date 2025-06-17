@@ -258,6 +258,23 @@ final versionProvider = AutoDisposeNotifierProvider<Version, int>.internal(
 );
 
 typedef _$Version = AutoDisposeNotifier<int>;
+String _$deviceSerialNumberHash() =>
+    r'de0e52eb147e4f06c6fd2b8d3b824023f8e70699';
+
+/// See also [DeviceSerialNumber].
+@ProviderFor(DeviceSerialNumber)
+final deviceSerialNumberProvider =
+    AutoDisposeNotifierProvider<DeviceSerialNumber, String>.internal(
+  DeviceSerialNumber.new,
+  name: r'deviceSerialNumberProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$deviceSerialNumberHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$DeviceSerialNumber = AutoDisposeNotifier<String>;
 String _$groupsHash() => r'fbff504e0bcdb5a2770a902f2867aabd921fbadc';
 
 /// See also [Groups].

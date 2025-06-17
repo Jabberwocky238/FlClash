@@ -29,6 +29,7 @@ class AppState with _$AppState {
     @Default(OrderSelectionProps()) OrderSelectionProps orderSelection,
     required FixedList<Connection> requests,
     required int version,
+    required String deviceSerialNumber,
     required FixedList<Log> logs,
     required FixedList<Traffic> traffics,
     required Traffic totalTraffic,

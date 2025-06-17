@@ -58,6 +58,7 @@ class GlobalState {
   initApp(int version) async {
     coreSHA256 = const String.fromEnvironment("CORE_SHA256");
     isPre = const String.fromEnvironment("APP_ENV") != 'stable';
+    final deviceSerialNumber = await system.deviceSerialNumber;
     appState = AppState(
       version: version,
       viewSize: Size.zero,
@@ -65,6 +66,7 @@ class GlobalState {
       logs: FixedList(maxLength),
       traffics: FixedList(30),
       totalTraffic: Traffic(),
+      deviceSerialNumber: deviceSerialNumber,
     );
     await _initDynamicColor();
     await init();

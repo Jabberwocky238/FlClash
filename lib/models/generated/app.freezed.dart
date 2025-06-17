@@ -32,6 +32,7 @@ mixin _$AppState {
   OrderSelectionProps get orderSelection => throw _privateConstructorUsedError;
   FixedList<Connection> get requests => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  String get deviceSerialNumber => throw _privateConstructorUsedError;
   FixedList<Log> get logs => throw _privateConstructorUsedError;
   FixedList<Traffic> get traffics => throw _privateConstructorUsedError;
   Traffic get totalTraffic => throw _privateConstructorUsedError;
@@ -65,6 +66,7 @@ abstract class $AppStateCopyWith<$Res> {
       OrderSelectionProps orderSelection,
       FixedList<Connection> requests,
       int version,
+      String deviceSerialNumber,
       FixedList<Log> logs,
       FixedList<Traffic> traffics,
       Traffic totalTraffic,
@@ -103,6 +105,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? orderSelection = null,
     Object? requests = null,
     Object? version = null,
+    Object? deviceSerialNumber = null,
     Object? logs = null,
     Object? traffics = null,
     Object? totalTraffic = null,
@@ -169,6 +172,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as int,
+      deviceSerialNumber: null == deviceSerialNumber
+          ? _value.deviceSerialNumber
+          : deviceSerialNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       logs: null == logs
           ? _value.logs
           : logs // ignore: cast_nullable_to_non_nullable
@@ -223,6 +230,7 @@ abstract class _$$AppStateImplCopyWith<$Res>
       OrderSelectionProps orderSelection,
       FixedList<Connection> requests,
       int version,
+      String deviceSerialNumber,
       FixedList<Log> logs,
       FixedList<Traffic> traffics,
       Traffic totalTraffic,
@@ -260,6 +268,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? orderSelection = null,
     Object? requests = null,
     Object? version = null,
+    Object? deviceSerialNumber = null,
     Object? logs = null,
     Object? traffics = null,
     Object? totalTraffic = null,
@@ -326,6 +335,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as int,
+      deviceSerialNumber: null == deviceSerialNumber
+          ? _value.deviceSerialNumber
+          : deviceSerialNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       logs: null == logs
           ? _value.logs
           : logs // ignore: cast_nullable_to_non_nullable
@@ -365,6 +378,7 @@ class _$AppStateImpl implements _AppState {
       this.orderSelection = const OrderSelectionProps(),
       required this.requests,
       required this.version,
+      required this.deviceSerialNumber,
       required this.logs,
       required this.traffics,
       required this.totalTraffic,
@@ -438,6 +452,8 @@ class _$AppStateImpl implements _AppState {
   @override
   final int version;
   @override
+  final String deviceSerialNumber;
+  @override
   final FixedList<Log> logs;
   @override
   final FixedList<Traffic> traffics;
@@ -449,7 +465,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, sortNum: $sortNum, viewSize: $viewSize, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, requests: $requests, version: $version, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
+    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, sortNum: $sortNum, viewSize: $viewSize, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
   }
 
   @override
@@ -479,6 +495,8 @@ class _$AppStateImpl implements _AppState {
             (identical(other.requests, requests) ||
                 other.requests == requests) &&
             (identical(other.version, version) || other.version == version) &&
+            (identical(other.deviceSerialNumber, deviceSerialNumber) ||
+                other.deviceSerialNumber == deviceSerialNumber) &&
             (identical(other.logs, logs) || other.logs == logs) &&
             (identical(other.traffics, traffics) ||
                 other.traffics == traffics) &&
@@ -506,6 +524,7 @@ class _$AppStateImpl implements _AppState {
         orderSelection,
         requests,
         version,
+        deviceSerialNumber,
         logs,
         traffics,
         totalTraffic,
@@ -538,6 +557,7 @@ abstract class _AppState implements AppState {
       final OrderSelectionProps orderSelection,
       required final FixedList<Connection> requests,
       required final int version,
+      required final String deviceSerialNumber,
       required final FixedList<Log> logs,
       required final FixedList<Traffic> traffics,
       required final Traffic totalTraffic,
@@ -573,6 +593,8 @@ abstract class _AppState implements AppState {
   FixedList<Connection> get requests;
   @override
   int get version;
+  @override
+  String get deviceSerialNumber;
   @override
   FixedList<Log> get logs;
   @override

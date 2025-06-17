@@ -107,7 +107,14 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
       width: drawerWidth,
       child: Column(
         children: [
+          const SizedBox(
+            height: kToolbarHeight / 2,
+          ),
           CustomDrawerHeader(),
+          Divider(
+            height: 1,
+            color: context.colorScheme.primary.opacity15,
+          ),
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,

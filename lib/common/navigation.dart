@@ -52,7 +52,7 @@ class Navigation {
             PageLabel.profiles,
           ),
         ),
-        modes:[NavigationItemMode.invisible],
+        // modes:[NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.view_timeline),

@@ -302,6 +302,22 @@ class Version extends _$Version with AutoDisposeNotifierMixin {
 }
 
 @riverpod
+class DeviceSerialNumber extends _$DeviceSerialNumber with AutoDisposeNotifierMixin {
+  @override
+  String build() {
+    return globalState.appState.deviceSerialNumber;
+  }
+
+  @override
+  onUpdate(value) {
+    globalState.appState = globalState.appState.copyWith(
+      deviceSerialNumber: value,
+    );
+  }
+}
+
+
+@riverpod
 class Groups extends _$Groups with AutoDisposeNotifierMixin {
   @override
   List<Group> build() {
