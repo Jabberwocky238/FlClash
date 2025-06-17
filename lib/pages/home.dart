@@ -30,22 +30,18 @@ class HomePage extends StatelessWidget {
           );
           final currentIndex = index == -1 ? 0 : index;
           // final navigationBar = CommonNavigationBar(
-          //   // viewMode: viewMode, 
+          //   // viewMode: viewMode,
           //   navigationItems: navigationItems,
           //   currentIndex: currentIndex,
           // );
           final navigationBar = CommonDrawerNavigationBar(
-            // viewMode: viewMode, 
+            // viewMode: viewMode,
             navigationItems: navigationItems,
             currentIndex: currentIndex,
           );
           return CommonScaffold(
             key: globalState.homeScaffoldKey,
-            title: pageLabel == PageLabel.dashboard
-                ? "Enzyme"
-                : Intl.message(
-                    "navigation_${pageLabel.name}",
-                  ),
+            title: pageLabel == PageLabel.dashboard ? "Enzyme" : pageLabel.localName,
             navigationBar: navigationBar,
             body: child!,
           );

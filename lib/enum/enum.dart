@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:intl/intl.dart';
 import 'package:jw_clash/fragments/dashboard/widgets/widgets.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -371,6 +372,9 @@ enum PageLabel {
   order,
 }
 
+extension PageLabelExt on PageLabel {
+  String get localName => Intl.message("navigation_$name");
+}
 
 enum RuleAction {
   DOMAIN("DOMAIN"),

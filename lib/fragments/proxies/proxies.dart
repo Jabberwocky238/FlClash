@@ -19,8 +19,7 @@ class ProxiesFragment extends ConsumerStatefulWidget {
   ConsumerState<ProxiesFragment> createState() => _ProxiesFragmentState();
 }
 
-class _ProxiesFragmentState extends ConsumerState<ProxiesFragment>
-    with PageMixin {
+class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixin {
   @override
   get actions => [
         ElevatedButton(

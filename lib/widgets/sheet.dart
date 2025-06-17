@@ -83,9 +83,9 @@ Future<T?> showExtend<T>(
   // final isMobile = globalState.appState.viewMode == ViewMode.mobile;
   return switch (true) {
     true => BaseNavigator.push(
-        context,
-        builder(context, SheetType.page),
-      ),
+      context,
+      builder(context, SheetType.page),
+    ),
     false => showModalSideSheet<T>(
         useSafeArea: props.useSafeArea,
         context: context,

@@ -49,7 +49,7 @@ class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
     // final subscriptionInfo = profile?.subscriptionInfo;
     final authSetting = ref.watch(authSettingProvider);
     final subscriptionInfo = authSetting.subscriptionInfo;
-    commonPrint.log("[NavigationDrawer] subscriptionInfo: $subscriptionInfo");
+    // commonPrint.log("[NavigationDrawer] subscriptionInfo: $subscriptionInfo");
     return [
       const SizedBox(
         height: 8,

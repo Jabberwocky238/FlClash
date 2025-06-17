@@ -29,13 +29,16 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
         handler: (pageLabel) => pageLabel == PageLabel.order,
       ),
       (prev, next) {
-        if (prev != next && next == true) {
+        if (prev != next && next) {
           initPageState();
         }
       },
       fireImmediately: true,
     );
-    _initPageState();
+    
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initPageState();
+    });
   }
 
   void _initPageState() async {

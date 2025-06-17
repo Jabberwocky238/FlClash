@@ -56,7 +56,7 @@ class AuthProps with _$AuthProps {
 }
 
 extension AuthPropsExt on AuthProps {
-  bool get isExpired => expiresAt != null && expiresAt!.isBefore(DateTime.now());
+  bool get isExpired => expiresAt == null ? false : expiresAt!.isBefore(DateTime.now());
 
   bool get isLogin => email.isNotEmpty && password.isNotEmpty && token != null && token!.isNotEmpty;
 

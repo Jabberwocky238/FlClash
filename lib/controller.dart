@@ -5,6 +5,7 @@ import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
+import 'package:intl/intl.dart';
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/archive.dart';
 import 'package:jw_clash/enum/enum.dart';
@@ -13,6 +14,8 @@ import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jw_clash/widgets/popup.dart';
+import 'package:jw_clash/widgets/widgets.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -261,7 +264,7 @@ class AppController {
     // } else {
     //   clashCore.stopLog();
     // }
-    
+
     final res = await clashCore.updateConfig(
       globalState.getUpdateConfigParams(isPatch),
     );
@@ -348,7 +351,7 @@ class AppController {
       await updateProfile(profile);
     }
   }
-  
+
   savePreferences() async {
     commonPrint.log("save preferences");
     await preferences.saveConfig(globalState.config);
@@ -731,16 +734,16 @@ class AppController {
 
   updateTun() {
     _ref.read(patchClashConfigProvider.notifier).updateState(
-      (state) => state.copyWith.tun(enable: !state.tun.enable),
-    );
+          (state) => state.copyWith.tun(enable: !state.tun.enable),
+        );
   }
 
   updateSystemProxy() {
     _ref.read(networkSettingProvider.notifier).updateState(
-      (state) => state.copyWith(
-        systemProxy: !state.systemProxy,
-      ),
-    );
+          (state) => state.copyWith(
+            systemProxy: !state.systemProxy,
+          ),
+        );
   }
 
   updateStart() {
@@ -749,17 +752,21 @@ class AppController {
 
   updateCurrentSelectedMap(String groupName, String proxyName) {
     final currentProfile = _ref.read(currentProfileProvider);
-    if (currentProfile != null && currentProfile.selectedMap[groupName] != proxyName) {
+    if (currentProfile != null &&
+        currentProfile.selectedMap[groupName] != proxyName) {
       final SelectedMap selectedMap = Map.from(
         currentProfile.selectedMap,
       )..[groupName] = proxyName;
       _ref.read(profilesProvider.notifier).setProfile(
-        currentProfile.copyWith(
-          selectedMap: selectedMap,
-        ),
-      );
-      final currentGroupName = _ref.read(proxiesSelectorStateProvider.select((state) => state.currentGroupName));
-      if (currentGroupName == null || currentGroupName.isEmpty || currentGroupName != groupName) {
+            currentProfile.copyWith(
+              selectedMap: selectedMap,
+            ),
+          );
+      final currentGroupName = _ref.read(proxiesSelectorStateProvider
+          .select((state) => state.currentGroupName));
+      if (currentGroupName == null ||
+          currentGroupName.isEmpty ||
+          currentGroupName != groupName) {
         updateCurrentGroupName(groupName);
       }
     }
@@ -771,10 +778,10 @@ class AppController {
       return;
     }
     _ref.read(profilesProvider.notifier).setProfile(
-      currentProfile.copyWith(
-        unfoldSet: value,
-      ),
-    );
+          currentProfile.copyWith(
+            unfoldSet: value,
+          ),
+        );
   }
 
   changeMode(Mode mode) {
@@ -789,10 +796,10 @@ class AppController {
 
   updateAutoLaunch() {
     _ref.read(appSettingProvider.notifier).updateState(
-      (state) => state.copyWith(
-        autoLaunch: !state.autoLaunch,
-      ),
-    );
+          (state) => state.copyWith(
+            autoLaunch: !state.autoLaunch,
+          ),
+        );
   }
 
   updateVisible() async {

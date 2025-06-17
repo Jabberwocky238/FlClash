@@ -10,8 +10,8 @@ class BaseNavigator {
     );
   }
 
-  static void pop<T>(BuildContext context) {
-    Navigator.of(context).pop<T>();
+  static void pop<T>(BuildContext context, {T? result}) {
+    Navigator.of(context).pop<T>(result);
   }
 }
 

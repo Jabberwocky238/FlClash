@@ -33,8 +33,8 @@ class Navigation {
           key: GlobalObjectKey(PageLabel.proxies),
         ),
         modes: hasProxies
-            ? [NavigationItemMode.mobile, NavigationItemMode.desktop]
-            : [],
+            ? [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible]
+            : [NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.shopping_cart),
@@ -52,7 +52,7 @@ class Navigation {
             PageLabel.profiles,
           ),
         ),
-        // modes:[NavigationItemMode.invisible],
+        modes:[NavigationItemMode.invisible],
       ),
       const NavigationItem(
         icon: Icon(Icons.view_timeline),

@@ -179,7 +179,8 @@ class _DeviceSerialNumberHelper {
     };
   }
 
-  Map<String, dynamic> _readWindowsDeviceInfo(WindowsDeviceInfo data) {
+  dynamic _readWindowsDeviceInfo(WindowsDeviceInfo data) {
+    return "${data.deviceId}-${data.buildNumber}";
     return <String, dynamic>{
       'numberOfCores': data.numberOfCores,
       'computerName': data.computerName,

@@ -2,7 +2,6 @@ import 'package:jw_clash/clash/core.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/common.dart';
-import 'package:jw_clash/providers/config.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';

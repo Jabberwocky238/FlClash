@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/models/models.dart';
+import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/providers/state.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
@@ -28,7 +30,7 @@ class _ShowProxiesState extends State<ShowProxies> {
     return Row(
       children: [
         Text(
-          "当前节点: $proxyName",
+          proxyName,
           style: context.textTheme.bodySmall?.toLight,
         ),
       ],
@@ -39,7 +41,7 @@ class _ShowProxiesState extends State<ShowProxies> {
     return Row(
       children: [
         Text(
-          "当前可用节点数:",
+          "可用节点数:",
           style: context.textTheme.bodySmall?.toLight,
         ),
         SizedBox(
@@ -86,17 +88,26 @@ class _ShowProxiesState extends State<ShowProxies> {
         },
         child: Consumer(
           builder: (_, ref, child) {
-            final proxies = ref.watch(proxiesStateProvider);
+            final groups = ref.watch(currentGroupsStateProvider);
             final currentGroupName = ref.watch(proxiesSelectorStateProvider
                 .select((state) => state.currentGroupName));
+            final authSetting = ref.watch(authSettingProvider);
+            final isLogin = authSetting.isLogin;
+            final isExpired = authSetting.isExpired;
+            final proxyLength = !isLogin || isExpired
+                ? groups.value
+                    .firstWhere((e) => e.name == freeSubscriptionGroupName)
+                    .all
+                    .length
+                : groups.value.map((e) => e.all).expand((e) => e).length;
             if (currentGroupName == null || currentGroupName.isEmpty) {
               return _buildWarpper(
-                  context, _buildSystemProxyInfo(context, proxies.length));
+                  context, _buildSystemProxyInfo(context, proxyLength));
             }
             final proxyName = ref.watch(getProxyNameProvider(currentGroupName));
             if (proxyName == null || proxyName.isEmpty) {
               return _buildWarpper(
-                  context, _buildSystemProxyInfo(context, proxies.length));
+                  context, _buildSystemProxyInfo(context, proxyLength));
             }
             commonPrint.log("[ShowProxies] proxyName: $proxyName");
             return _buildWarpper(

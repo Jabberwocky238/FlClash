@@ -91,7 +91,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
               const SizedBox(
                 height: 16,
               ),
-              _getUserDebugItem(context),
+              _getTokenItem(context),
               const SizedBox(
                 height: 16,
               ),
@@ -122,19 +122,22 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
 
   Widget _getUserSubscriptionItem(BuildContext context) {
     final authSetting = ref.watch(authSettingProvider);
+    final subscriptionInfo = authSetting.subscriptionInfo;
+    final expireDate =
+        DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire);
+    final expireShow =
+        expireDate.isAfter(DateTime.now()) ? "专业版 至 ${expireDate.show}" : "免费";
     return CommonCard(
       type: CommonCardType.filled,
       radius: 18,
       child: ListItem(
         title: Text("套餐类型"),
-        subtitle: Text(authSetting.isExpired
-            ? "免费"
-            : "专业版 至 ${authSetting.expiresAt?.toLocal().toString()}"),
+        subtitle: Text(expireShow),
       ),
     );
   }
 
-  Widget _getUserDebugItem(BuildContext context) {
+  Widget _getTokenItem(BuildContext context) {
     final currentToken =
         ref.watch(authSettingProvider.select((state) => state.token));
     return CommonCard(
@@ -153,7 +156,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
       type: CommonCardType.filled,
       radius: 18,
       child: ListItem(
-        title: Text("Token"),
+        title: Text("设备唯一码"),
         subtitle: Text(deviceSerialNumber),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jw_clash/enum/enum.dart';
 import 'package:riverpod/riverpod.dart';
 import 'context.dart';
 import 'package:jw_clash/common/common.dart';
@@ -42,3 +43,4 @@ mixin PageMixin<T extends StatefulWidget> on State<T> {
 
   Function(List<String>)? get onKeywordsUpdate => null;
 }
+
