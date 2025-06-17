@@ -650,11 +650,11 @@ class AppController {
     addProfileFormURL(url);
   }
 
-  updateViewSize(Size size) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _ref.read(viewSizeProvider.notifier).value = size;
-    });
-  }
+  // updateViewSize(Size size) {
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     _ref.read(viewSizeProvider.notifier).value = size;
+  //   });
+  // }
 
   setProvider(ExternalProvider? provider) {
     _ref.read(providersProvider.notifier).setProvider(provider);

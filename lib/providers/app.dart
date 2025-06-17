@@ -182,29 +182,29 @@ class RunTime extends _$RunTime with AutoDisposeNotifierMixin {
   }
 }
 
-@riverpod
-class ViewSize extends _$ViewSize with AutoDisposeNotifierMixin {
-  @override
-  Size build() {
-    return globalState.appState.viewSize;
-  }
+// @riverpod
+// class ViewSize extends _$ViewSize with AutoDisposeNotifierMixin {
+//   @override
+//   Size build() {
+//     return globalState.appState.viewSize;
+//   }
 
-  @override
-  onUpdate(value) {
-    globalState.appState = globalState.appState.copyWith(
-      viewSize: value,
-    );
-  }
+//   @override
+//   onUpdate(value) {
+//     globalState.appState = globalState.appState.copyWith(
+//       viewSize: value,
+//     );
+//   }
 
-  // ViewMode get viewMode => utils.getViewMode(state.width);
+//   // ViewMode get viewMode => utils.getViewMode(state.width);
 
-  // bool get isMobileView => viewMode == ViewMode.mobile;
-}
+//   // bool get isMobileView => viewMode == ViewMode.mobile;
+// }
 
-@riverpod
-double viewWidth(Ref ref) {
-  return ref.watch(viewSizeProvider).width;
-}
+// @riverpod
+// double viewWidth(Ref ref) {
+//   return ref.watch(viewSizeProvider).width;
+// }
 
 // @riverpod
 // ViewMode viewMode(Ref ref) {
@@ -216,10 +216,10 @@ double viewWidth(Ref ref) {
 //   return ref.watch(viewModeProvider) == ViewMode.mobile;
 // }
 
-@riverpod
-double viewHeight(Ref ref) {
-  return ref.watch(viewSizeProvider).height;
-}
+// @riverpod
+// double viewHeight(Ref ref) {
+//   return ref.watch(viewSizeProvider).height;
+// }
 
 @riverpod
 class Init extends _$Init with AutoDisposeNotifierMixin {

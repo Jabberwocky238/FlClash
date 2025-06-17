@@ -25,13 +25,13 @@ class _AppStateManagerState extends ConsumerState<AppStateManager>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    ref.listenManual(layoutChangeProvider, (prev, next) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (prev != next) {
-          globalState.cacheHeightMap = {};
-        }
-      });
-    });
+    // ref.listenManual(layoutChangeProvider, (prev, next) {
+    //   WidgetsBinding.instance.addPostFrameCallback((_) {
+    //     if (prev != next) {
+    //       globalState.cacheHeightMap = {};
+    //     }
+    //   });
+    // });
   }
 
   @override

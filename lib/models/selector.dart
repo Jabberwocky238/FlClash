@@ -48,7 +48,7 @@ class ProfilesSelectorState with _$ProfilesSelectorState {
   const factory ProfilesSelectorState({
     required List<Profile> profiles,
     required String? currentProfileId,
-    required int columns,
+    // required int columns,
   }) = _ProfilesSelectorState;
 }
 
@@ -234,7 +234,7 @@ class ClashConfigState with _$ClashConfigState {
 class DashboardState with _$DashboardState {
   const factory DashboardState({
     required List<DashboardWidget> dashboardWidgets,
-    required double viewWidth,
+    // required double viewWidth,
   }) = _DashboardState;
 }
 

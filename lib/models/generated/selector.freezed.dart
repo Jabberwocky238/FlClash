@@ -671,7 +671,6 @@ abstract class _StartButtonSelectorState implements StartButtonSelectorState {
 mixin _$ProfilesSelectorState {
   List<Profile> get profiles => throw _privateConstructorUsedError;
   String? get currentProfileId => throw _privateConstructorUsedError;
-  int get columns => throw _privateConstructorUsedError;
 
   /// Create a copy of ProfilesSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -686,7 +685,7 @@ abstract class $ProfilesSelectorStateCopyWith<$Res> {
           $Res Function(ProfilesSelectorState) then) =
       _$ProfilesSelectorStateCopyWithImpl<$Res, ProfilesSelectorState>;
   @useResult
-  $Res call({List<Profile> profiles, String? currentProfileId, int columns});
+  $Res call({List<Profile> profiles, String? currentProfileId});
 }
 
 /// @nodoc
@@ -707,7 +706,6 @@ class _$ProfilesSelectorStateCopyWithImpl<$Res,
   $Res call({
     Object? profiles = null,
     Object? currentProfileId = freezed,
-    Object? columns = null,
   }) {
     return _then(_value.copyWith(
       profiles: null == profiles
@@ -718,10 +716,6 @@ class _$ProfilesSelectorStateCopyWithImpl<$Res,
           ? _value.currentProfileId
           : currentProfileId // ignore: cast_nullable_to_non_nullable
               as String?,
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -735,7 +729,7 @@ abstract class _$$ProfilesSelectorStateImplCopyWith<$Res>
       __$$ProfilesSelectorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Profile> profiles, String? currentProfileId, int columns});
+  $Res call({List<Profile> profiles, String? currentProfileId});
 }
 
 /// @nodoc
@@ -754,7 +748,6 @@ class __$$ProfilesSelectorStateImplCopyWithImpl<$Res>
   $Res call({
     Object? profiles = null,
     Object? currentProfileId = freezed,
-    Object? columns = null,
   }) {
     return _then(_$ProfilesSelectorStateImpl(
       profiles: null == profiles
@@ -765,10 +758,6 @@ class __$$ProfilesSelectorStateImplCopyWithImpl<$Res>
           ? _value.currentProfileId
           : currentProfileId // ignore: cast_nullable_to_non_nullable
               as String?,
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -777,9 +766,7 @@ class __$$ProfilesSelectorStateImplCopyWithImpl<$Res>
 
 class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
   const _$ProfilesSelectorStateImpl(
-      {required final List<Profile> profiles,
-      required this.currentProfileId,
-      required this.columns})
+      {required final List<Profile> profiles, required this.currentProfileId})
       : _profiles = profiles;
 
   final List<Profile> _profiles;
@@ -792,12 +779,10 @@ class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
 
   @override
   final String? currentProfileId;
-  @override
-  final int columns;
 
   @override
   String toString() {
-    return 'ProfilesSelectorState(profiles: $profiles, currentProfileId: $currentProfileId, columns: $columns)';
+    return 'ProfilesSelectorState(profiles: $profiles, currentProfileId: $currentProfileId)';
   }
 
   @override
@@ -807,16 +792,12 @@ class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
             other is _$ProfilesSelectorStateImpl &&
             const DeepCollectionEquality().equals(other._profiles, _profiles) &&
             (identical(other.currentProfileId, currentProfileId) ||
-                other.currentProfileId == currentProfileId) &&
-            (identical(other.columns, columns) || other.columns == columns));
+                other.currentProfileId == currentProfileId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_profiles),
-      currentProfileId,
-      columns);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_profiles), currentProfileId);
 
   /// Create a copy of ProfilesSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -831,15 +812,12 @@ class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
 abstract class _ProfilesSelectorState implements ProfilesSelectorState {
   const factory _ProfilesSelectorState(
       {required final List<Profile> profiles,
-      required final String? currentProfileId,
-      required final int columns}) = _$ProfilesSelectorStateImpl;
+      required final String? currentProfileId}) = _$ProfilesSelectorStateImpl;
 
   @override
   List<Profile> get profiles;
   @override
   String? get currentProfileId;
-  @override
-  int get columns;
 
   /// Create a copy of ProfilesSelectorState
   /// with the given fields replaced by the non-null parameter values.
@@ -3493,7 +3471,6 @@ abstract class _ClashConfigState implements ClashConfigState {
 mixin _$DashboardState {
   List<DashboardWidget> get dashboardWidgets =>
       throw _privateConstructorUsedError;
-  double get viewWidth => throw _privateConstructorUsedError;
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -3508,7 +3485,7 @@ abstract class $DashboardStateCopyWith<$Res> {
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res, DashboardState>;
   @useResult
-  $Res call({List<DashboardWidget> dashboardWidgets, double viewWidth});
+  $Res call({List<DashboardWidget> dashboardWidgets});
 }
 
 /// @nodoc
@@ -3527,17 +3504,12 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
   @override
   $Res call({
     Object? dashboardWidgets = null,
-    Object? viewWidth = null,
   }) {
     return _then(_value.copyWith(
       dashboardWidgets: null == dashboardWidgets
           ? _value.dashboardWidgets
           : dashboardWidgets // ignore: cast_nullable_to_non_nullable
               as List<DashboardWidget>,
-      viewWidth: null == viewWidth
-          ? _value.viewWidth
-          : viewWidth // ignore: cast_nullable_to_non_nullable
-              as double,
     ) as $Val);
   }
 }
@@ -3550,7 +3522,7 @@ abstract class _$$DashboardStateImplCopyWith<$Res>
       __$$DashboardStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<DashboardWidget> dashboardWidgets, double viewWidth});
+  $Res call({List<DashboardWidget> dashboardWidgets});
 }
 
 /// @nodoc
@@ -3567,17 +3539,12 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? dashboardWidgets = null,
-    Object? viewWidth = null,
   }) {
     return _then(_$DashboardStateImpl(
       dashboardWidgets: null == dashboardWidgets
           ? _value._dashboardWidgets
           : dashboardWidgets // ignore: cast_nullable_to_non_nullable
               as List<DashboardWidget>,
-      viewWidth: null == viewWidth
-          ? _value.viewWidth
-          : viewWidth // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -3586,8 +3553,7 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
 
 class _$DashboardStateImpl implements _DashboardState {
   const _$DashboardStateImpl(
-      {required final List<DashboardWidget> dashboardWidgets,
-      required this.viewWidth})
+      {required final List<DashboardWidget> dashboardWidgets})
       : _dashboardWidgets = dashboardWidgets;
 
   final List<DashboardWidget> _dashboardWidgets;
@@ -3600,11 +3566,8 @@ class _$DashboardStateImpl implements _DashboardState {
   }
 
   @override
-  final double viewWidth;
-
-  @override
   String toString() {
-    return 'DashboardState(dashboardWidgets: $dashboardWidgets, viewWidth: $viewWidth)';
+    return 'DashboardState(dashboardWidgets: $dashboardWidgets)';
   }
 
   @override
@@ -3613,14 +3576,12 @@ class _$DashboardStateImpl implements _DashboardState {
         (other.runtimeType == runtimeType &&
             other is _$DashboardStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._dashboardWidgets, _dashboardWidgets) &&
-            (identical(other.viewWidth, viewWidth) ||
-                other.viewWidth == viewWidth));
+                .equals(other._dashboardWidgets, _dashboardWidgets));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_dashboardWidgets), viewWidth);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_dashboardWidgets));
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -3634,13 +3595,11 @@ class _$DashboardStateImpl implements _DashboardState {
 
 abstract class _DashboardState implements DashboardState {
   const factory _DashboardState(
-      {required final List<DashboardWidget> dashboardWidgets,
-      required final double viewWidth}) = _$DashboardStateImpl;
+          {required final List<DashboardWidget> dashboardWidgets}) =
+      _$DashboardStateImpl;
 
   @override
   List<DashboardWidget> get dashboardWidgets;
-  @override
-  double get viewWidth;
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.

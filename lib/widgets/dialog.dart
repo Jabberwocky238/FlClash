@@ -24,7 +24,8 @@ class CommonDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final size = ref.watch(viewSizeProvider);
+    // final size = ref.watch(viewSizeProvider);
+    final size = MediaQuery.of(context).size;
     return AlertDialog(
       title: Text(title),
       actions: actions,

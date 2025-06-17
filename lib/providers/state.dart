@@ -165,10 +165,10 @@ DashboardState dashboardState(Ref ref) {
   // final dashboardWidgets =
   //     ref.watch(appSettingProvider.select((state) => state.dashboardWidgets));
   final dashboardWidgets = defaultDashboardWidgets;
-  final viewWidth = ref.watch(viewWidthProvider);
+  // final viewWidth = ref.watch(viewWidthProvider);
   return DashboardState(
     dashboardWidgets: dashboardWidgets,
-    viewWidth: viewWidth,
+    // viewWidth: viewWidth,
   );
 }
 
@@ -203,12 +203,12 @@ StartButtonSelectorState startButtonSelectorState(Ref ref) {
 ProfilesSelectorState profilesSelectorState(Ref ref) {
   final currentProfileId = ref.watch(currentProfileIdProvider);
   final profiles = ref.watch(profilesProvider);
-  final columns = ref.watch(
-      viewWidthProvider.select((state) => utils.getProfilesColumns(state)));
+  // final columns = ref.watch(
+  //     viewWidthProvider.select((state) => utils.getProfilesColumns(state)));
   return ProfilesSelectorState(
     profiles: profiles,
     currentProfileId: currentProfileId,
-    columns: columns,
+    // columns: columns,
   );
 }
 
@@ -479,16 +479,16 @@ OverrideData? getProfileOverrideData(Ref ref, String profileId) {
   );
 }
 
-@riverpod
-VM2? layoutChange(Ref ref) {
-  final viewWidth = ref.watch(viewWidthProvider);
-  // final textScale =
-  //     ref.watch(themeSettingProvider.select((state) => state.textScale));
-  return VM2(
-    a: viewWidth,
-    b: viewWidth,
-  );
-}
+// @riverpod
+// VM2? layoutChange(Ref ref) {
+//   final viewWidth = ref.watch(viewWidthProvider);
+//   // final textScale =
+//   //     ref.watch(themeSettingProvider.select((state) => state.textScale));
+//   return VM2(
+//     a: viewWidth,
+//     b: viewWidth,
+//   );
+// }
 
 @riverpod
 ColorScheme genColorScheme(

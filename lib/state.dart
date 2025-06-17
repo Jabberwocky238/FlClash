@@ -61,7 +61,7 @@ class GlobalState {
     final deviceSerialNumber = await system.deviceSerialNumber;
     appState = AppState(
       version: version,
-      viewSize: Size.zero,
+      // viewSize: Size.zero,
       requests: FixedList(maxLength),
       logs: FixedList(maxLength),
       traffics: FixedList(30),

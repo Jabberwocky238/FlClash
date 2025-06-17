@@ -176,7 +176,7 @@ final homeStateProvider = AutoDisposeProvider<HomeState>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef HomeStateRef = AutoDisposeProviderRef<HomeState>;
-String _$dashboardStateHash() => r'322172404359118260f75ca5ed53e626b9fc238b';
+String _$dashboardStateHash() => r'fe21d0364d8cb911ee6495c5632362e3d41e5f20';
 
 /// See also [dashboardState].
 @ProviderFor(dashboardState)
@@ -233,7 +233,7 @@ final startButtonSelectorStateProvider =
 typedef StartButtonSelectorStateRef
     = AutoDisposeProviderRef<StartButtonSelectorState>;
 String _$profilesSelectorStateHash() =>
-    r'aac2deee6e747eceaf62cb5f279ec99ce9227a5a';
+    r'e524564d951bfa68610d7b588378f1e37203fb52';
 
 /// See also [profilesSelectorState].
 @ProviderFor(profilesSelectorState)
@@ -1635,22 +1635,6 @@ class _GetProfileOverrideDataProviderElement
   String get profileId => (origin as GetProfileOverrideDataProvider).profileId;
 }
 
-String _$layoutChangeHash() => r'5e12fcd0f3bb356fe412bdecc53fa55b41b0387c';
-
-/// See also [layoutChange].
-@ProviderFor(layoutChange)
-final layoutChangeProvider = AutoDisposeProvider<VM2?>.internal(
-  layoutChange,
-  name: r'layoutChangeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$layoutChangeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LayoutChangeRef = AutoDisposeProviderRef<VM2?>;
 String _$genColorSchemeHash() => r'469a2e281ec3f4dd23e86701b8a1790949726a05';
 
 /// See also [genColorScheme].

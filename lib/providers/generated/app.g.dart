@@ -6,38 +6,6 @@ part of '../app.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$viewWidthHash() => r'a469c3414170a6616ff3264962e7f160b2edceca';
-
-/// See also [viewWidth].
-@ProviderFor(viewWidth)
-final viewWidthProvider = AutoDisposeProvider<double>.internal(
-  viewWidth,
-  name: r'viewWidthProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$viewWidthHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ViewWidthRef = AutoDisposeProviderRef<double>;
-String _$viewHeightHash() => r'410aee5b41388226ab16737f0e85a56f7e9fe801';
-
-/// See also [viewHeight].
-@ProviderFor(viewHeight)
-final viewHeightProvider = AutoDisposeProvider<double>.internal(
-  viewHeight,
-  name: r'viewHeightProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$viewHeightHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ViewHeightRef = AutoDisposeProviderRef<double>;
 String _$logsHash() => r'56fb8aa9d62a97b026b749d204576a7384084737';
 
 /// See also [Logs].
@@ -171,20 +139,6 @@ final runTimeProvider = AutoDisposeNotifierProvider<RunTime, int?>.internal(
 );
 
 typedef _$RunTime = AutoDisposeNotifier<int?>;
-String _$viewSizeHash() => r'8f7e485a3a2ec7cade8577c737cf7ead14868081';
-
-/// See also [ViewSize].
-@ProviderFor(ViewSize)
-final viewSizeProvider = AutoDisposeNotifierProvider<ViewSize, Size>.internal(
-  ViewSize.new,
-  name: r'viewSizeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$viewSizeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ViewSize = AutoDisposeNotifier<Size>;
 String _$initHash() => r'7d3f11c8aff7a1924c5ec8886b2cd2cbdda57c3f';
 
 /// See also [Init].

@@ -19,8 +19,8 @@ mixin _$AppState {
   bool get isInit => throw _privateConstructorUsedError;
   PageLabel get pageLabel => throw _privateConstructorUsedError;
   List<Package> get packages => throw _privateConstructorUsedError;
-  int get sortNum => throw _privateConstructorUsedError;
-  Size get viewSize => throw _privateConstructorUsedError;
+  int get sortNum =>
+      throw _privateConstructorUsedError; // required Size viewSize,
   Map<String, Map<String, int?>> get delayMap =>
       throw _privateConstructorUsedError;
   List<Group> get groups => throw _privateConstructorUsedError;
@@ -55,7 +55,6 @@ abstract class $AppStateCopyWith<$Res> {
       PageLabel pageLabel,
       List<Package> packages,
       int sortNum,
-      Size viewSize,
       Map<String, Map<String, int?>> delayMap,
       List<Group> groups,
       int checkIpNum,
@@ -94,7 +93,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? pageLabel = null,
     Object? packages = null,
     Object? sortNum = null,
-    Object? viewSize = null,
     Object? delayMap = null,
     Object? groups = null,
     Object? checkIpNum = null,
@@ -128,10 +126,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.sortNum
           : sortNum // ignore: cast_nullable_to_non_nullable
               as int,
-      viewSize: null == viewSize
-          ? _value.viewSize
-          : viewSize // ignore: cast_nullable_to_non_nullable
-              as Size,
       delayMap: null == delayMap
           ? _value.delayMap
           : delayMap // ignore: cast_nullable_to_non_nullable
@@ -219,7 +213,6 @@ abstract class _$$AppStateImplCopyWith<$Res>
       PageLabel pageLabel,
       List<Package> packages,
       int sortNum,
-      Size viewSize,
       Map<String, Map<String, int?>> delayMap,
       List<Group> groups,
       int checkIpNum,
@@ -257,7 +250,6 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? pageLabel = null,
     Object? packages = null,
     Object? sortNum = null,
-    Object? viewSize = null,
     Object? delayMap = null,
     Object? groups = null,
     Object? checkIpNum = null,
@@ -291,10 +283,6 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.sortNum
           : sortNum // ignore: cast_nullable_to_non_nullable
               as int,
-      viewSize: null == viewSize
-          ? _value.viewSize
-          : viewSize // ignore: cast_nullable_to_non_nullable
-              as Size,
       delayMap: null == delayMap
           ? _value._delayMap
           : delayMap // ignore: cast_nullable_to_non_nullable
@@ -367,7 +355,6 @@ class _$AppStateImpl implements _AppState {
       this.pageLabel = PageLabel.dashboard,
       final List<Package> packages = const [],
       this.sortNum = 0,
-      required this.viewSize,
       final Map<String, Map<String, int?>> delayMap = const {},
       final List<Group> groups = const [],
       this.checkIpNum = 0,
@@ -406,9 +393,9 @@ class _$AppStateImpl implements _AppState {
   @override
   @JsonKey()
   final int sortNum;
-  @override
-  final Size viewSize;
+// required Size viewSize,
   final Map<String, Map<String, int?>> _delayMap;
+// required Size viewSize,
   @override
   @JsonKey()
   Map<String, Map<String, int?>> get delayMap {
@@ -465,7 +452,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, sortNum: $sortNum, viewSize: $viewSize, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
+    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, sortNum: $sortNum, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
   }
 
   @override
@@ -478,8 +465,6 @@ class _$AppStateImpl implements _AppState {
                 other.pageLabel == pageLabel) &&
             const DeepCollectionEquality().equals(other._packages, _packages) &&
             (identical(other.sortNum, sortNum) || other.sortNum == sortNum) &&
-            (identical(other.viewSize, viewSize) ||
-                other.viewSize == viewSize) &&
             const DeepCollectionEquality().equals(other._delayMap, _delayMap) &&
             const DeepCollectionEquality().equals(other._groups, _groups) &&
             (identical(other.checkIpNum, checkIpNum) ||
@@ -513,7 +498,6 @@ class _$AppStateImpl implements _AppState {
         pageLabel,
         const DeepCollectionEquality().hash(_packages),
         sortNum,
-        viewSize,
         const DeepCollectionEquality().hash(_delayMap),
         const DeepCollectionEquality().hash(_groups),
         checkIpNum,
@@ -546,7 +530,6 @@ abstract class _AppState implements AppState {
       final PageLabel pageLabel,
       final List<Package> packages,
       final int sortNum,
-      required final Size viewSize,
       final Map<String, Map<String, int?>> delayMap,
       final List<Group> groups,
       final int checkIpNum,
@@ -570,9 +553,7 @@ abstract class _AppState implements AppState {
   @override
   List<Package> get packages;
   @override
-  int get sortNum;
-  @override
-  Size get viewSize;
+  int get sortNum; // required Size viewSize,
   @override
   Map<String, Map<String, int?>> get delayMap;
   @override

@@ -28,12 +28,12 @@ class ThemeManager extends ConsumerWidget {
       ),
       child: LayoutBuilder(
         builder: (_, container) {
-          globalState.appController.updateViewSize(
-            Size(
-              container.maxWidth,
-              container.maxHeight,
-            ),
-          );
+          // globalState.appController.updateViewSize(
+          //   Size(
+          //     container.maxWidth,
+          //     container.maxHeight,
+          //   ),
+          // );
           return child;
         },
       ),

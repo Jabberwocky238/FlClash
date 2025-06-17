@@ -18,7 +18,7 @@ class AppState with _$AppState {
     @Default(PageLabel.dashboard) PageLabel pageLabel,
     @Default([]) List<Package> packages,
     @Default(0) int sortNum,
-    required Size viewSize,
+    // required Size viewSize,
     @Default({}) DelayMap delayMap,
     @Default([]) List<Group> groups,
     @Default(0) int checkIpNum,

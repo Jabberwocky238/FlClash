@@ -140,7 +140,7 @@ class _ProfilesFragmentState extends State<ProfilesFragment> with PageMixin {
             child: Grid(
               mainAxisSpacing: 16,
               crossAxisSpacing: 16,
-              crossAxisCount: profilesSelectorState.columns,
+              crossAxisCount: 1,
               children: [
                 for (int i = 0; i < profilesSelectorState.profiles.length; i++)
                   GridItem(
