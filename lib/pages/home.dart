@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/fragments/dashboard/dashboard.dart';
+import 'package:jw_clash/fragments/dashboard/widgets/start_button.dart';
 // import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
@@ -156,6 +157,7 @@ class HomePageState extends ConsumerState<HomePage> {
         ),
       ),
       body: DashboardFragment(),
+      floatingActionButton: const StartButton(),
     );
     // return CommonScaffold(
     //   key: globalState.homeScaffoldKey,
