@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/fragments/about.dart';
-import 'package:jw_clash/fragments/access.dart';
+// import 'package:jw_clash/fragments/about.dart';
+// import 'package:jw_clash/fragments/access.dart';
 import 'package:jw_clash/fragments/application_setting.dart';
 import 'package:jw_clash/fragments/config/config.dart';
 import 'package:jw_clash/l10n/l10n.dart';
@@ -58,7 +58,7 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
       items: [
         _DisclaimerItem(),
         _DeveloperItem(),
-        _InfoItem(),
+        // _InfoItem(),
       ],
     );
   }
@@ -72,7 +72,7 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
         // _BackupItem(), // WEBDAV
         // if (system.isDesktop) _HotkeyItem(),
         if (Platform.isWindows) _LoopbackItem(),
-        if (Platform.isAndroid) _AccessItem(),
+        // if (Platform.isAndroid) _AccessItem(),
         _ConfigItem(),
         _SettingItem(),
       ],
@@ -212,22 +212,6 @@ class _LoopbackItem extends StatelessWidget {
   }
 }
 
-class _AccessItem extends StatelessWidget {
-  const _AccessItem();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListItem.open(
-      leading: const Icon(Icons.view_list),
-      title: Text(appLocalizations.accessControl),
-      subtitle: Text(appLocalizations.accessControlDesc),
-      delegate: OpenDelegate(
-        title: appLocalizations.appAccessControl,
-        widget: const AccessFragment(),
-      ),
-    );
-  }
-}
 
 class _ConfigItem extends StatelessWidget {
   const _ConfigItem();
@@ -282,21 +266,6 @@ class _DisclaimerItem extends StatelessWidget {
   }
 }
 
-class _InfoItem extends StatelessWidget {
-  const _InfoItem();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListItem.open(
-      leading: const Icon(Icons.info),
-      title: Text(appLocalizations.about),
-      delegate: OpenDelegate(
-        title: appLocalizations.about,
-        widget: const AboutFragment(),
-      ),
-    );
-  }
-}
 
 class _DeveloperItem extends StatelessWidget {
   const _DeveloperItem();

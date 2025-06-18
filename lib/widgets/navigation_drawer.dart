@@ -6,6 +6,7 @@ import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:intl/intl.dart';
+import 'package:jw_clash/widgets/widgets.dart';
 
 class CustomDrawerHeader extends ConsumerStatefulWidget {
   const CustomDrawerHeader({super.key});
@@ -23,8 +24,10 @@ class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
 
     final useShow = TrafficValue(value: use).show;
     final totalShow = TrafficValue(value: total).show;
-    final expireDate = DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire);
-    final expireShow = expireDate.isAfter(DateTime.now()) ? expireDate.show : "免费版";
+    final expireDate =
+        DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire);
+    final expireShow =
+        expireDate.isAfter(DateTime.now()) ? expireDate.show : "免费版";
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -127,7 +130,7 @@ class CommonDrawerNavigationBar extends ConsumerWidget {
                       selected: ref.watch(currentPageLabelProvider) == e.label,
                       onTap: () {
                         globalState.appController.toPage(e.label);
-                        Navigator.pop(context); // 关闭抽屉
+                        // Navigator.pop(context); // 关闭抽屉
                       },
                     ),
                   )

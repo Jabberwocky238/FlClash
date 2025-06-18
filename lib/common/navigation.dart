@@ -10,120 +10,97 @@ class Navigation {
     bool hasProxies = false,
   }) {
     return [
-      const NavigationItem(
-        icon: Icon(Icons.space_dashboard),
+      NavigationItem(
+        icon: const Icon(Icons.space_dashboard),
         label: PageLabel.dashboard,
-        fragment: DashboardFragment(
-          key: GlobalObjectKey(PageLabel.dashboard),
-        ),
+        builder: (context) => const DashboardFragment(),
+        modes: [NavigationItemMode.invisible]
       ),
-      const NavigationItem(
-        icon: Icon(Icons.person),
+      NavigationItem(
+        icon: const Icon(Icons.person),
         label: PageLabel.auth,
-        fragment: AuthFragment(
-          key: GlobalObjectKey(PageLabel.auth),
-        ),
+        builder: (context) => const AuthFragment(),
         modes: [NavigationItemMode.mobile, NavigationItemMode.desktop],
       ),
       // ###############################################
       NavigationItem(
         icon: const Icon(Icons.article),
         label: PageLabel.proxies,
-        fragment: const ProxiesFragment(
-          key: GlobalObjectKey(PageLabel.proxies),
-        ),
+        builder: (context) => const ProxiesFragment(),
         modes: hasProxies
             ? [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible]
             : [NavigationItemMode.invisible],
       ),
-      const NavigationItem(
-        icon: Icon(Icons.shopping_cart),
+      NavigationItem(
+        icon: const Icon(Icons.shopping_cart),
         label: PageLabel.order,
-        fragment: OrderFragment(
-          key: GlobalObjectKey(PageLabel.order),
-        ),
+        builder: (context) => OrderFragment(),
         modes: [],
       ),
-      const NavigationItem(
-        icon: Icon(Icons.folder),
+      NavigationItem(
+        icon: const Icon(Icons.folder),
         label: PageLabel.profiles,
-        fragment: ProfilesFragment(
-          key: GlobalObjectKey(
-            PageLabel.profiles,
-          ),
-        ),
+        builder: (context) => ProfilesFragment(),
         modes:[NavigationItemMode.invisible],
       ),
-      const NavigationItem(
-        icon: Icon(Icons.view_timeline),
+      NavigationItem(
+        icon: const Icon(Icons.view_timeline),
         label: PageLabel.requests,
-        fragment: RequestsFragment(
-          key: GlobalObjectKey(
-            PageLabel.requests,
-          ),
-        ),
-        description: "requestsDesc",
+        builder: (context) => const RequestsFragment(),
         modes: [NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
-      const NavigationItem(
-        icon: Icon(Icons.ballot),
+      NavigationItem(
+        icon: const Icon(Icons.ballot),
         label: PageLabel.connections,
-        fragment: ConnectionsFragment(
-          key: GlobalObjectKey(
-            PageLabel.connections,
-          ),
-        ),
-        description: "connectionsDesc",
-        modes: [NavigationItemMode.desktop, NavigationItemMode.invisible],
+        builder: (context) => const ConnectionsFragment(),
+        modes: const [NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
-      const NavigationItem(
-        icon: Icon(Icons.storage),
+      NavigationItem(
+        icon: const Icon(Icons.storage),
         label: PageLabel.resources,
-        description: "resourcesDesc",
-        keep: false,
-        fragment: Resources(
+        builder: (context) => Resources(
           key: GlobalObjectKey(
             PageLabel.resources,
           ),
         ),
         modes: [NavigationItemMode.more, NavigationItemMode.invisible],
       ),
+      // NavigationItem(
+      //   icon: const Icon(Icons.adb),
+      //   label: PageLabel.logs,
+      //   fragment: const LogsFragment(
+      //     key: GlobalObjectKey(
+      //       PageLabel.logs,
+      //     ),
+      //   ),
+      //   description: "logsDesc",
+      //   modes: [NavigationItemMode.desktop, NavigationItemMode.more, NavigationItemMode.invisible],
+      // ),
       NavigationItem(
-        icon: const Icon(Icons.adb),
-        label: PageLabel.logs,
-        fragment: const LogsFragment(
-          key: GlobalObjectKey(
-            PageLabel.logs,
-          ),
-        ),
-        description: "logsDesc",
-        modes: [NavigationItemMode.desktop, NavigationItemMode.more, NavigationItemMode.invisible],
-      ),
-      const NavigationItem(
-        icon: Icon(Icons.construction),
+        icon: const Icon(Icons.construction),
         label: PageLabel.tools,
-        fragment: ToolsFragment(
+        builder: (context) => ToolsFragment(
           key: GlobalObjectKey(
             PageLabel.tools,
           ),
         ),
-        modes: [NavigationItemMode.desktop, NavigationItemMode.mobile, NavigationItemMode.invisible],
+        modes: const [NavigationItemMode.desktop, NavigationItemMode.mobile, NavigationItemMode.invisible],
       ),
-            const NavigationItem(
-        icon: Icon(Icons.person),
+            NavigationItem(
+        icon: const Icon(Icons.person),
         label: PageLabel.login,
-        fragment: PageLogin(
+        builder: (context) => PageLogin(
           key: GlobalObjectKey(PageLabel.login),
         ),
-        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
+        modes: const [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
-      const NavigationItem(
-        icon: Icon(Icons.person),
+      NavigationItem(
+        icon: const Icon(Icons.person),
         label: PageLabel.register,
-        fragment: PageRegister(
+        builder: (context) => PageRegister(
           key: GlobalObjectKey(PageLabel.register),
         ),
-        modes: [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
+        modes: const [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
       ),
     ];
   }

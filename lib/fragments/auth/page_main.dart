@@ -38,7 +38,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
           onPressed: () {
             debouncer.call(commonDuration, () async {
               final commonScaffoldState =
-                  globalState.homeScaffoldKey.currentState;
+                  globalState.homePageKey.currentState;
               if (commonScaffoldState?.mounted != true) return;
               await commonScaffoldState?.loadingRun(() async {
                 final authProps = ref.watch(authSettingProvider);
@@ -63,8 +63,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _build(BuildContext context) {
     return Consumer(
       builder: (_, ref, __) {
         ref.listenManual(
@@ -105,6 +104,11 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         );
       },
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return buildScaffoldView(_build(context), actions: actions, label: PageLabel.auth);
   }
 
   Widget _getUserEmailItem(BuildContext context) {

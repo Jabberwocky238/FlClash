@@ -29,44 +29,33 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
     super.dispose();
   }
 
+  Widget _build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: baseInfoEdgeInsets,
+      child: Column(
+        children: [
+          _getUserEmailItem(context),
+          const SizedBox(
+            height: 16,
+          ),
+          _getUserPasswordItem(context),
+          const SizedBox(
+            height: 16,
+          ),
+          _getVerificationCodeItem(context),
+          const SizedBox(
+            height: 16,
+          ),
+          _getButtonGroup(context),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (_, ref, __) {
-        ref.listenManual(
-          isCurrentPageProvider(
-            PageLabel.auth,
-            handler: (pageLabel) => pageLabel == PageLabel.auth,
-          ),
-          (prev, next) {
-            if (prev != next && next == true) {
-              initPageState();
-            }
-          },
-          fireImmediately: true,
-        );
-        return SingleChildScrollView(
-          padding: baseInfoEdgeInsets,
-          child: Column(
-            children: [
-              _getUserEmailItem(context),
-              const SizedBox(
-                height: 16,
-              ),
-              _getUserPasswordItem(context),
-              const SizedBox(
-                height: 16,
-              ),
-              _getVerificationCodeItem(context),
-              const SizedBox(
-                height: 16,
-              ),
-              _getButtonGroup(context),
-            ],
-          ),
-        );
-      },
-    );
+    return buildScaffoldView(_build(context),
+        actions: actions, label: PageLabel.register);
   }
 
   Widget _getUserEmailItem(BuildContext context) {

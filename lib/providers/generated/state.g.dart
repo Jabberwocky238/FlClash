@@ -41,44 +41,6 @@ final currentGroupNameProvider = AutoDisposeProvider<String?>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CurrentGroupNameRef = AutoDisposeProviderRef<String?>;
-String _$navigationsStateHash() => r'2f5e46e4778c512db6ba813f383297b8064f02fd';
-
-/// See also [navigationsState].
-@ProviderFor(navigationsState)
-final navigationsStateProvider =
-    AutoDisposeProvider<NavigationItemsState>.internal(
-  navigationsState,
-  name: r'navigationsStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$navigationsStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef NavigationsStateRef = AutoDisposeProviderRef<NavigationItemsState>;
-String _$currentNavigationsStateHash() =>
-    r'3184bc64677ec01ab40dc6b7b78aebea70d96109';
-
-/// See also [currentNavigationsState].
-@ProviderFor(currentNavigationsState)
-final currentNavigationsStateProvider =
-    AutoDisposeProvider<NavigationItemsState>.internal(
-  currentNavigationsState,
-  name: r'currentNavigationsStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$currentNavigationsStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CurrentNavigationsStateRef
-    = AutoDisposeProviderRef<NavigationItemsState>;
 String _$coreStateHash() => r'33f01ee9173525862c89522bf73b3174beb63daa';
 
 /// See also [coreState].
@@ -502,7 +464,7 @@ final packageListSelectorStateProvider =
 typedef PackageListSelectorStateRef
     = AutoDisposeProviderRef<PackageListSelectorState>;
 String _$moreToolsSelectorStateHash() =>
-    r'25c1227af68c66af663f6ab9621cd84fa552cb4d';
+    r'f84afe1a3b4ac94f83baa60dd8825a230b7a9f98';
 
 /// See also [moreToolsSelectorState].
 @ProviderFor(moreToolsSelectorState)

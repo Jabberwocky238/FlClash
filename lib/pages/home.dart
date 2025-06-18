@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/fragments/dashboard/dashboard.dart';
 // import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
@@ -13,67 +14,39 @@ import 'package:intl/intl.dart';
 
 typedef OnSelected = void Function(int index);
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return HomeBackScope(
-      child: Consumer(
-        builder: (_, ref, child) {
-          final state = ref.watch(homeStateProvider);
-          // final viewMode = state.viewMode;
-          // final navigationItems = state.navigationItems;
-          final pageLabel = state.pageLabel;
-          final index = navigationItems.lastIndexWhere(
-            (element) => element.label == pageLabel,
-          );
-          final currentIndex = index == -1 ? 0 : index;
-          // final navigationBar = CommonNavigationBar(
-          //   // viewMode: viewMode,
-          //   navigationItems: navigationItems,
-          //   currentIndex: currentIndex,
-          // );
-          final navigationBar = CommonDrawerNavigationBar(
-            // viewMode: viewMode,
-            navigationItems: navigationItems,
-            currentIndex: currentIndex,
-          );
-          return CommonScaffold(
-            key: globalState.homeScaffoldKey,
-            title: pageLabel == PageLabel.dashboard ? "Enzyme" : pageLabel.localName,
-            navigationBar: navigationBar,
-            body: child!,
-          );
-        },
-        child: _HomePageView(),
-      ),
-    );
+    return HomePage(key: globalState.homePageKey);
   }
 }
 
-class _HomePageView extends ConsumerStatefulWidget {
-  const _HomePageView();
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
 
   @override
-  ConsumerState createState() => _HomePageViewState();
+  ConsumerState createState() => HomePageState();
 }
 
-class _HomePageViewState extends ConsumerState<_HomePageView> {
-  late PageController _pageController;
+class HomePageState extends ConsumerState<HomePage> {
+  // late PageController _pageController;
+  final ValueNotifier<bool> _loading = ValueNotifier(false);
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(
-      initialPage: _pageIndex,
-      keepPage: true,
-    );
-    ref.listenManual(currentPageLabelProvider, (prev, next) {
-      if (prev != next) {
-        _toPage(next);
-      }
-    });
+    // _pageController = PageController(
+    //   initialPage: _pageIndex,
+    //   keepPage: true,
+    // );
+    // ref.listenManual(currentPageLabelProvider, (prev, next) {
+    //   if (prev != next) {
+    //     _toPage(next);
+    //   }
+    // });
     // ref.listenManual(currentNavigationsStateProvider, (prev, next) {
     //   if (prev?.value.length != next.value.length) {
     //     _updatePageController();
@@ -81,34 +54,63 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
     // });
   }
 
-  int get _pageIndex {
-    return navigationItems.lastIndexWhere(
-      (item) => item.label == globalState.appState.pageLabel,
-    );
+  // int get _pageIndex {
+  //   return navigationItems.lastIndexWhere(
+  //     (item) => item.label == globalState.appState.pageLabel,
+  //   );
+  // }
+
+  openDrawer() {
+    _scaffoldKey.currentState?.openDrawer();
   }
 
-  _toPage(PageLabel pageLabel, [bool ignoreAnimateTo = false]) async {
-    if (!mounted) {
-      return;
-    }
-    final navigationItems = ref.read(currentNavigationsStateProvider).value;
-    final index = navigationItems.indexWhere((item) => item.label == pageLabel);
-    if (index == -1) {
-      return;
-    }
-    final isAnimateToPage = ref.read(appSettingProvider).isAnimateToPage;
-    // final isMobile = ref.read(isMobileViewProvider);
-    globalState.homeScaffoldKey.currentState?.closeDrawer();
-    if (isAnimateToPage && true && !ignoreAnimateTo) {
-      await _pageController.animateToPage(
-        index,
-        duration: kTabScrollDuration,
-        curve: Curves.easeOut,
+  closeDrawer() {
+    _scaffoldKey.currentState?.closeDrawer();
+  }
+
+  Future<T?> loadingRun<T>(
+    Future<T> Function() futureFunction, {
+    String? title,
+  }) async {
+    _loading.value = true;
+    try {
+      final res = await futureFunction();
+      _loading.value = false;
+      return res;
+    } catch (e) {
+      globalState.showMessage(
+        title: title ?? appLocalizations.tip,
+        message: TextSpan(
+          text: e.toString(),
+        ),
       );
-    } else {
-      _pageController.jumpToPage(index);
+      _loading.value = false;
+      return null;
     }
   }
+
+  // _toPage(PageLabel pageLabel, [bool ignoreAnimateTo = false]) async {
+  //   if (!mounted) {
+  //     return;
+  //   }
+  //   final navigationItems = ref.read(currentNavigationsStateProvider).value;
+  //   final index = navigationItems.indexWhere((item) => item.label == pageLabel);
+  //   if (index == -1) {
+  //     return;
+  //   }
+  //   final isAnimateToPage = ref.read(appSettingProvider).isAnimateToPage;
+  //   // final isMobile = ref.read(isMobileViewProvider);
+  //   // globalState.homeScaffoldKey.currentState?.closeDrawer();
+  //   if (isAnimateToPage && true && !ignoreAnimateTo) {
+  //     await _pageController.animateToPage(
+  //       index,
+  //       duration: kTabScrollDuration,
+  //       curve: Curves.easeOut,
+  //     );
+  //   } else {
+  //     _pageController.jumpToPage(index);
+  //   }
+  // }
 
   // _updatePageController() {
   //   final pageLabel = globalState.appState.pageLabel;
@@ -117,36 +119,50 @@ class _HomePageViewState extends ConsumerState<_HomePageView> {
 
   @override
   void dispose() {
-    _pageController.dispose();
+    // _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final navigationItems = ref.watch(currentNavigationsStateProvider).value;
-    return PageView.builder(
-      controller: _pageController,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: navigationItems.length,
-      // onPageChanged: (index) {
-      //   debouncer.call(DebounceTag.pageChange, () {
-      //     WidgetsBinding.instance.addPostFrameCallback((_) {
-      //       if (_pageIndex != index) {
-      //         final pageLabel = navigationItems[index].label;
-      //         _toPage(pageLabel, false);
-      //       }
-      //     });
-      //   });
-      // },
-      itemBuilder: (_, index) {
-        final navigationItem = navigationItems[index];
-        return KeepScope(
-          keep: navigationItem.keep,
-          key: Key(navigationItem.label.name),
-          child: navigationItem.fragment,
-        );
-      },
+    final state = ref.watch(homeStateProvider);
+    // final viewMode = state.viewMode;
+    // final navigationItems = state.navigationItems;
+    final pageLabel = state.pageLabel;
+    final index = navigationItems.lastIndexWhere(
+      (element) => element.label == pageLabel,
     );
+    final currentIndex = index == -1 ? 0 : index;
+    // final navigationBar = CommonNavigationBar(
+    //   // viewMode: viewMode,
+    //   navigationItems: navigationItems,
+    //   currentIndex: currentIndex,
+    // );
+    final navigationBar = CommonDrawerNavigationBar(
+      // viewMode: viewMode,
+      navigationItems: navigationItems,
+      currentIndex: currentIndex,
+    );
+    return Scaffold(
+      key: _scaffoldKey,
+      drawer: navigationBar,
+      appBar: AppBar(
+        title: Text(pageLabel.localName),
+        leading: IconButton(
+          onPressed: () {
+            openDrawer();
+          },
+          icon: Icon(Icons.menu),
+        ),
+      ),
+      body: DashboardFragment(),
+    );
+    // return CommonScaffold(
+    //   key: globalState.homeScaffoldKey,
+    //   title: pageLabel == PageLabel.dashboard ? "Enzyme" : pageLabel.localName,
+    //   navigationBar: navigationBar,
+    //   body: child!,
+    // );
   }
 }
 

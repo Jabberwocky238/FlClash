@@ -12,7 +12,7 @@ class ApiController {
   useLoadingPage<T>(
     Future<T> Function() func,
   ) async {
-    final commonScaffoldState = globalState.homeScaffoldKey.currentState;
+    final commonScaffoldState = globalState.homePageKey.currentState;
     if (commonScaffoldState == null) {
       throw Exception("commonScaffoldState is null");
     }

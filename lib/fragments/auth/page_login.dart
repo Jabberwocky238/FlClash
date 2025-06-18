@@ -30,23 +30,8 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (_, ref, __) {
-        ref.listenManual(
-          isCurrentPageProvider(
-            PageLabel.auth,
-            handler: (pageLabel) => pageLabel == PageLabel.auth,
-          ),
-          (prev, next) {
-            if (prev != next && next == true) {
-              initPageState();
-            }
-          },
-          fireImmediately: true,
-        );
-        return SingleChildScrollView(
+  Widget _build(BuildContext context) {
+    return SingleChildScrollView(
           padding: baseInfoEdgeInsets,
           child: Column(
             children: [
@@ -60,10 +45,13 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
               ),
               _getButtonGroup(context),
             ],
-          ),
-        );
-      },
-    );
+        ),
+      );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return buildScaffoldView(_build(context), actions: actions, label: PageLabel.login);
   }
 
   Widget _getUserEmailItem(BuildContext context) {

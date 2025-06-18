@@ -1,5 +1,7 @@
 import 'package:jw_clash/common/common.dart';
 import 'package:flutter/material.dart';
+import 'package:jw_clash/enum/enum.dart';
+import 'package:jw_clash/state.dart';
 
 class BaseNavigator {
   static Future<T?> push<T>(BuildContext context, Widget child) async {
@@ -13,6 +15,36 @@ class BaseNavigator {
   static void pop<T>(BuildContext context, {T? result}) {
     Navigator.of(context).pop<T>(result);
   }
+
+  static bool canPop(BuildContext context) {
+    return Navigator.canPop(context);
+  }
+
+  static void popUntilCanNot(BuildContext context) {
+    while (canPop(context)) {
+      pop(context);
+    }
+  }
+}
+
+Widget buildScaffoldView(
+  Widget body, {
+  List<Widget>? actions,
+  PageLabel? label,
+}) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(label?.localName ?? ""),
+      leading: IconButton(
+        onPressed: () {
+          globalState.navigatorKey.currentState?.pop();
+        },
+        icon: Icon(Icons.arrow_back),
+      ),
+      actions: actions,
+    ),
+    body: body,
+  );
 }
 
 class CommonRoute<T> extends MaterialPageRoute<T> {
@@ -173,8 +205,7 @@ class _CommonPageTransitionState extends State<CommonPageTransition> {
         begin: const _CommonEdgeShadowDecoration(),
         end: _CommonEdgeShadowDecoration(
           <Color>[
-            widget.context.colorScheme.inverseSurface
-                .withValues(alpha: 0.02),
+            widget.context.colorScheme.inverseSurface.withValues(alpha: 0.02),
             Colors.transparent,
           ],
         ),

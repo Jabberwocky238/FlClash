@@ -11,7 +11,7 @@ import 'package:jw_clash/common/archive.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
-import 'package:jw_clash/widgets/dialog.dart';
+// import 'package:jw_clash/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/widgets/popup.dart';
@@ -231,7 +231,7 @@ class AppController {
 
   Future<void> updateClashConfig([bool? isPatch]) async {
     commonPrint.log("update clash patch: ${isPatch ?? false}");
-    final commonScaffoldState = globalState.homeScaffoldKey.currentState;
+    final commonScaffoldState = globalState.homePageKey.currentState;
     if (commonScaffoldState?.mounted != true) return;
     await commonScaffoldState?.loadingRun(() async {
       await _updateClashConfig(
@@ -287,7 +287,7 @@ class AppController {
     if (silence) {
       await _applyProfile();
     } else {
-      final commonScaffoldState = globalState.homeScaffoldKey.currentState;
+      final commonScaffoldState = globalState.homePageKey.currentState;
       if (commonScaffoldState?.mounted != true) return;
       await commonScaffoldState?.loadingRun(() async {
         await _applyProfile();
@@ -524,12 +524,20 @@ class AppController {
   }
 
   toPage(PageLabel pageLabel) {
-    _ref.read(currentPageLabelProvider.notifier).value = pageLabel;
+    final navigationItem =
+        navigationItems.firstWhere((element) => element.label == pageLabel);
+    BaseNavigator.popUntilCanNot(globalState.navigatorKey.currentState!.context);
+    showExtend(
+      globalState.navigatorKey.currentState!.context,
+      builder: (_, type) {
+        return navigationItem.builder(context);
+      },
+    );
   }
 
-  toProfiles() {
-    toPage(PageLabel.profiles);
-  }
+  // toProfiles() {
+  //   toPage(PageLabel.profiles);
+  // }
 
   initLink() {
     linkManager.initAppLinksListen(
@@ -607,8 +615,8 @@ class AppController {
     if (globalState.navigatorKey.currentState?.canPop() ?? false) {
       globalState.navigatorKey.currentState?.popUntil((route) => route.isFirst);
     }
-    toProfiles();
-    final commonScaffoldState = globalState.homeScaffoldKey.currentState;
+    // toProfiles();
+    final commonScaffoldState = globalState.homePageKey.currentState;
     if (commonScaffoldState?.mounted != true) return null;
     final profile = await commonScaffoldState?.loadingRun<Profile>(
       () async {
@@ -633,8 +641,8 @@ class AppController {
     }
     if (!context.mounted) return;
     globalState.navigatorKey.currentState?.popUntil((route) => route.isFirst);
-    toProfiles();
-    final commonScaffoldState = globalState.homeScaffoldKey.currentState;
+    // toProfiles();
+    final commonScaffoldState = globalState.homePageKey.currentState;
     if (commonScaffoldState?.mounted != true) return;
     final profile = await commonScaffoldState?.loadingRun<Profile?>(
       () async {

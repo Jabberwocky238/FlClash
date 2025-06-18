@@ -67,6 +67,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
         ref.watch(proxiesStateProvider),
         ref.watch(appSettingProvider.select((state) => state.testUrl)),
       );
+      initPageState();
     });
   }
 
@@ -229,8 +230,8 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
     return items;
   }
 
-  @override
-  Widget build(BuildContext context) {
+
+  Widget _build(BuildContext context) {
     final state = ref.watch(proxiesListSelectorStateProvider);
     if (state.groupNames.isEmpty) {
       return NullStatus(
@@ -254,6 +255,23 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
       itemBuilder: (_, index) {
         return items[index];
       },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(PageLabel.proxies.localName),
+        leading: IconButton(
+          onPressed: () {
+            globalState.navigatorKey.currentState?.pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        actions: actions,
+      ),
+      body: _build(context),
     );
   }
 }

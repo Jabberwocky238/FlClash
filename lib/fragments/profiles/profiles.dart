@@ -267,8 +267,7 @@ class ProfileItem extends StatelessWidget {
   // }
 
   _handleExportFile(BuildContext context) async {
-    final commonScaffoldState = context.commonScaffoldState;
-    final res = await commonScaffoldState?.loadingRun<bool>(
+    final res = await globalState.homePageKey.currentState?.loadingRun<bool>(
       () async {
         final file = await profile.getFile();
         final value = await picker.saveFile(

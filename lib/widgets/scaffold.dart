@@ -111,26 +111,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
     }
   }
 
-  Future<T?> loadingRun<T>(
-    Future<T> Function() futureFunction, {
-    String? title,
-  }) async {
-    _loading.value = true;
-    try {
-      final res = await futureFunction();
-      _loading.value = false;
-      return res;
-    } catch (e) {
-      globalState.showMessage(
-        title: title ?? appLocalizations.tip,
-        message: TextSpan(
-          text: e.toString(),
-        ),
-      );
-      _loading.value = false;
-      return null;
-    }
-  }
+
 
   // _handleClearInput() {
   //   _textController.text = "";
@@ -380,7 +361,7 @@ class CommonScaffoldState extends State<CommonScaffold> {
     );
     final scaffold = Scaffold(
       key: _scaffoldKey,
-      appBar: _buildAppBar(),
+      // appBar: _buildAppBar(),
       drawer: _sideNavigationBar,
       body: body,
       // backgroundColor: widget.backgroundColor,

@@ -20,6 +20,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'common/common.dart';
 import 'controller.dart';
 import 'models/models.dart';
+import 'pages/home.dart';
 
 typedef UpdateTasks = List<FutureOr Function()>;
 
@@ -44,7 +45,7 @@ class GlobalState {
   final navigatorKey = GlobalKey<NavigatorState>();
   late AppController appController;
   late AuthController authController;
-  GlobalKey<CommonScaffoldState> homeScaffoldKey = GlobalKey();
+  GlobalKey<HomePageState> homePageKey = GlobalKey();
 
   bool get isStart => startTime != null && startTime!.isBeforeNow;
 

@@ -18,11 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NavigationItem {
   Icon get icon => throw _privateConstructorUsedError;
   PageLabel get label => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  Widget get fragment => throw _privateConstructorUsedError;
-  bool get keep => throw _privateConstructorUsedError;
-  bool get isShow => throw _privateConstructorUsedError;
-  String? get path => throw _privateConstructorUsedError;
+  Widget Function(BuildContext) get builder =>
+      throw _privateConstructorUsedError;
   List<NavigationItemMode> get modes => throw _privateConstructorUsedError;
 
   /// Create a copy of NavigationItem
@@ -41,11 +38,7 @@ abstract class $NavigationItemCopyWith<$Res> {
   $Res call(
       {Icon icon,
       PageLabel label,
-      String? description,
-      Widget fragment,
-      bool keep,
-      bool isShow,
-      String? path,
+      Widget Function(BuildContext) builder,
       List<NavigationItemMode> modes});
 }
 
@@ -66,11 +59,7 @@ class _$NavigationItemCopyWithImpl<$Res, $Val extends NavigationItem>
   $Res call({
     Object? icon = null,
     Object? label = null,
-    Object? description = freezed,
-    Object? fragment = null,
-    Object? keep = null,
-    Object? isShow = null,
-    Object? path = freezed,
+    Object? builder = null,
     Object? modes = null,
   }) {
     return _then(_value.copyWith(
@@ -82,26 +71,10 @@ class _$NavigationItemCopyWithImpl<$Res, $Val extends NavigationItem>
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as PageLabel,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fragment: null == fragment
-          ? _value.fragment
-          : fragment // ignore: cast_nullable_to_non_nullable
-              as Widget,
-      keep: null == keep
-          ? _value.keep
-          : keep // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShow: null == isShow
-          ? _value.isShow
-          : isShow // ignore: cast_nullable_to_non_nullable
-              as bool,
-      path: freezed == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String?,
+      builder: null == builder
+          ? _value.builder
+          : builder // ignore: cast_nullable_to_non_nullable
+              as Widget Function(BuildContext),
       modes: null == modes
           ? _value.modes
           : modes // ignore: cast_nullable_to_non_nullable
@@ -121,11 +94,7 @@ abstract class _$$NavigationItemImplCopyWith<$Res>
   $Res call(
       {Icon icon,
       PageLabel label,
-      String? description,
-      Widget fragment,
-      bool keep,
-      bool isShow,
-      String? path,
+      Widget Function(BuildContext) builder,
       List<NavigationItemMode> modes});
 }
 
@@ -144,11 +113,7 @@ class __$$NavigationItemImplCopyWithImpl<$Res>
   $Res call({
     Object? icon = null,
     Object? label = null,
-    Object? description = freezed,
-    Object? fragment = null,
-    Object? keep = null,
-    Object? isShow = null,
-    Object? path = freezed,
+    Object? builder = null,
     Object? modes = null,
   }) {
     return _then(_$NavigationItemImpl(
@@ -160,26 +125,10 @@ class __$$NavigationItemImplCopyWithImpl<$Res>
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as PageLabel,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fragment: null == fragment
-          ? _value.fragment
-          : fragment // ignore: cast_nullable_to_non_nullable
-              as Widget,
-      keep: null == keep
-          ? _value.keep
-          : keep // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShow: null == isShow
-          ? _value.isShow
-          : isShow // ignore: cast_nullable_to_non_nullable
-              as bool,
-      path: freezed == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String?,
+      builder: null == builder
+          ? _value.builder
+          : builder // ignore: cast_nullable_to_non_nullable
+              as Widget Function(BuildContext),
       modes: null == modes
           ? _value._modes
           : modes // ignore: cast_nullable_to_non_nullable
@@ -194,11 +143,7 @@ class _$NavigationItemImpl implements _NavigationItem {
   const _$NavigationItemImpl(
       {required this.icon,
       required this.label,
-      this.description,
-      required this.fragment,
-      this.keep = true,
-      this.isShow = true,
-      this.path,
+      required this.builder,
       final List<NavigationItemMode> modes = const [
         NavigationItemMode.mobile,
         NavigationItemMode.desktop
@@ -210,17 +155,7 @@ class _$NavigationItemImpl implements _NavigationItem {
   @override
   final PageLabel label;
   @override
-  final String? description;
-  @override
-  final Widget fragment;
-  @override
-  @JsonKey()
-  final bool keep;
-  @override
-  @JsonKey()
-  final bool isShow;
-  @override
-  final String? path;
+  final Widget Function(BuildContext) builder;
   final List<NavigationItemMode> _modes;
   @override
   @JsonKey()
@@ -232,7 +167,7 @@ class _$NavigationItemImpl implements _NavigationItem {
 
   @override
   String toString() {
-    return 'NavigationItem(icon: $icon, label: $label, description: $description, fragment: $fragment, keep: $keep, isShow: $isShow, path: $path, modes: $modes)';
+    return 'NavigationItem(icon: $icon, label: $label, builder: $builder, modes: $modes)';
   }
 
   @override
@@ -242,26 +177,12 @@ class _$NavigationItemImpl implements _NavigationItem {
             other is _$NavigationItemImpl &&
             (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.label, label) || other.label == label) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.fragment, fragment) ||
-                other.fragment == fragment) &&
-            (identical(other.keep, keep) || other.keep == keep) &&
-            (identical(other.isShow, isShow) || other.isShow == isShow) &&
-            (identical(other.path, path) || other.path == path) &&
+            (identical(other.builder, builder) || other.builder == builder) &&
             const DeepCollectionEquality().equals(other._modes, _modes));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      icon,
-      label,
-      description,
-      fragment,
-      keep,
-      isShow,
-      path,
+  int get hashCode => Object.hash(runtimeType, icon, label, builder,
       const DeepCollectionEquality().hash(_modes));
 
   /// Create a copy of NavigationItem
@@ -278,11 +199,7 @@ abstract class _NavigationItem implements NavigationItem {
   const factory _NavigationItem(
       {required final Icon icon,
       required final PageLabel label,
-      final String? description,
-      required final Widget fragment,
-      final bool keep,
-      final bool isShow,
-      final String? path,
+      required final Widget Function(BuildContext) builder,
       final List<NavigationItemMode> modes}) = _$NavigationItemImpl;
 
   @override
@@ -290,15 +207,7 @@ abstract class _NavigationItem implements NavigationItem {
   @override
   PageLabel get label;
   @override
-  String? get description;
-  @override
-  Widget get fragment;
-  @override
-  bool get keep;
-  @override
-  bool get isShow;
-  @override
-  String? get path;
+  Widget Function(BuildContext) get builder;
   @override
   List<NavigationItemMode> get modes;
 

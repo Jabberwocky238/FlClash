@@ -60,8 +60,8 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  
+  Widget _build(BuildContext context) {
     final orderSelection = ref.watch(orderSelectionProvider);
     return ValueListenableBuilder<OrderSelectionPageState>(
       valueListenable: _state,
@@ -86,6 +86,23 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
           ),
         );
       },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(PageLabel.order.localName),
+        leading: IconButton(
+          onPressed: () {
+            globalState.navigatorKey.currentState?.pop();
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        actions: actions,
+      ),
+      body: _build(context),
     );
   }
 
@@ -134,8 +151,12 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
             return;
           }
           if (!authSetting.isLogin) {
-            globalState.showMessage(message: const TextSpan(text: "请先登录"));
-            globalState.appController.toPage(PageLabel.auth);
+            globalState.showMessage(
+              message: const TextSpan(text: "请先登录"),
+              afterConfirm: () {
+                globalState.appController.toPage(PageLabel.auth);
+              },
+            );
             return;
           }
           _order(selectedOrder, authSetting.token!);

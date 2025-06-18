@@ -84,7 +84,7 @@ class _EditProfileState extends State<EditProfile> {
     } else if (!hasUpdate) {
       appController.setProfileAndAutoApply(profile);
     } else {
-      globalState.homeScaffoldKey.currentState?.loadingRun(
+      globalState.homePageKey.currentState?.loadingRun(
         () async {
           await Future.delayed(
             commonDuration,
@@ -150,7 +150,7 @@ class _EditProfileState extends State<EditProfile> {
     if (!mounted) return;
     final title = widget.profile.label ?? widget.profile.id;
     final data = await BaseNavigator.push<String>(
-      globalState.homeScaffoldKey.currentContext!,
+      globalState.homePageKey.currentContext!,
       EditorPage(
         title: title,
         content: rawText!,

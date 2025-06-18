@@ -33,28 +33,28 @@ String? currentGroupName(Ref ref) {
   return groupName;
 }
 
-@riverpod
-NavigationItemsState navigationsState(Ref ref) {
-  final hasProxies = ref.watch(
-      currentGroupsStateProvider.select((state) => state.value.isNotEmpty));
-  return NavigationItemsState(
-    value: navigation.getItems(
-      hasProxies: hasProxies,
-    ),
-  );
-}
+// @riverpod
+// NavigationItemsState navigationsState(Ref ref) {
+//   final hasProxies = ref.watch(
+//       currentGroupsStateProvider.select((state) => state.value.isNotEmpty));
+//   return NavigationItemsState(
+//     value: navigation.getItems(
+//       hasProxies: hasProxies,
+//     ),
+//   );
+// }
 
-@riverpod
-NavigationItemsState currentNavigationsState(Ref ref) {
-  final navigationItemsState = ref.watch(navigationsStateProvider);
-  return NavigationItemsState(
-    value: navigationItemsState.value
-        .where(
-          (element) => true,
-        )
-        .toList(),
-  );
-}
+// @riverpod
+// NavigationItemsState currentNavigationsState(Ref ref) {
+//   final navigationItemsState = ref.watch(navigationsStateProvider);
+//   return NavigationItemsState(
+//     value: navigationItemsState.value
+//         .where(
+//           (element) => true,
+//         )
+//         .toList(),
+//   );
+// }
 
 @riverpod
 CoreState coreState(Ref ref) {
@@ -312,8 +312,7 @@ PackageListSelectorState packageListSelectorState(Ref ref) {
 @riverpod
 MoreToolsSelectorState moreToolsSelectorState(Ref ref) {
   // final viewMode = ref.watch(viewModeProvider);
-  final navigationItems = ref.watch(navigationsStateProvider.select((state) {
-    return state.value.where((element) {
+  final _navigationItems = navigationItems.where((element) {
       final isMore = element.modes.contains(NavigationItemMode.more);
       // final isDesktop = element.modes.contains(NavigationItemMode.desktop);
       if (isMore) return true;
@@ -322,9 +321,8 @@ MoreToolsSelectorState moreToolsSelectorState(Ref ref) {
       // }
       return true;
     }).toList();
-  }));
 
-  return MoreToolsSelectorState(navigationItems: navigationItems);
+  return MoreToolsSelectorState(navigationItems: _navigationItems);
 }
 
 @riverpod

@@ -16,11 +16,7 @@ class NavigationItem with _$NavigationItem {
   const factory NavigationItem({
     required Icon icon,
     required PageLabel label,
-    final String? description,
-    required Widget fragment,
-    @Default(true) bool keep,
-    @Default(true) bool isShow,
-    String? path,
+    required Widget Function(BuildContext context) builder,
     @Default([NavigationItemMode.mobile, NavigationItemMode.desktop]) List<NavigationItemMode> modes,
   }) = _NavigationItem;
 }

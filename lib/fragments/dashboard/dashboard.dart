@@ -1,6 +1,7 @@
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/providers/providers.dart';
+import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,16 +20,16 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment>
 
   @override
   initState() {
-    ref.listenManual(
-      isCurrentPageProvider(PageLabel.dashboard),
-      (prev, next) {
-        if (prev != next && next == true) {
-          initPageState();
-        }
-      },
-      fireImmediately: true,
-    );
-    return super.initState();
+  //   ref.listenManual(
+  //     isCurrentPageProvider(PageLabel.dashboard),
+  //     (prev, next) {
+  //       if (prev != next && next == true) {
+  //         initPageState();
+  //       }
+  //     },
+  //     fireImmediately: true,
+  //   );
+  //   return super.initState();
   }
 
   @override
@@ -88,8 +89,7 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment>
   //       );
   // }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _build(BuildContext context) {
     final dashboardState = ref.watch(dashboardStateProvider);
     final columns = 8;
     return Align(
@@ -132,5 +132,10 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment>
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _build(context);
   }
 }
