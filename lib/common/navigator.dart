@@ -28,10 +28,10 @@ class BaseNavigator {
 }
 
 Widget buildScaffoldView(
-  Widget body, {
+  Widget body, [
   List<Widget>? actions,
   PageLabel? label,
-}) {
+]) {
   return Scaffold(
     appBar: AppBar(
       title: Text(label?.localName ?? ""),
@@ -53,10 +53,10 @@ class CommonRoute<T> extends MaterialPageRoute<T> {
   });
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 500);
+  Duration get transitionDuration => const Duration(milliseconds: 200);
 
   @override
-  Duration get reverseTransitionDuration => const Duration(milliseconds: 500);
+  Duration get reverseTransitionDuration => const Duration(milliseconds: 200);
 }
 
 final Animatable<Offset> _kRightMiddleTween = Tween<Offset>(

@@ -108,7 +108,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
 
   @override
   Widget build(BuildContext context) {
-    return buildScaffoldView(_build(context), actions: actions, label: PageLabel.auth);
+    return buildScaffoldView(_build(context), actions, PageLabel.auth);
   }
 
   Widget _getUserEmailItem(BuildContext context) {

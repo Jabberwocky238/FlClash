@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
-import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +50,7 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
 
   @override
   Widget build(BuildContext context) {
-    return buildScaffoldView(_build(context), actions: actions, label: PageLabel.login);
+    return buildScaffoldView(_build(context), actions, PageLabel.login);
   }
 
   Widget _getUserEmailItem(BuildContext context) {

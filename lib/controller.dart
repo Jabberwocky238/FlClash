@@ -5,7 +5,6 @@ import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:intl/intl.dart';
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/archive.dart';
 import 'package:jw_clash/enum/enum.dart';
@@ -14,7 +13,6 @@ import 'package:jw_clash/state.dart';
 // import 'package:jw_clash/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jw_clash/widgets/popup.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';

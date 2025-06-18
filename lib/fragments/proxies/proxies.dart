@@ -260,19 +260,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(PageLabel.proxies.localName),
-        leading: IconButton(
-          onPressed: () {
-            globalState.navigatorKey.currentState?.pop();
-          },
-          icon: Icon(Icons.arrow_back),
-        ),
-        actions: actions,
-      ),
-      body: _build(context),
-    );
+    return buildScaffoldView(_build(context), actions, PageLabel.proxies);
   }
 }
 

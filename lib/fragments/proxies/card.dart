@@ -112,11 +112,11 @@ class ProxyCard extends StatelessWidget {
 
   _reportNeedBuyPro(WidgetRef ref) {
     globalState.showMessage(
-        message: TextSpan(text: "需购买专业版套餐才可使用"),
-        cancelable: false,
-        afterConfirm: () {
-          globalState.appController.toPage(PageLabel.order);
-        });
+      message: TextSpan(text: "需购买专业版套餐才可使用"),
+      cancelable: false,
+      afterConfirm: () {
+        globalState.appController.toPage(PageLabel.order);
+      });
   }
 
   @override
@@ -142,7 +142,7 @@ class ProxyCard extends StatelessWidget {
                   }
                 }
                 _changeProxy(ref);
-                globalState.appController.toPage(PageLabel.dashboard);
+                BaseNavigator.popUntilCanNot(context);
               },
               isSelected: selectedProxyName == proxy.name,
               child: child!,

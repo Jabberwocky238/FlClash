@@ -54,8 +54,7 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
 
   @override
   Widget build(BuildContext context) {
-    return buildScaffoldView(_build(context),
-        actions: actions, label: PageLabel.register);
+    return buildScaffoldView(_build(context), actions, PageLabel.register);
   }
 
   Widget _getUserEmailItem(BuildContext context) {
