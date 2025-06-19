@@ -225,13 +225,10 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
       );
     }
 
-    final items = _buildItems(
-      state.groupNames,
-      // state.currentUnfoldSet,
-    );
+    final items = _buildItems(state.groupNames);
     final itemsOffset = _getItemHeightList(items);
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16).copyWith(bottom: 48),
       // controller: _controller,
       itemExtentBuilder: (index, __) {
         // return 26;
