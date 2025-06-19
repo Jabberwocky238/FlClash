@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:jw_clash/common/common.dart';
-import 'package:jw_clash/enum/enum.dart';
+// import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/fragments/dashboard/dashboard.dart';
 import 'package:jw_clash/fragments/dashboard/widgets/start_button.dart';
 // import 'package:jw_clash/models/models.dart';
-import 'package:jw_clash/providers/providers.dart';
+// import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/navigation_drawer.dart';
 import 'package:jw_clash/widgets/widgets.dart';
@@ -113,7 +113,7 @@ class HomePageState extends State<HomePage> {
           key: _scaffoldKey,
           drawer: navigationBar,
           appBar: AppBar(
-            title: Text("Enzyme"),
+            title: Text("Enzyme VPN"),
             leading: IconButton(
               onPressed: () {
                 openDrawer();

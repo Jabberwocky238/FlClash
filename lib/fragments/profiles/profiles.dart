@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/fragments/profiles/edit_profile.dart';
+// import 'package:jw_clash/fragments/profiles/edit_profile.dart';
 import 'package:jw_clash/fragments/profiles/override_profile.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
