@@ -24,7 +24,8 @@
         android:name=".FlClashApplication"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="JWClash">
+        android:label="Enzyme"
+        android:enableOnBackInvokedCallback="true">
         <activity
             android:name="com.follow.clash.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -57,7 +58,7 @@
 
                 <data android:scheme="clash" />
                 <data android:scheme="clashmeta" />
-                <data android:scheme="jwclash" />
+                <data android:scheme="enzyme" />
 
                 <data android:host="install-config" />
             </intent-filter>
@@ -89,7 +90,7 @@
             android:name=".services.FlClashTileService"
             android:exported="true"
             android:icon="@drawable/ic_stat_name"
-            android:label="JWClash"
+            android:label="Enzyme"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             tools:targetApi="n">
             <intent-filter>
