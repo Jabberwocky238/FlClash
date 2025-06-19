@@ -109,12 +109,12 @@ class GroupsState with _$GroupsState {
   }) = _GroupsState;
 }
 
-@freezed
-class NavigationItemsState with _$NavigationItemsState {
-  const factory NavigationItemsState({
-    required List<NavigationItem> value,
-  }) = _NavigationItemsState;
-}
+// @freezed
+// class NavigationItemsState with _$NavigationItemsState {
+//   const factory NavigationItemsState({
+//     required List<NavigationItem> value,
+//   }) = _NavigationItemsState;
+// }
 
 @freezed
 class ProxiesListSelectorState with _$ProxiesListSelectorState {
@@ -195,20 +195,20 @@ extension PackageListSelectorStateExt on PackageListSelectorState {
   }
 }
 
-@freezed
-class ProxiesListHeaderSelectorState with _$ProxiesListHeaderSelectorState {
-  const factory ProxiesListHeaderSelectorState({
-    required double offset,
-    required int currentIndex,
-  }) = _ProxiesListHeaderSelectorState;
-}
+// @freezed
+// class ProxiesListHeaderSelectorState with _$ProxiesListHeaderSelectorState {
+//   const factory ProxiesListHeaderSelectorState({
+//     required double offset,
+//     required int currentIndex,
+//   }) = _ProxiesListHeaderSelectorState;
+// }
 
-@freezed
-class ProxiesActionsState with _$ProxiesActionsState {
-  const factory ProxiesActionsState({
-    required PageLabel pageLabel,
-  }) = _ProxiesActionsState;
-}
+// @freezed
+// class ProxiesActionsState with _$ProxiesActionsState {
+//   const factory ProxiesActionsState({
+//     required PageLabel pageLabel,
+//   }) = _ProxiesActionsState;
+// }
 
 @freezed
 class ProxyState with _$ProxyState {
@@ -230,13 +230,13 @@ class ClashConfigState with _$ClashConfigState {
   }) = _ClashConfigState;
 }
 
-@freezed
-class DashboardState with _$DashboardState {
-  const factory DashboardState({
-    required List<DashboardWidget> dashboardWidgets,
-    // required double viewWidth,
-  }) = _DashboardState;
-}
+// @freezed
+// class DashboardState with _$DashboardState {
+//   const factory DashboardState({
+//     required List<DashboardWidget> dashboardWidgets,
+//     // required double viewWidth,
+//   }) = _DashboardState;
+// }
 
 @freezed
 class ProxyCardState with _$ProxyCardState {

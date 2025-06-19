@@ -138,42 +138,6 @@ final homeStateProvider = AutoDisposeProvider<HomeState>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef HomeStateRef = AutoDisposeProviderRef<HomeState>;
-String _$dashboardStateHash() => r'fe21d0364d8cb911ee6495c5632362e3d41e5f20';
-
-/// See also [dashboardState].
-@ProviderFor(dashboardState)
-final dashboardStateProvider = AutoDisposeProvider<DashboardState>.internal(
-  dashboardState,
-  name: r'dashboardStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$dashboardStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef DashboardStateRef = AutoDisposeProviderRef<DashboardState>;
-String _$proxiesActionsStateHash() =>
-    r'cbf0fa403c27d79ba972816da18acd563c102e08';
-
-/// See also [proxiesActionsState].
-@ProviderFor(proxiesActionsState)
-final proxiesActionsStateProvider =
-    AutoDisposeProvider<ProxiesActionsState>.internal(
-  proxiesActionsState,
-  name: r'proxiesActionsStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$proxiesActionsStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ProxiesActionsStateRef = AutoDisposeProviderRef<ProxiesActionsState>;
 String _$startButtonSelectorStateHash() =>
     r'537aff93c98b0a689cf8cabd080c610c9c58e611';
 

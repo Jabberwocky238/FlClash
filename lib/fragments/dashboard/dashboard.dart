@@ -89,7 +89,7 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment> {
   // }
 
   Widget _build(BuildContext context) {
-    final dashboardState = ref.watch(dashboardStateProvider);
+    // final dashboardState = ref.watch(dashboardStateProvider);
     final columns = 8;
     return Align(
       alignment: Alignment.topCenter,
@@ -103,7 +103,7 @@ class _DashboardFragmentState extends ConsumerState<DashboardFragment> {
           crossAxisSpacing: 16.ap,
           mainAxisSpacing: 16.ap,
           children: [
-            ...dashboardState.dashboardWidgets
+            ...defaultDashboardWidgets
                 .where(
                   (item) => item.platforms.contains(
                     SupportPlatform.currentPlatform,

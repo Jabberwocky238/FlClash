@@ -160,33 +160,33 @@ HomeState homeState(Ref ref) {
   );
 }
 
-@riverpod
-DashboardState dashboardState(Ref ref) {
-  // final dashboardWidgets =
-  //     ref.watch(appSettingProvider.select((state) => state.dashboardWidgets));
-  final dashboardWidgets = defaultDashboardWidgets;
-  // final viewWidth = ref.watch(viewWidthProvider);
-  return DashboardState(
-    dashboardWidgets: dashboardWidgets,
-    // viewWidth: viewWidth,
-  );
-}
+// @riverpod
+// DashboardState dashboardState(Ref ref) {
+//   // final dashboardWidgets =
+//   //     ref.watch(appSettingProvider.select((state) => state.dashboardWidgets));
+//   final dashboardWidgets = defaultDashboardWidgets;
+//   // final viewWidth = ref.watch(viewWidthProvider);
+//   return DashboardState(
+//     dashboardWidgets: dashboardWidgets,
+//     // viewWidth: viewWidth,
+//   );
+// }
 
-@riverpod
-ProxiesActionsState proxiesActionsState(Ref ref) {
-  final pageLabel = ref.watch(currentPageLabelProvider);
-  // final hasProviders = ref.watch(providersProvider.select(
-  //   (state) => state.isNotEmpty,
-  // ));
-  // final type = ref.watch(proxiesStyleSettingProvider.select(
-  //   (state) => state.type,
-  // ));
-  return ProxiesActionsState(
-    pageLabel: pageLabel,
-    // hasProviders: hasProviders,
-    // type: type,
-  );
-}
+// @riverpod
+// ProxiesActionsState proxiesActionsState(Ref ref) {
+//   final pageLabel = ref.watch(currentPageLabelProvider);
+//   // final hasProviders = ref.watch(providersProvider.select(
+//   //   (state) => state.isNotEmpty,
+//   // ));
+//   // final type = ref.watch(proxiesStyleSettingProvider.select(
+//   //   (state) => state.type,
+//   // ));
+//   return ProxiesActionsState(
+//     pageLabel: pageLabel,
+//     // hasProviders: hasProviders,
+//     // type: type,
+//   );
+// }
 
 @riverpod
 StartButtonSelectorState startButtonSelectorState(Ref ref) {
