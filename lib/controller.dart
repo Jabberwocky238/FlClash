@@ -398,7 +398,7 @@ class AppController {
     await preferences.clearPreferences();
     commonPrint.log("clear preferences");
     globalState.config = Config(
-      themeProps: defaultThemeProps,
+      // themeProps: defaultThemeProps,
     );
   }
 
@@ -969,7 +969,7 @@ class AppController {
       _ref.read(currentProfileIdProvider.notifier).value =
           config.currentProfileId;
       // _ref.read(appDAVSettingProvider.notifier).value = config.dav;
-      _ref.read(themeSettingProvider.notifier).value = config.themeProps;
+      // _ref.read(themeSettingProvider.notifier).value = config.themeProps;
       // _ref.read(windowSettingProvider.notifier).value = config.windowProps;
       _ref.read(vpnSettingProvider.notifier).value = config.vpnProps;
       // _ref.read(proxiesStyleSettingProvider.notifier).value =

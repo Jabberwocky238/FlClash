@@ -148,23 +148,6 @@ const _$RouteModeEnumMap = {
   RouteMode.config: 'config',
 };
 
-_$ThemePropsImpl _$$ThemePropsImplFromJson(Map<String, dynamic> json) =>
-    _$ThemePropsImpl(
-      themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
-          ThemeMode.dark,
-    );
-
-Map<String, dynamic> _$$ThemePropsImplToJson(_$ThemePropsImpl instance) =>
-    <String, dynamic>{
-      'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
-    };
-
-const _$ThemeModeEnumMap = {
-  ThemeMode.system: 'system',
-  ThemeMode.light: 'light',
-  ThemeMode.dark: 'dark',
-};
-
 _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       appSetting: json['appSetting'] == null
           ? defaultAppSettingProps
@@ -186,8 +169,6 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       vpnProps: json['vpnProps'] == null
           ? defaultVpnProps
           : VpnProps.fromJson(json['vpnProps'] as Map<String, dynamic>?),
-      themeProps:
-          ThemeProps.safeFromJson(json['themeProps'] as Map<String, Object?>?),
       windowProps: json['windowProps'] == null
           ? defaultWindowProps
           : WindowProps.fromJson(json['windowProps'] as Map<String, dynamic>?),
@@ -206,7 +187,6 @@ Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
       'authProps': instance.authProps,
       'networkProps': instance.networkProps,
       'vpnProps': instance.vpnProps,
-      'themeProps': instance.themeProps,
       'windowProps': instance.windowProps,
       'patchClashConfig': instance.patchClashConfig,
     };

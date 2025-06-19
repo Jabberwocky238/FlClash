@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'developer.dart';
-import 'theme.dart';
 import 'package:path/path.dart' show dirname, join;
 
 class ToolsFragment extends ConsumerStatefulWidget {
@@ -68,7 +67,7 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
       title: appLocalizations.settings,
       items: [
         _LocaleItem(),
-        _ThemeItem(),
+        // _ThemeItem(),
         // _BackupItem(), // WEBDAV
         // if (system.isDesktop) _HotkeyItem(),
         if (Platform.isWindows) _LoopbackItem(),
@@ -145,22 +144,22 @@ class _LocaleItem extends ConsumerWidget {
   }
 }
 
-class _ThemeItem extends StatelessWidget {
-  const _ThemeItem();
+// class _ThemeItem extends StatelessWidget {
+//   const _ThemeItem();
 
-  @override
-  Widget build(BuildContext context) {
-    return ListItem.open(
-      leading: const Icon(Icons.style),
-      title: Text(appLocalizations.theme),
-      subtitle: Text(appLocalizations.themeDesc),
-      delegate: OpenDelegate(
-        title: appLocalizations.theme,
-        widget: const ThemeFragment(),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListItem.open(
+//       leading: const Icon(Icons.style),
+//       title: Text(appLocalizations.theme),
+//       subtitle: Text(appLocalizations.themeDesc),
+//       delegate: OpenDelegate(
+//         title: appLocalizations.theme,
+//         widget: const ThemeFragment(),
+//       ),
+//     );
+//   }
+// }
 
 // class _BackupItem extends StatelessWidget {
 //   const _BackupItem();

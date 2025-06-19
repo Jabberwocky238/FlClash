@@ -81,24 +81,24 @@ class NetworkSetting extends _$NetworkSetting with AutoDisposeNotifierMixin {
   }
 }
 
-@riverpod
-class ThemeSetting extends _$ThemeSetting with AutoDisposeNotifierMixin {
-  @override
-  ThemeProps build() {
-    return globalState.config.themeProps;
-  }
+// @riverpod
+// class ThemeSetting extends _$ThemeSetting with AutoDisposeNotifierMixin {
+//   @override
+//   ThemeProps build() {
+//     return globalState.config.themeProps;
+//   }
 
-  @override
-  onUpdate(value) {
-    globalState.config = globalState.config.copyWith(
-      themeProps: value,
-    );
-  }
+//   @override
+//   onUpdate(value) {
+//     globalState.config = globalState.config.copyWith(
+//       themeProps: value,
+//     );
+//   }
 
-  updateState(ThemeProps Function(ThemeProps state) builder) {
-    state = builder(state);
-  }
-}
+//   updateState(ThemeProps Function(ThemeProps state) builder) {
+//     state = builder(state);
+//   }
+// }
 
 @riverpod
 class AuthSetting extends _$AuthSetting with AutoDisposeNotifierMixin {

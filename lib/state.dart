@@ -82,8 +82,7 @@ class GlobalState {
 
   init() async {
     packageInfo = await PackageInfo.fromPlatform();
-    config = await preferences.getConfig() ??
-        Config(themeProps: defaultThemeProps);
+    config = await preferences.getConfig() ?? Config();
     await globalState.migrateOldData(config);
     await AppLocalizations.load(
       utils.getLocaleForString(config.appSetting.locale) ??

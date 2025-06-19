@@ -1403,160 +1403,6 @@ abstract class _NetworkProps implements NetworkProps {
       throw _privateConstructorUsedError;
 }
 
-ThemeProps _$ThemePropsFromJson(Map<String, dynamic> json) {
-  return _ThemeProps.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ThemeProps {
-// int? primaryColor,
-  ThemeMode get themeMode => throw _privateConstructorUsedError;
-
-  /// Serializes this ThemeProps to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ThemeProps
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ThemePropsCopyWith<ThemeProps> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ThemePropsCopyWith<$Res> {
-  factory $ThemePropsCopyWith(
-          ThemeProps value, $Res Function(ThemeProps) then) =
-      _$ThemePropsCopyWithImpl<$Res, ThemeProps>;
-  @useResult
-  $Res call({ThemeMode themeMode});
-}
-
-/// @nodoc
-class _$ThemePropsCopyWithImpl<$Res, $Val extends ThemeProps>
-    implements $ThemePropsCopyWith<$Res> {
-  _$ThemePropsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ThemeProps
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themeMode = null,
-  }) {
-    return _then(_value.copyWith(
-      themeMode: null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ThemePropsImplCopyWith<$Res>
-    implements $ThemePropsCopyWith<$Res> {
-  factory _$$ThemePropsImplCopyWith(
-          _$ThemePropsImpl value, $Res Function(_$ThemePropsImpl) then) =
-      __$$ThemePropsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ThemeMode themeMode});
-}
-
-/// @nodoc
-class __$$ThemePropsImplCopyWithImpl<$Res>
-    extends _$ThemePropsCopyWithImpl<$Res, _$ThemePropsImpl>
-    implements _$$ThemePropsImplCopyWith<$Res> {
-  __$$ThemePropsImplCopyWithImpl(
-      _$ThemePropsImpl _value, $Res Function(_$ThemePropsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ThemeProps
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? themeMode = null,
-  }) {
-    return _then(_$ThemePropsImpl(
-      themeMode: null == themeMode
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ThemePropsImpl implements _ThemeProps {
-  const _$ThemePropsImpl({this.themeMode = ThemeMode.dark});
-
-  factory _$ThemePropsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ThemePropsImplFromJson(json);
-
-// int? primaryColor,
-  @override
-  @JsonKey()
-  final ThemeMode themeMode;
-
-  @override
-  String toString() {
-    return 'ThemeProps(themeMode: $themeMode)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ThemePropsImpl &&
-            (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, themeMode);
-
-  /// Create a copy of ThemeProps
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ThemePropsImplCopyWith<_$ThemePropsImpl> get copyWith =>
-      __$$ThemePropsImplCopyWithImpl<_$ThemePropsImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ThemePropsImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ThemeProps implements ThemeProps {
-  const factory _ThemeProps({final ThemeMode themeMode}) = _$ThemePropsImpl;
-
-  factory _ThemeProps.fromJson(Map<String, dynamic> json) =
-      _$ThemePropsImpl.fromJson;
-
-// int? primaryColor,
-  @override
-  ThemeMode get themeMode;
-
-  /// Create a copy of ThemeProps
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ThemePropsImplCopyWith<_$ThemePropsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 Config _$ConfigFromJson(Map<String, dynamic> json) {
   return _Config.fromJson(json);
 }
@@ -1570,10 +1416,9 @@ mixin _$Config {
   bool get overrideDns => throw _privateConstructorUsedError;
   AuthProps get authProps => throw _privateConstructorUsedError;
   NetworkProps get networkProps => throw _privateConstructorUsedError;
-  VpnProps get vpnProps => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: ThemeProps.safeFromJson)
-  ThemeProps get themeProps =>
-      throw _privateConstructorUsedError; // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
+  VpnProps get vpnProps =>
+      throw _privateConstructorUsedError; // @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
+// @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
   WindowProps get windowProps => throw _privateConstructorUsedError;
   ClashConfig get patchClashConfig => throw _privateConstructorUsedError;
 
@@ -1600,7 +1445,6 @@ abstract class $ConfigCopyWith<$Res> {
       AuthProps authProps,
       NetworkProps networkProps,
       VpnProps vpnProps,
-      @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
       WindowProps windowProps,
       ClashConfig patchClashConfig});
 
@@ -1608,7 +1452,6 @@ abstract class $ConfigCopyWith<$Res> {
   $AuthPropsCopyWith<$Res> get authProps;
   $NetworkPropsCopyWith<$Res> get networkProps;
   $VpnPropsCopyWith<$Res> get vpnProps;
-  $ThemePropsCopyWith<$Res> get themeProps;
   $WindowPropsCopyWith<$Res> get windowProps;
   $ClashConfigCopyWith<$Res> get patchClashConfig;
 }
@@ -1635,7 +1478,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
     Object? authProps = null,
     Object? networkProps = null,
     Object? vpnProps = null,
-    Object? themeProps = null,
     Object? windowProps = null,
     Object? patchClashConfig = null,
   }) {
@@ -1668,10 +1510,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
           ? _value.vpnProps
           : vpnProps // ignore: cast_nullable_to_non_nullable
               as VpnProps,
-      themeProps: null == themeProps
-          ? _value.themeProps
-          : themeProps // ignore: cast_nullable_to_non_nullable
-              as ThemeProps,
       windowProps: null == windowProps
           ? _value.windowProps
           : windowProps // ignore: cast_nullable_to_non_nullable
@@ -1727,16 +1565,6 @@ class _$ConfigCopyWithImpl<$Res, $Val extends Config>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ThemePropsCopyWith<$Res> get themeProps {
-    return $ThemePropsCopyWith<$Res>(_value.themeProps, (value) {
-      return _then(_value.copyWith(themeProps: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Config
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $WindowPropsCopyWith<$Res> get windowProps {
     return $WindowPropsCopyWith<$Res>(_value.windowProps, (value) {
       return _then(_value.copyWith(windowProps: value) as $Val);
@@ -1770,7 +1598,6 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       AuthProps authProps,
       NetworkProps networkProps,
       VpnProps vpnProps,
-      @JsonKey(fromJson: ThemeProps.safeFromJson) ThemeProps themeProps,
       WindowProps windowProps,
       ClashConfig patchClashConfig});
 
@@ -1782,8 +1609,6 @@ abstract class _$$ConfigImplCopyWith<$Res> implements $ConfigCopyWith<$Res> {
   $NetworkPropsCopyWith<$Res> get networkProps;
   @override
   $VpnPropsCopyWith<$Res> get vpnProps;
-  @override
-  $ThemePropsCopyWith<$Res> get themeProps;
   @override
   $WindowPropsCopyWith<$Res> get windowProps;
   @override
@@ -1810,7 +1635,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
     Object? authProps = null,
     Object? networkProps = null,
     Object? vpnProps = null,
-    Object? themeProps = null,
     Object? windowProps = null,
     Object? patchClashConfig = null,
   }) {
@@ -1843,10 +1667,6 @@ class __$$ConfigImplCopyWithImpl<$Res>
           ? _value.vpnProps
           : vpnProps // ignore: cast_nullable_to_non_nullable
               as VpnProps,
-      themeProps: null == themeProps
-          ? _value.themeProps
-          : themeProps // ignore: cast_nullable_to_non_nullable
-              as ThemeProps,
       windowProps: null == windowProps
           ? _value.windowProps
           : windowProps // ignore: cast_nullable_to_non_nullable
@@ -1871,7 +1691,6 @@ class _$ConfigImpl implements _Config {
       this.authProps = defaultAuthProps,
       this.networkProps = defaultNetworkProps,
       this.vpnProps = defaultVpnProps,
-      @JsonKey(fromJson: ThemeProps.safeFromJson) required this.themeProps,
       this.windowProps = defaultWindowProps,
       this.patchClashConfig = defaultClashConfig})
       : _profiles = profiles;
@@ -1905,9 +1724,7 @@ class _$ConfigImpl implements _Config {
   @override
   @JsonKey()
   final VpnProps vpnProps;
-  @override
-  @JsonKey(fromJson: ThemeProps.safeFromJson)
-  final ThemeProps themeProps;
+// @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
 // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
   @override
   @JsonKey()
@@ -1918,7 +1735,7 @@ class _$ConfigImpl implements _Config {
 
   @override
   String toString() {
-    return 'Config(appSetting: $appSetting, profiles: $profiles, currentProfileId: $currentProfileId, overrideDns: $overrideDns, authProps: $authProps, networkProps: $networkProps, vpnProps: $vpnProps, themeProps: $themeProps, windowProps: $windowProps, patchClashConfig: $patchClashConfig)';
+    return 'Config(appSetting: $appSetting, profiles: $profiles, currentProfileId: $currentProfileId, overrideDns: $overrideDns, authProps: $authProps, networkProps: $networkProps, vpnProps: $vpnProps, windowProps: $windowProps, patchClashConfig: $patchClashConfig)';
   }
 
   @override
@@ -1939,8 +1756,6 @@ class _$ConfigImpl implements _Config {
                 other.networkProps == networkProps) &&
             (identical(other.vpnProps, vpnProps) ||
                 other.vpnProps == vpnProps) &&
-            (identical(other.themeProps, themeProps) ||
-                other.themeProps == themeProps) &&
             (identical(other.windowProps, windowProps) ||
                 other.windowProps == windowProps) &&
             (identical(other.patchClashConfig, patchClashConfig) ||
@@ -1958,7 +1773,6 @@ class _$ConfigImpl implements _Config {
       authProps,
       networkProps,
       vpnProps,
-      themeProps,
       windowProps,
       patchClashConfig);
 
@@ -1988,8 +1802,6 @@ abstract class _Config implements Config {
       final AuthProps authProps,
       final NetworkProps networkProps,
       final VpnProps vpnProps,
-      @JsonKey(fromJson: ThemeProps.safeFromJson)
-      required final ThemeProps themeProps,
       final WindowProps windowProps,
       final ClashConfig patchClashConfig}) = _$ConfigImpl;
 
@@ -2009,11 +1821,9 @@ abstract class _Config implements Config {
   @override
   NetworkProps get networkProps;
   @override
-  VpnProps get vpnProps;
-  @override
-  @JsonKey(fromJson: ThemeProps.safeFromJson)
-  ThemeProps
-      get themeProps; // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
+  VpnProps
+      get vpnProps; // @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
+// @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
   @override
   WindowProps get windowProps;
   @override

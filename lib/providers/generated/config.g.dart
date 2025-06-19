@@ -52,21 +52,6 @@ final networkSettingProvider =
 );
 
 typedef _$NetworkSetting = AutoDisposeNotifier<NetworkProps>;
-String _$themeSettingHash() => r'ae5eeaad9729627eaa1b3ccf0266c13bf2ce68d4';
-
-/// See also [ThemeSetting].
-@ProviderFor(ThemeSetting)
-final themeSettingProvider =
-    AutoDisposeNotifierProvider<ThemeSetting, ThemeProps>.internal(
-  ThemeSetting.new,
-  name: r'themeSettingProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$themeSettingHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ThemeSetting = AutoDisposeNotifier<ThemeProps>;
 String _$authSettingHash() => r'c57ad8ad6e0374f8fd1689069b1c7fc35552ee6c';
 
 /// See also [AuthSetting].

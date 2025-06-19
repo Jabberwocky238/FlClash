@@ -140,7 +140,7 @@ class ApplicationState extends ConsumerState<Application> {
           builder: (_, ref, child) {
             final locale =
                 ref.watch(appSettingProvider.select((state) => state.locale));
-            final themeProps = ref.watch(themeSettingProvider);
+            // final themeProps = ref.watch(themeSettingProvider);
             return MaterialApp(
               debugShowCheckedModeBanner: true,
               navigatorKey: globalState.navigatorKey,
@@ -161,7 +161,7 @@ class ApplicationState extends ConsumerState<Application> {
               title: appName,
               locale: utils.getLocaleForString(locale),
               supportedLocales: AppLocalizations.delegate.supportedLocales,
-              themeMode: themeProps.themeMode,
+              themeMode: ThemeMode.dark,
               theme: ThemeData(
                 useMaterial3: true,
                 pageTransitionsTheme: _pageTransitionsTheme,

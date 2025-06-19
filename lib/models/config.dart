@@ -39,7 +39,7 @@ const defaultAuthProps = AuthProps();
 const defaultWindowProps = WindowProps();
 const defaultAccessControl = AccessControl();
 // const defaultWebViewParams = WebViewParams();
-final defaultThemeProps = ThemeProps();
+// final defaultThemeProps = ThemeProps();
 
 @freezed
 class AppSettingProps with _$AppSettingProps {
@@ -148,29 +148,29 @@ class NetworkProps with _$NetworkProps {
 //       json == null ? defaultProxiesStyle : _$ProxiesStyleFromJson(json);
 // }
 
-@freezed
-class ThemeProps with _$ThemeProps {
-  const factory ThemeProps({
-    // int? primaryColor,
-    @Default(ThemeMode.dark) ThemeMode themeMode,
-    // @Default(DynamicSchemeVariant.vibrant) DynamicSchemeVariant schemeVariant,
-    // @Default(false) bool pureBlack,
-  }) = _ThemeProps;
+// @freezed
+// class ThemeProps with _$ThemeProps {
+//   const factory ThemeProps({
+//     // int? primaryColor,
+//     @Default(ThemeMode.dark) ThemeMode themeMode,
+//     // @Default(DynamicSchemeVariant.vibrant) DynamicSchemeVariant schemeVariant,
+//     // @Default(false) bool pureBlack,
+//   }) = _ThemeProps;
 
-  factory ThemeProps.fromJson(Map<String, Object?> json) =>
-      _$ThemePropsFromJson(json);
+//   factory ThemeProps.fromJson(Map<String, Object?> json) =>
+//       _$ThemePropsFromJson(json);
 
-  factory ThemeProps.safeFromJson(Map<String, Object?>? json) {
-    if (json == null) {
-      return defaultThemeProps;
-    }
-    try {
-      return ThemeProps.fromJson(json);
-    } catch (_) {
-      return defaultThemeProps;
-    }
-  }
-}
+//   factory ThemeProps.safeFromJson(Map<String, Object?>? json) {
+//     if (json == null) {
+//       return defaultThemeProps;
+//     }
+//     try {
+//       return ThemeProps.fromJson(json);
+//     } catch (_) {
+//       return defaultThemeProps;
+//     }
+//   }
+// }
 
 @freezed
 class Config with _$Config {
@@ -182,7 +182,7 @@ class Config with _$Config {
     @Default(defaultAuthProps) AuthProps authProps,
     @Default(defaultNetworkProps) NetworkProps networkProps,
     @Default(defaultVpnProps) VpnProps vpnProps,
-    @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
+    // @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
     // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
     @Default(defaultWindowProps) WindowProps windowProps,
     @Default(defaultClashConfig) ClashConfig patchClashConfig,
