@@ -106,13 +106,13 @@ class AuthController {
     final result = await login(UserLoginProps(
         email: authSetting.email, password: authSetting.password));
     if (!result.success) {
-      globalState.showMessage(
+      final confirm = await globalState.showMessage(
         cancelable: false,
         message: TextSpan(text: result.message),
-        afterConfirm: () {
-          logout();
-        },
       );
+      if (confirm == true) {
+        await logout();
+      }
       return;
     }
   }

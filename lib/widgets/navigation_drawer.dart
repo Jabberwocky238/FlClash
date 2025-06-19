@@ -6,7 +6,6 @@ import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:intl/intl.dart';
-import 'package:jw_clash/widgets/widgets.dart';
 
 class CustomDrawerHeader extends ConsumerStatefulWidget {
   const CustomDrawerHeader({super.key});
@@ -93,13 +92,13 @@ class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
 }
 
 class CommonDrawerNavigationBar extends ConsumerWidget {
-  final List<NavigationItem> navigationItems;
-  final int currentIndex;
+  // final List<NavigationItem> navigationItems;
+  // final int currentIndex;
 
   const CommonDrawerNavigationBar({
     super.key,
-    required this.navigationItems,
-    required this.currentIndex,
+    // required this.navigationItems,
+    // required this.currentIndex,
   });
 
   @override

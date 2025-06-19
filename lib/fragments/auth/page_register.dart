@@ -148,15 +148,13 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
           await apiController.useLoadingPage(() async {
             final result = await globalState.authController
                 .register(_authStateNotifier.value);
-            go() => result.success
-                ? globalState.appController.toPage(PageLabel.login)
-                : null;
-            globalState.showMessage(
+            await globalState.showMessage(
               cancelable: false,
               message: TextSpan(text: result.message),
-              afterCancel: go,
-              afterConfirm: go,
             );
+            if (result.success) {
+              globalState.appController.toPage(PageLabel.login);
+            }
           });
         },
       ),

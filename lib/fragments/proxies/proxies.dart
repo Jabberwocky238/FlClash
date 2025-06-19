@@ -46,19 +46,6 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
 
   @override
   void initState() {
-    ref.listenManual(
-      proxiesActionsStateProvider,
-      fireImmediately: true,
-      (prev, next) {
-        if (prev == next) {
-          return;
-        }
-        if (next.pageLabel == PageLabel.proxies) {
-          initPageState();
-          return;
-        }
-      },
-    );
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -67,7 +54,6 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
         ref.watch(proxiesStateProvider),
         ref.watch(appSettingProvider.select((state) => state.testUrl)),
       );
-      initPageState();
     });
   }
 

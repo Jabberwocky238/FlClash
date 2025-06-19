@@ -14,8 +14,7 @@ class DashboardFragment extends ConsumerStatefulWidget {
   ConsumerState<DashboardFragment> createState() => _DashboardFragmentState();
 }
 
-class _DashboardFragmentState extends ConsumerState<DashboardFragment>
-    with PageMixin {
+class _DashboardFragmentState extends ConsumerState<DashboardFragment> {
   final key = GlobalKey<SuperGridState>();
 
   @override

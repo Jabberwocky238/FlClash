@@ -110,13 +110,14 @@ class ProxyCard extends StatelessWidget {
     );
   }
 
-  _reportNeedBuyPro(WidgetRef ref) {
-    globalState.showMessage(
+  _reportNeedBuyPro(WidgetRef ref) async {
+    final confirm = await globalState.showMessage(
       message: TextSpan(text: "需购买专业版套餐才可使用"),
       cancelable: false,
-      afterConfirm: () {
-        globalState.appController.toPage(PageLabel.order);
-      });
+    );
+    if (confirm == true) {
+      globalState.appController.toPage(PageLabel.order);
+    }
   }
 
   @override

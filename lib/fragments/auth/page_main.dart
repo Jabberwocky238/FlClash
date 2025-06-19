@@ -66,18 +66,6 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
   Widget _build(BuildContext context) {
     return Consumer(
       builder: (_, ref, __) {
-        ref.listenManual(
-          isCurrentPageProvider(
-            PageLabel.auth,
-            handler: (pageLabel) => pageLabel == PageLabel.auth,
-          ),
-          (prev, next) {
-            if (prev != next && next == true) {
-              initPageState();
-            }
-          },
-          fireImmediately: true,
-        );
         return SingleChildScrollView(
           padding: baseInfoEdgeInsets,
           child: Column(
@@ -206,14 +194,13 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
             textAlign: TextAlign.center,
           ),
           onTap: () async {
-            await globalState.showMessage(
+            final confirm = await globalState.showMessage(
               message: TextSpan(text: "确定退出登录吗？"),
               title: appLocalizations.logout,
-              afterCancel: () {},
-              afterConfirm: () async {
-                await globalState.authController.logout();
-              },
             );
+            if (confirm == true) {
+              await globalState.authController.logout();
+            }
           },
         ),
       ),
@@ -229,8 +216,6 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
           onTap: () async {
             await globalState.showMessage(
               message: TextSpan(text: "暂未实现"),
-              afterCancel: () {},
-              afterConfirm: () {},
               cancelable: false,
             );
           },

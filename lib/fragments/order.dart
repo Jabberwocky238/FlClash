@@ -23,19 +23,7 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
   @override
   void initState() {
     super.initState();
-    ref.listenManual(
-      isCurrentPageProvider(
-        PageLabel.order,
-        handler: (pageLabel) => pageLabel == PageLabel.order,
-      ),
-      (prev, next) {
-        if (prev != next && next) {
-          initPageState();
-        }
-      },
-      fireImmediately: true,
-    );
-    
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initPageState();
     });
@@ -60,7 +48,6 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
     super.dispose();
   }
 
-  
   Widget _build(BuildContext context) {
     final orderSelection = ref.watch(orderSelectionProvider);
     return ValueListenableBuilder<OrderSelectionPageState>(
@@ -142,21 +129,22 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
           "购买",
           textAlign: TextAlign.center,
         ),
-        onTap: () {
+        onTap: () async {
           // _launchUrl("https://www.baidu.com");
           final selectedOrder = ref.watch(orderSelectionProvider).selectedOrder;
           final authSetting = ref.watch(authSettingProvider);
           if (selectedOrder == null) {
-            globalState.showMessage(message: const TextSpan(text: "请选择订单"));
+            await globalState.showMessage(
+                message: const TextSpan(text: "请选择订单"));
             return;
           }
           if (!authSetting.isLogin) {
-            globalState.showMessage(
+            final confirm = await globalState.showMessage(
               message: const TextSpan(text: "请先登录"),
-              afterConfirm: () {
-                globalState.appController.toPage(PageLabel.auth);
-              },
             );
+            if (confirm == true) {
+              globalState.appController.toPage(PageLabel.auth);
+            }
             return;
           }
           _order(selectedOrder, authSetting.token!);
@@ -172,15 +160,14 @@ Future<void> _order(OrderCommonProps order, String token) async {
   final uri = Uri.parse(url);
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
-    await globalState.showMessage(
+    final confirm = await globalState.showMessage(
       message: TextSpan(text: "支付成功，点击立即刷新状态"),
       confirmText: "刷新",
-      afterCancel: () {},
-      afterConfirm: () async {
-        await globalState.authController.refreshLoginState();
-        globalState.appController.toPage(PageLabel.auth);
-      },
     );
+    if (confirm == true) {
+      await globalState.authController.refreshLoginState();
+      globalState.appController.toPage(PageLabel.auth);
+    }
   } else {
     throw '无法打开 URL: $url';
   }

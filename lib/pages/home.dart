@@ -7,13 +7,9 @@ import 'package:jw_clash/fragments/dashboard/widgets/start_button.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/navigation_drawer.dart';
-// import 'package:jw_clash/widgets/scaffold.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
-
-typedef OnSelected = void Function(int index);
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -24,14 +20,14 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState createState() => HomePageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class HomePageState extends ConsumerState<HomePage> {
+class HomePageState extends State<HomePage> {
   // late PageController _pageController;
   final ValueNotifier<bool> _loading = ValueNotifier(false);
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -90,74 +86,50 @@ class HomePageState extends ConsumerState<HomePage> {
     }
   }
 
-  // _toPage(PageLabel pageLabel, [bool ignoreAnimateTo = false]) async {
-  //   if (!mounted) {
-  //     return;
-  //   }
-  //   final navigationItems = ref.read(currentNavigationsStateProvider).value;
-  //   final index = navigationItems.indexWhere((item) => item.label == pageLabel);
-  //   if (index == -1) {
-  //     return;
-  //   }
-  //   final isAnimateToPage = ref.read(appSettingProvider).isAnimateToPage;
-  //   // final isMobile = ref.read(isMobileViewProvider);
-  //   // globalState.homeScaffoldKey.currentState?.closeDrawer();
-  //   if (isAnimateToPage && true && !ignoreAnimateTo) {
-  //     await _pageController.animateToPage(
-  //       index,
-  //       duration: kTabScrollDuration,
-  //       curve: Curves.easeOut,
-  //     );
-  //   } else {
-  //     _pageController.jumpToPage(index);
-  //   }
-  // }
-
-  // _updatePageController() {
-  //   final pageLabel = globalState.appState.pageLabel;
-  //   _toPage(pageLabel, false);
-  // }
-
   @override
   void dispose() {
-    // _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(homeStateProvider);
-    // final viewMode = state.viewMode;
-    // final navigationItems = state.navigationItems;
-    final pageLabel = state.pageLabel;
-    final index = navigationItems.lastIndexWhere(
-      (element) => element.label == pageLabel,
-    );
-    final currentIndex = index == -1 ? 0 : index;
+    // final state = ref.watch(homeStateProvider);
+    // // final viewMode = state.viewMode;
+    // // final navigationItems = state.navigationItems;
+    // final pageLabel = state.pageLabel;
+    // final index = navigationItems.lastIndexWhere(
+    //   (element) => element.label == pageLabel,
+    // );
+    // final currentIndex = index == -1 ? 0 : index;
     // final navigationBar = CommonNavigationBar(
     //   // viewMode: viewMode,
     //   navigationItems: navigationItems,
     //   currentIndex: currentIndex,
     // );
-    final navigationBar = CommonDrawerNavigationBar(
-      // viewMode: viewMode,
-      navigationItems: navigationItems,
-      currentIndex: currentIndex,
-    );
-    return Scaffold(
-      key: _scaffoldKey,
-      drawer: navigationBar,
-      appBar: AppBar(
-        title: Text(pageLabel.localName),
-        leading: IconButton(
-          onPressed: () {
-            openDrawer();
-          },
-          icon: Icon(Icons.menu),
-        ),
+    final navigationBar = CommonDrawerNavigationBar();
+    return Consumer(
+      builder: (context, ref, child) {
+        return Scaffold(
+          key: _scaffoldKey,
+          drawer: navigationBar,
+          appBar: AppBar(
+            title: Text("Enzyme"),
+            leading: IconButton(
+              onPressed: () {
+                openDrawer();
+              },
+              icon: Icon(Icons.menu),
+            ),
+          ),
+          body: child!,
+          floatingActionButton: const StartButton(),
+        );
+      },
+      child: PageView.builder(
+        itemBuilder: (context, index) {
+          return DashboardFragment();
+        },
       ),
-      body: DashboardFragment(),
-      floatingActionButton: const StartButton(),
     );
     // return CommonScaffold(
     //   key: globalState.homeScaffoldKey,

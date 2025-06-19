@@ -44,18 +44,6 @@ class Navigation {
         modes:[NavigationItemMode.invisible],
       ),
       NavigationItem(
-        icon: const Icon(Icons.view_timeline),
-        label: PageLabel.requests,
-        builder: (context) => const RequestsFragment(),
-        modes: [NavigationItemMode.desktop, NavigationItemMode.invisible],
-      ),
-      NavigationItem(
-        icon: const Icon(Icons.ballot),
-        label: PageLabel.connections,
-        builder: (context) => const ConnectionsFragment(),
-        modes: const [NavigationItemMode.desktop, NavigationItemMode.invisible],
-      ),
-      NavigationItem(
         icon: const Icon(Icons.storage),
         label: PageLabel.resources,
         builder: (context) => Resources(

@@ -113,15 +113,6 @@ class _ProfilesFragmentState extends State<ProfilesFragment> with PageMixin {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (_, ref, __) {
-        ref.listenManual(
-          isCurrentPageProvider(PageLabel.profiles),
-          (prev, next) {
-            if (prev != next && next == true) {
-              initPageState();
-            }
-          },
-          fireImmediately: true,
-        );
         final profilesSelectorState = ref.watch(profilesSelectorStateProvider);
         if (profilesSelectorState.profiles.isEmpty) {
           return NullStatus(
@@ -210,21 +201,21 @@ class ProfileItem extends StatelessWidget {
     });
   }
 
-  _handleShowEditExtendPage(BuildContext context) {
-    showExtend(
-      context,
-      builder: (_, type) {
-        return AdaptiveSheetScaffold(
-          type: type,
-          body: EditProfile(
-            profile: profile,
-            context: context,
-          ),
-          title: "${appLocalizations.edit}${appLocalizations.profile}",
-        );
-      },
-    );
-  }
+  // _handleShowEditExtendPage(BuildContext context) {
+  //   showExtend(
+  //     context,
+  //     builder: (_, type) {
+  //       return AdaptiveSheetScaffold(
+  //         type: type,
+  //         body: EditProfile(
+  //           profile: profile,
+  //           context: context,
+  //         ),
+  //         title: "${appLocalizations.edit}${appLocalizations.profile}",
+  //       );
+  //     },
+  //   );
+  // }
 
   List<Widget> _buildUrlProfileInfo(BuildContext context) {
     final subscriptionInfo = profile.subscriptionInfo;
@@ -320,7 +311,7 @@ class ProfileItem extends StatelessWidget {
                           icon: Icons.edit_outlined,
                           label: appLocalizations.edit,
                           onPressed: () {
-                            _handleShowEditExtendPage(context);
+                            // _handleShowEditExtendPage(context);
                           },
                         ),
                         if (profile.type == ProfileType.url) ...[

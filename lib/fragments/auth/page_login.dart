@@ -31,21 +31,21 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
 
   Widget _build(BuildContext context) {
     return SingleChildScrollView(
-          padding: baseInfoEdgeInsets,
-          child: Column(
-            children: [
-              _getUserEmailItem(context),
-              const SizedBox(
-                height: 16,
-              ),
-              _getUserPasswordItem(context),
-              const SizedBox(
-                height: 16,
-              ),
-              _getButtonGroup(context),
-            ],
-        ),
-      );
+      padding: baseInfoEdgeInsets,
+      child: Column(
+        children: [
+          _getUserEmailItem(context),
+          const SizedBox(
+            height: 16,
+          ),
+          _getUserPasswordItem(context),
+          const SizedBox(
+            height: 16,
+          ),
+          _getButtonGroup(context),
+        ],
+      ),
+    );
   }
 
   @override
@@ -110,15 +110,13 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
           await apiController.useLoadingPage(() async {
             final result = await globalState.authController
                 .login(_authStateNotifier.value);
-            go() => result.success
-                ? globalState.appController.toPage(PageLabel.auth)
-                : null;
-            globalState.showMessage(
+            await globalState.showMessage(
               cancelable: false,
               message: TextSpan(text: result.message),
-              afterCancel: go,
-              afterConfirm: go,
             );
+            if (result.success) {
+              globalState.appController.toPage(PageLabel.auth);
+            }
           });
         },
       ),

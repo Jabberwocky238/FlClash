@@ -8,8 +8,6 @@ export 'config/config.dart';
 export 'application_setting.dart';
 // export 'about.dart';
 export 'resources.dart';
-export 'connection/requests.dart';
-export 'connection/connections.dart';
 export 'developer.dart';
 export 'auth/auth.dart';
 export 'order.dart';
