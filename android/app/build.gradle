@@ -30,7 +30,7 @@ def defKeyPassword = localProperties.getProperty('keyPassword')
 def isRelease = defStoreFile.exists() && defStorePassword != null && defKeyAlias != null && defKeyPassword != null
 
 android {
-    namespace "com.follow.clash"
+    namespace "com.enzyme"
     compileSdk 35
     ndkVersion = "28.0.13004108"
 

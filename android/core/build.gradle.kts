@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.follow.clash.core"
+    namespace = "com.enzyme.core"
     compileSdk = 35
     ndkVersion = "28.0.13004108"
 

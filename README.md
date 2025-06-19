@@ -55,11 +55,11 @@ on Mobile:
 Support the following actions
 
    ```bash
-    com.follow.clash.action.START
+    com.enzyme.action.START
     
-    com.follow.clash.action.STOP
+    com.enzyme.action.STOP
     
-    com.follow.clash.action.CHANGE
+    com.enzyme.action.CHANGE
    ```
 
 ## Download

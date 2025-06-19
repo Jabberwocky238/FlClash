@@ -1,4 +1,4 @@
-package com.follow.clash
+package com.enzyme
 
 import android.database.Cursor
 import android.database.MatrixCursor

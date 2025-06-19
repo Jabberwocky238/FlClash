@@ -27,7 +27,7 @@
         android:label="Enzyme"
         android:enableOnBackInvokedCallback="true">
         <activity
-            android:name="com.follow.clash.MainActivity"
+            android:name="com.enzyme.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"

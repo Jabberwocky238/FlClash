@@ -1,4 +1,4 @@
-package com.follow.clash.plugins
+package com.enzyme.plugins
 
 import android.content.ComponentName
 import android.content.Context
@@ -11,17 +11,17 @@ import android.net.NetworkRequest
 import android.os.Build
 import android.os.IBinder
 import androidx.core.content.getSystemService
-import com.follow.clash.FlClashApplication
-import com.follow.clash.GlobalState
-import com.follow.clash.RunState
-import com.follow.clash.core.Core
-import com.follow.clash.extensions.awaitResult
-import com.follow.clash.extensions.resolveDns
-import com.follow.clash.models.StartForegroundParams
-import com.follow.clash.models.VpnOptions
-import com.follow.clash.services.BaseServiceInterface
-import com.follow.clash.services.FlClashService
-import com.follow.clash.services.FlClashVpnService
+import com.enzyme.FlClashApplication
+import com.enzyme.GlobalState
+import com.enzyme.RunState
+import com.enzyme.core.Core
+import com.enzyme.extensions.awaitResult
+import com.enzyme.extensions.resolveDns
+import com.enzyme.models.StartForegroundParams
+import com.enzyme.models.VpnOptions
+import com.enzyme.services.BaseServiceInterface
+import com.enzyme.services.FlClashService
+import com.enzyme.services.FlClashVpnService
 import com.google.gson.Gson
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall

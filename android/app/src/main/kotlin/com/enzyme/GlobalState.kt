@@ -1,9 +1,9 @@
-package com.follow.clash
+package com.enzyme
 
 import androidx.lifecycle.MutableLiveData
-import com.follow.clash.plugins.AppPlugin
-import com.follow.clash.plugins.TilePlugin
-import com.follow.clash.plugins.VpnPlugin
+import com.enzyme.plugins.AppPlugin
+import com.enzyme.plugins.TilePlugin
+import com.enzyme.plugins.VpnPlugin
 import io.flutter.FlutterInjector
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.dart.DartExecutor
