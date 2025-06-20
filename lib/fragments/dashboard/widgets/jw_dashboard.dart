@@ -139,9 +139,19 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
 
   Widget _buildTrafficInfo(BuildContext context) {
     final traffics = ref.watch(trafficsProvider).list;
+    final totalTraffic = ref.watch(totalTrafficProvider);
     final color = context.colorScheme.onSurfaceVariant.opacity80;
-    return Text(
-      "${_getLastTraffic(traffics).up}↑   ${_getLastTraffic(traffics).down}↓",
+    return Text.rich(
+      TextSpan(
+        children: [
+          const TextSpan(text: "Total: "),
+          TextSpan(text: "${totalTraffic.up} ↑ "),
+          TextSpan(text: "${totalTraffic.down} ↓ "),
+          const TextSpan(text: "Current: "),
+          TextSpan(text: "${_getLastTraffic(traffics).up} ↑ "),
+          TextSpan(text: "${_getLastTraffic(traffics).down} ↓ "),
+        ],
+      ),
       style: context.textTheme.bodySmall?.copyWith(
         color: color,
       ),
@@ -152,91 +162,87 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: getWidgetHeight(2),
-      child: ValueListenableBuilder<NetworkDetectionState>(
-        valueListenable: _networkDetectionState,
-        builder: (_, state, __) {
-          return CommonCard(
-            info: Info(
-              label: appLocalizations.networkSpeed,
-              iconData: Icons.speed_sharp,
-            ),
-            onPressed: () {
-              commonPrint.log("onPressed");
-            },
-            suffix: _buildTrafficInfo(context),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildIPInfo(context, state),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
+      child: CommonCard(
+        info: Info(
+          label: appLocalizations.networkSpeed,
+          iconData: Icons.speed_sharp,
+        ),
+        onPressed: () {
+          commonPrint.log("onPressed");
         },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [_buildIPInfo(context)],
+              ),
+            ),
+            _buildTrafficInfo(context),
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }
 
-  _buildIPInfo(BuildContext context, NetworkDetectionState state) {
-    final ipInfo = state.ipInfo;
-    final isLoading = state.isLoading;
+  _buildIPInfo(BuildContext context) {
     final textStyle = context.textTheme.bodyLarge?.toLight.adjustSize(16);
-    return Container(
-      
-      padding: baseInfoEdgeInsets.copyWith(
-        left: 12,
-      ),
-      child: Center(
-        child: ipInfo != null
-            ? Row(
-                children: [
-                  Text(
-                    _countryCodeToEmoji(
-                      ipInfo.countryCode,
-                    ),
-                    style: textStyle?.copyWith(
-                      fontFamily: FontFamily.twEmoji.value,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    ipInfo.ip,
-                    style: textStyle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              )
-            : FadeThroughBox(
-                child: isLoading == false && ipInfo == null
-                    ? Text(
-                        "timeout",
-                        style: context.textTheme.bodyMedium
-                            ?.copyWith(color: Colors.red)
-                            .adjustSize(1),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    : Container(
-                        padding: const EdgeInsets.all(2),
-                        child: const AspectRatio(
-                          aspectRatio: 1,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
+    return ValueListenableBuilder<NetworkDetectionState>(
+      valueListenable: _networkDetectionState,
+      builder: (_, state, __) {
+        final ipInfo = state.ipInfo;
+        final isLoading = state.isLoading;
+        return Container(
+          padding: baseInfoEdgeInsets.copyWith(
+            left: 12,
+          ),
+          child: Center(
+            child: ipInfo != null
+                ? Row(
+                    children: [
+                      Text(
+                        _countryCodeToEmoji(
+                          ipInfo.countryCode,
+                        ),
+                        style: textStyle?.copyWith(
+                          fontFamily: FontFamily.twEmoji.value,
                         ),
                       ),
-              ),
-      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        ipInfo.ip,
+                        style: textStyle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  )
+                : FadeThroughBox(
+                    child: isLoading == false && ipInfo == null
+                        ? Text(
+                            "timeout",
+                            style: context.textTheme.bodyMedium
+                                ?.copyWith(color: Colors.red)
+                                .adjustSize(1),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        : Container(
+                            padding: const EdgeInsets.all(2),
+                            child: const AspectRatio(
+                              aspectRatio: 1,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          ),
+                  ),
+          ),
+        );
+      },
     );
   }
 }

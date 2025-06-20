@@ -29,7 +29,8 @@ GroupsState currentGroupsState(Ref ref) {
 
 @riverpod
 String? currentGroupName(Ref ref) {
-  final groupName = ref.watch(currentProfileProvider.select((state) => state?.currentGroupName));
+  final groupName = ref
+      .watch(currentProfileProvider.select((state) => state?.currentGroupName));
   return groupName;
 }
 
@@ -313,14 +314,14 @@ PackageListSelectorState packageListSelectorState(Ref ref) {
 MoreToolsSelectorState moreToolsSelectorState(Ref ref) {
   // final viewMode = ref.watch(viewModeProvider);
   final _navigationItems = navigationItems.where((element) {
-      final isMore = element.modes.contains(NavigationItemMode.more);
-      // final isDesktop = element.modes.contains(NavigationItemMode.desktop);
-      if (isMore) return true;
-      // if (viewMode != ViewMode.mobile || !isMore) {
-      //   return false;
-      // }
-      return true;
-    }).toList();
+    final isMore = element.modes.contains(NavigationItemMode.more);
+    // final isDesktop = element.modes.contains(NavigationItemMode.desktop);
+    if (isMore) return true;
+    // if (viewMode != ViewMode.mobile || !isMore) {
+    //   return false;
+    // }
+    return true;
+  }).toList();
 
   return MoreToolsSelectorState(navigationItems: _navigationItems);
 }
@@ -393,6 +394,31 @@ Profile? currentProfile(Ref ref) {
   final profileId = ref.watch(currentProfileIdProvider);
   return ref
       .watch(profilesProvider.select((state) => state.getProfile(profileId)));
+}
+
+@riverpod
+String? currentProxyName(Ref ref) {
+  final currentGroupName = ref.watch(
+      proxiesSelectorStateProvider.select((state) => state.currentGroupName));
+  if (currentGroupName == null || currentGroupName.isEmpty) {
+    return null;
+  }
+  return ref.watch(getProxyNameProvider(currentGroupName));
+}
+
+@riverpod
+int getProxyLength(Ref ref) {
+  final groups = ref.watch(currentGroupsStateProvider);
+  final authSetting = ref.watch(authSettingProvider);
+  final isLogin = authSetting.isLogin;
+  final isExpired = authSetting.isExpired;
+  final proxyLength = !isLogin || isExpired
+      ? groups.value
+          .firstWhere((e) => e.name == freeSubscriptionGroupName)
+          .all
+          .length
+      : groups.value.map((e) => e.all).expand((e) => e).length;
+  return proxyLength;
 }
 
 // @riverpod
@@ -501,5 +527,3 @@ ColorScheme genColorScheme(
     dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
   );
 }
-
-

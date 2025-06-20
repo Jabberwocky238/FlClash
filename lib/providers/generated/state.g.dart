@@ -904,6 +904,40 @@ final currentProfileProvider = AutoDisposeProvider<Profile?>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef CurrentProfileRef = AutoDisposeProviderRef<Profile?>;
+String _$currentProxyNameHash() => r'7857e02da3f30df00ae71dc11a97fad2a6aedc15';
+
+/// See also [currentProxyName].
+@ProviderFor(currentProxyName)
+final currentProxyNameProvider = AutoDisposeProvider<String?>.internal(
+  currentProxyName,
+  name: r'currentProxyNameProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$currentProxyNameHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef CurrentProxyNameRef = AutoDisposeProviderRef<String?>;
+String _$getProxyLengthHash() => r'cdb662e2a158da61db7b986b21aac065af233384';
+
+/// See also [getProxyLength].
+@ProviderFor(getProxyLength)
+final getProxyLengthProvider = AutoDisposeProvider<int>.internal(
+  getProxyLength,
+  name: r'getProxyLengthProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getProxyLengthHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef GetProxyLengthRef = AutoDisposeProviderRef<int>;
 String _$getProxyCardStateHash() => r'0f131148cb5ed60c9c4c4f31fbe32f114ac346bb';
 
 /// See also [getProxyCardState].

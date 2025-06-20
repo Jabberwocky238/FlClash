@@ -13,7 +13,7 @@ class CommonPrint {
   }
 
   log(String? text) {
-    final payload = "[FlClash] $text";
+    final payload = "[Enzyme] $text";
     debugPrint(payload);
     if (globalState.isService) {
       return;
