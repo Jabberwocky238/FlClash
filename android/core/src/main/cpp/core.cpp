@@ -8,14 +8,14 @@
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_follow_clash_core_Core_startTun(JNIEnv *env, jobject thiz, jint fd, jobject cb) {
+Java_com_enzyme_core_Core_startTun(JNIEnv *env, jobject thiz, jint fd, jobject cb) {
     auto interface = new_global(cb);
     startTUN(fd, interface);
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_follow_clash_core_Core_stopTun(JNIEnv *env, jobject thiz) {
+Java_com_enzyme_core_Core_stopTun(JNIEnv *env, jobject thiz) {
     stopTun();
 }
 
@@ -61,7 +61,7 @@ JNI_OnLoad(JavaVM *vm, void *reserved) {
 
     initialize_jni(vm, env);
 
-    jclass c_tun_interface = find_class("com/follow/clash/core/TunInterface");
+    jclass c_tun_interface = find_class("com/enzyme/core/TunInterface");
 
     m_tun_interface_protect = find_method(c_tun_interface, "protect", "(I)V");
     m_tun_interface_resolve_process = find_method(c_tun_interface, "resolverProcess",

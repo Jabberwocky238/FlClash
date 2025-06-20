@@ -60,7 +60,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.follow.jwclash"
+        applicationId "com.enzyme"
         minSdkVersion 21
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()

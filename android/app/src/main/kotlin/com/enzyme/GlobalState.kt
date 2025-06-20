@@ -20,7 +20,7 @@ enum class RunState {
 object GlobalState {
     val runLock = ReentrantLock()
 
-    const val NOTIFICATION_CHANNEL = "FlClash"
+    const val NOTIFICATION_CHANNEL = "Enzyme"
 
     const val NOTIFICATION_ID = 1
 

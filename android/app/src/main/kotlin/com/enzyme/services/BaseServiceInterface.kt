@@ -78,7 +78,7 @@ fun Service.startForeground(notification: Notification) {
         if (channel == null) {
             Log.d("[FlClash]","createNotificationChannel===>")
             channel = NotificationChannel(
-                GlobalState.NOTIFICATION_CHANNEL, "FlClash", NotificationManager.IMPORTANCE_LOW
+                GlobalState.NOTIFICATION_CHANNEL, "Enzyme", NotificationManager.IMPORTANCE_LOW
             )
             manager?.createNotificationChannel(channel)
         }
