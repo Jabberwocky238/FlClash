@@ -11,10 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _networkDetectionState = ValueNotifier<NetworkDetectionState>(
-  const NetworkDetectionState(
+  NetworkDetectionState(
     isTesting: false,
-    isLoading: true,
-    ipInfo: null,
+    isLoading: false,
+    ipInfo: globalState.appState.ipInfo,
   ),
 );
 
@@ -89,9 +89,6 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
         _networkDetectionState.value = _networkDetectionState.value.copyWith(
           isLoading: false,
           ipInfo: ipInfo,
-        );
-        globalState.appState = globalState.appState.copyWith(
-          remoteIp: ipInfo.ip,
         );
         return;
       }

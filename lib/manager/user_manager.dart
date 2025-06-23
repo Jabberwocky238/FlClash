@@ -28,7 +28,6 @@ class _UserManagerState extends ConsumerState<UserManager> {
       (prev, next) {
         if (prev != next) {
           _fetchProfile();
-          _updateRemoteIp();
           globalState.appController.savePreferences();
         }
       },
@@ -40,20 +39,10 @@ class _UserManagerState extends ConsumerState<UserManager> {
         if (prev != next && next) {
           commonPrint.log("[user_manager] initProvider: $next, fetchProfile");
           _fetchProfile();
-          _updateRemoteIp();
         }
       },
       fireImmediately: true,
     );
-  }
-
-  _updateRemoteIp() async {
-    final ipInfo = await request.checkIp();
-    if (ipInfo != null) {
-      globalState.appState = globalState.appState.copyWith(
-        remoteIp: ipInfo.ip,
-      );
-    }
   }
 
   _fetchProfile() async {

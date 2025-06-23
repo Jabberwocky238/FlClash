@@ -29,8 +29,8 @@ mixin _$AppState {
   int? get runTime => throw _privateConstructorUsedError;
   List<ExternalProvider> get providers => throw _privateConstructorUsedError;
   String? get localIp => throw _privateConstructorUsedError;
-  String? get remoteIp => throw _privateConstructorUsedError;
   OrderSelectionProps get orderSelection => throw _privateConstructorUsedError;
+  IpInfo get ipInfo => throw _privateConstructorUsedError;
   FixedList<Connection> get requests => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
   String get deviceSerialNumber => throw _privateConstructorUsedError;
@@ -62,8 +62,8 @@ abstract class $AppStateCopyWith<$Res> {
       int? runTime,
       List<ExternalProvider> providers,
       String? localIp,
-      String? remoteIp,
       OrderSelectionProps orderSelection,
+      IpInfo ipInfo,
       FixedList<Connection> requests,
       int version,
       String deviceSerialNumber,
@@ -100,8 +100,8 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? runTime = freezed,
     Object? providers = null,
     Object? localIp = freezed,
-    Object? remoteIp = freezed,
     Object? orderSelection = null,
+    Object? ipInfo = null,
     Object? requests = null,
     Object? version = null,
     Object? deviceSerialNumber = null,
@@ -151,14 +151,14 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.localIp
           : localIp // ignore: cast_nullable_to_non_nullable
               as String?,
-      remoteIp: freezed == remoteIp
-          ? _value.remoteIp
-          : remoteIp // ignore: cast_nullable_to_non_nullable
-              as String?,
       orderSelection: null == orderSelection
           ? _value.orderSelection
           : orderSelection // ignore: cast_nullable_to_non_nullable
               as OrderSelectionProps,
+      ipInfo: null == ipInfo
+          ? _value.ipInfo
+          : ipInfo // ignore: cast_nullable_to_non_nullable
+              as IpInfo,
       requests: null == requests
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -220,8 +220,8 @@ abstract class _$$AppStateImplCopyWith<$Res>
       int? runTime,
       List<ExternalProvider> providers,
       String? localIp,
-      String? remoteIp,
       OrderSelectionProps orderSelection,
+      IpInfo ipInfo,
       FixedList<Connection> requests,
       int version,
       String deviceSerialNumber,
@@ -257,8 +257,8 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? runTime = freezed,
     Object? providers = null,
     Object? localIp = freezed,
-    Object? remoteIp = freezed,
     Object? orderSelection = null,
+    Object? ipInfo = null,
     Object? requests = null,
     Object? version = null,
     Object? deviceSerialNumber = null,
@@ -308,14 +308,14 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.localIp
           : localIp // ignore: cast_nullable_to_non_nullable
               as String?,
-      remoteIp: freezed == remoteIp
-          ? _value.remoteIp
-          : remoteIp // ignore: cast_nullable_to_non_nullable
-              as String?,
       orderSelection: null == orderSelection
           ? _value.orderSelection
           : orderSelection // ignore: cast_nullable_to_non_nullable
               as OrderSelectionProps,
+      ipInfo: null == ipInfo
+          ? _value.ipInfo
+          : ipInfo // ignore: cast_nullable_to_non_nullable
+              as IpInfo,
       requests: null == requests
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -362,8 +362,8 @@ class _$AppStateImpl implements _AppState {
       this.runTime,
       final List<ExternalProvider> providers = const [],
       this.localIp,
-      this.remoteIp,
       this.orderSelection = const OrderSelectionProps(),
+      required this.ipInfo,
       required this.requests,
       required this.version,
       required this.deviceSerialNumber,
@@ -432,10 +432,10 @@ class _$AppStateImpl implements _AppState {
   @override
   final String? localIp;
   @override
-  final String? remoteIp;
-  @override
   @JsonKey()
   final OrderSelectionProps orderSelection;
+  @override
+  final IpInfo ipInfo;
   @override
   final FixedList<Connection> requests;
   @override
@@ -454,7 +454,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, remoteIp: $remoteIp, orderSelection: $orderSelection, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
+    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, ipInfo: $ipInfo, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
   }
 
   @override
@@ -476,10 +476,9 @@ class _$AppStateImpl implements _AppState {
             const DeepCollectionEquality()
                 .equals(other._providers, _providers) &&
             (identical(other.localIp, localIp) || other.localIp == localIp) &&
-            (identical(other.remoteIp, remoteIp) ||
-                other.remoteIp == remoteIp) &&
             (identical(other.orderSelection, orderSelection) ||
                 other.orderSelection == orderSelection) &&
+            (identical(other.ipInfo, ipInfo) || other.ipInfo == ipInfo) &&
             (identical(other.requests, requests) ||
                 other.requests == requests) &&
             (identical(other.version, version) || other.version == version) &&
@@ -507,8 +506,8 @@ class _$AppStateImpl implements _AppState {
         runTime,
         const DeepCollectionEquality().hash(_providers),
         localIp,
-        remoteIp,
         orderSelection,
+        ipInfo,
         requests,
         version,
         deviceSerialNumber,
@@ -539,8 +538,8 @@ abstract class _AppState implements AppState {
       final int? runTime,
       final List<ExternalProvider> providers,
       final String? localIp,
-      final String? remoteIp,
       final OrderSelectionProps orderSelection,
+      required final IpInfo ipInfo,
       required final FixedList<Connection> requests,
       required final int version,
       required final String deviceSerialNumber,
@@ -571,9 +570,9 @@ abstract class _AppState implements AppState {
   @override
   String? get localIp;
   @override
-  String? get remoteIp;
-  @override
   OrderSelectionProps get orderSelection;
+  @override
+  IpInfo get ipInfo;
   @override
   FixedList<Connection> get requests;
   @override

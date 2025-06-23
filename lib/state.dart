@@ -59,6 +59,10 @@ class GlobalState {
     coreSHA256 = const String.fromEnvironment("CORE_SHA256");
     isPre = const String.fromEnvironment("APP_ENV") != 'stable';
     final deviceSerialNumber = await system.deviceSerialNumber;
+    final ipInfo = await request.checkIp();
+    if (ipInfo == null) {
+      throw Exception("IP获取失败");
+    }
     appState = AppState(
       version: version,
       // viewSize: Size.zero,
@@ -67,6 +71,7 @@ class GlobalState {
       traffics: FixedList(30),
       totalTraffic: Traffic(),
       deviceSerialNumber: deviceSerialNumber,
+      ipInfo: ipInfo,
     );
     // await _initDynamicColor();
     await init();

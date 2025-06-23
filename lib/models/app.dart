@@ -3,6 +3,7 @@ import 'package:jw_clash/enum/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'selector.dart';
 import 'common.dart';
 import 'core.dart';
 import 'user.dart';
@@ -26,8 +27,8 @@ class AppState with _$AppState {
     int? runTime,
     @Default([]) List<ExternalProvider> providers,
     String? localIp,
-    String? remoteIp,
     @Default(OrderSelectionProps()) OrderSelectionProps orderSelection,
+    required IpInfo ipInfo,
     required FixedList<Connection> requests,
     required int version,
     required String deviceSerialNumber,

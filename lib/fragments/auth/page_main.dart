@@ -82,6 +82,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
               const SizedBox(
                 height: 16,
               ),
+              _getIPItem(context),
+              const SizedBox(
+                height: 16,
+              ),
               _getDeviceInfoItem(context),
               const SizedBox(
                 height: 16,
@@ -138,6 +142,18 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
       child: ListItem(
         title: Text("Token"),
         subtitle: Text(currentToken ?? ""),
+      ),
+    );
+  }
+
+  Widget _getIPItem(BuildContext context) {
+    final currentIp = globalState.appState.ipInfo.ip;
+    return CommonCard(
+      type: CommonCardType.filled,
+      radius: 18,
+      child: ListItem(
+        title: Text("IP"),
+        subtitle: Text(currentIp),
       ),
     );
   }
