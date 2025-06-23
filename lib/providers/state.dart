@@ -220,14 +220,14 @@ ProxiesListSelectorState proxiesListSelectorState(Ref ref) {
   }));
   // final currentUnfoldSet = ref.watch(unfoldSetProvider);
   // final proxiesStyle = ref.watch(proxiesStyleSettingProvider);
-  final sortNum = ref.watch(sortNumProvider);
+  // final sortNum = ref.watch(sortNumProvider);
   // final columns = ref.watch(getProxiesColumnsProvider);
   return ProxiesListSelectorState(
     groupNames: groupNames,
     // currentUnfoldSet: currentUnfoldSet,
     // proxiesSortType: proxiesStyle.sortType,
     // proxyCardType: proxiesStyle.cardType,
-    sortNum: sortNum,
+    // sortNum: sortNum,
     // columns: columns,
   );
 }
@@ -286,13 +286,13 @@ ProxyGroupSelectorState proxyGroupSelectorState(Ref ref, String groupName) {
       (state) => state.value.getGroup(groupName),
     ),
   );
-  final sortNum = ref.watch(sortNumProvider);
+  // final sortNum = ref.watch(sortNumProvider);
   // final columns = ref.watch(getProxiesColumnsProvider);
   return ProxyGroupSelectorState(
     testUrl: group?.testUrl,
     // proxiesSortType: proxiesStyle.sortType,
     // proxyCardType: proxiesStyle.cardType,
-    sortNum: sortNum,
+    // sortNum: sortNum,
     groupType: group?.type ?? GroupType.Selector,
     proxies: group?.all ?? [],
     // columns: columns,

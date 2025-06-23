@@ -71,7 +71,7 @@ delayTest(List<Proxy> proxies, [String? testUrl]) async {
   for (final batchDelayProxies in batchesDelayProxies) {
     await Future.wait(batchDelayProxies);
   }
-  appController.addSortNum();
+  // appController.addSortNum();
 }
 
 // double getScrollToSelectedOffset({

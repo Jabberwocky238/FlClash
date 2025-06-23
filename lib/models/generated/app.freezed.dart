@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppState {
   bool get isInit => throw _privateConstructorUsedError;
   PageLabel get pageLabel => throw _privateConstructorUsedError;
-  List<Package> get packages => throw _privateConstructorUsedError;
-  int get sortNum =>
-      throw _privateConstructorUsedError; // required Size viewSize,
+  List<Package> get packages =>
+      throw _privateConstructorUsedError; // @Default(0) int sortNum,
+// required Size viewSize,
   Map<String, Map<String, int?>> get delayMap =>
       throw _privateConstructorUsedError;
   List<Group> get groups => throw _privateConstructorUsedError;
@@ -29,6 +29,7 @@ mixin _$AppState {
   int? get runTime => throw _privateConstructorUsedError;
   List<ExternalProvider> get providers => throw _privateConstructorUsedError;
   String? get localIp => throw _privateConstructorUsedError;
+  String? get remoteIp => throw _privateConstructorUsedError;
   OrderSelectionProps get orderSelection => throw _privateConstructorUsedError;
   FixedList<Connection> get requests => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
@@ -54,7 +55,6 @@ abstract class $AppStateCopyWith<$Res> {
       {bool isInit,
       PageLabel pageLabel,
       List<Package> packages,
-      int sortNum,
       Map<String, Map<String, int?>> delayMap,
       List<Group> groups,
       int checkIpNum,
@@ -62,6 +62,7 @@ abstract class $AppStateCopyWith<$Res> {
       int? runTime,
       List<ExternalProvider> providers,
       String? localIp,
+      String? remoteIp,
       OrderSelectionProps orderSelection,
       FixedList<Connection> requests,
       int version,
@@ -92,7 +93,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? isInit = null,
     Object? pageLabel = null,
     Object? packages = null,
-    Object? sortNum = null,
     Object? delayMap = null,
     Object? groups = null,
     Object? checkIpNum = null,
@@ -100,6 +100,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? runTime = freezed,
     Object? providers = null,
     Object? localIp = freezed,
+    Object? remoteIp = freezed,
     Object? orderSelection = null,
     Object? requests = null,
     Object? version = null,
@@ -122,10 +123,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.packages
           : packages // ignore: cast_nullable_to_non_nullable
               as List<Package>,
-      sortNum: null == sortNum
-          ? _value.sortNum
-          : sortNum // ignore: cast_nullable_to_non_nullable
-              as int,
       delayMap: null == delayMap
           ? _value.delayMap
           : delayMap // ignore: cast_nullable_to_non_nullable
@@ -153,6 +150,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       localIp: freezed == localIp
           ? _value.localIp
           : localIp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remoteIp: freezed == remoteIp
+          ? _value.remoteIp
+          : remoteIp // ignore: cast_nullable_to_non_nullable
               as String?,
       orderSelection: null == orderSelection
           ? _value.orderSelection
@@ -212,7 +213,6 @@ abstract class _$$AppStateImplCopyWith<$Res>
       {bool isInit,
       PageLabel pageLabel,
       List<Package> packages,
-      int sortNum,
       Map<String, Map<String, int?>> delayMap,
       List<Group> groups,
       int checkIpNum,
@@ -220,6 +220,7 @@ abstract class _$$AppStateImplCopyWith<$Res>
       int? runTime,
       List<ExternalProvider> providers,
       String? localIp,
+      String? remoteIp,
       OrderSelectionProps orderSelection,
       FixedList<Connection> requests,
       int version,
@@ -249,7 +250,6 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? isInit = null,
     Object? pageLabel = null,
     Object? packages = null,
-    Object? sortNum = null,
     Object? delayMap = null,
     Object? groups = null,
     Object? checkIpNum = null,
@@ -257,6 +257,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? runTime = freezed,
     Object? providers = null,
     Object? localIp = freezed,
+    Object? remoteIp = freezed,
     Object? orderSelection = null,
     Object? requests = null,
     Object? version = null,
@@ -279,10 +280,6 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value._packages
           : packages // ignore: cast_nullable_to_non_nullable
               as List<Package>,
-      sortNum: null == sortNum
-          ? _value.sortNum
-          : sortNum // ignore: cast_nullable_to_non_nullable
-              as int,
       delayMap: null == delayMap
           ? _value._delayMap
           : delayMap // ignore: cast_nullable_to_non_nullable
@@ -310,6 +307,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
       localIp: freezed == localIp
           ? _value.localIp
           : localIp // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remoteIp: freezed == remoteIp
+          ? _value.remoteIp
+          : remoteIp // ignore: cast_nullable_to_non_nullable
               as String?,
       orderSelection: null == orderSelection
           ? _value.orderSelection
@@ -354,7 +355,6 @@ class _$AppStateImpl implements _AppState {
       {this.isInit = false,
       this.pageLabel = PageLabel.dashboard,
       final List<Package> packages = const [],
-      this.sortNum = 0,
       final Map<String, Map<String, int?>> delayMap = const {},
       final List<Group> groups = const [],
       this.checkIpNum = 0,
@@ -362,6 +362,7 @@ class _$AppStateImpl implements _AppState {
       this.runTime,
       final List<ExternalProvider> providers = const [],
       this.localIp,
+      this.remoteIp,
       this.orderSelection = const OrderSelectionProps(),
       required this.requests,
       required this.version,
@@ -390,11 +391,10 @@ class _$AppStateImpl implements _AppState {
     return EqualUnmodifiableListView(_packages);
   }
 
-  @override
-  @JsonKey()
-  final int sortNum;
+// @Default(0) int sortNum,
 // required Size viewSize,
   final Map<String, Map<String, int?>> _delayMap;
+// @Default(0) int sortNum,
 // required Size viewSize,
   @override
   @JsonKey()
@@ -432,6 +432,8 @@ class _$AppStateImpl implements _AppState {
   @override
   final String? localIp;
   @override
+  final String? remoteIp;
+  @override
   @JsonKey()
   final OrderSelectionProps orderSelection;
   @override
@@ -452,7 +454,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, sortNum: $sortNum, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
+    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, remoteIp: $remoteIp, orderSelection: $orderSelection, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
   }
 
   @override
@@ -464,7 +466,6 @@ class _$AppStateImpl implements _AppState {
             (identical(other.pageLabel, pageLabel) ||
                 other.pageLabel == pageLabel) &&
             const DeepCollectionEquality().equals(other._packages, _packages) &&
-            (identical(other.sortNum, sortNum) || other.sortNum == sortNum) &&
             const DeepCollectionEquality().equals(other._delayMap, _delayMap) &&
             const DeepCollectionEquality().equals(other._groups, _groups) &&
             (identical(other.checkIpNum, checkIpNum) ||
@@ -475,6 +476,8 @@ class _$AppStateImpl implements _AppState {
             const DeepCollectionEquality()
                 .equals(other._providers, _providers) &&
             (identical(other.localIp, localIp) || other.localIp == localIp) &&
+            (identical(other.remoteIp, remoteIp) ||
+                other.remoteIp == remoteIp) &&
             (identical(other.orderSelection, orderSelection) ||
                 other.orderSelection == orderSelection) &&
             (identical(other.requests, requests) ||
@@ -497,7 +500,6 @@ class _$AppStateImpl implements _AppState {
         isInit,
         pageLabel,
         const DeepCollectionEquality().hash(_packages),
-        sortNum,
         const DeepCollectionEquality().hash(_delayMap),
         const DeepCollectionEquality().hash(_groups),
         checkIpNum,
@@ -505,6 +507,7 @@ class _$AppStateImpl implements _AppState {
         runTime,
         const DeepCollectionEquality().hash(_providers),
         localIp,
+        remoteIp,
         orderSelection,
         requests,
         version,
@@ -529,7 +532,6 @@ abstract class _AppState implements AppState {
       {final bool isInit,
       final PageLabel pageLabel,
       final List<Package> packages,
-      final int sortNum,
       final Map<String, Map<String, int?>> delayMap,
       final List<Group> groups,
       final int checkIpNum,
@@ -537,6 +539,7 @@ abstract class _AppState implements AppState {
       final int? runTime,
       final List<ExternalProvider> providers,
       final String? localIp,
+      final String? remoteIp,
       final OrderSelectionProps orderSelection,
       required final FixedList<Connection> requests,
       required final int version,
@@ -551,9 +554,8 @@ abstract class _AppState implements AppState {
   @override
   PageLabel get pageLabel;
   @override
-  List<Package> get packages;
-  @override
-  int get sortNum; // required Size viewSize,
+  List<Package> get packages; // @Default(0) int sortNum,
+// required Size viewSize,
   @override
   Map<String, Map<String, int?>> get delayMap;
   @override
@@ -568,6 +570,8 @@ abstract class _AppState implements AppState {
   List<ExternalProvider> get providers;
   @override
   String? get localIp;
+  @override
+  String? get remoteIp;
   @override
   OrderSelectionProps get orderSelection;
   @override

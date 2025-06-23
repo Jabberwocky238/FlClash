@@ -198,9 +198,9 @@ class AppController {
   //   return _ref.read(getProxiesColumnsProvider);
   // }
 
-  addSortNum() {
-    return _ref.read(sortNumProvider.notifier).add();
-  }
+  // addSortNum() {
+  //   return _ref.read(sortNumProvider.notifier).add();
+  // }
 
   getCurrentGroupName() {
     final currentGroupName = _ref.read(currentProfileProvider.select(

@@ -169,20 +169,6 @@ final currentPageLabelProvider =
 );
 
 typedef _$CurrentPageLabel = AutoDisposeNotifier<PageLabel>;
-String _$sortNumHash() => r'0f85ebbc77124020eaccf988c6ac9d86a7f34d7e';
-
-/// See also [SortNum].
-@ProviderFor(SortNum)
-final sortNumProvider = AutoDisposeNotifierProvider<SortNum, int>.internal(
-  SortNum.new,
-  name: r'sortNumProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$sortNumHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SortNum = AutoDisposeNotifier<int>;
 String _$checkIpNumHash() => r'794de8e31e98ee4fde10509dc8f433699bff18b4';
 
 /// See also [CheckIpNum].

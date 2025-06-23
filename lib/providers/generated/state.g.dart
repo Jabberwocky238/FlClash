@@ -179,7 +179,7 @@ final profilesSelectorStateProvider =
 typedef ProfilesSelectorStateRef
     = AutoDisposeProviderRef<ProfilesSelectorState>;
 String _$proxiesListSelectorStateHash() =>
-    r'75c1cac76828cb32aa86cb728e74308844ec5650';
+    r'865e88447a1374e24f37bb4048027a554de7117d';
 
 /// See also [proxiesListSelectorState].
 @ProviderFor(proxiesListSelectorState)
@@ -251,7 +251,7 @@ final groupNamesStateProvider = AutoDisposeProvider<GroupNamesState>.internal(
 // ignore: unused_element
 typedef GroupNamesStateRef = AutoDisposeProviderRef<GroupNamesState>;
 String _$proxyGroupSelectorStateHash() =>
-    r'7f2168c42e9192e0aac0b10e12750ca523f552ca';
+    r'227da9f4b2a5e4861fd09b7d56b2b8587fb09918';
 
 /// Copied from Dart SDK
 class _SystemHash {

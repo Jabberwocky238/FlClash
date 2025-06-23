@@ -292,12 +292,12 @@ enum DashboardWidget {
       child: TrafficUsage(),
     ),
   ),
-  networkDetection(
-    GridItem(
-      crossAxisCellCount: 4,
-      child: NetworkDetection(),
-    ),
-  ),
+  // networkDetection(
+  //   GridItem(
+  //     crossAxisCellCount: 4,
+  //     child: NetworkDetection(),
+  //   ),
+  // ),
   tunButton(
     GridItem(
       crossAxisCellCount: 4,

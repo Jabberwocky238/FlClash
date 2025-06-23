@@ -57,8 +57,11 @@ class AuthController {
       if (authProps.password == null || authProps.password!.isEmpty) {
         return (success: false, message: "密码不能为空");
       }
+      if (authProps.ip == null || authProps.ip!.isEmpty) {
+        return (success: false, message: "IP未成功获取, 请检查网络");
+      }
       final authData =
-          await apiController.login(authProps.email!, authProps.password!);
+          await apiController.login(authProps.email!, authProps.password!, authProps.ip!);
       if (authData != null) {
         commonPrint.log("[AuthController] login success: $authData");
         await _saveAuthState(authData);

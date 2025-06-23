@@ -252,22 +252,22 @@ class CurrentPageLabel extends _$CurrentPageLabel
   }
 }
 
-@riverpod
-class SortNum extends _$SortNum with AutoDisposeNotifierMixin {
-  @override
-  int build() {
-    return globalState.appState.sortNum;
-  }
+// @riverpod
+// class SortNum extends _$SortNum with AutoDisposeNotifierMixin {
+//   @override
+//   int build() {
+//     return globalState.appState.sortNum;
+//   }
 
-  @override
-  onUpdate(value) {
-    globalState.appState = globalState.appState.copyWith(
-      sortNum: value,
-    );
-  }
+//   @override
+//   onUpdate(value) {
+//     globalState.appState = globalState.appState.copyWith(
+//       sortNum: value,
+//     );
+//   }
 
-  add() => state++;
-}
+//   add() => state++;
+// }
 
 @riverpod
 class CheckIpNum extends _$CheckIpNum with AutoDisposeNotifierMixin {

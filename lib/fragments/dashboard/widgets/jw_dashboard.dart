@@ -90,6 +90,9 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
           isLoading: false,
           ipInfo: ipInfo,
         );
+        globalState.appState = globalState.appState.copyWith(
+          remoteIp: ipInfo.ip,
+        );
         return;
       }
       _clearSetTimeoutTimer();

@@ -41,13 +41,13 @@ class ApiController {
     );
   }
 
-  Future<AuthProps?> login(String email, String password, {bool useLoadingPage = true}) async {
+  Future<AuthProps?> login(String email, String password, String ip, {bool useLoadingPage = true}) async {
     if (email.isEmpty || password.isEmpty) {
       throw Exception("email, password cannot be empty");
     }
     final response = await request.post(
       "$baseUrl/auth/token",
-      {"email": email, "password": password},
+      {"email": email, "password": password, "ip": ip},
     );
     commonPrint.log("[ApiController] login response: ${response.data}");
     final token = response.data['token'] as String?;
