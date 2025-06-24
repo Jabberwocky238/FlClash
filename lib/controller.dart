@@ -10,7 +10,6 @@ import 'package:jw_clash/common/archive.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
-// import 'package:jw_clash/widgets/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/widgets/widgets.dart';
@@ -120,8 +119,14 @@ class AppController {
   updateTraffic() async {
     final traffic = await clashCore.getTraffic();
     _ref.read(trafficsProvider.notifier).addTraffic(traffic);
-    _ref.read(totalTrafficProvider.notifier).value =
-        await clashCore.getTotalTraffic();
+    final totalTraffic = await clashCore.getTotalTraffic();
+    _ref.read(totalTrafficProvider.notifier).value = totalTraffic;
+    final usage = traffic.up.value + traffic.down.value;
+    final token = _ref.read(authSettingProvider.select((state) => state.token));
+    if (token != null) {
+      commonPrint.log("[AppController] record usage: $usage");
+      api.recordUsage(token, usage);
+    }
   }
 
   addProfile(Profile profile) async {

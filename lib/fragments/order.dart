@@ -33,8 +33,8 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
     _state.value = _state.value.copyWith(loading: true, error: false);
     try {
       ref.read(orderSelectionProvider.notifier).value = OrderSelectionProps(
-        orders: await apiController.useLoadingPage(() async {
-          return await apiController.fetchOrders();
+        orders: await api.useLoadingPage(() async {
+          return await api.fetchOrders();
         }),
       );
     } catch (e) {

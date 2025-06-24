@@ -3,7 +3,7 @@ import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/state.dart';
 
 void printMessage(String message) {
-  commonPrint.log("[ApiController] $message");
+  commonPrint.log("[Api] $message");
 }
 
 class ApiController {
@@ -41,13 +41,13 @@ class ApiController {
     );
   }
 
-  Future<AuthProps?> login(String email, String password, String ip, {bool useLoadingPage = true}) async {
+  Future<AuthProps?> login(String email, String password) async {
     if (email.isEmpty || password.isEmpty) {
       throw Exception("email, password cannot be empty");
     }
     final response = await request.post(
       "$baseUrl/auth/token",
-      {"email": email, "password": password, "ip": ip},
+      {"email": email, "password": password},
     );
     commonPrint.log("[ApiController] login response: ${response.data}");
     final token = response.data['token'] as String?;
@@ -71,7 +71,7 @@ class ApiController {
 
   Future<List<OrderCommonProps>> fetchOrders() async {
     final response = await request.get(
-      "$baseUrl/fetch_all_orders",
+      "$baseUrl/alipay/fetch_all_orders",
       {},
     );
     if (response.data != null) {
@@ -88,7 +88,7 @@ class ApiController {
   }
 
   Future<Profile> fetchProfile(String? token) async {
-    final url = "$baseUrl/fetch_config${token == null || token.isEmpty ? "" : "?token=$token"}";
+    final url = "$baseUrl/auth/fetch_config${token == null || token.isEmpty ? "" : "?token=$token"}";
     final response = await request.getFileResponseForUrl(url);
     // final disposition = response.headers.value("content-disposition");
     final userinfo = response.headers.value('subscription-userinfo');
@@ -100,6 +100,14 @@ class ApiController {
       subscriptionInfo: SubscriptionInfo.formHString(userinfo),
     ).saveFile(response.data);
   }
+
+  recordUsage(String token, int usage) async {
+    final response = await request.post(
+      "$baseUrl/auth/record_usage",
+      {"token": token, "usage": usage},
+    );
+    return response.data;
+  }
 }
 
-final apiController = ApiController();
+final api = ApiController();

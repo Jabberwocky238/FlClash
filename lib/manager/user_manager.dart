@@ -49,7 +49,7 @@ class _UserManagerState extends ConsumerState<UserManager> {
     try {
       final token =
           ref.watch(authSettingProvider.select((state) => state.token));
-      _profile.value = await apiController.fetchProfile(token);
+      _profile.value = await api.fetchProfile(token);
       globalState.appController.setProfileAndAutoApply(_profile.value!);
       ref.read(currentProfileIdProvider.notifier).value = _profile.value!.id;
       printMessage("switch to ${_profile.value!.url}");

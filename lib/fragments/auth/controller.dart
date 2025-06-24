@@ -32,7 +32,7 @@ class AuthController {
       if (authProps.code == null || authProps.code!.isEmpty) {
         return (success: false, message: "验证码不能为空");
       }
-      await apiController.register(
+      await api.register(
           authProps.email!, authProps.password!, authProps.code!);
       return (success: true, message: "注册成功");
     } on DioException catch (err, _) {
@@ -57,11 +57,8 @@ class AuthController {
       if (authProps.password == null || authProps.password!.isEmpty) {
         return (success: false, message: "密码不能为空");
       }
-      if (authProps.ip == null || authProps.ip!.isEmpty) {
-        return (success: false, message: "IP未成功获取, 请检查网络");
-      }
       final authData =
-          await apiController.login(authProps.email!, authProps.password!, authProps.ip!);
+          await api.login(authProps.email!, authProps.password!);
       if (authData != null) {
         commonPrint.log("[AuthController] login success: $authData");
         await _saveAuthState(authData);
@@ -97,7 +94,7 @@ class AuthController {
       if (!email.isEmail) {
         return (success: false, message: "邮箱格式不正确");
       }
-      await apiController.sendCode(email);
+      await api.sendCode(email);
       return (success: true, message: "验证码已发送");
     } on DioException catch (err, _) {
       return (success: false, message: "邮箱 $email 发送验证码失败");
@@ -118,6 +115,9 @@ class AuthController {
       }
       return;
     }
+    final token =  _ref.read(authSettingProvider.select((state) => state.token));
+    final profile = await api.fetchProfile(token);
+    globalState.appController.setProfileAndAutoApply(profile);
   }
 
   Future<void> _saveAuthState(AuthProps authState) async {

@@ -107,10 +107,9 @@ class _PageLoginState extends ConsumerState<PageLogin> with PageMixin {
           textAlign: TextAlign.center,
         ),
         onTap: () async {
-          await apiController.useLoadingPage(() async {
+          await api.useLoadingPage(() async {
             final result = await globalState.authController.login(
-                _authStateNotifier.value
-                    .copyWith(ip: globalState.appState.ipInfo.ip));
+                _authStateNotifier.value);
             await globalState.showMessage(
               cancelable: false,
               message: TextSpan(text: result.message),

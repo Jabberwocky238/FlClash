@@ -84,7 +84,6 @@ class UserLoginProps with _$UserLoginProps {
   const factory UserLoginProps({
     String? email,
     String? password,
-    String? ip,
   }) = _UserLoginProps;
 }
 

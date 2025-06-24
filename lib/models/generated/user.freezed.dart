@@ -442,7 +442,6 @@ abstract class _UserRegisterProps implements UserRegisterProps {
 mixin _$UserLoginProps {
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
-  String? get ip => throw _privateConstructorUsedError;
 
   /// Create a copy of UserLoginProps
   /// with the given fields replaced by the non-null parameter values.
@@ -457,7 +456,7 @@ abstract class $UserLoginPropsCopyWith<$Res> {
           UserLoginProps value, $Res Function(UserLoginProps) then) =
       _$UserLoginPropsCopyWithImpl<$Res, UserLoginProps>;
   @useResult
-  $Res call({String? email, String? password, String? ip});
+  $Res call({String? email, String? password});
 }
 
 /// @nodoc
@@ -477,7 +476,6 @@ class _$UserLoginPropsCopyWithImpl<$Res, $Val extends UserLoginProps>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? ip = freezed,
   }) {
     return _then(_value.copyWith(
       email: freezed == email
@@ -487,10 +485,6 @@ class _$UserLoginPropsCopyWithImpl<$Res, $Val extends UserLoginProps>
       password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ip: freezed == ip
-          ? _value.ip
-          : ip // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -504,7 +498,7 @@ abstract class _$$UserLoginPropsImplCopyWith<$Res>
       __$$UserLoginPropsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? email, String? password, String? ip});
+  $Res call({String? email, String? password});
 }
 
 /// @nodoc
@@ -522,7 +516,6 @@ class __$$UserLoginPropsImplCopyWithImpl<$Res>
   $Res call({
     Object? email = freezed,
     Object? password = freezed,
-    Object? ip = freezed,
   }) {
     return _then(_$UserLoginPropsImpl(
       email: freezed == email
@@ -533,10 +526,6 @@ class __$$UserLoginPropsImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      ip: freezed == ip
-          ? _value.ip
-          : ip // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -544,18 +533,16 @@ class __$$UserLoginPropsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserLoginPropsImpl implements _UserLoginProps {
-  const _$UserLoginPropsImpl({this.email, this.password, this.ip});
+  const _$UserLoginPropsImpl({this.email, this.password});
 
   @override
   final String? email;
   @override
   final String? password;
-  @override
-  final String? ip;
 
   @override
   String toString() {
-    return 'UserLoginProps(email: $email, password: $password, ip: $ip)';
+    return 'UserLoginProps(email: $email, password: $password)';
   }
 
   @override
@@ -565,12 +552,11 @@ class _$UserLoginPropsImpl implements _UserLoginProps {
             other is _$UserLoginPropsImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.ip, ip) || other.ip == ip));
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, ip);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   /// Create a copy of UserLoginProps
   /// with the given fields replaced by the non-null parameter values.
@@ -583,17 +569,13 @@ class _$UserLoginPropsImpl implements _UserLoginProps {
 }
 
 abstract class _UserLoginProps implements UserLoginProps {
-  const factory _UserLoginProps(
-      {final String? email,
-      final String? password,
-      final String? ip}) = _$UserLoginPropsImpl;
+  const factory _UserLoginProps({final String? email, final String? password}) =
+      _$UserLoginPropsImpl;
 
   @override
   String? get email;
   @override
   String? get password;
-  @override
-  String? get ip;
 
   /// Create a copy of UserLoginProps
   /// with the given fields replaced by the non-null parameter values.

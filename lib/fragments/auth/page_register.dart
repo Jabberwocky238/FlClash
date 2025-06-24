@@ -145,7 +145,7 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
           textAlign: TextAlign.center,
         ),
         onTap: () async {
-          await apiController.useLoadingPage(() async {
+          await api.useLoadingPage(() async {
             final result = await globalState.authController
                 .register(_authStateNotifier.value);
             await globalState.showMessage(
