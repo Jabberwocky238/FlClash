@@ -80,6 +80,12 @@ jobs:
       - name: Setup
         run: dart setup.dart ${{ matrix.platform }} ${{ matrix.arch && format('--arch {0}', matrix.arch) }} ${{ env.IS_STABLE == 'true' && '--env stable' || '' }}
 
+      - name: Upload Tencent COS
+        run: |
+          pip install coscmd
+          coscmd config -a "${{ secrets.COS_SECRET_ID }}" -s "${{ secrets.COS_SECRET_KEY }}" -b "${{ secrets.COS_BUCKET }}" -r "${{ secrets.COS_REGION }}"
+          coscmd upload -r ./dist/ /
+
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
