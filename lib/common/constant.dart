@@ -33,12 +33,13 @@ final textScaleFactor =
 
 const List<DashboardWidget> defaultDashboardWidgets = [
   DashboardWidget.jwDashboard,
-  DashboardWidget.showProxies,
+  DashboardWidget.outboundMode,
+  DashboardWidget.chooseCountry,
   // DashboardWidget.networkSpeed,
   // DashboardWidget.systemProxyButton,
   DashboardWidget.tunButton,
   DashboardWidget.vpnButton,
-  // DashboardWidget.outboundMode,
+  
   // DashboardWidget.networkDetection,
   // DashboardWidget.trafficUsage,
   // DashboardWidget.intranetIp,
@@ -46,8 +47,8 @@ const List<DashboardWidget> defaultDashboardWidgets = [
 
 const freeSubscriptionGroupName = "PROXY-FREE";
 const proSubscriptionProxyName = "PROXY-PRO";
-
-const httpTimeoutDuration = Duration(milliseconds: 2000);
+final defaultUsageInfo = UsageInfo(used: 0, total: 0, expireAt: DateTime.now());
+const httpTimeoutDuration = Duration(milliseconds: 5000);
 const moreDuration = Duration(milliseconds: 100);
 const animateDuration = Duration(milliseconds: 100);
 const commonDuration = Duration(milliseconds: 300);
@@ -109,5 +110,5 @@ final mainIsolate = "EnzymeMainIsolate";
 // ];
 const defaultPrimaryColor = 0xFFb8d8d8;
 
-const baseUrl = "https://enzyme.jw238.site/api";
-// const baseUrl = "http://127.0.0.1:8877";
+// const baseUrl = "https://enzyme.jw238.site/api";
+const baseUrl = "http://127.0.0.1:8877";

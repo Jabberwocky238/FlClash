@@ -27,7 +27,6 @@ class ProxyCard extends StatelessWidget {
   _handleTestCurrentDelay() {
     proxyDelayTest(
       proxy,
-      testUrl,
     );
   }
 
@@ -137,7 +136,7 @@ class ProxyCard extends StatelessWidget {
               enterAnimated: true,
               onPressed: () {
                 if (groupName == proSubscriptionProxyName) {
-                  if (authSetting.isExpired || !authSetting.isLogin) {
+                  if (authSetting.token == null || authSetting.token!.isEmpty) {
                     _reportNeedBuyPro(ref);
                     return;
                   }

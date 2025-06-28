@@ -1,13 +1,13 @@
 export 'proxies/proxies.dart';
 export 'dashboard/dashboard.dart';
-export 'tools.dart';
+export 'tools/tools.dart';
 export 'profiles/profiles.dart';
 // export 'logs.dart';
 // export 'access.dart';
 export 'config/config.dart';
-export 'application_setting.dart';
+export 'tools/application_setting.dart';
 // export 'about.dart';
-export 'resources.dart';
-export 'developer.dart';
+export 'tools/resources.dart';
+export 'tools/developer.dart';
 export 'auth/auth.dart';
-export 'order.dart';
+export 'shopping.dart';

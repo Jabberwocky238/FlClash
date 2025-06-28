@@ -120,6 +120,21 @@ class AuthSetting extends _$AuthSetting with AutoDisposeNotifierMixin {
 }
 
 @riverpod
+class CurrentSelectedCountry extends _$CurrentSelectedCountry with AutoDisposeNotifierMixin {
+  @override
+  String? build() {
+    return globalState.appState.currentSelectedCountry;
+  }
+
+  @override
+  onUpdate(value) {
+    globalState.appState = globalState.appState.copyWith(
+      currentSelectedCountry: value,
+    );
+  }
+}
+
+@riverpod
 class Profiles extends _$Profiles with AutoDisposeNotifierMixin {
   @override
   List<Profile> build() {

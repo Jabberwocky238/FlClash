@@ -3,10 +3,11 @@ import 'package:jw_clash/enum/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'selector.dart';
+import 'auth.dart';
 import 'common.dart';
 import 'core.dart';
-import 'user.dart';
+import 'selector.dart';
+import 'shopping.dart';
 
 part 'generated/app.freezed.dart';
 
@@ -18,17 +19,17 @@ class AppState with _$AppState {
     @Default(false) bool isInit,
     @Default(PageLabel.dashboard) PageLabel pageLabel,
     @Default([]) List<Package> packages,
-    // @Default(0) int sortNum,
-    // required Size viewSize,
     @Default({}) DelayMap delayMap,
     @Default([]) List<Group> groups,
     @Default(0) int checkIpNum,
+    String? currentSelectedCountry,
     Brightness? brightness,
     int? runTime,
     @Default([]) List<ExternalProvider> providers,
-    String? localIp,
     @Default(OrderSelectionProps()) OrderSelectionProps orderSelection,
-    required IpInfo ipInfo,
+    @Default(NetworkDetectionState())
+    NetworkDetectionState networkDetectionState,
+    UsageInfo? usageInfo,
     required FixedList<Connection> requests,
     required int version,
     required String deviceSerialNumber,

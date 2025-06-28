@@ -1,21 +1,15 @@
 import 'dart:async';
 
 import 'package:animations/animations.dart';
-// import 'package:dynamic_color/dynamic_color.dart';
 import 'package:jw_clash/clash/clash.dart';
 import 'package:jw_clash/common/theme.dart';
 import 'package:jw_clash/enum/enum.dart';
-import 'package:jw_clash/fragments/auth/controller.dart';
 import 'package:jw_clash/l10n/l10n.dart';
 import 'package:jw_clash/plugins/service.dart';
 import 'package:jw_clash/widgets/dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:material_color_utilities/palettes/core_palette.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-// import 'package:webview_flutter/webview_flutter.dart';
-// import 'package:webview_flutter_android/webview_flutter_android.dart';
-// import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'common/common.dart';
 import 'controller.dart';
 import 'models/models.dart';
@@ -37,14 +31,12 @@ class GlobalState {
   late PackageInfo packageInfo;
   Function? updateCurrentDelayDebounce;
   late CommonTheme theme;
-  late Color accentColor;
-  CorePalette? corePalette;
   DateTime? startTime;
   UpdateTasks tasks = [];
   final navigatorKey = GlobalKey<NavigatorState>();
   late AppController appController;
-  late AuthController authController;
   GlobalKey<HomePageState> homePageKey = GlobalKey();
+  late String deviceFingerprint;
 
   bool get isStart => startTime != null && startTime!.isBeforeNow;
 
@@ -59,31 +51,16 @@ class GlobalState {
     coreSHA256 = const String.fromEnvironment("CORE_SHA256");
     isPre = const String.fromEnvironment("APP_ENV") != 'stable';
     final deviceSerialNumber = await system.deviceSerialNumber;
-    final ipInfo = await request.checkIp();
-    if (ipInfo == null) {
-      throw Exception("IP获取失败");
-    }
     appState = AppState(
       version: version,
-      // viewSize: Size.zero,
       requests: FixedList(maxLength),
       logs: FixedList(maxLength),
       traffics: FixedList(30),
       totalTraffic: Traffic(),
       deviceSerialNumber: deviceSerialNumber,
-      ipInfo: ipInfo,
     );
-    // await _initDynamicColor();
     await init();
   }
-
-  // _initDynamicColor() async {
-  //   try {
-  //     corePalette = await DynamicColorPlugin.getCorePalette();
-  //     accentColor = await DynamicColorPlugin.getAccentColor() ??
-  //         Color(defaultPrimaryColor);
-  //   } catch (_) {}
-  // }
 
   init() async {
     packageInfo = await PackageInfo.fromPlatform();
@@ -93,6 +70,7 @@ class GlobalState {
       utils.getLocaleForString(config.appSetting.locale) ??
           WidgetsBinding.instance.platformDispatcher.locale,
     );
+    deviceFingerprint = await system.deviceSerialNumber;
   }
 
   String get ua => config.patchClashConfig.globalUa ?? packageInfo.ua;
@@ -294,7 +272,7 @@ class GlobalState {
         isPatch: isPatch ?? false,
         selectedMap: currentProfile?.selectedMap ?? {},
         overrideDns: config.overrideDns,
-        testUrl: config.appSetting.testUrl,
+        testUrl: defaultTestUrl,
         overrideRule:
             currentProfile?.overrideData.rule.type == OverrideRuleType.override
                 ? true

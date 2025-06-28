@@ -10,14 +10,6 @@ import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _networkDetectionState = ValueNotifier<NetworkDetectionState>(
-  NetworkDetectionState(
-    isTesting: false,
-    isLoading: false,
-    ipInfo: globalState.appState.ipInfo,
-  ),
-);
-
 class JwDashboard extends ConsumerStatefulWidget {
   const JwDashboard({super.key});
 
@@ -26,7 +18,6 @@ class JwDashboard extends ConsumerStatefulWidget {
 }
 
 class _JwDashboardState extends ConsumerState<JwDashboard> {
-  List<Point> initPoints = const [Point(0, 0), Point(1, 0)];
   bool? _preIsStart;
   Timer? _setTimeoutTimer;
   CancelToken? cancelToken;
@@ -38,10 +29,11 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
         _startCheck();
       }
     });
-    if (!_networkDetectionState.value.isTesting &&
-        _networkDetectionState.value.isLoading) {
-      _startCheck();
-    }
+    ref.listenManual(networkDetectionProvider, (prev, next) {
+      if (next.isLoading && !next.isTesting) {
+        _startCheck();
+      }
+    });
     super.initState();
   }
 
@@ -58,16 +50,18 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
 
   _checkIp() async {
     final appState = globalState.appState;
+    final networkDetectionState = ref.watch(networkDetectionProvider);
     final isInit = appState.isInit;
     if (!isInit) return;
     final isStart = appState.runTime != null;
     if (_preIsStart == false &&
         _preIsStart == isStart &&
-        _networkDetectionState.value.ipInfo != null) {
+        networkDetectionState.ipInfo != null) {
       return;
     }
     _clearSetTimeoutTimer();
-    _networkDetectionState.value = _networkDetectionState.value.copyWith(
+    ref.read(networkDetectionProvider.notifier).value =
+        networkDetectionState.copyWith(
       isLoading: true,
       ipInfo: null,
     );
@@ -78,15 +72,18 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
     }
     cancelToken = CancelToken();
     try {
-      _networkDetectionState.value = _networkDetectionState.value.copyWith(
+      ref.read(networkDetectionProvider.notifier).value =
+          networkDetectionState.copyWith(
         isTesting: true,
       );
       final ipInfo = await request.checkIp(cancelToken: cancelToken);
-      _networkDetectionState.value = _networkDetectionState.value.copyWith(
+      ref.read(networkDetectionProvider.notifier).value =
+          networkDetectionState.copyWith(
         isTesting: false,
       );
       if (ipInfo != null) {
-        _networkDetectionState.value = _networkDetectionState.value.copyWith(
+        ref.read(networkDetectionProvider.notifier).value =
+            networkDetectionState.copyWith(
           isLoading: false,
           ipInfo: ipInfo,
         );
@@ -94,14 +91,16 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
       }
       _clearSetTimeoutTimer();
       _setTimeoutTimer = Timer(const Duration(milliseconds: 300), () {
-        _networkDetectionState.value = _networkDetectionState.value.copyWith(
+        ref.read(networkDetectionProvider.notifier).value =
+            networkDetectionState.copyWith(
           isLoading: false,
           ipInfo: null,
         );
       });
     } catch (e) {
       if (e.toString() == "cancelled") {
-        _networkDetectionState.value = _networkDetectionState.value.copyWith(
+        ref.read(networkDetectionProvider.notifier).value =
+            networkDetectionState.copyWith(
           isLoading: true,
           ipInfo: null,
         );
@@ -190,59 +189,55 @@ class _JwDashboardState extends ConsumerState<JwDashboard> {
 
   _buildIPInfo(BuildContext context) {
     final textStyle = context.textTheme.bodyLarge?.toLight.adjustSize(16);
-    return ValueListenableBuilder<NetworkDetectionState>(
-      valueListenable: _networkDetectionState,
-      builder: (_, state, __) {
-        final ipInfo = state.ipInfo;
-        final isLoading = state.isLoading;
-        return Container(
-          padding: baseInfoEdgeInsets.copyWith(
-            left: 12,
-          ),
-          child: Center(
-            child: ipInfo != null
-                ? Row(
-                    children: [
-                      Text(
-                        _countryCodeToEmoji(
-                          ipInfo.countryCode,
-                        ),
-                        style: textStyle?.copyWith(
-                          fontFamily: FontFamily.twEmoji.value,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        ipInfo.ip,
-                        style: textStyle,
+    final state = ref.watch(networkDetectionProvider);
+    final ipInfo = state.ipInfo;
+    final isLoading = state.isLoading;
+    return Container(
+      padding: baseInfoEdgeInsets.copyWith(
+        left: 12,
+      ),
+      child: Center(
+        child: ipInfo != null
+            ? Row(
+                children: [
+                  Text(
+                    _countryCodeToEmoji(
+                      ipInfo.countryCode,
+                    ),
+                    style: textStyle?.copyWith(
+                      fontFamily: FontFamily.twEmoji.value,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    ipInfo.ip,
+                    style: textStyle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              )
+            : FadeThroughBox(
+                child: isLoading == false && ipInfo == null
+                    ? Text(
+                        "timeout",
+                        style: context.textTheme.bodyMedium
+                            ?.copyWith(color: Colors.red)
+                            .adjustSize(1),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  )
-                : FadeThroughBox(
-                    child: isLoading == false && ipInfo == null
-                        ? Text(
-                            "timeout",
-                            style: context.textTheme.bodyMedium
-                                ?.copyWith(color: Colors.red)
-                                .adjustSize(1),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        : Container(
-                            padding: const EdgeInsets.all(2),
-                            child: const AspectRatio(
-                              aspectRatio: 1,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
-                            ),
+                      )
+                    : Container(
+                        padding: const EdgeInsets.all(2),
+                        child: const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
                           ),
-                  ),
-          ),
-        );
-      },
+                        ),
+                      ),
+              ),
+      ),
     );
   }
 }

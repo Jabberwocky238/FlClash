@@ -116,8 +116,7 @@ class TestUrlItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final testUrl =
-        ref.watch(appSettingProvider.select((state) => state.testUrl));
+    final testUrl = defaultTestUrl;
     return ListItem.input(
       leading: const Icon(Icons.timeline),
       title: Text(appLocalizations.testUrl),
@@ -135,11 +134,11 @@ class TestUrlItem extends ConsumerWidget {
                 if (!value.isUrl) {
                   throw "Invalid url";
                 }
-                ref.read(appSettingProvider.notifier).updateState(
-                      (state) => state.copyWith(
-                        testUrl: value,
-                      ),
-                    );
+                // ref.read(appSettingProvider.notifier).updateState(
+                //       (state) => state.copyWith(
+                //         testUrl: value,
+                //       ),
+                //     );
               },
               silence: false,
               title: appLocalizations.testUrl,

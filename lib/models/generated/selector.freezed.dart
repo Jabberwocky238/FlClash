@@ -937,13 +937,16 @@ class __$$NetworkDetectionStateImplCopyWithImpl<$Res>
 
 class _$NetworkDetectionStateImpl implements _NetworkDetectionState {
   const _$NetworkDetectionStateImpl(
-      {required this.isLoading, required this.isTesting, required this.ipInfo});
+      {this.isLoading = false, this.isTesting = false, this.ipInfo = null});
 
   @override
+  @JsonKey()
   final bool isLoading;
   @override
+  @JsonKey()
   final bool isTesting;
   @override
+  @JsonKey()
   final IpInfo? ipInfo;
 
   @override
@@ -978,9 +981,9 @@ class _$NetworkDetectionStateImpl implements _NetworkDetectionState {
 
 abstract class _NetworkDetectionState implements NetworkDetectionState {
   const factory _NetworkDetectionState(
-      {required final bool isLoading,
-      required final bool isTesting,
-      required final IpInfo? ipInfo}) = _$NetworkDetectionStateImpl;
+      {final bool isLoading,
+      final bool isTesting,
+      final IpInfo? ipInfo}) = _$NetworkDetectionStateImpl;
 
   @override
   bool get isLoading;

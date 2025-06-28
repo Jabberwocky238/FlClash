@@ -6,4 +6,5 @@ export 'core.dart';
 export 'profile.dart';
 export 'selector.dart';
 export 'widget.dart';
-export 'user.dart';
+export 'auth.dart';
+export 'shopping.dart';

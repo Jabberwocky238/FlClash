@@ -262,12 +262,18 @@ enum DashboardWidget {
       child: JwDashboard(),
     ),
   ),
-  showProxies(
+  chooseCountry(
     GridItem(
       crossAxisCellCount: 4,
-      child: ShowProxies(),
+      child: ChooseCountry(),
     ),
   ),
+  // showProxies(
+  //   GridItem(
+  //     crossAxisCellCount: 4,
+  //     child: ShowProxies(),
+  //   ),
+  // ),
   networkSpeed(
     GridItem(
       crossAxisCellCount: 8,
@@ -280,12 +286,12 @@ enum DashboardWidget {
   //     child: OutboundModeV2(),
   //   ),
   // ),
-  // outboundMode(
-  //   GridItem(
-  //     crossAxisCellCount: 4,
-  //     child: OutboundMode(),
-  //   ),
-  // ),
+  outboundMode(
+    GridItem(
+      crossAxisCellCount: 4,
+      child: OutboundMode(),
+    ),
+  ),
   trafficUsage(
     GridItem(
       crossAxisCellCount: 4,
@@ -320,19 +326,19 @@ enum DashboardWidget {
       child: SystemProxyButton(),
     ),
     platforms: desktopPlatforms,
-  ),
+  );
   // memoryInfo(
   //   GridItem(
   //     crossAxisCellCount: 4,
   //     child: MemoryInfo(),
   //   ),
   // ),
-  intranetIp(
-    GridItem(
-      crossAxisCellCount: 4,
-      child: IntranetIP(),
-    ),
-  );
+  // intranetIp(
+  //   GridItem(
+  //     crossAxisCellCount: 4,
+  //     child: IntranetIP(),
+  //   ),
+  // );
 
   final GridItem widget;
   final List<SupportPlatform> platforms;

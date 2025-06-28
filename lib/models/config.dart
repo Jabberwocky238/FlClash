@@ -49,7 +49,6 @@ class AppSettingProps with _$AppSettingProps {
     @Default(false) bool silentLaunch,
     @Default(false) bool autoRun,
     @Default(true) bool closeConnections,
-    @Default(defaultTestUrl) String testUrl,
     @Default(true) bool isAnimateToPage,
     @Default(true) bool autoCheckUpdate,
     @Default(false) bool showLabel,
@@ -181,8 +180,6 @@ class Config with _$Config {
     @Default(defaultAuthProps) AuthProps authProps,
     @Default(defaultNetworkProps) NetworkProps networkProps,
     @Default(defaultVpnProps) VpnProps vpnProps,
-    // @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
-    // @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
     @Default(defaultWindowProps) WindowProps windowProps,
     @Default(defaultClashConfig) ClashConfig patchClashConfig,
   }) = _Config;

@@ -16,15 +16,14 @@ class CustomDrawerHeader extends ConsumerStatefulWidget {
 
 class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
   Widget _buildSubscriptionInfo(
-      BuildContext context, SubscriptionInfo subscriptionInfo) {
-    final use = subscriptionInfo.upload + subscriptionInfo.download;
-    final total = subscriptionInfo.total;
+      BuildContext context, UsageInfo subscriptionInfo) {
+    final use = subscriptionInfo.used;
+    final total = subscriptionInfo.total + 1;
     final progress = use / total;
 
     final useShow = TrafficValue(value: use).show;
     final totalShow = TrafficValue(value: total).show;
-    final expireDate =
-        DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire);
+    final expireDate = subscriptionInfo.expireAt;
     final expireShow =
         expireDate.isAfter(DateTime.now()) ? expireDate.show : "免费版";
     return Column(
@@ -46,35 +45,17 @@ class _CustomDrawerHeaderState extends ConsumerState<CustomDrawerHeader> {
     );
   }
 
-  List<Widget> _buildProfileInfo(BuildContext context) {
-    // final profile = ref.watch(currentProfileProvider);
-    // final subscriptionInfo = profile?.subscriptionInfo;
-    final authSetting = ref.watch(authSettingProvider);
-    final subscriptionInfo = authSetting.subscriptionInfo;
-    // commonPrint.log("[NavigationDrawer] subscriptionInfo: $subscriptionInfo");
-    return [
-      const SizedBox(
-        height: 8,
-      ),
-      // if (subscriptionInfo != null)
-      _buildSubscriptionInfo(context, subscriptionInfo),
-      // Text(
-      //   profile?.lastUpdateDate?.lastUpdateTimeDesc ?? "",
-      //   style: context.textTheme.labelMedium?.toLight,
-      // ),
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
     final authSetting = ref.watch(authSettingProvider);
-    // final currentProfile = ref.watch(currentProfileProvider);
+    final subscriptionInfo = ref.watch(usageInfoModelProvider);
+    final token = authSetting.token;
     final realChildren = <Widget>[
       Text(
-        authSetting.email.isEmpty ? '请先登录' : authSetting.email,
+        authSetting.email.isEmpty ? "免费用户$token" : authSetting.email,
         style: context.textTheme.labelLarge?.toLight,
       ),
-      ..._buildProfileInfo(context),
+      _buildSubscriptionInfo(context, subscriptionInfo),
     ].separated(const SizedBox(height: 8)).toList();
     return SizedBox(
       width: double.infinity,

@@ -27,7 +27,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
             debouncer.call(commonDuration, () {
               delayTest(
                 ref.watch(proxiesStateProvider),
-                ref.watch(appSettingProvider.select((state) => state.testUrl)),
+                defaultTestUrl,
               );
             });
           },
@@ -52,7 +52,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
       commonPrint.log("[ProxiesFragment] initState");
       delayTest(
         ref.watch(proxiesStateProvider),
-        ref.watch(appSettingProvider.select((state) => state.testUrl)),
+        defaultTestUrl,
       );
     });
   }
@@ -138,7 +138,7 @@ class _ProxiesFragmentState extends ConsumerState<ProxiesFragment> with PageMixi
     assert(groupNames.contains(proSubscriptionProxyName),
         "groupNames must contain $proSubscriptionProxyName");
     final authSetting = ref.watch(authSettingProvider);
-    final isFree = authSetting.isExpired || !authSetting.isLogin;
+    final isFree = authSetting.token == null || authSetting.token!.isEmpty;
     groupNames = isFree
         ? [
             freeSubscriptionGroupName,

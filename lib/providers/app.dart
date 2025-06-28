@@ -3,7 +3,6 @@ import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'generated/app.g.dart';
@@ -23,6 +22,36 @@ class Logs extends _$Logs with AutoDisposeNotifierMixin {
   onUpdate(value) {
     globalState.appState = globalState.appState.copyWith(
       logs: value,
+    );
+  }
+}
+
+@riverpod
+class UsageInfoModel extends _$UsageInfoModel with AutoDisposeNotifierMixin {
+  @override
+  UsageInfo build() {
+    return globalState.appState.usageInfo ?? defaultUsageInfo;
+  }
+
+  @override
+  onUpdate(value) {
+    globalState.appState = globalState.appState.copyWith(
+      usageInfo: value,
+    );
+  }
+}
+
+@riverpod
+class NetworkDetection extends _$NetworkDetection with AutoDisposeNotifierMixin {
+  @override
+  NetworkDetectionState build() {
+    return globalState.appState.networkDetectionState;
+  }
+
+  @override
+  onUpdate(value) {
+    globalState.appState = globalState.appState.copyWith(
+      networkDetectionState: value,
     );
   }
 }
@@ -136,29 +165,6 @@ class TotalTraffic extends _$TotalTraffic with AutoDisposeNotifierMixin {
   onUpdate(value) {
     globalState.appState = globalState.appState.copyWith(
       totalTraffic: value,
-    );
-  }
-}
-
-@riverpod
-class LocalIp extends _$LocalIp with AutoDisposeNotifierMixin {
-  @override
-  String? build() {
-    return globalState.appState.localIp;
-  }
-
-  @override
-  onUpdate(value) {
-    globalState.appState = globalState.appState.copyWith(
-      localIp: value,
-    );
-  }
-
-  @override
-  set state(String? value) {
-    super.state = value;
-    globalState.appState = globalState.appState.copyWith(
-      localIp: state,
     );
   }
 }

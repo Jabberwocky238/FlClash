@@ -15,12 +15,10 @@ double getItemHeight() {
   return measure.bodyLargeHeight * 2;
 }
 
-proxyDelayTest(Proxy proxy, [String? testUrl]) async {
+proxyDelayTest(Proxy proxy) async {
   final appController = globalState.appController;
   final state = appController.getProxyCardState(proxy.name);
-  final url = state.testUrl.getSafeValue(
-    appController.getRealTestUrl(testUrl),
-  );
+  final url = defaultTestUrl;
   if (state.proxyName.isEmpty) {
     return;
   }
@@ -45,9 +43,7 @@ delayTest(List<Proxy> proxies, [String? testUrl]) async {
 
   final delayProxies = proxyNames.map<Future>((proxyName) async {
     final state = appController.getProxyCardState(proxyName);
-    final url = state.testUrl.getSafeValue(
-      appController.getRealTestUrl(testUrl),
-    );
+    final url = defaultTestUrl;
     final name = state.proxyName;
     if (name.isEmpty) {
       return;

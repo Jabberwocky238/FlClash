@@ -7,7 +7,7 @@ import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/app.dart';
+import '../../providers/app.dart';
 
 class DeveloperView extends ConsumerWidget {
   const DeveloperView({super.key});

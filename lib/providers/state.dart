@@ -344,18 +344,12 @@ bool isCurrentPage(
 }
 
 @riverpod
-String getRealTestUrl(Ref ref, [String? testUrl]) {
-  final currentTestUrl = ref.watch(appSettingProvider).testUrl;
-  return testUrl.getSafeValue(currentTestUrl);
-}
-
-@riverpod
 int? getDelay(
   Ref ref, {
   required String proxyName,
   String? testUrl,
 }) {
-  final currentTestUrl = ref.watch(getRealTestUrlProvider(testUrl));
+  final currentTestUrl = defaultTestUrl;
   final proxyCardState = ref.watch(
     getProxyCardStateProvider(
       proxyName,
@@ -405,29 +399,6 @@ String? currentProxyName(Ref ref) {
   }
   return ref.watch(getProxyNameProvider(currentGroupName));
 }
-
-@riverpod
-int getProxyLength(Ref ref) {
-  final groups = ref.watch(currentGroupsStateProvider);
-  final authSetting = ref.watch(authSettingProvider);
-  final isLogin = authSetting.isLogin;
-  final isExpired = authSetting.isExpired;
-  final proxyLength = !isLogin || isExpired
-      ? groups.value
-          .firstWhere((e) => e.name == freeSubscriptionGroupName)
-          .all
-          .length
-      : groups.value.map((e) => e.all).expand((e) => e).length;
-  return proxyLength;
-}
-
-// @riverpod
-// int getProxiesColumns(Ref ref) {
-//   final viewWidth = ref.watch(viewWidthProvider);
-//   final proxiesLayout =
-//       ref.watch(proxiesStyleSettingProvider.select((state) => state.layout));
-//   return utils.getProxiesColumns(viewWidth, proxiesLayout);
-// }
 
 ProxyCardState _getProxyCardState(
   List<Group> groups,

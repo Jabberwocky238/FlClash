@@ -1,11 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/common/common.dart';
 import 'package:jw_clash/enum/enum.dart';
 import 'package:jw_clash/models/models.dart';
-import 'package:jw_clash/providers/providers.dart';
 import 'package:jw_clash/state.dart';
 import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'controller.dart';
 
 class PageRegister extends ConsumerStatefulWidget {
   const PageRegister({super.key});
@@ -15,8 +17,8 @@ class PageRegister extends ConsumerStatefulWidget {
 }
 
 class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
-  final _authStateNotifier =
-      ValueNotifier<UserRegisterProps>(const UserRegisterProps());
+  final _authStateNotifier = ValueNotifier<UserRegisterProps>(
+      UserRegisterProps(email: '', password: '', code: ''));
 
   @override
   void initState() {
@@ -68,8 +70,10 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
             title: Text("邮   箱"),
             delegate: TextFieldDelegate(
               onChanged: (value) {
-                _authStateNotifier.value = _authStateNotifier.value.copyWith(
+                _authStateNotifier.value = UserRegisterProps(
                   email: value ?? authState.email,
+                  password: authState.password,
+                  code: authState.code,
                 );
               },
             ),
@@ -90,8 +94,10 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
             title: Text("密   码"),
             delegate: TextFieldDelegate(
               onChanged: (value) {
-                _authStateNotifier.value = _authStateNotifier.value.copyWith(
+                _authStateNotifier.value = UserRegisterProps(
+                  email: authState.email,
                   password: value ?? authState.password,
+                  code: authState.code,
                 );
               },
             ),
@@ -114,11 +120,10 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
               suffixWidget: ElevatedButton(
                 onPressed: () async {
                   final email = _authStateNotifier.value.email;
-                  final result =
-                      await globalState.authController.sendCode(email);
+                  final result = await request.enzyme.sendCode(email);
                   globalState.showMessage(
                     cancelable: false,
-                    message: TextSpan(text: result.message),
+                    message: TextSpan(text: result ? "发送成功" : "发送失败"),
                   );
                 },
                 child: const Text("发送验证码"),
@@ -145,9 +150,8 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
           textAlign: TextAlign.center,
         ),
         onTap: () async {
-          await api.useLoadingPage(() async {
-            final result = await globalState.authController
-                .register(_authStateNotifier.value);
+          await useLoadingPage(() async {
+            final result = await _register(_authStateNotifier.value);
             await globalState.showMessage(
               cancelable: false,
               message: TextSpan(text: result.message),
@@ -159,5 +163,33 @@ class _PageRegisterState extends ConsumerState<PageRegister> with PageMixin {
         },
       ),
     );
+  }
+
+  Future<AuthResult> _register(UserRegisterProps authProps) async {
+    try {
+      if (authProps.email.isEmpty) {
+        return (success: false, message: "邮箱不能为空");
+      }
+      if (!authProps.email.isEmail) {
+        return (success: false, message: "邮箱格式不正确");
+      }
+      if (authProps.password.isEmpty) {
+        return (success: false, message: "密码不能为空");
+      }
+      if (authProps.code.isEmpty) {
+        return (success: false, message: "验证码不能为空");
+      }
+      await request.enzyme
+          .register(authProps.email, authProps.password, authProps.code);
+      return (success: true, message: "注册成功");
+    } on DioException catch (err, _) {
+      if (err.response?.statusCode == 450) {
+        return (success: false, message: "邮箱 ${authProps.email} 已存在");
+      } else if (err.response?.statusCode == 441) {
+        return (success: false, message: "验证码错误");
+      } else {
+        return (success: false, message: "注册失败");
+      }
+    }
   }
 }

@@ -34,7 +34,7 @@ class Navigation {
       NavigationItem(
         icon: const Icon(Icons.shopping_cart),
         label: PageLabel.order,
-        builder: (context) => OrderFragment(),
+        builder: (context) => ShoppingFragment(),
         modes: [],
       ),
       NavigationItem(
@@ -89,6 +89,14 @@ class Navigation {
           key: GlobalObjectKey(PageLabel.register),
         ),
         modes: const [NavigationItemMode.mobile, NavigationItemMode.desktop, NavigationItemMode.invisible],
+      ),
+      NavigationItem(
+        icon: const Icon(Icons.settings),
+        label: PageLabel.tools,
+        builder: (context) => ToolsFragment(
+          key: GlobalObjectKey(PageLabel.tools),
+        ),
+        modes: const [NavigationItemMode.mobile, NavigationItemMode.desktop],
       ),
     ];
   }

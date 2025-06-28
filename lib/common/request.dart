@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 class Request {
   late final Dio _dio;
   late final Dio _clashDio;
+  late final EnzymeRequest enzyme;
   String? userAgent;
 
   Request() {
@@ -22,6 +23,7 @@ class Request {
         },
       ),
     );
+    enzyme = EnzymeRequest.of(_dio);
     _clashDio = Dio();
     _clashDio.httpClientAdapter = IOHttpClientAdapter(createHttpClient: () {
       final client = HttpClient();
@@ -39,23 +41,6 @@ class Request {
       options: Options(
         responseType: ResponseType.bytes,
       ),
-    );
-    return response;
-  }
-
-  Future<Response> get(String url, Map<String, dynamic> params,
-      {Map<String, dynamic>? queryParameters}) async {
-    final response = await _clashDio.get(
-      url,
-      queryParameters: queryParameters,
-    );
-    return response;
-  }
-
-  Future<Response> post(String url, Object? data) async {
-    final response = await _clashDio.post(
-      url,
-      data: data,
     );
     return response;
   }
@@ -212,3 +197,324 @@ class Request {
 }
 
 final request = Request();
+
+class EnzymeRequest {
+  late final Dio _dio;
+
+  EnzymeRequest.of(Dio dio) {
+    _dio = dio;
+  }
+
+  // 设置通用请求头
+  void _setHeaders(Map<String, String> headers) {
+    headers['X-Enzyme-Device-Fingerprint'] = globalState.deviceFingerprint;
+    headers['X-Enzyme-Token'] = globalState.config.authProps.token ?? "";
+  }
+
+  // auth/pre_register post接收参数：无。返回token
+  Future<String?> preRegister() async {
+    final headers = <String, String>{};
+    _setHeaders(headers);
+
+    final response = await _dio.post(
+      '$baseUrl/auth/pre_register',
+      options: Options(headers: headers),
+    );
+
+    if (response.statusCode == 200 && response.data != null) {
+      return response.data['token'] as String;
+    }
+    return null;
+  }
+
+  // auth/register post接受参数：邮箱，密码，邮箱验证码
+  Future<bool> register(
+      String email, String password, String verificationCode) async {
+    final headers = <String, String>{};
+    _setHeaders(headers);
+
+    final response = await _dio.post(
+      '$baseUrl/auth/register',
+      data: {
+        'email': email,
+        'password': password,
+        'verify_code': verificationCode,
+      },
+      options: Options(headers: headers),
+    );
+
+    return response.statusCode == 200;
+  }
+
+  // auth/login post接受参数：邮箱，密码
+  Future<String?> login(String email, String password) async {
+    final headers = <String, String>{};
+    _setHeaders(headers);
+
+    final response = await _dio.post(
+      '$baseUrl/auth/login',
+      data: {
+        'email': email,
+        'password': password,
+      },
+      options: Options(headers: headers),
+    );
+
+    return response.data['token'] as String?;
+  }
+
+  // auth/logout post接受参数：无
+  Future<bool> logout() async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.post(
+        '$baseUrl/auth/logout',
+        options: Options(headers: headers),
+      );
+
+      return response.statusCode == 200;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] logout error: $e");
+      return false;
+    }
+  }
+
+  // auth/send_code post接受参数：邮箱
+  Future<bool> sendCode(String email) async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.post(
+        '$baseUrl/auth/send_code',
+        data: {
+          'email': email,
+        },
+        options: Options(headers: headers),
+      );
+
+      return response.statusCode == 200;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] sendCode error: $e");
+      return false;
+    }
+  }
+
+  // auth/heartbeat get接受参数：无
+  Future<bool> heartbeat() async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.get(
+        '$baseUrl/auth/heartbeat',
+        options: Options(headers: headers),
+      );
+
+      return response.statusCode == 200;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] heartbeat error: $e");
+      return false;
+    }
+  }
+
+  // auth/remake_pswd post接受参数：邮箱，邮箱验证码，新密码
+  Future<bool> remakePassword(
+      String email, String verificationCode, String newPassword) async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.post(
+        '$baseUrl/auth/remake_pswd',
+        data: {
+          'email': email,
+          'verification_code': verificationCode,
+          'new_password': newPassword,
+        },
+        options: Options(headers: headers),
+      );
+
+      return response.statusCode == 200;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] remakePassword error: $e");
+      return false;
+    }
+  }
+
+  // pay/query get接受参数：用户唯一id，获取用户订阅状态
+  Future<UsageInfo?> querySubscription() async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.get(
+        '$baseUrl/pay/query',
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200 && response.data != null) {
+        final expiredAt = response.data['expired_at'] as String;
+        return UsageInfo(
+          expireAt: DateTime.parse(expiredAt),
+          used: response.data['usage_amount'] as int,
+          total: response.data['total_amount'] as int,
+        );
+      }
+      return null;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] querySubscription error: $e");
+      return null;
+    }
+  }
+
+  // pay/order/list get接受参数：无。返回订单列表
+  Future<List<OrderCommonProps>?> getOrderTypes() async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.get(
+        '$baseUrl/pay/ordertypes',
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200 && response.data != null) {
+        final List<dynamic> data =
+            response.data['order_types'] as List<dynamic>;
+        commonPrint.log("[EnzymeRequest] getOrderList data: $data");
+        return data
+            .map((e) => OrderCommonProps(
+                  orderType: e['order_type'] as String,
+                  name: e['name'] as String,
+                  price: (e['price'] as int).toString(),
+                ))
+            .toList();
+      }
+      return null;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] getOrderList error: $e");
+      return null;
+    }
+  }
+
+  // pay/alipay/create post接受参数：订单唯一id，用户唯一id
+  Future<String?> createAlipayOrder(String orderType) async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final isMobile = Platform.isAndroid || Platform.isIOS;
+      commonPrint.log("[EnzymeRequest] createAlipayOrder isMobile: $isMobile");
+      final response = await _dio.post(
+        '$baseUrl/pay/alipay/create',
+        data: {
+          'order_type': orderType,
+          'is_mobile': isMobile,
+        },
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200 && response.data != null) {
+        return response.data['payment_url'] as String;
+      }
+      return null;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] createAlipayOrder error: $e");
+      return null;
+    }
+  }
+
+  // pay/alipay/success 接收参数根据代码
+  Future<bool> alipaySuccess(Map<String, dynamic> params) async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.post(
+        '$baseUrl/pay/alipay/success',
+        data: params,
+        options: Options(headers: headers),
+      );
+
+      return response.statusCode == 200;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] alipaySuccess error: $e");
+      return false;
+    }
+  }
+
+  // pay/alipay/notify 接收参数根据代码
+  Future<bool> alipayNotify(Map<String, dynamic> params) async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.post(
+        '$baseUrl/pay/alipay/notify',
+        data: params,
+        options: Options(headers: headers),
+      );
+
+      return response.statusCode == 200;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] alipayNotify error: $e");
+      return false;
+    }
+  }
+
+  // config/fetch get接受参数：国家代号
+  Future<Profile?> fetchProfile(String? countryCode) async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.get(
+        '$baseUrl/config/fetch',
+        queryParameters: {
+          'country_code': countryCode ?? "auto",
+        },
+        options: Options(headers: headers),
+      );
+      if (response.statusCode == 200 && response.data != null) {
+        final bytes = response.data as String;
+        commonPrint.log("[EnzymeRequest] fetchProfile bytes: $bytes");
+        return Profile(
+          id: defaultJWClashProfileId,
+          label: defaultJWClashProfileLabel,
+          url: '',
+          autoUpdate: false,
+          autoUpdateDuration: defaultUpdateDuration,
+        ).saveFileWithString(bytes);
+      }
+      return null;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] fetchConfig error: $e");
+      return null;
+    }
+  }
+
+  // config/country_list get接受参数：无。返回所有可用国家
+  Future<List<String>?> getCountryList() async {
+    try {
+      final headers = <String, String>{};
+      _setHeaders(headers);
+
+      final response = await _dio.get(
+        '$baseUrl/config/country_list',
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200 && response.data != null) {
+        final List<dynamic> data = response.data['countries'] as List<dynamic>;
+        return data.cast<String>();
+      }
+      return null;
+    } catch (e) {
+      commonPrint.log("[EnzymeRequest] getCountryList error: $e");
+      return null;
+    }
+  }
+}

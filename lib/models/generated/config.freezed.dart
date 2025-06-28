@@ -26,7 +26,6 @@ mixin _$AppSettingProps {
   bool get silentLaunch => throw _privateConstructorUsedError;
   bool get autoRun => throw _privateConstructorUsedError;
   bool get closeConnections => throw _privateConstructorUsedError;
-  String get testUrl => throw _privateConstructorUsedError;
   bool get isAnimateToPage => throw _privateConstructorUsedError;
   bool get autoCheckUpdate => throw _privateConstructorUsedError;
   bool get showLabel => throw _privateConstructorUsedError;
@@ -59,7 +58,6 @@ abstract class $AppSettingPropsCopyWith<$Res> {
       bool silentLaunch,
       bool autoRun,
       bool closeConnections,
-      String testUrl,
       bool isAnimateToPage,
       bool autoCheckUpdate,
       bool showLabel,
@@ -90,7 +88,6 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
     Object? silentLaunch = null,
     Object? autoRun = null,
     Object? closeConnections = null,
-    Object? testUrl = null,
     Object? isAnimateToPage = null,
     Object? autoCheckUpdate = null,
     Object? showLabel = null,
@@ -124,10 +121,6 @@ class _$AppSettingPropsCopyWithImpl<$Res, $Val extends AppSettingProps>
           ? _value.closeConnections
           : closeConnections // ignore: cast_nullable_to_non_nullable
               as bool,
-      testUrl: null == testUrl
-          ? _value.testUrl
-          : testUrl // ignore: cast_nullable_to_non_nullable
-              as String,
       isAnimateToPage: null == isAnimateToPage
           ? _value.isAnimateToPage
           : isAnimateToPage // ignore: cast_nullable_to_non_nullable
@@ -175,7 +168,6 @@ abstract class _$$AppSettingPropsImplCopyWith<$Res>
       bool silentLaunch,
       bool autoRun,
       bool closeConnections,
-      String testUrl,
       bool isAnimateToPage,
       bool autoCheckUpdate,
       bool showLabel,
@@ -204,7 +196,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
     Object? silentLaunch = null,
     Object? autoRun = null,
     Object? closeConnections = null,
-    Object? testUrl = null,
     Object? isAnimateToPage = null,
     Object? autoCheckUpdate = null,
     Object? showLabel = null,
@@ -238,10 +229,6 @@ class __$$AppSettingPropsImplCopyWithImpl<$Res>
           ? _value.closeConnections
           : closeConnections // ignore: cast_nullable_to_non_nullable
               as bool,
-      testUrl: null == testUrl
-          ? _value.testUrl
-          : testUrl // ignore: cast_nullable_to_non_nullable
-              as String,
       isAnimateToPage: null == isAnimateToPage
           ? _value.isAnimateToPage
           : isAnimateToPage // ignore: cast_nullable_to_non_nullable
@@ -284,7 +271,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       this.silentLaunch = false,
       this.autoRun = false,
       this.closeConnections = true,
-      this.testUrl = defaultTestUrl,
       this.isAnimateToPage = true,
       this.autoCheckUpdate = true,
       this.showLabel = false,
@@ -315,9 +301,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
   final bool closeConnections;
   @override
   @JsonKey()
-  final String testUrl;
-  @override
-  @JsonKey()
   final bool isAnimateToPage;
   @override
   @JsonKey()
@@ -341,7 +324,7 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
 
   @override
   String toString() {
-    return 'AppSettingProps(locale: $locale, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, testUrl: $testUrl, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, recoveryStrategy: $recoveryStrategy)';
+    return 'AppSettingProps(locale: $locale, onlyStatisticsProxy: $onlyStatisticsProxy, autoLaunch: $autoLaunch, silentLaunch: $silentLaunch, autoRun: $autoRun, closeConnections: $closeConnections, isAnimateToPage: $isAnimateToPage, autoCheckUpdate: $autoCheckUpdate, showLabel: $showLabel, disclaimerAccepted: $disclaimerAccepted, minimizeOnExit: $minimizeOnExit, hidden: $hidden, recoveryStrategy: $recoveryStrategy)';
   }
 
   @override
@@ -359,7 +342,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
             (identical(other.autoRun, autoRun) || other.autoRun == autoRun) &&
             (identical(other.closeConnections, closeConnections) ||
                 other.closeConnections == closeConnections) &&
-            (identical(other.testUrl, testUrl) || other.testUrl == testUrl) &&
             (identical(other.isAnimateToPage, isAnimateToPage) ||
                 other.isAnimateToPage == isAnimateToPage) &&
             (identical(other.autoCheckUpdate, autoCheckUpdate) ||
@@ -385,7 +367,6 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       silentLaunch,
       autoRun,
       closeConnections,
-      testUrl,
       isAnimateToPage,
       autoCheckUpdate,
       showLabel,
@@ -419,7 +400,6 @@ abstract class _AppSettingProps implements AppSettingProps {
       final bool silentLaunch,
       final bool autoRun,
       final bool closeConnections,
-      final String testUrl,
       final bool isAnimateToPage,
       final bool autoCheckUpdate,
       final bool showLabel,
@@ -443,8 +423,6 @@ abstract class _AppSettingProps implements AppSettingProps {
   bool get autoRun;
   @override
   bool get closeConnections;
-  @override
-  String get testUrl;
   @override
   bool get isAnimateToPage;
   @override
@@ -1416,9 +1394,7 @@ mixin _$Config {
   bool get overrideDns => throw _privateConstructorUsedError;
   AuthProps get authProps => throw _privateConstructorUsedError;
   NetworkProps get networkProps => throw _privateConstructorUsedError;
-  VpnProps get vpnProps =>
-      throw _privateConstructorUsedError; // @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
-// @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
+  VpnProps get vpnProps => throw _privateConstructorUsedError;
   WindowProps get windowProps => throw _privateConstructorUsedError;
   ClashConfig get patchClashConfig => throw _privateConstructorUsedError;
 
@@ -1724,8 +1700,6 @@ class _$ConfigImpl implements _Config {
   @override
   @JsonKey()
   final VpnProps vpnProps;
-// @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
-// @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
   @override
   @JsonKey()
   final WindowProps windowProps;
@@ -1821,9 +1795,7 @@ abstract class _Config implements Config {
   @override
   NetworkProps get networkProps;
   @override
-  VpnProps
-      get vpnProps; // @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,
-// @Default(defaultProxiesStyle) ProxiesStyle proxiesStyle,
+  VpnProps get vpnProps;
   @override
   WindowProps get windowProps;
   @override

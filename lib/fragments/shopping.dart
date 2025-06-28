@@ -8,14 +8,14 @@ import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class OrderFragment extends ConsumerStatefulWidget {
-  const OrderFragment({super.key});
+class ShoppingFragment extends ConsumerStatefulWidget {
+  const ShoppingFragment({super.key});
 
   @override
-  ConsumerState<OrderFragment> createState() => _OrderFragmentState();
+  ConsumerState<ShoppingFragment> createState() => _ShoppingFragmentState();
 }
 
-class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
+class _ShoppingFragmentState extends ConsumerState<ShoppingFragment> with PageMixin {
   final ValueNotifier<OrderSelectionPageState> _state = ValueNotifier(
     const OrderSelectionPageState(),
   );
@@ -33,8 +33,8 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
     _state.value = _state.value.copyWith(loading: true, error: false);
     try {
       ref.read(orderSelectionProvider.notifier).value = OrderSelectionProps(
-        orders: await api.useLoadingPage(() async {
-          return await api.fetchOrders();
+        orders: await useLoadingPage(() async {
+          return await request.enzyme.getOrderTypes();
         }),
       );
     } catch (e) {
@@ -147,28 +147,33 @@ class _OrderFragmentState extends ConsumerState<OrderFragment> with PageMixin {
             }
             return;
           }
-          _order(selectedOrder, authSetting.token!);
+          _order(selectedOrder);
         },
       ),
     );
   }
-}
 
-Future<void> _order(OrderCommonProps order, String token) async {
-  final url =
-      "$baseUrl/alipay/create_payment?order_type=${order.orderType}&token=$token";
-  final uri = Uri.parse(url);
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri);
-    final confirm = await globalState.showMessage(
-      message: TextSpan(text: "支付成功，点击立即刷新状态"),
-      confirmText: "刷新",
-    );
-    if (confirm == true) {
-      await globalState.authController.refreshLoginState();
-      globalState.appController.toPage(PageLabel.auth);
+  Future<void> _order(OrderCommonProps order) async {
+    final url = await request.enzyme.createAlipayOrder(order.orderType);
+    if (url == null) {
+      await globalState.showMessage(
+        message: TextSpan(text: "创建订单失败, ${order.orderType}"),
+      );
+      return;
     }
-  } else {
-    throw '无法打开 URL: $url';
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+      final confirm = await globalState.showMessage(
+        message: TextSpan(text: "支付成功，点击立即刷新状态"),
+        confirmText: "刷新",
+      );
+      if (confirm == true) {
+        await request.enzyme.querySubscription();
+        globalState.appController.toPage(PageLabel.auth);
+      }
+    } else {
+      throw '无法打开 URL: $url';
+    }
   }
 }

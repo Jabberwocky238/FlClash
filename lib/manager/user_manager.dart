@@ -1,8 +1,5 @@
 import 'package:jw_clash/common/common.dart';
-// import 'package:jw_clash/common/proxy.dart';
-import 'package:jw_clash/models/models.dart';
 import 'package:jw_clash/providers/providers.dart';
-// import 'package:jw_clash/providers/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jw_clash/state.dart';
@@ -17,8 +14,6 @@ class UserManager extends ConsumerStatefulWidget {
 }
 
 class _UserManagerState extends ConsumerState<UserManager> {
-  final ValueNotifier<Profile?> _profile = ValueNotifier(null);
-
   @override
   void initState() {
     super.initState();
@@ -26,10 +21,10 @@ class _UserManagerState extends ConsumerState<UserManager> {
     ref.listenManual(
       authSettingProvider,
       (prev, next) {
-        if (prev != next) {
-          _fetchProfile();
-          globalState.appController.savePreferences();
-        }
+        commonPrint.log("[UserManager] authSettingProvider: $next");
+        guaranteeTokenExist();
+        updateUsageInfo();
+        globalState.appController.savePreferences();
       },
       // fireImmediately: true,
     );
@@ -37,24 +32,42 @@ class _UserManagerState extends ConsumerState<UserManager> {
       initProvider,
       (prev, next) {
         if (prev != next && next) {
-          commonPrint.log("[user_manager] initProvider: $next, fetchProfile");
-          _fetchProfile();
+          commonPrint.log("[UserManager] initProvider: $next, fetchProfile");
+          guaranteeTokenExist();
+          updateUsageInfo();
         }
       },
       fireImmediately: true,
     );
   }
 
-  _fetchProfile() async {
-    try {
-      final token =
-          ref.watch(authSettingProvider.select((state) => state.token));
-      _profile.value = await api.fetchProfile(token);
-      globalState.appController.setProfileAndAutoApply(_profile.value!);
-      ref.read(currentProfileIdProvider.notifier).value = _profile.value!.id;
-      printMessage("switch to ${_profile.value!.url}");
-    } catch (e) {
-      printMessage("fetch profile failed: $e");
+  guaranteeTokenExist() async {
+    final authSetting = ref.watch(authSettingProvider);
+    if (authSetting.token != null && authSetting.token!.isNotEmpty) {
+      return;
+    }
+    if (authSetting.email.isEmpty || authSetting.password.isEmpty) {
+      final resp = await request.enzyme.preRegister();
+      if (resp != null) {
+        ref.read(authSettingProvider.notifier).updateState(
+              (state) => state.copyWith(token: resp),
+            );
+      }
+      return;
+    }
+    final resp =
+        await request.enzyme.login(authSetting.email, authSetting.password);
+    if (resp != null) {
+      ref.read(authSettingProvider.notifier).updateState(
+            (state) => state.copyWith(token: resp),
+          );
+    }
+  }
+
+  updateUsageInfo() async {
+    final resp = await request.enzyme.querySubscription();
+    if (resp != null) {
+      ref.read(usageInfoModelProvider.notifier).value = resp;
     }
   }
 

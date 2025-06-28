@@ -55,9 +55,9 @@ class ProfilesSelectorState with _$ProfilesSelectorState {
 @freezed
 class NetworkDetectionState with _$NetworkDetectionState {
   const factory NetworkDetectionState({
-    required bool isLoading,
-    required bool isTesting,
-    required IpInfo? ipInfo,
+    @Default(false) bool isLoading,
+    @Default(false) bool isTesting,
+    @Default(null) IpInfo? ipInfo,
   }) = _NetworkDetectionState;
 }
 

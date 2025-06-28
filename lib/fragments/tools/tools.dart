@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:jw_clash/common/common.dart';
+import 'package:jw_clash/enum/enum.dart';
 // import 'package:jw_clash/fragments/about.dart';
 // import 'package:jw_clash/fragments/access.dart';
-import 'package:jw_clash/fragments/application_setting.dart';
+import 'package:jw_clash/fragments/tools/application_setting.dart';
 import 'package:jw_clash/fragments/config/config.dart';
 import 'package:jw_clash/l10n/l10n.dart';
 import 'package:jw_clash/providers/providers.dart';
@@ -11,6 +12,8 @@ import 'package:jw_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+
+import 'access.dart';
 import 'developer.dart';
 import 'package:path/path.dart' show dirname, join;
 
@@ -21,7 +24,12 @@ class ToolsFragment extends ConsumerStatefulWidget {
   ConsumerState<ToolsFragment> createState() => _ToolboxFragmentState();
 }
 
-class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
+class _ToolboxFragmentState extends ConsumerState<ToolsFragment> with PageMixin {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   // _buildNavigationMenuItem(NavigationItem navigationItem) {
   //   return ListItem.open(
   //     leading: navigationItem.icon,
@@ -55,8 +63,8 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
     return generateSection(
       title: appLocalizations.other,
       items: [
-        _DisclaimerItem(),
-        _DeveloperItem(),
+        // _DisclaimerItem(),
+        // _DeveloperItem(),
         // _InfoItem(),
       ],
     );
@@ -71,35 +79,15 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
         // _BackupItem(), // WEBDAV
         // if (system.isDesktop) _HotkeyItem(),
         if (Platform.isWindows) _LoopbackItem(),
-        // if (Platform.isAndroid) _AccessItem(),
-        _ConfigItem(),
-        _SettingItem(),
+        if (Platform.isAndroid) _AccessItem(),
+        // _ConfigItem(),
+        // _SettingItem(),
       ],
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // final vm2 = ref.watch(
-    //   appSettingProvider.select(
-    //     (state) => VM2(a: state.locale, b: state.developerMode),
-    //   ),
-    // );
+  Widget _build(BuildContext context) {
     final items = [
-      // Consumer(
-      //   builder: (_, ref, __) {
-      //     final state = ref.watch(moreToolsSelectorStateProvider);
-      //     if (state.navigationItems.isEmpty) {
-      //       return Container();
-      //     }
-      //     return Column(
-      //       children: [
-      //         ListHeader(title: appLocalizations.more),
-      //         _buildNavigationMenu(state.navigationItems)
-      //       ],
-      //     );
-      //   },
-      // ),
       ..._getSettingList(),
       ..._getOtherList(),
     ];
@@ -108,6 +96,11 @@ class _ToolboxFragmentState extends ConsumerState<ToolsFragment> {
       itemBuilder: (_, index) => items[index],
       padding: const EdgeInsets.only(bottom: 20),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return buildScaffoldView(_build(context), actions, PageLabel.tools);
   }
 }
 
@@ -277,6 +270,23 @@ class _DeveloperItem extends StatelessWidget {
       delegate: OpenDelegate(
         title: appLocalizations.developerMode,
         widget: const DeveloperView(),
+      ),
+    );
+  }
+}
+
+class _AccessItem extends StatelessWidget {
+  const _AccessItem();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListItem.open(
+      leading: const Icon(Icons.view_list),
+      title: Text(appLocalizations.accessControl),
+      subtitle: Text(appLocalizations.accessControlDesc),
+      delegate: OpenDelegate(
+        title: appLocalizations.appAccessControl,
+        widget: const AccessView(),
       ),
     );
   }

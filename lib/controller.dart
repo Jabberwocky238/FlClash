@@ -121,12 +121,6 @@ class AppController {
     _ref.read(trafficsProvider.notifier).addTraffic(traffic);
     final totalTraffic = await clashCore.getTotalTraffic();
     _ref.read(totalTrafficProvider.notifier).value = totalTraffic;
-    final usage = traffic.up.value + traffic.down.value;
-    final token = _ref.read(authSettingProvider.select((state) => state.token));
-    if (token != null) {
-      commonPrint.log("[AppController] record usage: $usage");
-      api.recordUsage(token, usage);
-    }
   }
 
   addProfile(Profile profile) async {
@@ -151,17 +145,6 @@ class AppController {
     }
   }
 
-  // updateProviders() async {
-  //   _ref.read(providersProvider.notifier).value =
-  //       await clashCore.getExternalProviders();
-  // }
-
-  updateLocalIp() async {
-    _ref.read(localIpProvider.notifier).value = null;
-    await Future.delayed(commonDuration);
-    _ref.read(localIpProvider.notifier).value = await utils.getLocalIpAddress();
-  }
-
   Future<void> updateProfile(Profile profile) async {
     final newProfile = await profile.update();
     _ref
@@ -176,8 +159,11 @@ class AppController {
     _ref.read(profilesProvider.notifier).setProfile(profile);
   }
 
-  setProfileAndAutoApply(Profile profile) {
+  setProfileAndAutoApply(Profile profile, {bool apply = false}) {
     _ref.read(profilesProvider.notifier).setProfile(profile);
+    if (apply) {
+      _ref.read(currentProfileIdProvider.notifier).value = profile.id;
+    }
     if (profile.id == _ref.read(currentProfileIdProvider)) {
       applyProfileDebounce(silence: true);
     }
@@ -193,10 +179,6 @@ class AppController {
 
   List<Group> getCurrentGroups() {
     return _ref.read(currentGroupsStateProvider.select((state) => state.value));
-  }
-
-  String getRealTestUrl(String? url) {
-    return _ref.read(getRealTestUrlProvider(url));
   }
 
   // int getProxiesColumns() {
@@ -230,6 +212,10 @@ class AppController {
     setProfile(
       profile.copyWith(currentGroupName: groupName),
     );
+  }
+
+  Future<List<Package>> getPackages() async {
+    return _ref.read(packagesProvider);
   }
 
   Future<void> updateClashConfig([bool? isPatch]) async {

@@ -37,18 +37,13 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
         IconButton(
           onPressed: () {
             debouncer.call(commonDuration, () async {
-              final commonScaffoldState =
-                  globalState.homePageKey.currentState;
-              if (commonScaffoldState?.mounted != true) return;
-              await commonScaffoldState?.loadingRun(() async {
+              await useLoadingPage(() async {
                 final authProps = ref.watch(authSettingProvider);
-                final result =
-                    await globalState.authController.login(UserLoginProps(
-                  email: authProps.email,
-                  password: authProps.password,
-                ));
-                globalState.showMessage(
-                    message: TextSpan(text: result.message));
+                final token = await request.enzyme
+                    .login(authProps.email, authProps.password);
+                ref.read(authSettingProvider.notifier).value =
+                      authProps.copyWith(token: token);
+                globalState.showMessage(message: TextSpan(text: token ?? ""));
               });
             });
           },
@@ -117,10 +112,10 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
   }
 
   Widget _getUserSubscriptionItem(BuildContext context) {
-    final authSetting = ref.watch(authSettingProvider);
-    final subscriptionInfo = authSetting.subscriptionInfo;
-    final expireDate =
-        DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire);
+    final subscriptionInfo = ref.watch(usageInfoModelProvider);
+    commonPrint
+        .log("[AuthFragment] _getUserSubscriptionItem: $subscriptionInfo");
+    final expireDate = subscriptionInfo.expireAt;
     final expireShow =
         expireDate.isAfter(DateTime.now()) ? "专业版 至 ${expireDate.show}" : "免费";
     return CommonCard(
@@ -147,7 +142,8 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
   }
 
   Widget _getIPItem(BuildContext context) {
-    final currentIp = globalState.appState.ipInfo.ip;
+    final networkDetectionState = ref.watch(networkDetectionProvider);
+    final currentIp = networkDetectionState.ipInfo?.ip ?? "";
     return CommonCard(
       type: CommonCardType.filled,
       radius: 18,
@@ -215,7 +211,7 @@ class _AuthFragmentState extends ConsumerState<AuthFragment> with PageMixin {
               title: appLocalizations.logout,
             );
             if (confirm == true) {
-              await globalState.authController.logout();
+              ref.read(authSettingProvider.notifier).value = defaultAuthProps;
             }
           },
         ),

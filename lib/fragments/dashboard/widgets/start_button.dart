@@ -34,7 +34,10 @@ class _StartButtonState extends State<StartButton>
     super.dispose();
   }
 
-  handleSwitchStart() {
+  handleSwitchStart(String? countryCode) async {
+    final profile = await request.enzyme.fetchProfile(countryCode);
+    commonPrint.log("[StartButton] fetchProfile: $profile");
+    globalState.appController.setProfileAndAutoApply(profile!);
     isStart = !isStart;
     updateController();
     debouncer.call(
@@ -59,6 +62,7 @@ class _StartButtonState extends State<StartButton>
     return Consumer(
       builder: (_, ref, child) {
         final state = ref.watch(startButtonSelectorStateProvider);
+        final countryCode = ref.watch(currentSelectedCountryProvider);
         if (!state.isInit || !state.hasProfile) {
           return Container();
         }
@@ -92,7 +96,7 @@ class _StartButtonState extends State<StartButton>
               child: FloatingActionButton(
                 heroTag: null,
                 onPressed: () {
-                  handleSwitchStart();
+                  handleSwitchStart(countryCode);
                 },
                 child: Row(
                   children: [

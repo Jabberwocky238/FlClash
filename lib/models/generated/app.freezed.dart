@@ -18,19 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppState {
   bool get isInit => throw _privateConstructorUsedError;
   PageLabel get pageLabel => throw _privateConstructorUsedError;
-  List<Package> get packages =>
-      throw _privateConstructorUsedError; // @Default(0) int sortNum,
-// required Size viewSize,
+  List<Package> get packages => throw _privateConstructorUsedError;
   Map<String, Map<String, int?>> get delayMap =>
       throw _privateConstructorUsedError;
   List<Group> get groups => throw _privateConstructorUsedError;
   int get checkIpNum => throw _privateConstructorUsedError;
+  String? get currentSelectedCountry => throw _privateConstructorUsedError;
   Brightness? get brightness => throw _privateConstructorUsedError;
   int? get runTime => throw _privateConstructorUsedError;
   List<ExternalProvider> get providers => throw _privateConstructorUsedError;
-  String? get localIp => throw _privateConstructorUsedError;
   OrderSelectionProps get orderSelection => throw _privateConstructorUsedError;
-  IpInfo get ipInfo => throw _privateConstructorUsedError;
+  NetworkDetectionState get networkDetectionState =>
+      throw _privateConstructorUsedError;
+  UsageInfo? get usageInfo => throw _privateConstructorUsedError;
   FixedList<Connection> get requests => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
   String get deviceSerialNumber => throw _privateConstructorUsedError;
@@ -58,12 +58,13 @@ abstract class $AppStateCopyWith<$Res> {
       Map<String, Map<String, int?>> delayMap,
       List<Group> groups,
       int checkIpNum,
+      String? currentSelectedCountry,
       Brightness? brightness,
       int? runTime,
       List<ExternalProvider> providers,
-      String? localIp,
       OrderSelectionProps orderSelection,
-      IpInfo ipInfo,
+      NetworkDetectionState networkDetectionState,
+      UsageInfo? usageInfo,
       FixedList<Connection> requests,
       int version,
       String deviceSerialNumber,
@@ -73,6 +74,8 @@ abstract class $AppStateCopyWith<$Res> {
       bool needApply});
 
   $OrderSelectionPropsCopyWith<$Res> get orderSelection;
+  $NetworkDetectionStateCopyWith<$Res> get networkDetectionState;
+  $UsageInfoCopyWith<$Res>? get usageInfo;
 }
 
 /// @nodoc
@@ -96,12 +99,13 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? delayMap = null,
     Object? groups = null,
     Object? checkIpNum = null,
+    Object? currentSelectedCountry = freezed,
     Object? brightness = freezed,
     Object? runTime = freezed,
     Object? providers = null,
-    Object? localIp = freezed,
     Object? orderSelection = null,
-    Object? ipInfo = null,
+    Object? networkDetectionState = null,
+    Object? usageInfo = freezed,
     Object? requests = null,
     Object? version = null,
     Object? deviceSerialNumber = null,
@@ -135,6 +139,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.checkIpNum
           : checkIpNum // ignore: cast_nullable_to_non_nullable
               as int,
+      currentSelectedCountry: freezed == currentSelectedCountry
+          ? _value.currentSelectedCountry
+          : currentSelectedCountry // ignore: cast_nullable_to_non_nullable
+              as String?,
       brightness: freezed == brightness
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
@@ -147,18 +155,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.providers
           : providers // ignore: cast_nullable_to_non_nullable
               as List<ExternalProvider>,
-      localIp: freezed == localIp
-          ? _value.localIp
-          : localIp // ignore: cast_nullable_to_non_nullable
-              as String?,
       orderSelection: null == orderSelection
           ? _value.orderSelection
           : orderSelection // ignore: cast_nullable_to_non_nullable
               as OrderSelectionProps,
-      ipInfo: null == ipInfo
-          ? _value.ipInfo
-          : ipInfo // ignore: cast_nullable_to_non_nullable
-              as IpInfo,
+      networkDetectionState: null == networkDetectionState
+          ? _value.networkDetectionState
+          : networkDetectionState // ignore: cast_nullable_to_non_nullable
+              as NetworkDetectionState,
+      usageInfo: freezed == usageInfo
+          ? _value.usageInfo
+          : usageInfo // ignore: cast_nullable_to_non_nullable
+              as UsageInfo?,
       requests: null == requests
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -199,6 +207,31 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       return _then(_value.copyWith(orderSelection: value) as $Val);
     });
   }
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NetworkDetectionStateCopyWith<$Res> get networkDetectionState {
+    return $NetworkDetectionStateCopyWith<$Res>(_value.networkDetectionState,
+        (value) {
+      return _then(_value.copyWith(networkDetectionState: value) as $Val);
+    });
+  }
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UsageInfoCopyWith<$Res>? get usageInfo {
+    if (_value.usageInfo == null) {
+      return null;
+    }
+
+    return $UsageInfoCopyWith<$Res>(_value.usageInfo!, (value) {
+      return _then(_value.copyWith(usageInfo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -216,12 +249,13 @@ abstract class _$$AppStateImplCopyWith<$Res>
       Map<String, Map<String, int?>> delayMap,
       List<Group> groups,
       int checkIpNum,
+      String? currentSelectedCountry,
       Brightness? brightness,
       int? runTime,
       List<ExternalProvider> providers,
-      String? localIp,
       OrderSelectionProps orderSelection,
-      IpInfo ipInfo,
+      NetworkDetectionState networkDetectionState,
+      UsageInfo? usageInfo,
       FixedList<Connection> requests,
       int version,
       String deviceSerialNumber,
@@ -232,6 +266,10 @@ abstract class _$$AppStateImplCopyWith<$Res>
 
   @override
   $OrderSelectionPropsCopyWith<$Res> get orderSelection;
+  @override
+  $NetworkDetectionStateCopyWith<$Res> get networkDetectionState;
+  @override
+  $UsageInfoCopyWith<$Res>? get usageInfo;
 }
 
 /// @nodoc
@@ -253,12 +291,13 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? delayMap = null,
     Object? groups = null,
     Object? checkIpNum = null,
+    Object? currentSelectedCountry = freezed,
     Object? brightness = freezed,
     Object? runTime = freezed,
     Object? providers = null,
-    Object? localIp = freezed,
     Object? orderSelection = null,
-    Object? ipInfo = null,
+    Object? networkDetectionState = null,
+    Object? usageInfo = freezed,
     Object? requests = null,
     Object? version = null,
     Object? deviceSerialNumber = null,
@@ -292,6 +331,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.checkIpNum
           : checkIpNum // ignore: cast_nullable_to_non_nullable
               as int,
+      currentSelectedCountry: freezed == currentSelectedCountry
+          ? _value.currentSelectedCountry
+          : currentSelectedCountry // ignore: cast_nullable_to_non_nullable
+              as String?,
       brightness: freezed == brightness
           ? _value.brightness
           : brightness // ignore: cast_nullable_to_non_nullable
@@ -304,18 +347,18 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value._providers
           : providers // ignore: cast_nullable_to_non_nullable
               as List<ExternalProvider>,
-      localIp: freezed == localIp
-          ? _value.localIp
-          : localIp // ignore: cast_nullable_to_non_nullable
-              as String?,
       orderSelection: null == orderSelection
           ? _value.orderSelection
           : orderSelection // ignore: cast_nullable_to_non_nullable
               as OrderSelectionProps,
-      ipInfo: null == ipInfo
-          ? _value.ipInfo
-          : ipInfo // ignore: cast_nullable_to_non_nullable
-              as IpInfo,
+      networkDetectionState: null == networkDetectionState
+          ? _value.networkDetectionState
+          : networkDetectionState // ignore: cast_nullable_to_non_nullable
+              as NetworkDetectionState,
+      usageInfo: freezed == usageInfo
+          ? _value.usageInfo
+          : usageInfo // ignore: cast_nullable_to_non_nullable
+              as UsageInfo?,
       requests: null == requests
           ? _value.requests
           : requests // ignore: cast_nullable_to_non_nullable
@@ -358,12 +401,13 @@ class _$AppStateImpl implements _AppState {
       final Map<String, Map<String, int?>> delayMap = const {},
       final List<Group> groups = const [],
       this.checkIpNum = 0,
+      this.currentSelectedCountry,
       this.brightness,
       this.runTime,
       final List<ExternalProvider> providers = const [],
-      this.localIp,
       this.orderSelection = const OrderSelectionProps(),
-      required this.ipInfo,
+      this.networkDetectionState = const NetworkDetectionState(),
+      this.usageInfo,
       required this.requests,
       required this.version,
       required this.deviceSerialNumber,
@@ -391,11 +435,7 @@ class _$AppStateImpl implements _AppState {
     return EqualUnmodifiableListView(_packages);
   }
 
-// @Default(0) int sortNum,
-// required Size viewSize,
   final Map<String, Map<String, int?>> _delayMap;
-// @Default(0) int sortNum,
-// required Size viewSize,
   @override
   @JsonKey()
   Map<String, Map<String, int?>> get delayMap {
@@ -417,6 +457,8 @@ class _$AppStateImpl implements _AppState {
   @JsonKey()
   final int checkIpNum;
   @override
+  final String? currentSelectedCountry;
+  @override
   final Brightness? brightness;
   @override
   final int? runTime;
@@ -430,12 +472,13 @@ class _$AppStateImpl implements _AppState {
   }
 
   @override
-  final String? localIp;
-  @override
   @JsonKey()
   final OrderSelectionProps orderSelection;
   @override
-  final IpInfo ipInfo;
+  @JsonKey()
+  final NetworkDetectionState networkDetectionState;
+  @override
+  final UsageInfo? usageInfo;
   @override
   final FixedList<Connection> requests;
   @override
@@ -454,7 +497,7 @@ class _$AppStateImpl implements _AppState {
 
   @override
   String toString() {
-    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, brightness: $brightness, runTime: $runTime, providers: $providers, localIp: $localIp, orderSelection: $orderSelection, ipInfo: $ipInfo, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
+    return 'AppState(isInit: $isInit, pageLabel: $pageLabel, packages: $packages, delayMap: $delayMap, groups: $groups, checkIpNum: $checkIpNum, currentSelectedCountry: $currentSelectedCountry, brightness: $brightness, runTime: $runTime, providers: $providers, orderSelection: $orderSelection, networkDetectionState: $networkDetectionState, usageInfo: $usageInfo, requests: $requests, version: $version, deviceSerialNumber: $deviceSerialNumber, logs: $logs, traffics: $traffics, totalTraffic: $totalTraffic, needApply: $needApply)';
   }
 
   @override
@@ -470,15 +513,19 @@ class _$AppStateImpl implements _AppState {
             const DeepCollectionEquality().equals(other._groups, _groups) &&
             (identical(other.checkIpNum, checkIpNum) ||
                 other.checkIpNum == checkIpNum) &&
+            (identical(other.currentSelectedCountry, currentSelectedCountry) ||
+                other.currentSelectedCountry == currentSelectedCountry) &&
             (identical(other.brightness, brightness) ||
                 other.brightness == brightness) &&
             (identical(other.runTime, runTime) || other.runTime == runTime) &&
             const DeepCollectionEquality()
                 .equals(other._providers, _providers) &&
-            (identical(other.localIp, localIp) || other.localIp == localIp) &&
             (identical(other.orderSelection, orderSelection) ||
                 other.orderSelection == orderSelection) &&
-            (identical(other.ipInfo, ipInfo) || other.ipInfo == ipInfo) &&
+            (identical(other.networkDetectionState, networkDetectionState) ||
+                other.networkDetectionState == networkDetectionState) &&
+            (identical(other.usageInfo, usageInfo) ||
+                other.usageInfo == usageInfo) &&
             (identical(other.requests, requests) ||
                 other.requests == requests) &&
             (identical(other.version, version) || other.version == version) &&
@@ -502,12 +549,13 @@ class _$AppStateImpl implements _AppState {
         const DeepCollectionEquality().hash(_delayMap),
         const DeepCollectionEquality().hash(_groups),
         checkIpNum,
+        currentSelectedCountry,
         brightness,
         runTime,
         const DeepCollectionEquality().hash(_providers),
-        localIp,
         orderSelection,
-        ipInfo,
+        networkDetectionState,
+        usageInfo,
         requests,
         version,
         deviceSerialNumber,
@@ -534,12 +582,13 @@ abstract class _AppState implements AppState {
       final Map<String, Map<String, int?>> delayMap,
       final List<Group> groups,
       final int checkIpNum,
+      final String? currentSelectedCountry,
       final Brightness? brightness,
       final int? runTime,
       final List<ExternalProvider> providers,
-      final String? localIp,
       final OrderSelectionProps orderSelection,
-      required final IpInfo ipInfo,
+      final NetworkDetectionState networkDetectionState,
+      final UsageInfo? usageInfo,
       required final FixedList<Connection> requests,
       required final int version,
       required final String deviceSerialNumber,
@@ -553,8 +602,7 @@ abstract class _AppState implements AppState {
   @override
   PageLabel get pageLabel;
   @override
-  List<Package> get packages; // @Default(0) int sortNum,
-// required Size viewSize,
+  List<Package> get packages;
   @override
   Map<String, Map<String, int?>> get delayMap;
   @override
@@ -562,17 +610,19 @@ abstract class _AppState implements AppState {
   @override
   int get checkIpNum;
   @override
+  String? get currentSelectedCountry;
+  @override
   Brightness? get brightness;
   @override
   int? get runTime;
   @override
   List<ExternalProvider> get providers;
   @override
-  String? get localIp;
-  @override
   OrderSelectionProps get orderSelection;
   @override
-  IpInfo get ipInfo;
+  NetworkDetectionState get networkDetectionState;
+  @override
+  UsageInfo? get usageInfo;
   @override
   FixedList<Connection> get requests;
   @override

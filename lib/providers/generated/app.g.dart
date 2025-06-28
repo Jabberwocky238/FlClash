@@ -20,6 +20,38 @@ final logsProvider = AutoDisposeNotifierProvider<Logs, FixedList<Log>>.internal(
 );
 
 typedef _$Logs = AutoDisposeNotifier<FixedList<Log>>;
+String _$usageInfoModelHash() => r'07bd81dba67d53e7cfd811986997a36a4b5506bf';
+
+/// See also [UsageInfoModel].
+@ProviderFor(UsageInfoModel)
+final usageInfoModelProvider =
+    AutoDisposeNotifierProvider<UsageInfoModel, UsageInfo>.internal(
+  UsageInfoModel.new,
+  name: r'usageInfoModelProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$usageInfoModelHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$UsageInfoModel = AutoDisposeNotifier<UsageInfo>;
+String _$networkDetectionHash() => r'6001ef15dcb6dd0814b533578bc57eee88a20a07';
+
+/// See also [NetworkDetection].
+@ProviderFor(NetworkDetection)
+final networkDetectionProvider = AutoDisposeNotifierProvider<NetworkDetection,
+    NetworkDetectionState>.internal(
+  NetworkDetection.new,
+  name: r'networkDetectionProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$networkDetectionHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$NetworkDetection = AutoDisposeNotifier<NetworkDetectionState>;
 String _$requestsHash() => r'51c9dbba18649206b22dd0ba86c58ab986fc0939';
 
 /// See also [Requests].
@@ -111,20 +143,6 @@ final totalTrafficProvider =
 );
 
 typedef _$TotalTraffic = AutoDisposeNotifier<Traffic>;
-String _$localIpHash() => r'2dd4afdb29db4791ebd80d976f9ea31c62959199';
-
-/// See also [LocalIp].
-@ProviderFor(LocalIp)
-final localIpProvider = AutoDisposeNotifierProvider<LocalIp, String?>.internal(
-  LocalIp.new,
-  name: r'localIpProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$localIpHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$LocalIp = AutoDisposeNotifier<String?>;
 String _$runTimeHash() => r'9aab44f2234590a70cbf0ff7394e496c2c97c00e';
 
 /// See also [RunTime].

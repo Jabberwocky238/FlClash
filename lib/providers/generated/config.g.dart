@@ -67,6 +67,23 @@ final authSettingProvider =
 );
 
 typedef _$AuthSetting = AutoDisposeNotifier<AuthProps>;
+String _$currentSelectedCountryHash() =>
+    r'74777d40b2ad60e1abb9865b6a3db189a0bfeeb8';
+
+/// See also [CurrentSelectedCountry].
+@ProviderFor(CurrentSelectedCountry)
+final currentSelectedCountryProvider =
+    AutoDisposeNotifierProvider<CurrentSelectedCountry, String?>.internal(
+  CurrentSelectedCountry.new,
+  name: r'currentSelectedCountryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$currentSelectedCountryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$CurrentSelectedCountry = AutoDisposeNotifier<String?>;
 String _$profilesHash() => r'a6514c89064e4f42fc31fe7d525088fd26c51016';
 
 /// See also [Profiles].

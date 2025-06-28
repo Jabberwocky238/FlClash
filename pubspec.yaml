@@ -37,8 +37,6 @@ dependencies:
   dio: ^5.8.0+1
   win32: ^5.5.1
   ffi: ^2.1.2
-  # re_editor: ^0.7.0
-  # re_highlight: ^0.0.3
   archive: ^3.6.1
   lpinyin: ^2.0.3
   emoji_regex: ^0.0.5
@@ -51,7 +49,6 @@ dependencies:
   flutter_riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
   riverpod: ^2.6.1
-  material_color_utilities: ^0.11.1
 
 dependency_overrides:
   analyzer: 7.3.0
