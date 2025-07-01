@@ -427,44 +427,6 @@ class EnzymeRequest {
     }
   }
 
-  // pay/alipay/success 接收参数根据代码
-  Future<bool> alipaySuccess(Map<String, dynamic> params) async {
-    try {
-      final headers = <String, String>{};
-      _setHeaders(headers);
-
-      final response = await _dio.post(
-        '$baseUrl/pay/alipay/success',
-        data: params,
-        options: Options(headers: headers),
-      );
-
-      return response.statusCode == 200;
-    } catch (e) {
-      commonPrint.log("[EnzymeRequest] alipaySuccess error: $e");
-      return false;
-    }
-  }
-
-  // pay/alipay/notify 接收参数根据代码
-  Future<bool> alipayNotify(Map<String, dynamic> params) async {
-    try {
-      final headers = <String, String>{};
-      _setHeaders(headers);
-
-      final response = await _dio.post(
-        '$baseUrl/pay/alipay/notify',
-        data: params,
-        options: Options(headers: headers),
-      );
-
-      return response.statusCode == 200;
-    } catch (e) {
-      commonPrint.log("[EnzymeRequest] alipayNotify error: $e");
-      return false;
-    }
-  }
-
   // config/fetch get接受参数：国家代号
   Future<Profile?> fetchProfile(String? countryCode) async {
     try {
@@ -491,7 +453,8 @@ class EnzymeRequest {
       }
       return null;
     } catch (e) {
-      commonPrint.log("[EnzymeRequest] fetchConfig error: $e");
+      commonPrint.log(
+          "[EnzymeRequest] fetchConfig error: $e, countryCode: $countryCode");
       return null;
     }
   }
